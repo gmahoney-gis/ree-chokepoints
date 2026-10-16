@@ -31,7 +31,7 @@ Tasks with script "—" are done by hand (downloads, checks, QGIS work, writing)
 | ID | Task | Script | Kind | Product | Depends on | L7 |
 |---|---|---|---|---|---|---|
 | 0.1 | Create a public GitHub repository with the agreed folder layout; add a .gitignore that excludes raw data and the project database. | — | Manual | P01 Project repository and Python environment | — | L7 |
-| 0.2 | Create the Python environment (Python 3.11 with pandas, NumPy, GeoPandas, Shapely, pyogrio, searoute, NetworkX, SciPy, scikit-learn, Matplotlib, PyYAML, requests, comtradeapicall) and export it. | — | Manual | P01 Project repository and Python environment | 0.1 | L7 |
+| 0.2 | Create the Python environment (Python 3.11 with pandas, NumPy, GeoPandas, Shapely, pyogrio, searoute, NetworkX, SciPy, scikit-learn, Matplotlib, PyYAML, requests, comtradeapicall, pyarrow) and export it. | — | Manual | P01 Project repository and Python environment | 0.1 | L7 |
 | 0.3 | Write the settings file with every parameter on the Settings sheet. | — | Manual | P02 Settings file | 0.1 | L7 |
 | 0.4 | Write shared tools: load settings, start a log, great-circle distance, ISO-3 codes, read and write GeoPackage layers. | common.py | Script | P03 Shared tools and runner | 0.2 | L7 |
 | 0.5 | Write the runner that runs S01–S11 in order, or one script by name. | run_all.py | Script | P03 Shared tools and runner | 0.4 | L7 |

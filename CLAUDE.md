@@ -80,7 +80,8 @@ Run with `python scripts/run_all.py` (everything) or `python scripts/run_all.py 
   back to task IDs (for example `# Task 2.4: importer record first`), and a `main()` guarded
   by `if __name__ == "__main__":`.
 - **Libraries.** pandas, NumPy, GeoPandas, Shapely, pyogrio, searoute, NetworkX, SciPy,
-  scikit-learn, Matplotlib, PyYAML, requests, comtradeapicall. Ask before adding others.
+  scikit-learn, Matplotlib, PyYAML, requests, comtradeapicall, pyarrow (reads the GDELT
+  .parquet files). Ask before adding others.
 
 ## Data rules
 
@@ -119,6 +120,7 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Proposal (Lab 6) complete. Data collected except PortWatch port data and Comtrade HS 8505.11.
+Proposal (Lab 6) complete. Repository is on GitHub (gmahoney-gis/ree-chokepoints).
+Data collected except PortWatch port data (Comtrade HS 8505.11 is now downloaded).
 No scripts written yet. Next: Phase 0 (setup) and S01–S02.
 <!-- Update this section as work progresses. -->

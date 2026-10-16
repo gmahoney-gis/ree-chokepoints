@@ -1,0 +1,12 @@
+# Keep text files with LF line endings in the repository and working tree.
+* text=auto eol=lf
+
+# Binary files: never convert.
+*.gpkg    binary
+*.qgz     binary
+*.parquet binary
+*.png     binary
+*.jpg     binary
+*.pdf     binary
+*.xlsx    binary
+*.zip     binary
