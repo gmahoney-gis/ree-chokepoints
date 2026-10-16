@@ -23,7 +23,7 @@ paths:
   web_export: docs                   # qgis2web export folder published by GitHub Pages
   # TODO: add the exact raw file names once the manifest (task 1.1) is complete
   raw_files:
-    comtrade_dir: data/raw/comtrade
+    comtrade_dir: data/raw/COMTRADE
     portwatch_chokepoints: TODO
     portwatch_ports: TODO
     world_port_index: TODO
@@ -49,6 +49,8 @@ trade:
     excluded_modes: [road, rail, air]
     fallback: shared_land_border     # if mode not reported: land neighbours = overland, others = seaborne
   exclude_aggregate_partners: true   # "World", regional groups, "not elsewhere specified"
+  aggregate_codes: ["W00", "E19", "_X", "X1", "X2", "XX"]   # Comtrade non-country codes (stored without trailing spaces)
+  iso3_remap: {"S19": "TWN"}         # "Other Asia, nes" is Taiwan in practice; S02 logs rows and value remapped
 
 # ---------------------------------------------------------------------
 # Step 1: chokepoints (S03)
