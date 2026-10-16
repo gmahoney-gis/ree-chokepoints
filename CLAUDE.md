@@ -124,5 +124,6 @@ These were decided after the proposal text was written. Follow them where they d
 
 Proposal (Lab 6) complete. Repository is on GitHub (gmahoney-gis/ree-chokepoints).
 Data collected except PortWatch port data (Comtrade HS 8505.11 is now downloaded).
-No scripts written yet. Next: Phase 0 (setup) and S01–S02.
+Phase 0 complete: common.py, test_common.py and run_all.py written and tested.
+Next: task 1.1 (data manifest) and S01–S02.
 <!-- Update this section as work progresses. -->
