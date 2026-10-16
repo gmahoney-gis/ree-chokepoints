@@ -1,0 +1,9 @@
+2026-10-15 23:33:40 INFO    Run of run_all started 2026-10-15T23:33:40
+2026-10-15 23:33:40 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-15 23:33:40 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-15 23:33:40 INFO    Requested: all scripts
+2026-10-15 23:33:40 INFO    Will run, in order: s01 s02 s03 s04 s05 check_db s06 s07 s08 s09 s10 s11
+2026-10-15 23:33:40 ERROR   STOPPED: s01 has not been written yet (no s01_*.py in C:\Users\garre\ree-chokepoints\scripts)
+2026-10-15 23:33:40 INFO    Summary | passed: none
+2026-10-15 23:33:40 INFO    Summary | stopped at: s01 (not written yet)
+2026-10-15 23:33:40 INFO    Summary | not run: s02, s03, s04, s05, check_db, s06, s07, s08, s09, s10, s11

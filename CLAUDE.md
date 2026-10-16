@@ -88,6 +88,8 @@ Run with `python scripts/run_all.py` (everything) or `python scripts/run_all.py 
 - `data/` is never committed. ACLED's terms bar republishing its raw data.
 - Only derived results (scores, routes, density surfaces, tables, figures) go in `outputs/`
   or the web map. Never put raw ACLED event points in anything published.
+- `logs/` is committed and published. Logs contain counts and summaries only, never raw
+  ACLED event rows or other individual records from licensed data.
 - Record download dates in `data/raw/MANIFEST.csv`.
 
 ## Decisions that override the proposal
