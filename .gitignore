@@ -1,0 +1,26 @@
+# Raw and working data are never committed (ACLED terms bar republishing raw data).
+# The data manifest is the one exception, so download dates stay on record.
+/data/*
+!/data/raw/
+/data/raw/*
+!/data/raw/MANIFEST.csv
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# QGIS temporary files
+*.qgs~
+*.qgz~
+qgis/*_attachments.zip
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# API keys or local secrets
+.env
+*.key

@@ -1,0 +1,185 @@
+# =====================================================================
+# Settings for the REE chokepoint vulnerability analysis
+# Every value that could change a result lives here, never in a script.
+# Sensitivity tests (S10) work by changing these values and rerunning.
+# Source of each value: docs/methodology.md (proposal) unless noted.
+# Items marked TODO must be filled in once the raw files are inspected.
+# =====================================================================
+
+project:
+  study_year: 2025
+  coverage_check_year: 2024          # used only to find the ten largest REE traders (task 2.2)
+  storage_crs: "EPSG:4326"           # all layers stored in WGS 84 latitude/longitude
+  earth_radius_km: 6371.0088         # mean Earth radius for great-circle distances
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  database: data/project.gpkg
+  logs: logs
+  tables: outputs/tables
+  figures: outputs/figures
+  qgis_project: qgis/project.qgz
+  web_export: docs                   # qgis2web export folder published by GitHub Pages
+  # TODO: add the exact raw file names once the manifest (task 1.1) is complete
+  raw_files:
+    comtrade_dir: data/raw/comtrade
+    portwatch_chokepoints: TODO
+    portwatch_ports: TODO
+    world_port_index: TODO
+    acled: TODO
+    asam: TODO
+    gdelt: TODO
+    natural_earth_countries: TODO
+    natural_earth_land: TODO
+
+# ---------------------------------------------------------------------
+# Step 1: trade (S01, S02)
+# ---------------------------------------------------------------------
+trade:
+  hs_codes_main: ["280530", "284610", "284690"]
+  hs_codes_sensitivity: ["850511"]   # permanent magnets: sensitivity test only, never in the main run
+  flows: ["M", "X"]                  # imports and exports
+  reconciliation: importer_first     # importer record first; exporter mirror record fills gaps
+  measure_main: value_usd            # alternative: net_weight_kg
+  measure_alternative: net_weight_kg
+  coverage_top_n: 10                 # largest traders checked for 2025 reporting
+  transport_mode:
+    use_reported_mode: true          # route only seaborne flows where the mode is reported
+    excluded_modes: [road, rail, air]
+    fallback: shared_land_border     # if mode not reported: land neighbours = overland, others = seaborne
+  exclude_aggregate_partners: true   # "World", regional groups, "not elsewhere specified"
+
+# ---------------------------------------------------------------------
+# Step 1: chokepoints (S03)
+# ---------------------------------------------------------------------
+chokepoints:
+  screening_file: config/chokepoint_screening.csv   # filled by hand (task 2.8)
+  zone_radius_km: 50
+  zone_radius_overrides_km:
+    "Luzon Strait": 150
+    "Torres Strait": 100
+
+# ---------------------------------------------------------------------
+# Step 1: ports (S04)
+# ---------------------------------------------------------------------
+ports:
+  source_main: portwatch             # decision: PortWatch port locations (see CLAUDE.md)
+  source_fallback: world_port_index  # only where PortWatch lacks a country
+  wpi_harbor_sizes: [L, M]           # large and medium harbors (fallback only)
+  principal_port_share: 0.80         # NEW (not yet in proposal): ports that together carry 80% of national trade
+  landlocked_gateways_file: config/landlocked_gateways.csv
+  snap_warning_km: 100               # flag ports farther than this from the sea-lane network (TODO: confirm)
+
+# ---------------------------------------------------------------------
+# Step 1: events (S05)
+# ---------------------------------------------------------------------
+events:
+  prefilter_radius_km: 500           # keep only events within this distance of any candidate chokepoint
+  acled:
+    event_types:
+      - "Battles"
+      - "Explosions/Remote violence"
+      - "Violence against civilians"
+    exclude_geo_precision: [3]       # region-level locations removed
+  asam:
+    match_acled_km: 50               # ASAM record within 50 km and 1 day of an ACLED event = same event
+    match_acled_days: 1
+  gdelt:
+    cameo_root_codes: [10, 11, 12, 13, 14, 15, 16, 17]   # conflict short of physical violence
+    keep_location_types: [3, 4]      # city-level (US city, world city); country/state centroids removed
+    min_sources_main: 2              # stored as a field so S07 can vary the threshold
+    dedupe_on: [date, event_root_code, actor1, actor2, location]
+
+# ---------------------------------------------------------------------
+# Step 3: trade exposure (S06)
+# ---------------------------------------------------------------------
+routing:
+  scenarios:
+    baseline:
+      closed: []
+      main: true
+    red_sea_diversion:
+      closed: ["Suez Canal", "Bab el-Mandeb Strait"]
+      main: false
+  validation:
+    scenario: red_sea_diversion      # matches actual 2025 shipping
+    vessel_types: [container, general_cargo]
+    pass_mark_spearman: 0.5
+
+# ---------------------------------------------------------------------
+# Step 4: conflict and tension exposure (S07)
+# ---------------------------------------------------------------------
+conflict:
+  ring_distances_km: [100, 250, 500]
+  ring_main_km: 250
+  density_bandwidths_km: [100, 250, 500]
+  density_main_km: 250
+  method_main: rings                 # alternative: density
+  event_weighting_main: count        # alternative: fatalities_plus_one
+  gdelt_min_sources_tested: [1, 2, 3]
+
+# ---------------------------------------------------------------------
+# Step 5: route redundancy (S08)
+# ---------------------------------------------------------------------
+redundancy:
+  routes_from: baseline
+  no_alternative_penalty: max_observed   # flows with no sea route get the largest observed penalty
+
+# ---------------------------------------------------------------------
+# Step 6: composite score (S09) and sensitivity (S10)
+# ---------------------------------------------------------------------
+scoring:
+  transform: log1p                   # log(1 + x)
+  transform_components: [trade, conflict]   # redundancy is already a percentage
+  rescale: minmax                    # 0 = lowest chokepoint, 1 = highest
+  weights: {trade: 0.3333333333, conflict: 0.3333333333, redundancy: 0.3333333333}
+  conflict_mix: {violence: 0.5, tension: 0.5}
+  combination_main: weighted_sum
+  multiplicative_rescale_floor: 0.01 # multiplicative score rescales components to 0.01–1
+
+sensitivity:
+  approach: one_at_a_time            # change one choice at a time from the main run
+  weight_grid: {step: 0.1, minimum: 0.1}    # 36 combinations, tested in full
+  alternatives:                      # proposal Table 4
+    skew_transform: [none]
+    ring_main_km: [100, 500]
+    method_main: [density]
+    conflict_mix:
+      - {violence: 1.0, tension: 0.0}      # violence only (no GDELT)
+      - {violence: 0.75, tension: 0.25}
+    gdelt_min_sources: [1, 3]
+    event_weighting: [fatalities_plus_one]
+    port_assignment: [nearest_gateway]
+    trade_measure: [net_weight_kg]
+    products: [main_plus_magnets]
+    combination: [multiplicative]
+
+# ---------------------------------------------------------------------
+# Step 7: outputs (S11)
+# ---------------------------------------------------------------------
+outputs:
+  static_map_crs: "EPSG:8857"        # Equal Earth
+  web_map_crs: "EPSG:3857"           # Web Mercator (web map only, never printed figures)
+  score_class_breaks: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]   # fixed breaks so styling survives reruns
+  top_n_labels: 5
+  closeups_top_n: 5                  # TODO: confirm how many chokepoint close-ups to draw
+  web_layers: [web_chokepoints, web_routes]
+
+# ---------------------------------------------------------------------
+# GeoPackage layer names (proposal Table 3). Scripts must use these names.
+# ---------------------------------------------------------------------
+layers:
+  trade_flows: trade_flows
+  chokepoints: chokepoints
+  zones: zones
+  ports: ports
+  country_port_shares: country_port_shares
+  events: events
+  gdelt_country_context: gdelt_country_context
+  subflows: subflows
+  routes: routes
+  route_crossings: route_crossings
+  chokepoint_scores: chokepoint_scores
+  web_chokepoints: web_chokepoints
+  web_routes: web_routes

@@ -1,0 +1,30 @@
+# Python environment for the REE chokepoint vulnerability analysis (task 0.2).
+# Create it with:   conda env create -f environment.yml
+# Use it with:      conda activate ree
+# After any change: conda env update -f environment.yml --prune
+name: ree
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  # Tables and numbers
+  - pandas
+  - numpy
+  - pyarrow          # reads the GDELT .parquet files
+  # Spatial data
+  - geopandas
+  - shapely
+  - pyogrio
+  # Networks, statistics, density
+  - networkx
+  - scipy
+  - scikit-learn
+  # Figures
+  - matplotlib
+  # Settings and downloads
+  - pyyaml
+  - requests
+  - pip
+  - pip:
+      - searoute         # sea routing on the Eurostat MARNET network
+      - comtradeapicall  # official UN Comtrade API client
