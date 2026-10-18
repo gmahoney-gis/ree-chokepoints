@@ -77,6 +77,12 @@ ports:
 # Step 1: events (S05)
 # ---------------------------------------------------------------------
 events:
+  # Event window, both dates inclusive (CLAUDE.md decision 7). The ACLED account has a
+  # 12-month recency limit, so the window ends 12 months before the download. It applies
+  # to ACLED, ASAM and GDELT; trade stays calendar 2025 (project.study_year). Switching to
+  # another window later only means changing these two dates.
+  window_start: "2024-10-01"
+  window_end: "2025-09-30"
   prefilter_radius_km: 500           # keep only events within this distance of any candidate chokepoint
   acled:
     event_types:

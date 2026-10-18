@@ -113,6 +113,10 @@ These were decided after the proposal text was written. Follow them where they d
    S07 applies the 1/2/3-source thresholds.
 6. **Sensitivity tests change one choice at a time** from the main run; only the weight grid
    is tested in full.
+7. **Event window is 1 Oct 2024 to 30 Sep 2025** for ACLED, ASAM and GDELT
+   (`events.window_start` / `window_end`), because the ACLED account only provides data older
+   than 12 months. Trade stays calendar 2025. Scripts filter events by these settings, never
+   by `study_year`.
 
 ## How to work in this repository
 
