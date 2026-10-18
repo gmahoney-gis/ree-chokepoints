@@ -1,9 +1,9 @@
-2026-10-18 18:37:59 INFO    Run of run_all started 2026-10-18T18:37:59
-2026-10-18 18:37:59 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-18 18:38:00 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-18 18:38:00 INFO    Requested: s04
-2026-10-18 18:38:00 INFO    Will run, in order: s04
-2026-10-18 18:38:00 INFO    ---- s04_ports.py started
-2026-10-18 18:38:09 INFO    ---- s04_ports.py finished OK in 9.9 s
-2026-10-18 18:38:09 INFO    Summary | passed: s04_ports.py
-2026-10-18 18:38:09 INFO    Summary | all 1 script(s) finished OK
+2026-10-18 18:48:21 INFO    Run of run_all started 2026-10-18T18:48:21
+2026-10-18 18:48:21 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-18 18:48:21 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-18 18:48:21 INFO    Requested: s04
+2026-10-18 18:48:21 INFO    Will run, in order: s04
+2026-10-18 18:48:21 INFO    ---- s04_ports.py started
+2026-10-18 18:48:26 INFO    ---- s04_ports.py finished OK in 5.5 s
+2026-10-18 18:48:26 INFO    Summary | passed: s04_ports.py
+2026-10-18 18:48:26 INFO    Summary | all 1 script(s) finished OK

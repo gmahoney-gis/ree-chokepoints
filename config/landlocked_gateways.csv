@@ -4,7 +4,7 @@ AUT,Monfalcone,40790,ITA,205.2,auto first pass - review
 BLR,Riga,28610,LVA,454.4,auto first pass - review
 CHE,Genova,39470,ITA,270.7,auto first pass - review
 CZE,Szczecin,28823,POL,413.0,auto first pass - review
-ETH,Al Mukha,48175,YEM,656.5,auto first pass - review
+ETH,Djibouti,47850,DJI,509.0,manual
 HUN,Rijeka Luka,41010,HRV,432.4,auto first pass - review
 KAZ,Novorossiysk,44200,RUS,2278.5,auto first pass - review
 KGZ,Karachi,48600,PAK,1981.6,auto first pass - review
@@ -14,6 +14,7 @@ MDA,Odesa,43650,UKR,190.1,auto first pass - review
 MKD,Thessaloniki,42530,GRC,149.6,auto first pass - review
 MNG,Tianjin Xin Gang,60190,CHN,1483.5,auto first pass - review
 MWI,Beira,46890,MOZ,738.0,auto first pass - review
+PRY,Buenos Aires,13760,ARG,1264.6,manual
 RWA,Mombasa,47100,KEN,1106.6,auto first pass - review
 SRB,Porto Romano,41668,ALB,334.9,auto first pass - review
 SVK,Rijeka Luka,41010,HRV,535.4,auto first pass - review

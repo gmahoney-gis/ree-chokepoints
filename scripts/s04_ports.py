@@ -6,11 +6,15 @@ alternative with World Port Index (WPI) ports:
 
 - Task 2.10: every country in the main run with seaborne trade gets candidate ports:
   its WPI harbors of the largest size class it has (ports.wpi_size_fallback_order).
-- Task 2.12 (draft): a trading country with no WPI port gets the nearest foreign
-  harbor of ports.gateway_harbor_sizes to its Natural Earth centroid. The choices are
-  written to config/landlocked_gateways.csv for review.
+- Task 2.12: countries listed in config/landlocked_gateways.csv are always treated
+  as landlocked (even if they have WPI ports, e.g. Paraguay) and use the gateway in
+  the file; those rows are never changed. A trading country with no WPI port that is
+  not yet listed gets the nearest foreign harbor of ports.gateway_harbor_sizes to its
+  Natural Earth centroid, appended to the file with a note asking for review.
 - Task 2.13: each port is linked to the nearest node of the searoute sea-lane network
-  (great-circle distance); ports farther than ports.snap_warning_km are flagged.
+  (great-circle distance); ports farther than ports.snap_warning_km are flagged. A
+  flagged port gets use_for_routing = false when its country has an unflagged
+  candidate, so S06 does not route from it.
 
 No trade shares are computed (task 2.11 waits for PortWatch): S06 chooses, for each
 flow, the closest origin-destination pair of candidate ports.
@@ -42,10 +46,12 @@ WPI_LON = "Longitude"
 
 GATEWAY_COLUMNS = ["country_iso3", "gateway_port", "gateway_wpi_number", "gateway_country",
                    "distance_km", "note"]
+AUTO_NOTE = "auto first pass - review"
+CENTRAL_ASIA_CHECK = ["KAZ", "UZB", "KGZ"]   # least certain gateways; review check only
 
 
 def trading_countries(settings, log):
-    """Countries that are an origin or destination of a main-run flow with seaborne trade."""
+    """Main-run flows with seaborne trade, and the countries that are their origin or destination."""
     flows = common.read_layer(settings, "trade_flows")
     keep = flows["in_main_run"] & (flows["maritime_share"] > 0)
     common.log_filter(log, "Task 2.10 | trade flows in main run with maritime_share > 0",
@@ -54,7 +60,7 @@ def trading_countries(settings, log):
     flows = flows[keep]
     countries = sorted(set(flows["origin_iso3"]) | set(flows["dest_iso3"]))
     log.info("Task 2.10 | trading countries (origin or destination): %d", len(countries))
-    return countries
+    return countries, flows
 
 
 def read_countries(settings, log):
@@ -113,18 +119,48 @@ def read_wpi(settings, countries, log):
              "".join(f"\n    {r[WPI_NAME]} ({r[WPI_COUNTRY]}, LOCODE {r[WPI_LOCODE]})"
                      for _, r in wpi[disagree].iterrows()))
 
+    return wpi.copy()
+
+
+def read_gateway_file(settings, log):
+    """Task 2.12: the reviewed gateway table, or an empty one on the first run."""
+    path = common.ROOT / settings["ports"]["landlocked_gateways_file"]
+    if not path.exists():
+        log.info("Task 2.12 | %s not found; every gateway will be chosen automatically", path.name)
+        return pd.DataFrame(columns=GATEWAY_COLUMNS)
+    table = pd.read_csv(path, dtype={"country_iso3": str, "gateway_port": str,
+                                     "gateway_country": str, "note": str})
+    missing = [c for c in GATEWAY_COLUMNS if c not in table.columns]
+    if missing:
+        raise ValueError(f"{path.name} is missing columns: {missing}")
+    dupes = table.loc[table["country_iso3"].duplicated(), "country_iso3"].tolist()
+    if dupes:
+        raise ValueError(f"Duplicate countries in {path.name}: {dupes}")
+    log.info("Read %s: %d rows (%s)", path.name, len(table),
+             ", ".join(f"{note}: {n}" for note, n in table["note"].value_counts().items()))
+    return table
+
+
+def candidate_ports(wpi, countries, listed, settings, log):
+    """Task 2.10: for each trading country, its WPI ports of the largest size class present.
+
+    Countries listed in the gateway file are skipped: they are always treated as
+    landlocked (task 2.12) and use their gateway instead.
+    """
     sizes = settings["ports"]["wpi_size_fallback_order"]
     no_size = ~wpi[WPI_SIZE].isin(sizes)
     common.log_filter(log, "Task 2.10 | WPI ports with a harbor size", int((~no_size).sum()),
                       int(no_size.sum()), "harbor size blank")
-    return wpi[~no_size].copy()
+    wpi = wpi[~no_size]
 
+    overridden = [c for c in countries if c in listed and (wpi["country_iso3"] == c).any()]
+    log.info("Task 2.12 | countries with WPI ports treated as landlocked (listed in the gateway "
+             "file): %d (%s)", len(overridden), ", ".join(overridden) or "none")
 
-def candidate_ports(wpi, countries, settings, log):
-    """Task 2.10: for each trading country, its WPI ports of the largest size class present."""
-    sizes = settings["ports"]["wpi_size_fallback_order"]
     chosen, level_used, no_port = [], {}, []
     for iso3 in countries:
+        if iso3 in listed:
+            continue
         own = wpi[wpi["country_iso3"] == iso3]
         for size in sizes:
             if (own[WPI_SIZE] == size).any():
@@ -138,8 +174,8 @@ def candidate_ports(wpi, countries, settings, log):
         users = sorted(c for c, s in level_used.items() if s == size)
         log.info("Task 2.10 | countries using %s harbors: %d%s", size, len(users),
                  f" ({', '.join(users)})" if size != sizes[0] and users else "")
-    log.info("Task 2.10 | trading countries with no WPI port: %d (%s)", len(no_port),
-             ", ".join(no_port) or "none")
+    log.info("Task 2.10 | trading countries not in the gateway file with no WPI port: %d (%s)",
+             len(no_port), ", ".join(no_port) or "none")
 
     ports = pd.concat(chosen, ignore_index=True)
     ports["is_gateway"] = False
@@ -159,37 +195,85 @@ def country_centroids(countries):
     return pd.DataFrame({"lon": centroids.x, "lat": centroids.y})
 
 
-def landlocked_gateways(no_port, wpi, countries, settings, log):
-    """Task 2.12 (draft): nearest foreign gateway harbor to each portless country's centroid."""
-    gateway_sizes = settings["ports"]["gateway_harbor_sizes"]
-    pool = wpi[wpi[WPI_SIZE].isin(gateway_sizes)].reset_index(drop=True)
-    centroids = country_centroids(countries)
-    missing = [c for c in no_port if c not in centroids.index]
-    if missing:
-        raise ValueError(f"No Natural Earth polygon for {missing}; cannot place a gateway")
+def nearest_gateway(iso3, pool, centroids, settings):
+    """Task 2.12 (auto): the nearest foreign harbor in the pool to a country's centroid."""
+    foreign = pool[pool["country_iso3"] != iso3]
+    distance = common.great_circle_km(centroids.at[iso3, "lon"], centroids.at[iso3, "lat"],
+                                      foreign[WPI_LON], foreign[WPI_LAT], settings)
+    best = foreign.iloc[int(np.argmin(distance))]
+    return {"country_iso3": iso3, "gateway_port": best[WPI_NAME],
+            "gateway_wpi_number": int(best[WPI_NUMBER]), "gateway_country": best["country_iso3"],
+            "distance_km": round(float(np.min(distance)), 1), "note": AUTO_NOTE}
 
-    rows, ports = [], []
-    for iso3 in no_port:
-        foreign = pool[pool["country_iso3"] != iso3]
-        distance = common.great_circle_km(centroids.at[iso3, "lon"], centroids.at[iso3, "lat"],
-                                          foreign[WPI_LON], foreign[WPI_LAT], settings)
-        best = foreign.iloc[int(np.argmin(distance))]
-        rows.append({"country_iso3": iso3, "gateway_port": best[WPI_NAME],
-                     "gateway_wpi_number": int(best[WPI_NUMBER]),
-                     "gateway_country": best["country_iso3"],
-                     "distance_km": round(float(np.min(distance)), 1),
-                     "note": "auto first pass - review"})
-        port = best.copy()
-        port["country_iso3"] = iso3          # the port serves the landlocked country
+
+def landlocked_gateways(table, no_port, traded, wpi, countries, settings, log):
+    """Task 2.12: keep every row of the gateway file; append the nearest gateway for new countries.
+
+    Returns the full table (existing rows unchanged, new rows at the end) and one
+    gateway port row for each trading country in it.
+    """
+    gateway_sizes = settings["ports"]["gateway_harbor_sizes"]
+    new = [c for c in no_port if c not in set(table["country_iso3"])]
+    if new:
+        pool = wpi[wpi[WPI_SIZE].isin(gateway_sizes)].reset_index(drop=True)
+        centroids = country_centroids(countries)
+        missing = [c for c in new if c not in centroids.index]
+        if missing:
+            raise ValueError(f"No Natural Earth polygon for {missing}; cannot place a gateway")
+        added = pd.DataFrame([nearest_gateway(c, pool, centroids, settings) for c in new],
+                             columns=GATEWAY_COLUMNS)
+        table = pd.concat([table, added], ignore_index=True)
+    log.info("Task 2.12 | gateway rows kept unchanged from the file %d | appended (nearest %s "
+             "harbor abroad to the country centroid) %d%s", len(table) - len(new),
+             "/".join(gateway_sizes), len(new), f" ({', '.join(new)})" if new else "")
+
+    unused = sorted(set(table["country_iso3"]) - set(traded))
+    if unused:
+        log.info("Task 2.12 | gateway rows for countries not trading in the main run (kept, not used): %s",
+                 ", ".join(unused))
+
+    # Gateway ports are looked up by WPI number, so a hand-edited row needs only a valid number.
+    by_number = wpi.drop_duplicates(WPI_NUMBER).set_index(WPI_NUMBER)
+    unknown = sorted(set(table["gateway_wpi_number"].astype(int)) - set(by_number.index))
+    if unknown:
+        raise ValueError(f"Gateway WPI numbers not in the World Port Index: {unknown}")
+
+    in_use = table[table["country_iso3"].isin(traded)]
+    ports = []
+    for row in in_use.itertuples():
+        port = by_number.loc[int(row.gateway_wpi_number)].copy()
+        port[WPI_NUMBER] = int(row.gateway_wpi_number)
+        port["country_iso3"] = row.country_iso3      # the port serves the landlocked country
         port["is_gateway"] = True
         ports.append(port)
-
-    table = pd.DataFrame(rows, columns=GATEWAY_COLUMNS)
-    log.info("Task 2.12 | gateways assigned (nearest %s harbor abroad to the country centroid): %d%s",
-             "/".join(gateway_sizes), len(table),
+    log.info("Task 2.12 | gateways in use: %d%s", len(in_use),
              "".join(f"\n    {r.country_iso3} -> {r.gateway_port} ({r.gateway_country}), "
-                     f"{r.distance_km:,.0f} km" for r in table.itertuples()))
+                     f"{r.distance_km:,.0f} km [{r.note}]" for r in in_use.itertuples()))
     return table, pd.DataFrame(ports)
+
+
+def gateway_trade(flows, gateways, log):
+    """Task 2.12: main-run maritime value carried through each gateway (review aid).
+
+    A flow counts for a gateway when the landlocked country is its origin or
+    destination. Shares are of all main-run maritime value.
+    """
+    total = flows["maritime_value_usd"].sum()
+    rows = []
+    for g in gateways.itertuples():
+        involved = (flows["origin_iso3"] == g.country_iso3) | (flows["dest_iso3"] == g.country_iso3)
+        rows.append((g.country_iso3, g.gateway_port, flows.loc[involved, "maritime_value_usd"].sum()))
+    rows.sort(key=lambda r: r[2], reverse=True)
+    log.info("Task 2.12 | main-run maritime value through each gateway (total %s USD):%s",
+             f"{total:,.0f}", "".join(f"\n    {iso3} via {port}: {value:,.0f} USD ({value / total:.3%})"
+                                     for iso3, port, value in rows))
+
+    # Review check: the Central Asian gateways are the least certain choices.
+    check = [c for c in CENTRAL_ASIA_CHECK if c in set(gateways["country_iso3"])]
+    involved = flows["origin_iso3"].isin(check) | flows["dest_iso3"].isin(check)
+    share = flows.loc[involved, "maritime_value_usd"].sum() / total
+    log.info("Task 2.12 | check: %s together carry %.3f%% of main-run maritime value (%s 1%%)",
+             "+".join(check), share * 100, "above" if share > 0.01 else "not above")
 
 
 def network_nodes(log):
@@ -233,6 +317,17 @@ def snap_to_network(ports, nodes, settings, log):
              limit, len(flagged), len(ports),
              "".join(f"\n    {r.port_id} {r.name} ({r.harbor_size}): {r.snap_dist_km:,.1f} km"
                      for r in flagged.itertuples()))
+
+    # Task 2.13: a flagged port is not routed from if its country has an unflagged candidate.
+    has_unflagged = (~ports["snap_flag"]).groupby(ports["country_iso3"]).transform("any")
+    ports["use_for_routing"] = ~(ports["snap_flag"] & has_unflagged)
+    off = ports[~ports["use_for_routing"]]
+    kept = ports[ports["snap_flag"] & ports["use_for_routing"]]
+    log.info("Task 2.13 | flagged ports set to use_for_routing = false (country has an unflagged "
+             "candidate): %d%s", len(off),
+             "".join(f"\n    {r.port_id} {r.name}" for r in off.itertuples()))
+    log.info("Task 2.13 | flagged ports kept for routing (country has no unflagged candidate): %d%s",
+             len(kept), "".join(f"\n    {r.port_id} {r.name}" for r in kept.itertuples()))
     return ports
 
 
@@ -268,14 +363,16 @@ def main():
     log.info("Port assignment: %s (Lab 7 first pass, WPI ports)",
              settings["ports"]["assignment_first_pass"])
 
-    countries = trading_countries(settings, log)
+    countries, flows = trading_countries(settings, log)
     ne = read_countries(settings, log)
     wpi = read_wpi(settings, ne, log)
+    gateways = read_gateway_file(settings, log)
 
-    # Task 2.10: candidate ports; Task 2.12: gateways for countries without one.
-    own_ports, no_port = candidate_ports(wpi, countries, settings, log)
-    gateways, gateway_ports = landlocked_gateways(no_port, wpi, ne, settings, log)
+    # Task 2.10: candidate ports; Task 2.12: gateways for listed and portless countries.
+    own_ports, no_port = candidate_ports(wpi, countries, set(gateways["country_iso3"]), settings, log)
+    gateways, gateway_ports = landlocked_gateways(gateways, no_port, countries, wpi, ne, settings, log)
     ports = pd.concat([own_ports, gateway_ports], ignore_index=True)
+    gateway_trade(flows, gateways[gateways["country_iso3"].isin(countries)], log)
 
     gateway_file = common.ROOT / settings["ports"]["landlocked_gateways_file"]
     gateways.to_csv(gateway_file, index=False)
@@ -285,7 +382,8 @@ def main():
     layer = build_layer(ports, settings)
     layer = snap_to_network(layer, network_nodes(log), settings, log)
     layer = layer[["port_id", "name", "country_iso3", "harbor_size", "is_gateway",
-                   "snap_lon", "snap_lat", "snap_dist_km", "snap_flag", "geometry"]]
+                   "snap_lon", "snap_lat", "snap_dist_km", "snap_flag", "use_for_routing",
+                   "geometry"]]
 
     log_summary(layer, countries, log)
     common.write_layer(layer, settings, "ports", log)
