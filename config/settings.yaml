@@ -155,6 +155,26 @@ events:
 # Step 3: trade exposure (S06)
 # ---------------------------------------------------------------------
 routing:
+  # Our chokepoint names -> searoute 1.6.0 passage tags (classes/passages.py). searoute
+  # can close only these tagged passages; any other chokepoint needs the editable network
+  # (CLAUDE.md decision 4, S08). Not mapped: chili (Drake/Cape Horn edges, not Magellan),
+  # south_africa (Cape of Good Hope, excluded), dardanelles (untagged in Passage).
+  searoute_passages:
+    "Suez Canal": suez
+    "Bab el-Mandeb Strait": babalmandab
+    "Panama Canal": panama
+    "Bosporus Strait": bosporus
+    "Gibraltar Strait": gibraltar
+    "Strait of Hormuz": ormuz
+    "Malacca Strait": malacca
+    "Sunda Strait": sunda
+    "Bering Strait": bering
+  # searoute tags closed in every scenario (Arctic routes). searoute has no separate
+  # northeast tag: its "northwest" edges run from the Chukchi Sea (66-74N, 176E-191E) and
+  # are the Pacific exit of both the Northwest Passage and the Northern Sea Route, so
+  # closing them closes both (checked in the S06 log with arctic_check_lat).
+  always_closed: [northwest]
+  arctic_check_lat: 66.56            # S06 logs any route that goes north of the Arctic Circle
   scenarios:
     baseline:
       closed: []
