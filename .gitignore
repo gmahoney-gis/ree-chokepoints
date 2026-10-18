@@ -24,3 +24,6 @@ Thumbs.db
 # API keys or local secrets
 .env
 *.key
+
+# PyCharm settings, personal
+.idea/

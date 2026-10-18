@@ -68,6 +68,8 @@ Run with `python scripts/run_all.py` (everything) or `python scripts/run_all.py 
 - **Log what happens.** Each run writes `logs/<script>.log` with what it read, how many
   records it kept and removed at each filter and why, and what it wrote. These counts are
   reported in Lab 7, so log them clearly.
+- **Start the log the same way.** Every script starts its log with
+  `common.start_log(Path(__file__).stem, settings)`, so the log is named after the script.
 - **Fixed names.** Use the GeoPackage layer names under `layers:` in the settings file and
   keep field names stable between runs (QGIS styling and the web map depend on them).
 - **Shared keys.** Countries are ISO-3 codes; chokepoints keep their permanent IDs from the
