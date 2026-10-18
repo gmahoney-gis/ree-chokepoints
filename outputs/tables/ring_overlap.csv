@@ -1,0 +1,11 @@
+category,distance_km,chokepoint_a,name_a,chokepoint_b,name_b,centre_distance_km,events_a,events_b,events_shared,share_of_union,share_of_a,share_of_b
+viol,250,chokepoint11,Taiwan Strait,chokepoint14,Luzon Strait,496.1,4,0,0,0.0,0.0,
+viol,500,chokepoint3,Bosporus Strait,chokepoint28,Kerch Strait,756.0,49,49296,2,0.0,0.0408,0.0
+viol,500,chokepoint5,Malacca Strait,chokepoint19,Sunda Strait,901.0,16,8,0,0.0,0.0,0.0
+viol,500,chokepoint9,Dover Strait,chokepoint10,Oresund Strait,902.2,12,19,1,0.0333,0.0833,0.0526
+viol,500,chokepoint11,Taiwan Strait,chokepoint14,Luzon Strait,496.1,6,29,0,0.0,0.0,0.0
+viol,500,chokepoint12,Korea Strait,chokepoint17,Bohai Strait,881.3,1,55,0,0.0,0.0,0.0
+viol,500,chokepoint14,Luzon Strait,chokepoint27,Mindoro Strait,897.6,29,245,3,0.0111,0.1034,0.0122
+viol,500,chokepoint20,Makassar Strait,chokepoint25,Balabac Strait,820.3,7,10,0,0.0,0.0,0.0
+viol,500,chokepoint23,Windward Passage,chokepoint24,Mona Passage,651.3,2107,1677,1465,0.6317,0.6953,0.8736
+viol,500,chokepoint25,Balabac Strait,chokepoint27,Mindoro Strait,667.5,10,245,1,0.0039,0.1,0.0041

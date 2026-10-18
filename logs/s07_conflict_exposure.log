@@ -1,0 +1,66 @@
+2026-10-18 17:48:19 INFO    Run of s07_conflict_exposure started 2026-10-18T17:48:19
+2026-10-18 17:48:19 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-18 17:48:19 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-18 17:48:20 INFO    Task 4.7 | included chokepoints | kept 27 | removed 1 | reason: included is not 'yes' in the screening file
+2026-10-18 17:48:21 INFO    Task 4.7 | events read: 77,539; by source and category: ACLED/violence 77,539
+2026-10-18 17:48:21 INFO    Task 4.8 | category tension: skipped (no events of this category; events.sources = ['acled'])
+2026-10-18 17:48:21 INFO    Task 4.8 | GDELT source thresholds [1, 2, 3]: skipped (no GDELT tension events)
+2026-10-18 17:48:21 INFO    Task 4.7 | category violence: 77,539 events
+2026-10-18 17:48:21 INFO    Task 4.7 | distance matrix: 77,539 events x 27 chokepoints; nearest-chokepoint distance median 330 km, max 5839 km
+2026-10-18 17:48:21 INFO    Task 4.8 | viol rings 100 km: 13 of 27 chokepoints have no events; events counted toward at least one chokepoint: 148
+2026-10-18 17:48:21 INFO    Task 4.8 | viol rings 250 km: 8 of 27 chokepoints have no events; events counted toward at least one chokepoint: 14,379
+2026-10-18 17:48:21 INFO    Task 4.8 | viol rings 500 km: 3 of 27 chokepoints have no events; events counted toward at least one chokepoint: 77,513
+2026-10-18 17:48:21 INFO    Task 4.9 | viol density h = 100 km: share of a kernel beyond the 500 km prefilter radius = 0.0000
+2026-10-18 17:48:21 INFO    Task 4.9 | viol density h = 250 km: share of a kernel beyond the 500 km prefilter radius = 0.1353  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
+2026-10-18 17:48:21 INFO    Task 4.9 | viol density h = 500 km: share of a kernel beyond the 500 km prefilter radius = 0.6065  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
+2026-10-18 17:48:21 INFO    Main ranking field: viol_n_250 -> viol_rank (1 = most exposed; ties share the higher rank)
+2026-10-18 17:48:21 INFO    Task 4.10 | viol 100 km: Spearman rho = 0.807, p = 3.7e-07, largest rank shift = 11
+2026-10-18 17:48:21 INFO    Task 4.10 | viol 250 km: Spearman rho = 0.891, p = 4.8e-10, largest rank shift = 9
+2026-10-18 17:48:21 INFO    Task 4.10 | viol 500 km: Spearman rho = 0.935, p = 9.5e-13, largest rank shift = 8
+2026-10-18 17:48:21 INFO    Task 4.11 | viol rings 100 km: 0 overlapping pairs
+2026-10-18 17:48:21 INFO    Task 4.11 | viol rings 250 km: 1 overlapping pairs
+2026-10-18 17:48:21 INFO    Task 4.11 | viol rings 500 km: 9 overlapping pairs
+2026-10-18 17:48:21 INFO    Task 4.11 |    250 km  Taiwan Strait        / Luzon Strait            496 km apart  shared      0 events (0% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Bosporus Strait      / Kerch Strait            756 km apart  shared      2 events (0% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Malacca Strait       / Sunda Strait            901 km apart  shared      0 events (0% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Dover Strait         / Oresund Strait          902 km apart  shared      1 events (3% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Taiwan Strait        / Luzon Strait            496 km apart  shared      0 events (0% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Korea Strait         / Bohai Strait            881 km apart  shared      0 events (0% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Luzon Strait         / Mindoro Strait          898 km apart  shared      3 events (1% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Makassar Strait      / Balabac Strait          820 km apart  shared      0 events (0% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Windward Passage     / Mona Passage            651 km apart  shared  1,465 events (63% of union)
+2026-10-18 17:48:21 INFO    Task 4.11 |    500 km  Balabac Strait       / Mindoro Strait          668 km apart  shared      1 events (0% of union)
+2026-10-18 17:48:21 INFO    Per-chokepoint summary, ranked by viol_n_250:
+2026-10-18 17:48:21 INFO       1  Suez Canal           viol_n_100=2  viol_fw_100=5  viol_n_250=9531  viol_fw_250=31806  viol_n_500=20897  viol_fw_500=48118  viol_kde_100=0.018  viol_kde_250=0.0257  viol_kde_500=0.0109
+2026-10-18 17:48:21 INFO       2  Bab el-Mandeb Strait viol_n_100=80  viol_fw_100=140  viol_n_250=2090  viol_fw_250=3704  viol_n_500=4204  viol_fw_500=8249  viol_kde_100=0.0116  viol_kde_250=0.00638  viol_kde_500=0.0023
+2026-10-18 17:48:21 INFO       3  Windward Passage     viol_n_100=8  viol_fw_100=24  viol_n_250=1805  viol_fw_250=7251  viol_n_500=2107  viol_fw_500=7857  viol_kde_100=0.00384  viol_kde_250=0.00347  viol_kde_500=0.00124
+2026-10-18 17:48:21 INFO       4  Kerch Strait         viol_n_100=23  viol_fw_100=23  viol_n_250=567  viol_fw_250=757  viol_n_500=49296  viol_fw_500=98581  viol_kde_100=0.00691  viol_kde_250=0.05  viol_kde_500=0.0249
+2026-10-18 17:48:21 INFO       5  Mona Passage         viol_n_100=16  viol_fw_100=32  viol_n_250=219  viol_fw_250=394  viol_n_500=1677  viol_fw_500=5803  viol_kde_100=0.00108  viol_kde_250=0.00113  viol_kde_500=0.00087
+2026-10-18 17:48:21 INFO       6  Mindoro Strait       viol_n_100=2  viol_fw_100=4  viol_n_250=57  viol_fw_250=105  viol_n_500=245  viol_fw_500=487  viol_kde_100=0.000241  viol_kde_250=0.000281  viol_kde_500=0.000135
+2026-10-18 17:48:21 INFO       7  Yucatan Channel      viol_n_100=0  viol_fw_100=0  viol_n_250=51  viol_fw_250=113  viol_n_500=102  viol_fw_500=184  viol_kde_100=0.000269  viol_kde_250=0.000147  viol_kde_500=0.000102
+2026-10-18 17:48:21 INFO       8  Strait of Hormuz     viol_n_100=1  viol_fw_100=1  viol_n_250=9  viol_fw_250=18  viol_n_500=59  viol_fw_500=167  viol_kde_100=3.96e-05  viol_kde_250=4.81e-05  viol_kde_500=3.14e-05
+2026-10-18 17:48:21 INFO       9  Bosporus Strait      viol_n_100=4  viol_fw_100=5  viol_n_250=8  viol_fw_250=9  viol_n_500=49  viol_fw_500=76  viol_kde_100=8.01e-05  viol_kde_250=0.000808  viol_kde_500=0.00727
+2026-10-18 17:48:21 INFO      10  Dover Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=7  viol_fw_250=8  viol_n_500=12  viol_fw_500=18  viol_kde_100=2.62e-05  viol_kde_250=1.89e-05  viol_kde_500=9.82e-06
+2026-10-18 17:48:21 INFO      10  Malacca Strait       viol_n_100=0  viol_fw_100=0  viol_n_250=7  viol_fw_250=7  viol_n_500=16  viol_fw_500=19  viol_kde_100=2.33e-05  viol_kde_250=1.96e-05  viol_kde_500=9.39e-06
+2026-10-18 17:48:21 INFO      12  Panama Canal         viol_n_100=4  viol_fw_100=7  viol_n_250=6  viol_fw_250=9  viol_n_500=162  viol_fw_500=290  viol_kde_100=6.14e-05  viol_kde_250=9.51e-05  viol_kde_500=0.000126
+2026-10-18 17:48:21 INFO      12  Sunda Strait         viol_n_100=1  viol_fw_100=1  viol_n_250=6  viol_fw_250=6  viol_n_500=8  viol_fw_500=10  viol_kde_100=4.14e-05  viol_kde_250=1.48e-05  viol_kde_500=6.6e-06
+2026-10-18 17:48:21 INFO      14  Ombai Strait         viol_n_100=3  viol_fw_100=3  viol_n_250=4  viol_fw_250=4  viol_n_500=5  viol_fw_500=6  viol_kde_100=4.65e-05  viol_kde_250=1.03e-05  viol_kde_500=3.85e-06
+2026-10-18 17:48:21 INFO      14  Taiwan Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=4  viol_fw_250=4  viol_n_500=6  viol_fw_500=6  viol_kde_100=2.12e-05  viol_kde_250=1.06e-05  viol_kde_500=1.38e-05
+2026-10-18 17:48:21 INFO      16  Bohai Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=3  viol_fw_250=3  viol_n_500=55  viol_fw_500=55  viol_kde_100=1.1e-05  viol_kde_250=3.68e-05  viol_kde_500=2.52e-05
+2026-10-18 17:48:21 INFO      16  Oresund Strait       viol_n_100=2  viol_fw_100=2  viol_n_250=3  viol_fw_250=3  viol_n_500=19  viol_fw_500=36  viol_kde_100=3.26e-05  viol_kde_250=1.99e-05  viol_kde_500=6.66e-05
+2026-10-18 17:48:21 INFO      18  Gibraltar Strait     viol_n_100=1  viol_fw_100=1  viol_n_250=1  viol_fw_250=1  viol_n_500=10  viol_fw_500=16  viol_kde_100=1.53e-05  viol_kde_250=8.66e-06  viol_kde_500=4.74e-06
+2026-10-18 17:48:21 INFO      18  Lombok Strait        viol_n_100=1  viol_fw_100=1  viol_n_250=1  viol_fw_250=1  viol_n_500=4  viol_fw_500=4  viol_kde_100=1.52e-05  viol_kde_250=6.22e-06  viol_kde_500=4.45e-06
+2026-10-18 17:48:21 INFO      20  Balabac Strait       viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=10  viol_fw_500=24  viol_kde_100=1.24e-07  viol_kde_250=9.57e-06  viol_kde_500=4.45e-05
+2026-10-18 17:48:21 INFO      20  Bering Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=0  viol_kde_250=5.13e-92  viol_kde_500=4.02e-28
+2026-10-18 17:48:21 INFO      20  Korea Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=1  viol_fw_500=1  viol_kde_100=3.73e-10  viol_kde_250=5.04e-07  viol_kde_500=2.53e-06
+2026-10-18 17:48:21 INFO      20  Luzon Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=29  viol_fw_500=52  viol_kde_100=2.58e-06  viol_kde_250=3.87e-05  viol_kde_500=5.02e-05
+2026-10-18 17:48:21 INFO      20  Magellan Strait      viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=0  viol_kde_250=1.9e-156  viol_kde_500=9.09e-44
+2026-10-18 17:48:21 INFO      20  Makassar Strait      viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=7  viol_fw_500=9  viol_kde_100=5.75e-07  viol_kde_250=6.49e-06  viol_kde_500=1.09e-05
+2026-10-18 17:48:21 INFO      20  Torres Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=5  viol_fw_500=7  viol_kde_100=6.59e-07  viol_kde_250=3.29e-06  viol_kde_500=2.19e-06
+2026-10-18 17:48:21 INFO      20  Tsugaru Strait       viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=8.28e-36  viol_kde_250=3.84e-11  viol_kde_500=9.07e-08
+2026-10-18 17:48:21 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\conflict_methods.csv (3 rows)
+2026-10-18 17:48:21 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\ring_overlap.csv (10 rows)
+2026-10-18 17:48:21 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\conflict_exposure.csv (27 rows)
+2026-10-18 17:48:21 INFO    chokepoint_scores exists (27 rows); replacing 10 S07 columns, keeping 0 others: none
+2026-10-18 17:48:22 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-18 17:48:22 INFO    Run of s07_conflict_exposure finished

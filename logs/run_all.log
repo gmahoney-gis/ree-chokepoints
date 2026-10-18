@@ -1,9 +1,9 @@
-2026-10-18 17:21:40 INFO    Run of run_all started 2026-10-18T17:21:40
-2026-10-18 17:21:40 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-18 17:21:40 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-18 17:21:40 INFO    Requested: s03
-2026-10-18 17:21:40 INFO    Will run, in order: s03
-2026-10-18 17:21:40 INFO    ---- s03_chokepoints.py started
-2026-10-18 17:21:43 INFO    ---- s03_chokepoints.py finished OK in 2.7 s
-2026-10-18 17:21:43 INFO    Summary | passed: s03_chokepoints.py
-2026-10-18 17:21:43 INFO    Summary | all 1 script(s) finished OK
+2026-10-18 17:48:15 INFO    Run of run_all started 2026-10-18T17:48:15
+2026-10-18 17:48:15 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-18 17:48:15 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-18 17:48:15 INFO    Requested: s07
+2026-10-18 17:48:15 INFO    Will run, in order: s07
+2026-10-18 17:48:15 INFO    ---- s07_conflict_exposure.py started
+2026-10-18 17:48:22 INFO    ---- s07_conflict_exposure.py finished OK in 6.9 s
+2026-10-18 17:48:22 INFO    Summary | passed: s07_conflict_exposure.py
+2026-10-18 17:48:22 INFO    Summary | all 1 script(s) finished OK

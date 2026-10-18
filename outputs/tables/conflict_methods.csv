@@ -1,0 +1,4 @@
+category,distance_km,ring_field,density_field,n_chokepoints,spearman_rho,p_value,max_rank_shift
+viol,100,viol_n_100,viol_kde_100,27,0.8068,3.7237983181333027e-07,11
+viol,250,viol_n_250,viol_kde_250,27,0.8907,4.849351073858807e-10,9
+viol,500,viol_n_500,viol_kde_500,27,0.9349,9.478618499648725e-13,8
