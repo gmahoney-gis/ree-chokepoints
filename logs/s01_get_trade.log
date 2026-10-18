@@ -1,0 +1,79 @@
+2026-10-18 18:17:57 INFO    Run of s01_get_trade started 2026-10-18T18:17:57
+2026-10-18 18:17:57 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-18 18:17:57 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-18 18:17:57 INFO    Planned 14 requests (one per year, HS code and flow) into C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API
+2026-10-18 18:18:01 INFO    Task 2.1 | request 1 of 14 | 2025 280530 M by mode | records 707
+2026-10-18 18:18:01 INFO    comtrade_2025_280530_M_bymode.csv | records 707 | reporters 67 | primaryValue: partner World, all modes 459,081,869 USD; sum of all rows 1,231,632,071 USD (counts World and mode rows twice)
+2026-10-18 18:18:01 INFO    comtrade_2025_280530_M_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:01 INFO    comtrade_2025_280530_M_bymode.csv | records by motCode: 0=401, 1000=124, 2000=14, 2100=33, 3200=86, 3900=2, 9000=4, 9200=18, 9900=25
+2026-10-18 18:18:01 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_280530_M_bymode.csv
+2026-10-18 18:18:05 INFO    Task 2.1 | request 2 of 14 | 2025 280530 X by mode | records 533
+2026-10-18 18:18:05 INFO    comtrade_2025_280530_X_bymode.csv | records 533 | reporters 30 | primaryValue: partner World, all modes 281,380,052 USD; sum of all rows 731,958,333 USD (counts World and mode rows twice)
+2026-10-18 18:18:05 INFO    comtrade_2025_280530_X_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:05 INFO    comtrade_2025_280530_X_bymode.csv | records by motCode: 0=339, 1000=77, 2000=12, 2100=13, 3200=74, 9000=2, 9200=5, 9900=11
+2026-10-18 18:18:05 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_280530_X_bymode.csv
+2026-10-18 18:18:10 INFO    Task 2.1 | request 3 of 14 | 2025 284610 M by mode | records 1,226
+2026-10-18 18:18:10 INFO    comtrade_2025_284610_M_bymode.csv | records 1,226 | reporters 86 | primaryValue: partner World, all modes 193,313,088 USD; sum of all rows 457,422,214 USD (counts World and mode rows twice)
+2026-10-18 18:18:10 INFO    comtrade_2025_284610_M_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:10 INFO    comtrade_2025_284610_M_bymode.csv | records by motCode: 0=699, 1000=180, 2000=24, 2100=67, 3000=7, 3100=4, 3200=162, 3900=3, 9000=9, 9200=23, 9900=48
+2026-10-18 18:18:10 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_284610_M_bymode.csv
+2026-10-18 18:18:14 INFO    Task 2.1 | request 4 of 14 | 2025 284610 X by mode | records 923
+2026-10-18 18:18:14 INFO    comtrade_2025_284610_X_bymode.csv | records 923 | reporters 43 | primaryValue: partner World, all modes 193,515,082 USD; sum of all rows 508,021,008 USD (counts World and mode rows twice)
+2026-10-18 18:18:14 INFO    comtrade_2025_284610_X_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:14 INFO    comtrade_2025_284610_X_bymode.csv | records by motCode: 0=566, 1000=122, 2000=5, 2100=61, 2200=4, 3000=2, 3200=119, 9000=8, 9200=14, 9900=22
+2026-10-18 18:18:14 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_284610_X_bymode.csv
+2026-10-18 18:18:18 INFO    Task 2.1 | request 5 of 14 | 2025 284690 M by mode | records 1,689
+2026-10-18 18:18:18 INFO    comtrade_2025_284690_M_bymode.csv | records 1,689 | reporters 98 | primaryValue: partner World, all modes 2,346,398,129 USD; sum of all rows 5,256,773,553 USD (counts World and mode rows twice)
+2026-10-18 18:18:18 INFO    comtrade_2025_284690_M_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:18 INFO    comtrade_2025_284690_M_bymode.csv | records by motCode: 0=949, 1000=297, 2000=30, 2100=81, 3000=7, 3100=2, 3200=211, 3900=5, 9000=9, 9110=3, 9200=38, 9900=57
+2026-10-18 18:18:18 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_284690_M_bymode.csv
+2026-10-18 18:18:22 INFO    Task 2.1 | request 6 of 14 | 2025 284690 X by mode | records 1,311
+2026-10-18 18:18:22 INFO    comtrade_2025_284690_X_bymode.csv | records 1,311 | reporters 42 | primaryValue: partner World, all modes 1,534,472,854 USD; sum of all rows 4,384,143,576 USD (counts World and mode rows twice)
+2026-10-18 18:18:22 INFO    comtrade_2025_284690_X_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:22 INFO    comtrade_2025_284690_X_bymode.csv | records by motCode: 0=786, 1000=225, 2000=19, 2100=66, 2200=2, 3000=2, 3200=164, 3900=2, 9000=13, 9200=3, 9900=29
+2026-10-18 18:18:22 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_284690_X_bymode.csv
+2026-10-18 18:18:28 INFO    Task 2.1 | request 7 of 14 | 2025 850511 M by mode | records 7,061
+2026-10-18 18:18:28 INFO    comtrade_2025_850511_M_bymode.csv | records 7,061 | reporters 118 | primaryValue: partner World, all modes 4,658,738,099 USD; sum of all rows 13,497,851,983 USD (counts World and mode rows twice)
+2026-10-18 18:18:28 INFO    comtrade_2025_850511_M_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:28 INFO    comtrade_2025_850511_M_bymode.csv | records by motCode: 0=3495, 1000=1163, 2000=130, 2100=551, 2200=14, 3000=81, 3100=61, 3200=924, 3900=18, 9000=48, 9110=6, 9200=307, 9900=263
+2026-10-18 18:18:28 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_850511_M_bymode.csv
+2026-10-18 18:18:34 INFO    Task 2.1 | request 8 of 14 | 2025 850511 X by mode | records 6,303
+2026-10-18 18:18:34 INFO    comtrade_2025_850511_X_bymode.csv | records 6,303 | reporters 96 | primaryValue: partner World, all modes 4,569,346,014 USD; sum of all rows 10,382,237,999 USD (counts World and mode rows twice)
+2026-10-18 18:18:34 INFO    comtrade_2025_850511_X_bymode.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:34 INFO    comtrade_2025_850511_X_bymode.csv | records by motCode: 0=3369, 1000=1059, 2000=113, 2100=532, 2200=17, 3000=32, 3100=37, 3200=709, 9000=95, 9110=2, 9200=147, 9300=2, 9900=189
+2026-10-18 18:18:34 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2025_850511_X_bymode.csv
+2026-10-18 18:18:39 INFO    Task 2.2 | request 9 of 14 | 2024 280530 M total | records 405
+2026-10-18 18:18:39 INFO    comtrade_2024_280530_M_total.csv | records 405 | reporters 75 | primaryValue: partner World, all modes 465,887,648 USD; sum of all rows 931,775,296 USD (counts World and mode rows twice)
+2026-10-18 18:18:39 INFO    comtrade_2024_280530_M_total.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:39 INFO    comtrade_2024_280530_M_total.csv | records by motCode: 0=405
+2026-10-18 18:18:39 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2024_280530_M_total.csv
+2026-10-18 18:18:42 INFO    Task 2.2 | request 10 of 14 | 2024 280530 X total | records 326
+2026-10-18 18:18:42 INFO    comtrade_2024_280530_X_total.csv | records 326 | reporters 32 | primaryValue: partner World, all modes 190,300,503 USD; sum of all rows 380,601,005 USD (counts World and mode rows twice)
+2026-10-18 18:18:42 INFO    comtrade_2024_280530_X_total.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:42 INFO    comtrade_2024_280530_X_total.csv | records by motCode: 0=326
+2026-10-18 18:18:42 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2024_280530_X_total.csv
+2026-10-18 18:18:46 INFO    Task 2.2 | request 11 of 14 | 2024 284610 M total | records 766
+2026-10-18 18:18:46 INFO    comtrade_2024_284610_M_total.csv | records 766 | reporters 96 | primaryValue: partner World, all modes 166,381,624 USD; sum of all rows 332,763,248 USD (counts World and mode rows twice)
+2026-10-18 18:18:46 INFO    comtrade_2024_284610_M_total.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:46 INFO    comtrade_2024_284610_M_total.csv | records by motCode: 0=766
+2026-10-18 18:18:46 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2024_284610_M_total.csv
+2026-10-18 18:18:51 INFO    Task 2.2 | request 12 of 14 | 2024 284610 X total | records 563
+2026-10-18 18:18:51 INFO    comtrade_2024_284610_X_total.csv | records 563 | reporters 46 | primaryValue: partner World, all modes 151,419,879 USD; sum of all rows 302,839,758 USD (counts World and mode rows twice)
+2026-10-18 18:18:51 INFO    comtrade_2024_284610_X_total.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:51 INFO    comtrade_2024_284610_X_total.csv | records by motCode: 0=563
+2026-10-18 18:18:51 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2024_284610_X_total.csv
+2026-10-18 18:18:55 INFO    Task 2.2 | request 13 of 14 | 2024 284690 M total | records 1,000
+2026-10-18 18:18:55 INFO    comtrade_2024_284690_M_total.csv | records 1,000 | reporters 110 | primaryValue: partner World, all modes 2,129,542,261 USD; sum of all rows 4,259,084,523 USD (counts World and mode rows twice)
+2026-10-18 18:18:55 INFO    comtrade_2024_284690_M_total.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:55 INFO    comtrade_2024_284690_M_total.csv | records by motCode: 0=1000
+2026-10-18 18:18:55 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2024_284690_M_total.csv
+2026-10-18 18:18:59 INFO    Task 2.2 | request 14 of 14 | 2024 284690 X total | records 796
+2026-10-18 18:18:59 INFO    comtrade_2024_284690_X_total.csv | records 796 | reporters 49 | primaryValue: partner World, all modes 1,376,323,731 USD; sum of all rows 2,752,647,463 USD (counts World and mode rows twice)
+2026-10-18 18:18:59 INFO    comtrade_2024_284690_X_total.csv | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:59 INFO    comtrade_2024_284690_X_total.csv | records by motCode: 0=796
+2026-10-18 18:18:59 INFO    Wrote C:\Users\garre\ree-chokepoints\data\raw\COMTRADE_API\comtrade_2024_284690_X_total.csv
+2026-10-18 18:18:59 INFO    Updated C:\Users\garre\ree-chokepoints\data\raw\MANIFEST.csv: 14 rows written for S01 (0 replaced)
+2026-10-18 18:18:59 INFO    Summary 2024 main codes | reporters in any file 118 | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:59 INFO    Summary 2025 sensitivity codes | reporters in any file 118 | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:59 INFO    Summary 2025 main codes | reporters in any file 103 | check reporters present: China, Japan, United States, Korea | missing: none
+2026-10-18 18:18:59 INFO    S01 finished: 14 requests, 14 files written

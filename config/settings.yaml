@@ -23,7 +23,8 @@ paths:
   web_export: docs                   # qgis2web export folder published by GitHub Pages
   # Raw file names from data/raw/MANIFEST.csv (task 1.1). TODO = not downloaded yet.
   raw_files:
-    comtrade_dir: data/raw/COMTRADE
+    comtrade_dir: data/raw/COMTRADE                 # manual Comtrade Plus exports (superseded except 8505.11)
+    comtrade_api_dir: data/raw/COMTRADE_API         # S01 API downloads (tasks 2.1-2.2)
     portwatch_chokepoints: data/raw/PORTWATCH/PortWatch IMF Chokepoints.csv
     portwatch_ports: TODO
     world_port_index: TODO
@@ -51,6 +52,15 @@ trade:
   exclude_aggregate_partners: true   # "World", regional groups, "not elsewhere specified"
   aggregate_codes: ["W00", "E19", "_X", "X1", "X2", "XX"]   # Comtrade non-country codes (stored without trailing spaces)
   iso3_remap: {"S19": "TWN"}         # "Other Asia, nes" is Taiwan in practice; S02 logs rows and value remapped
+  comtrade_api:                      # S01 download through comtradeapicall.getFinalData (tasks 2.1-2.2)
+    key_env_var: COMTRADE_API_KEY    # subscription key is read from this environment variable, never stored
+    type_code: C                     # goods
+    freq_code: A                     # annual
+    classification: HS               # HS as reported
+    max_records: 250000              # API ceiling per request; S01 warns if a response reaches it
+    pause_seconds: 2                 # wait between requests (rate limit)
+    retries: 2                       # extra attempts after a failed request
+    retry_wait_seconds: 30
 
 # ---------------------------------------------------------------------
 # Step 1: chokepoints (S03)
