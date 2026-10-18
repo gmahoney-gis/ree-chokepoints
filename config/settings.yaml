@@ -30,8 +30,8 @@ paths:
     acled: data/raw/ACLED/acled_output/raw          # one CSV per chokepoint, 2024-10-01 to 2025-09-30
     asam: TODO
     gdelt: data/raw/GDELT                           # one parquet per day, 2025-05-01 to 2025-05-11 only
-    natural_earth_countries: TODO
-    natural_earth_land: data/raw/NATURAL_EARTH/ne_50m_land.geojson
+    natural_earth_countries: data/raw/NATURAL_EARTH/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp
+    natural_earth_land: TODO
 
 # ---------------------------------------------------------------------
 # Step 1: trade (S01, S02)
@@ -61,6 +61,7 @@ chokepoints:
   zone_radius_overrides_km:
     "Luzon Strait": 150
     "Torres Strait": 100
+  zone_quad_segments: 64             # circle smoothness: vertices per quarter circle (256 per zone)
 
 # ---------------------------------------------------------------------
 # Step 1: ports (S04)
