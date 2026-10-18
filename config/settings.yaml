@@ -21,17 +21,17 @@ paths:
   figures: outputs/figures
   qgis_project: qgis/project.qgz
   web_export: docs                   # qgis2web export folder published by GitHub Pages
-  # TODO: add the exact raw file names once the manifest (task 1.1) is complete
+  # Raw file names from data/raw/MANIFEST.csv (task 1.1). TODO = not downloaded yet.
   raw_files:
     comtrade_dir: data/raw/COMTRADE
-    portwatch_chokepoints: TODO
+    portwatch_chokepoints: data/raw/PORTWATCH/PortWatch IMF Chokepoints.csv
     portwatch_ports: TODO
     world_port_index: TODO
-    acled: TODO
+    acled: data/raw/ACLED/acled_output/raw          # one CSV per chokepoint, 2024-10-01 to 2025-09-30
     asam: TODO
-    gdelt: TODO
+    gdelt: data/raw/GDELT                           # one parquet per day, 2025-05-01 to 2025-05-11 only
     natural_earth_countries: TODO
-    natural_earth_land: TODO
+    natural_earth_land: data/raw/NATURAL_EARTH/ne_50m_land.geojson
 
 # ---------------------------------------------------------------------
 # Step 1: trade (S01, S02)
