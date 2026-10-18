@@ -1,0 +1,96 @@
+2026-10-18 18:27:39 INFO    Run of s02_clean_trade started 2026-10-18T18:27:39
+2026-10-18 18:27:39 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-18 18:27:39 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-18 18:27:39 INFO    Read comtrade_2025_280530_M_bymode.csv (707 rows)
+2026-10-18 18:27:39 INFO    Read comtrade_2025_280530_X_bymode.csv (533 rows)
+2026-10-18 18:27:39 INFO    Read comtrade_2025_284610_M_bymode.csv (1,226 rows)
+2026-10-18 18:27:39 INFO    Read comtrade_2025_284610_X_bymode.csv (923 rows)
+2026-10-18 18:27:39 INFO    Read comtrade_2025_284690_M_bymode.csv (1,689 rows)
+2026-10-18 18:27:39 INFO    Read comtrade_2025_284690_X_bymode.csv (1,311 rows)
+2026-10-18 18:27:39 INFO    Read comtrade_2025_850511_M_bymode.csv (7,061 rows)
+2026-10-18 18:27:39 INFO    Read comtrade_2025_850511_X_bymode.csv (6,303 rows)
+2026-10-18 18:27:39 INFO    2025 | rows read 19,753 | all-modes value 28,472,490,376 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | remap S19 -> TWN in reporterISO | rows 0 | all-modes value 0 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | remap S19 -> TWN in partnerISO | rows 317 | all-modes value 166,337,856 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | aggregate code W00 | rows 1,372 | all-modes value 14,236,245,188 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | aggregate code E19 | rows 46 | all-modes value 1,469,344 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | aggregate code _X | rows 94 | all-modes value 1,721,543 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | aggregate code X1 | rows 19 | all-modes value 68,637 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | aggregate code X2 | rows 5 | all-modes value 2,879 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | aggregate code XX | rows 8 | all-modes value 5,942 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | aggregate codes | kept 18,209 | removed 1,544 | reason: not a country (trade.aggregate_codes); all-modes value 14,239,513,533 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | other non-country codes | kept 18,209 | removed 0 | reason: not an ISO-3 country code (trade.iso3_pattern); all-modes value 0 USD
+2026-10-18 18:27:39 INFO    Task 2.3 | 2025 | origin = destination | kept 18,138 | removed 71 | reason: country reporting trade with itself; all-modes value 33,900,467 USD
+2026-10-18 18:27:39 INFO    Task 2.4 | 2025 | importer M records 5,082 | exporter X records 4,820 | X records replaced by an importer record 3,033
+2026-10-18 18:27:39 INFO    Task 2.4 | 2025 sensitivity | importer flows 3,317 | value 4,625,738,605 USD (89.4%)
+2026-10-18 18:27:39 INFO    Task 2.4 | 2025 sensitivity | mirror   flows 1,167 | value 546,601,408 USD (10.6%)
+2026-10-18 18:27:39 INFO    Task 2.4 | 2025 sensitivity | flows without a weight: 76 missing (value 18,844,553 USD), 10 zero (value 1,706,922 USD)
+2026-10-18 18:27:39 INFO    Task 2.4 | 2025 main run | importer flows 1,765 | value 2,994,925,035 USD (86.3%)
+2026-10-18 18:27:39 INFO    Task 2.4 | 2025 main run | mirror   flows 620 | value 476,312,181 USD (13.7%)
+2026-10-18 18:27:39 INFO    Task 2.4 | 2025 main run | flows without a weight: 109 missing (value 3,557,482 USD), 0 zero (value 0 USD)
+2026-10-18 18:27:39 INFO    Task 2.5 | flows with a usable mode breakdown 3,345 | breakdown with only unclassified modes (land-border rule used) 197 | no breakdown 3,327
+2026-10-18 18:27:39 INFO    Task 2.5 | reported breakdowns: unclassified value left out of the share 40,141,675 USD (1.5% of those flows' value)
+2026-10-18 18:27:40 INFO    Read ne_10m_admin_0_countries.shp (258 features)
+2026-10-18 18:27:47 INFO    Task 2.5 | Natural Earth countries (ISO_A3_EH) 238 | land-border pairs 319
+2026-10-18 18:27:47 INFO    Task 2.5 | trade codes not in Natural Earth (treated as no land border): BES, CCK
+2026-10-18 18:27:47 INFO    Task 2.5 | sensitivity | land_border_rule flows 2,241 | value 3,100,653,205 USD | excluded as non-maritime 722,330,307 USD (23.3% of the rule's value, 14.0% of all value) | fully overland flows 110
+2026-10-18 18:27:47 INFO    Task 2.5 | sensitivity | reported         flows 2,243 | value 2,071,686,809 USD | excluded as non-maritime 1,035,079,008 USD (50.0% of the rule's value, 20.0% of all value) | fully overland flows 1,403
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule flows 1,283 | value 2,812,483,270 USD | excluded as non-maritime 1,320,197,284 USD (46.9% of the rule's value, 38.0% of all value) | fully overland flows 115
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | MMR (Myanmar) -> CHN (China) HS 284690 | excluded 790,366,457 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | LAO (Lao People's Dem. Rep.) -> CHN (China) HS 284690 | excluded 425,908,423 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | CHN (China) -> VNM (Viet Nam) HS 280530 | excluded 22,721,700 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | VNM (Viet Nam) -> CHN (China) HS 284690 | excluded 19,501,812 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | CHN (China) -> VNM (Viet Nam) HS 284690 | excluded 18,945,938 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | CHN (China) -> RUS (Russian Federation) HS 284690 | excluded 10,454,847 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | VNM (Viet Nam) -> CHN (China) HS 280530 | excluded 9,020,904 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | CHN (China) -> IND (India) HS 284690 | excluded 2,689,114 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | CHN (China) -> IND (India) HS 284610 | excluded 2,218,445 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | land_border_rule top excluded | CHN (China) -> IND (India) HS 280530 | excluded 2,146,496 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         flows 1,102 | value 658,753,946 USD | excluded as non-maritime 207,542,917 USD (31.5% of the rule's value, 6.0% of all value) | fully overland flows 874
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | FRA (France) -> DEU (Germany) HS 284690 | excluded 22,171,328 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | RUS (Russian Federation) -> EST (Estonia) HS 284610 | excluded 12,015,303 USD | maritime share 0.003
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | DEU (Germany) -> RUS (Russian Federation) HS 284690 | excluded 10,378,414 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | CHN (China) -> GBR (United Kingdom) HS 284690 | excluded 9,412,790 USD | maritime share 0.048
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | CHN (China) -> DEU (Germany) HS 284690 | excluded 9,396,904 USD | maritime share 0.648
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | ITA (Italy) -> DEU (Germany) HS 284690 | excluded 9,363,805 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | TUR (Türkiye) -> KGZ (Kyrgyzstan) HS 284690 | excluded 8,081,836 USD | maritime share 0.000
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | AUT (Austria) -> DEU (Germany) HS 284690 | excluded 6,571,183 USD | maritime share 0.001
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | CHN (China) -> TUR (Türkiye) HS 284690 | excluded 4,728,984 USD | maritime share 0.061
+2026-10-18 18:27:47 INFO    Task 2.5 | main run | reported         top excluded | IND (India) -> DEU (Germany) HS 284690 | excluded 4,664,905 USD | maritime share 0.001
+2026-10-18 18:27:48 INFO    Wrote layer 'trade_flows' (6,869 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-18 18:27:48 INFO    Read comtrade_2024_280530_M_total.csv (405 rows)
+2026-10-18 18:27:48 INFO    Read comtrade_2024_280530_X_total.csv (326 rows)
+2026-10-18 18:27:48 INFO    Read comtrade_2024_284610_M_total.csv (766 rows)
+2026-10-18 18:27:48 INFO    Read comtrade_2024_284610_X_total.csv (563 rows)
+2026-10-18 18:27:48 INFO    Read comtrade_2024_284690_M_total.csv (1,000 rows)
+2026-10-18 18:27:48 INFO    Read comtrade_2024_284690_X_total.csv (796 rows)
+2026-10-18 18:27:48 INFO    2024 | rows read 3,856 | all-modes value 8,959,711,292 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | remap S19 -> TWN in reporterISO | rows 59 | all-modes value 54,041,513 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | remap S19 -> TWN in partnerISO | rows 49 | all-modes value 64,771,148 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | aggregate code W00 | rows 408 | all-modes value 4,479,855,646 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | aggregate code E19 | rows 8 | all-modes value 120,816 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | aggregate code _X | rows 13 | all-modes value 37,777 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | aggregate code XX | rows 1 | all-modes value 547 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | aggregate codes | kept 3,426 | removed 430 | reason: not a country (trade.aggregate_codes); all-modes value 4,480,014,786 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | other non-country codes | kept 3,426 | removed 0 | reason: not an ISO-3 country code (trade.iso3_pattern); all-modes value 0 USD
+2026-10-18 18:27:48 INFO    Task 2.3 | 2024 | origin = destination | kept 3,411 | removed 15 | reason: country reporting trade with itself; all-modes value 4,314,944 USD
+2026-10-18 18:27:48 INFO    Task 2.4 | 2024 | importer M records 1,854 | exporter X records 1,557 | X records replaced by an importer record 984
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  1 CHN China                        1,923,772,325 USD | reported 2025: imports True, exports True
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  2 MMR Myanmar                      817,905,025 USD | reported 2025: imports True, exports False
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  3 JPN Japan                        745,621,175 USD | reported 2025: imports True, exports True
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  4 MYS Malaysia                     552,555,301 USD | reported 2025: imports True, exports True
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  5 VNM Viet Nam                     457,737,191 USD | reported 2025: imports False, exports False
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  6 USA USA                          271,689,077 USD | reported 2025: imports True, exports True
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  7 LAO Lao People's Dem. Rep.       259,557,138 USD | reported 2025: imports False, exports False
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  8 AUS Australia                    129,883,500 USD | reported 2025: imports True, exports True
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader  9 KOR Rep. of Korea                125,847,623 USD | reported 2025: imports True, exports True
+2026-10-18 18:27:48 INFO    Task 2.6 | top trader 10 THA Thailand                     122,466,194 USD | reported 2025: imports True, exports True
+2026-10-18 18:27:48 INFO    Task 2.6 | main_run_2025 | total value                              3,471,237,217 USD (100.0%)
+2026-10-18 18:27:48 INFO    Task 2.6 | main_run_2025 | value from mirror records                476,312,181 USD (13.7%)
+2026-10-18 18:27:48 INFO    Task 2.6 | main_run_2025 | value classified by reported             658,753,946 USD (19.0%)
+2026-10-18 18:27:48 INFO    Task 2.6 | main_run_2025 | excluded as non-maritime (reported)      207,542,917 USD (6.0%)
+2026-10-18 18:27:48 INFO    Task 2.6 | main_run_2025 | value classified by land_border_rule     2,812,483,270 USD (81.0%)
+2026-10-18 18:27:48 INFO    Task 2.6 | main_run_2025 | excluded as non-maritime (land_border_rule) 1,320,197,284 USD (38.0%)
+2026-10-18 18:27:48 INFO    Task 2.6 | main_run_2025 | maritime value                           1,943,497,016 USD (56.0%)
+2026-10-18 18:27:48 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\trade_coverage.csv (17 rows)
+2026-10-18 18:27:48 INFO    Run of s02_clean_trade finished

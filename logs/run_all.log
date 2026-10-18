@@ -1,9 +1,9 @@
-2026-10-18 18:17:55 INFO    Run of run_all started 2026-10-18T18:17:55
-2026-10-18 18:17:55 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-18 18:17:55 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-18 18:17:55 INFO    Requested: s01
-2026-10-18 18:17:55 INFO    Will run, in order: s01
-2026-10-18 18:17:55 INFO    ---- s01_get_trade.py started
-2026-10-18 18:19:00 INFO    ---- s01_get_trade.py finished OK in 64.6 s
-2026-10-18 18:19:00 INFO    Summary | passed: s01_get_trade.py
-2026-10-18 18:19:00 INFO    Summary | all 1 script(s) finished OK
+2026-10-18 18:27:37 INFO    Run of run_all started 2026-10-18T18:27:37
+2026-10-18 18:27:37 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-18 18:27:37 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-18 18:27:37 INFO    Requested: s02
+2026-10-18 18:27:37 INFO    Will run, in order: s02
+2026-10-18 18:27:37 INFO    ---- s02_clean_trade.py started
+2026-10-18 18:27:48 INFO    ---- s02_clean_trade.py finished OK in 11.6 s
+2026-10-18 18:27:48 INFO    Summary | passed: s02_clean_trade.py
+2026-10-18 18:27:48 INFO    Summary | all 1 script(s) finished OK

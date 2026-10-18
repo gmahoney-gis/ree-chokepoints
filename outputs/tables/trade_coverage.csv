@@ -1,0 +1,18 @@
+section,rank,item,iso3,value_usd,share,reported_2025_imports,reported_2025_exports
+top_traders_2024,1,China,CHN,1923772325.305,0.3066601073120852,True,True
+top_traders_2024,2,Myanmar,MMR,817905024.712,0.13037865206295143,True,False
+top_traders_2024,3,Japan,JPN,745621174.761,0.11885620063180821,True,True
+top_traders_2024,4,Malaysia,MYS,552555301.107,0.08808041663998344,True,True
+top_traders_2024,5,Viet Nam,VNM,457737190.895,0.0729658776322913,False,False
+top_traders_2024,6,USA,USA,271689077.106,0.04330876395554665,True,True
+top_traders_2024,7,Lao People's Dem. Rep.,LAO,259557138.0,0.04137486476216897,False,False
+top_traders_2024,8,Australia,AUS,129883499.728,0.020704158928132464,True,True
+top_traders_2024,9,Rep. of Korea,KOR,125847623.048,0.020060817530864507,True,True
+top_traders_2024,10,Thailand,THA,122466194.117,0.019521798778380766,True,True
+main_run_2025,,total value,,3471237216.826,1.0,,
+main_run_2025,,value from mirror records,,476312181.46599996,0.1372168341469691,,
+main_run_2025,,value classified by reported,,658753946.454,0.18977497223780798,,
+main_run_2025,,excluded as non-maritime (reported),,207542916.80076513,0.05978932116616807,,
+main_run_2025,,value classified by land_border_rule,,2812483270.3719997,0.8102250277621919,,
+main_run_2025,,excluded as non-maritime (land_border_rule),,1320197284.2460003,0.3803247089673551,,
+main_run_2025,,maritime value,,1943497015.7792351,0.5598859698664769,,

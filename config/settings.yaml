@@ -23,7 +23,7 @@ paths:
   web_export: docs                   # qgis2web export folder published by GitHub Pages
   # Raw file names from data/raw/MANIFEST.csv (task 1.1). TODO = not downloaded yet.
   raw_files:
-    comtrade_dir: data/raw/COMTRADE                 # manual Comtrade Plus exports (superseded except 8505.11)
+    comtrade_dir: data/raw/COMTRADE                 # manual Comtrade Plus exports (all superseded by S01)
     comtrade_api_dir: data/raw/COMTRADE_API         # S01 API downloads (tasks 2.1-2.2)
     portwatch_chokepoints: data/raw/PORTWATCH/PortWatch IMF Chokepoints.csv
     portwatch_ports: TODO
@@ -49,8 +49,16 @@ trade:
     use_reported_mode: true          # route only seaborne flows where the mode is reported
     excluded_modes: [road, rail, air]
     fallback: shared_land_border     # if mode not reported: land neighbours = overland, others = seaborne
+    # Comtrade motCode values (task 2.5). In the 2025 files the reported modes of a
+    # flow add up to its all-modes total, so the codes below do not double count.
+    all_modes_code: 0                # TOTAL MOT: value and weight of each flow
+    maritime_codes: [2000, 2100]     # Water, Sea
+    excluded_codes: [1000, 2200, 3000, 3100, 3200, 3900, 9110, 9200]   # Air, Inland waterway, Land, Railway, Road, Land n.e.c., Pipelines, Postal
+    unclassified_codes: [9000, 9300, 9900]   # Pipelines/cables/postal/others, Self-propelled goods, Other: left out of the share
+    border_iso_field: ISO_A3_EH      # Natural Earth field used for the shared-land-border rule
   exclude_aggregate_partners: true   # "World", regional groups, "not elsewhere specified"
   aggregate_codes: ["W00", "E19", "_X", "X1", "X2", "XX"]   # Comtrade non-country codes (stored without trailing spaces)
+  iso3_pattern: "^[A-Z]{3}$"         # a real ISO-3 country code is three letters; other codes are logged and dropped
   iso3_remap: {"S19": "TWN"}         # "Other Asia, nes" is Taiwan in practice; S02 logs rows and value remapped
   comtrade_api:                      # S01 download through comtradeapicall.getFinalData (tasks 2.1-2.2)
     key_env_var: COMTRADE_API_KEY    # subscription key is read from this environment variable, never stored
