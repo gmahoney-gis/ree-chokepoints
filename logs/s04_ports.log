@@ -1,0 +1,67 @@
+2026-10-18 18:38:02 INFO    Run of s04_ports started 2026-10-18T18:38:02
+2026-10-18 18:38:02 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-18 18:38:02 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-18 18:38:02 INFO    Port assignment: nearest_gateway (Lab 7 first pass, WPI ports)
+2026-10-18 18:38:02 INFO    Task 2.10 | trade flows in main run with maritime_share > 0 | kept 1,396 | removed 5,473 | reason: not in main run, or no seaborne share
+2026-10-18 18:38:02 INFO    Task 2.10 | trading countries (origin or destination): 125
+2026-10-18 18:38:03 INFO    Read ne_10m_admin_0_countries.shp (258 features)
+2026-10-18 18:38:03 INFO    Read NGA World Port Index-Pub150.csv: 3,807 ports
+2026-10-18 18:38:03 INFO    Task 2.10 | WPI country names 195 | matched to a Natural Earth name 173 | matched through settings overrides 22
+2026-10-18 18:38:03 INFO    Task 2.10 | WPI ports with an ISO-3 country | kept 3,807 | removed 0 | reason: country name not matched: none
+2026-10-18 18:38:03 INFO    Task 2.10 | check: ports whose UN/LOCODE country differs from the WPI country: 7 (kept under the WPI country)
+    Amber Cove (Dominican Republic, LOCODE COAMB)
+    Gustavia (Guadeloupe, LOCODE BL GUS)
+    St Petersburg (United States, LOCODE RULED)
+    Laayoune (Western Sahara, LOCODE MA EUN)
+    Cockburn (Canada, LOCODE BSCBT)
+    Tobermory (Canada, LOCODE GBTOB)
+    Salina (Caribbean Netherlands, LOCODE BRSAA)
+2026-10-18 18:38:03 INFO    Task 2.10 | WPI ports with a harbor size | kept 3,680 | removed 127 | reason: harbor size blank
+2026-10-18 18:38:03 INFO    Task 2.10 | countries using Large harbors: 47
+2026-10-18 18:38:03 INFO    Task 2.10 | countries using Medium harbors: 37 (ALB, BGD, BMU, CHL, COL, CYP, DOM, ECU, GHA, GIN, IRN, IRQ, ISL, ISR, JAM, KEN, KHM, KWT, LKA, LTU, MEX, MLT, MOZ, MRT, OMN, PAK, PAN, PER, QAT, ROU, SAU, SVN, TTO, TUN, TZA, URY, VNM)
+2026-10-18 18:38:03 INFO    Task 2.10 | countries using Small harbors: 12 (AGO, BRB, COD, CPV, CRI, GEO, GTM, MDG, MUS, NAM, PNG, SYC)
+2026-10-18 18:38:03 INFO    Task 2.10 | countries using Very Small harbors: 7 (FRO, JOR, MDV, PRY, SLV, STP, WSM)
+2026-10-18 18:38:03 INFO    Task 2.10 | trading countries with no WPI port: 22 (ARM, AUT, BLR, CHE, CZE, ETH, HUN, KAZ, KGZ, LAO, LUX, MDA, MKD, MNG, MWI, RWA, SRB, SVK, UGA, UZB, ZMB, ZWE)
+2026-10-18 18:38:09 INFO    Task 2.12 | gateways assigned (nearest Large/Medium harbor abroad to the country centroid): 22
+    ARM -> Samsun (TUR), 731 km
+    AUT -> Monfalcone (ITA), 205 km
+    BLR -> Riga (LVA), 454 km
+    CHE -> Genova (ITA), 271 km
+    CZE -> Szczecin (POL), 413 km
+    ETH -> Al Mukha (YEM), 656 km
+    HUN -> Rijeka Luka (HRV), 432 km
+    KAZ -> Novorossiysk (RUS), 2,278 km
+    KGZ -> Karachi (PAK), 1,982 km
+    LAO -> Fang-Cheng (CHN), 602 km
+    LUX -> Antwerpen (BEL), 200 km
+    MDA -> Odesa (UKR), 190 km
+    MKD -> Thessaloniki (GRC), 150 km
+    MNG -> Tianjin Xin Gang (CHN), 1,484 km
+    MWI -> Beira (MOZ), 738 km
+    RWA -> Mombasa (KEN), 1,107 km
+    SRB -> Porto Romano (ALB), 335 km
+    SVK -> Rijeka Luka (HRV), 535 km
+    UGA -> Mombasa (KEN), 1,005 km
+    UZB -> Bandar Abbas (IRN), 1,743 km
+    ZMB -> Beira (MOZ), 1,033 km
+    ZWE -> Beira (MOZ), 530 km
+2026-10-18 18:38:09 INFO    Wrote C:\Users\garre\ree-chokepoints\config\landlocked_gateways.csv (22 rows)
+2026-10-18 18:38:09 INFO    Task 2.13 | searoute 1.6.0 sea-lane network: 9,708 nodes, 15,970 edges
+2026-10-18 18:38:09 INFO    Task 2.13 | snap distance km: median 12.1 | 95th percentile 88.5 | max 902.1
+2026-10-18 18:38:09 INFO    Task 2.13 | ports farther than 100 km from the network (snap_flag): 11 of 292
+    PRY_WPI13250 Puerto De Asuncion (Very Small): 902.1 km
+    USA_WPI8890 Tri-City Port (Large): 407.0 km
+    PNG_WPI56760 Kavieng Harbor (Small): 193.8 km
+    LKA_WPI49290 Trincomalee Harbor (Medium): 184.0 km
+    MEX_WPI15770 Manzanillo (Medium): 152.7 km
+    MEX_WPI9370 Tuxpan (Medium): 151.2 km
+    AGO_WPI46610 Namibe (Small): 127.7 km
+    CRI_WPI15480 Golfito (Small): 126.9 km
+    PAK_WPI48590 Gwadar (Medium): 117.0 km
+    PNG_WPI56855 Kieta (Small): 114.7 km
+    MEX_WPI15990 Ensenada (Medium): 111.9 km
+2026-10-18 18:38:09 INFO    Summary | ports 292 (own 270, gateway 22) for 125 countries | ports per country: min 1, median 1, max 21
+2026-10-18 18:38:09 INFO    Summary | countries by number of ports: 1 port: 69, 2 ports: 22, 3 ports: 13, 4 ports: 7, 5 ports: 5, 6 ports: 2, 7 ports: 2, 8 ports: 1, 9 ports: 1, 11 ports: 1, 12 ports: 1, 21 ports: 1
+2026-10-18 18:38:09 INFO    Summary | most ports: USA 21, ITA 12, JPN 11, FRO 9, AGO 8, MEX 7, GBR 7, FRA 6, PNG 6, DEU 5
+2026-10-18 18:38:09 INFO    Wrote layer 'ports' (292 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-18 18:38:09 INFO    Run finished

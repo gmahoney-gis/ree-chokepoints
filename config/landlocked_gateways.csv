@@ -1,0 +1,23 @@
+country_iso3,gateway_port,gateway_wpi_number,gateway_country,distance_km,note
+ARM,Samsun,44450,TUR,730.9,auto first pass - review
+AUT,Monfalcone,40790,ITA,205.2,auto first pass - review
+BLR,Riga,28610,LVA,454.4,auto first pass - review
+CHE,Genova,39470,ITA,270.7,auto first pass - review
+CZE,Szczecin,28823,POL,413.0,auto first pass - review
+ETH,Al Mukha,48175,YEM,656.5,auto first pass - review
+HUN,Rijeka Luka,41010,HRV,432.4,auto first pass - review
+KAZ,Novorossiysk,44200,RUS,2278.5,auto first pass - review
+KGZ,Karachi,48600,PAK,1981.6,auto first pass - review
+LAO,Fang-Cheng,57745,CHN,601.8,auto first pass - review
+LUX,Antwerpen,31250,BEL,199.9,auto first pass - review
+MDA,Odesa,43650,UKR,190.1,auto first pass - review
+MKD,Thessaloniki,42530,GRC,149.6,auto first pass - review
+MNG,Tianjin Xin Gang,60190,CHN,1483.5,auto first pass - review
+MWI,Beira,46890,MOZ,738.0,auto first pass - review
+RWA,Mombasa,47100,KEN,1106.6,auto first pass - review
+SRB,Porto Romano,41668,ALB,334.9,auto first pass - review
+SVK,Rijeka Luka,41010,HRV,535.4,auto first pass - review
+UGA,Mombasa,47100,KEN,1005.4,auto first pass - review
+UZB,Bandar Abbas,48520,IRN,1742.8,auto first pass - review
+ZMB,Beira,46890,MOZ,1032.9,auto first pass - review
+ZWE,Beira,46890,MOZ,530.5,auto first pass - review

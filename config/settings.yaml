@@ -27,7 +27,7 @@ paths:
     comtrade_api_dir: data/raw/COMTRADE_API         # S01 API downloads (tasks 2.1-2.2)
     portwatch_chokepoints: data/raw/PORTWATCH/PortWatch IMF Chokepoints.csv
     portwatch_ports: TODO
-    world_port_index: TODO
+    world_port_index: data/raw/WORLD_PORT_INDEX/NGA World Port Index-Pub150.csv
     acled: data/raw/ACLED/acled_output/raw          # one CSV per chokepoint, 2024-10-01 to 2025-09-30
     asam: TODO
     gdelt: data/raw/GDELT                           # one parquet per day, 2025-05-01 to 2025-05-11 only
@@ -91,6 +91,38 @@ ports:
   principal_port_share: 0.80         # NEW (not yet in proposal): ports that together carry 80% of national trade
   landlocked_gateways_file: config/landlocked_gateways.csv
   snap_warning_km: 100               # flag ports farther than this from the sea-lane network (TODO: confirm)
+  # Lab 7 first pass (S04): PortWatch ports are not downloaded yet, so every trading country gets
+  # candidate WPI ports and S06 routes each flow between the closest origin-destination pair
+  # (Table 4 "nearest gateway" alternative). PortWatch ports and the 80% rule replace it in the final run.
+  assignment_first_pass: nearest_gateway
+  wpi_size_fallback_order: [Large, Medium, Small, Very Small]   # first pass: a country's largest WPI size class present
+  gateway_harbor_sizes: [Large, Medium]                          # landlocked countries: nearest foreign harbor of these sizes
+  # WPI "Country Code" holds country names. Most match a Natural Earth name field; these do not.
+  # Overseas territories keep their own ISO-3 so their ports are not candidates for the home country.
+  wpi_country_iso3_overrides:
+    "Burma": MMR
+    "Caribbean Netherlands": BES
+    "Christmas Island": CXR
+    "Congo (Brazzaville)": COG
+    "Congo (Kinshasa)": COD
+    "Cote D'Ivoire": CIV
+    "Curacao": CUW
+    "Falkland Islands (Islas Malvinas)": FLK
+    "French Guiana": GUF
+    "Guadeloupe": GLP
+    "Johnson Atoll": UMI
+    "Macau": MAC
+    "Martinique": MTQ
+    "Midway Islands": UMI
+    "Reunion": REU
+    "Saint Helena, Ascension, and Tristan da Cunha": SHN
+    "Saint Vincent and the Grenadines (Windward Islands)": VCT
+    "Sao Tome and Principe": STP
+    "South Georgia and South Sandwich Islands": SGS
+    "Svalbard": SJM
+    "U.S. Virgin Islands": VIR
+    "Wake Island": UMI
+  wpi_name_fields: [ADMIN, NAME, NAME_LONG, FORMAL_EN]           # Natural Earth fields matched to WPI country names, in order
 
 # ---------------------------------------------------------------------
 # Step 1: events (S05)
