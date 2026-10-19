@@ -226,6 +226,13 @@ scoring:
   conflict_mix: {violence: 0.5, tension: 0.5}
   combination_main: weighted_sum
   multiplicative_rescale_floor: 0.01 # multiplicative score rescales components to 0.01–1
+  # Task 5.1: Spearman correlation between trade and conflict exposure (chokepoint_scores fields)
+  correlation_main: {trade: trade_value_base, conflict: viol_n_250}
+  correlation_supplementary:         # reported in the same table as the main result
+    redsea_trade: {trade: trade_value_redsea, conflict: viol_n_250}
+    ring_100: {trade: trade_value_base, conflict: viol_n_100}
+    ring_500: {trade: trade_value_base, conflict: viol_n_500}
+  quadrant_split: median             # task 6.5 chart: "high" = above the median of the main fields
 
 sensitivity:
   approach: one_at_a_time            # change one choice at a time from the main run
