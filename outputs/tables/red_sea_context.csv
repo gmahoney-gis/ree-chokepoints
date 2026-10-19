@@ -1,0 +1,10 @@
+chokepoint_id,name,year,days,transits_all,transits_container
+chokepoint1,Suez Canal,2023,365,26895,6977
+chokepoint1,Suez Canal,2024,366,14498,3198
+chokepoint1,Suez Canal,2025,365,14070,3351
+chokepoint4,Bab el-Mandeb Strait,2023,365,27015,6739
+chokepoint4,Bab el-Mandeb Strait,2024,366,11901,1967
+chokepoint4,Bab el-Mandeb Strait,2025,365,12218,2445
+chokepoint7,Cape of Good Hope,2023,365,17926,2249
+chokepoint7,Cape of Good Hope,2024,366,31846,6961
+chokepoint7,Cape of Good Hope,2025,365,32653,7387

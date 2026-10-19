@@ -1,28 +1,82 @@
-chokepoint_id,name,scenario,model_nflows,vessel_count_container,vessel_count_general_cargo,pw_transits,model_share,pw_share,model_rank,pw_rank,spearman_rho,p_value,pass_mark,passed
-chokepoint11,Taiwan Strait,red_sea_diversion,94,31190,10901,42091,0.0423,0.1635,9,1,0.4551,0.01706879572401736,0.5,False
-chokepoint12,Korea Strait,red_sea_diversion,5,20682,20256,40938,0.0023,0.1591,17,2,0.4551,0.01706879572401736,0.5,False
-chokepoint9,Dover Strait,red_sea_diversion,382,12535,14577,27112,0.172,0.1053,2,3,0.4551,0.01706879572401736,0.5,False
-chokepoint5,Malacca Strait,red_sea_diversion,62,18154,5236,23390,0.0279,0.0909,11,4,0.4551,0.01706879572401736,0.5,False
-chokepoint8,Gibraltar Strait,red_sea_diversion,399,11698,8088,19786,0.1796,0.0769,1,5,0.4551,0.01706879572401736,0.5,False
-chokepoint3,Bosporus Strait,red_sea_diversion,78,3015,15233,18248,0.0351,0.0709,10,6,0.4551,0.01706879572401736,0.5,False
-chokepoint17,Bohai Strait,red_sea_diversion,105,7801,7202,15003,0.0473,0.0583,7,7,0.4551,0.01706879572401736,0.5,False
-chokepoint10,Oresund Strait,red_sea_diversion,260,2135,7962,10097,0.1171,0.0392,3,8,0.4551,0.01706879572401736,0.5,False
-chokepoint1,Suez Canal,red_sea_diversion,0,5513,1868,7381,0.0,0.0287,22,9,0.4551,0.01706879572401736,0.5,False
-chokepoint28,Kerch Strait,red_sea_diversion,0,64,7163,7227,0.0,0.0281,22,10,0.4551,0.01706879572401736,0.5,False
-chokepoint4,Bab el-Mandeb Strait,red_sea_diversion,0,5062,1688,6750,0.0,0.0262,22,11,0.4551,0.01706879572401736,0.5,False
-chokepoint6,Strait of Hormuz,red_sea_diversion,47,5274,1412,6686,0.0212,0.026,12,12,0.4551,0.01706879572401736,0.5,False
-chokepoint13,Tsugaru Strait,red_sea_diversion,205,3867,2505,6372,0.0923,0.0248,5,13,0.4551,0.01706879572401736,0.5,False
-chokepoint22,Yucatan Channel,red_sea_diversion,19,3346,1406,4752,0.0086,0.0185,14,14,0.4551,0.01706879572401736,0.5,False
-chokepoint14,Luzon Strait,red_sea_diversion,28,2438,1616,4054,0.0126,0.0158,13,15,0.4551,0.01706879572401736,0.5,False
-chokepoint23,Windward Passage,red_sea_diversion,2,2696,843,3539,0.0009,0.0138,21,16,0.4551,0.01706879572401736,0.5,False
-chokepoint2,Panama Canal,red_sea_diversion,213,2712,619,3331,0.0959,0.0129,4,17,0.4551,0.01706879572401736,0.5,False
-chokepoint19,Sunda Strait,red_sea_diversion,97,1141,1088,2229,0.0437,0.0087,8,18,0.4551,0.01706879572401736,0.5,False
-chokepoint27,Mindoro Strait,red_sea_diversion,8,584,1086,1670,0.0036,0.0065,16,19,0.4551,0.01706879572401736,0.5,False
-chokepoint24,Mona Passage,red_sea_diversion,198,1230,439,1669,0.0891,0.0065,6,20,0.4551,0.01706879572401736,0.5,False
-chokepoint20,Makassar Strait,red_sea_diversion,3,722,826,1548,0.0014,0.006,18,21,0.4551,0.01706879572401736,0.5,False
-chokepoint18,Torres Strait,red_sea_diversion,3,540,365,905,0.0014,0.0035,18,22,0.4551,0.01706879572401736,0.5,False
-chokepoint16,Ombai Strait,red_sea_diversion,0,476,354,830,0.0,0.0032,22,23,0.4551,0.01706879572401736,0.5,False
-chokepoint25,Balabac Strait,red_sea_diversion,0,337,463,800,0.0,0.0031,22,24,0.4551,0.01706879572401736,0.5,False
-chokepoint15,Lombok Strait,red_sea_diversion,3,70,571,641,0.0014,0.0025,18,25,0.4551,0.01706879572401736,0.5,False
-chokepoint21,Magellan Strait,red_sea_diversion,10,110,100,210,0.0045,0.0008,15,26,0.4551,0.01706879572401736,0.5,False
-chokepoint26,Bering Strait,red_sea_diversion,0,23,89,112,0.0,0.0004,22,27,0.4551,0.01706879572401736,0.5,False
+variant,chokepoint_id,name,scenario,model_nflows,pw_container,pw_general_cargo,pw_transits,model_share,pw_share,model_rank,pw_rank,spearman_rho,p_value,pass_mark,passed,is_main
+summary_file_panama_open,chokepoint11,Taiwan Strait,red_sea_diversion,94,31190,10901,42091,0.0423,0.1635,9,1,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint12,Korea Strait,red_sea_diversion,5,20682,20256,40938,0.0023,0.1591,17,2,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint9,Dover Strait,red_sea_diversion,382,12535,14577,27112,0.172,0.1053,2,3,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint5,Malacca Strait,red_sea_diversion,62,18154,5236,23390,0.0279,0.0909,11,4,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint8,Gibraltar Strait,red_sea_diversion,399,11698,8088,19786,0.1796,0.0769,1,5,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint3,Bosporus Strait,red_sea_diversion,78,3015,15233,18248,0.0351,0.0709,10,6,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint17,Bohai Strait,red_sea_diversion,105,7801,7202,15003,0.0473,0.0583,7,7,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint10,Oresund Strait,red_sea_diversion,260,2135,7962,10097,0.1171,0.0392,3,8,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint1,Suez Canal,red_sea_diversion,0,5513,1868,7381,0.0,0.0287,22,9,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint28,Kerch Strait,red_sea_diversion,0,64,7163,7227,0.0,0.0281,22,10,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint4,Bab el-Mandeb Strait,red_sea_diversion,0,5062,1688,6750,0.0,0.0262,22,11,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint6,Strait of Hormuz,red_sea_diversion,47,5274,1412,6686,0.0212,0.026,12,12,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint13,Tsugaru Strait,red_sea_diversion,205,3867,2505,6372,0.0923,0.0248,5,13,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint22,Yucatan Channel,red_sea_diversion,19,3346,1406,4752,0.0086,0.0185,14,14,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint14,Luzon Strait,red_sea_diversion,28,2438,1616,4054,0.0126,0.0158,13,15,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint23,Windward Passage,red_sea_diversion,2,2696,843,3539,0.0009,0.0138,21,16,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint2,Panama Canal,red_sea_diversion,213,2712,619,3331,0.0959,0.0129,4,17,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint19,Sunda Strait,red_sea_diversion,97,1141,1088,2229,0.0437,0.0087,8,18,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint27,Mindoro Strait,red_sea_diversion,8,584,1086,1670,0.0036,0.0065,16,19,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint24,Mona Passage,red_sea_diversion,198,1230,439,1669,0.0891,0.0065,6,20,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint20,Makassar Strait,red_sea_diversion,3,722,826,1548,0.0014,0.006,18,21,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint18,Torres Strait,red_sea_diversion,3,540,365,905,0.0014,0.0035,18,22,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint16,Ombai Strait,red_sea_diversion,0,476,354,830,0.0,0.0032,22,23,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint25,Balabac Strait,red_sea_diversion,0,337,463,800,0.0,0.0031,22,24,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint15,Lombok Strait,red_sea_diversion,3,70,571,641,0.0014,0.0025,18,25,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint21,Magellan Strait,red_sea_diversion,10,110,100,210,0.0045,0.0008,15,26,0.4551,0.01706879572401736,0.5,False,False
+summary_file_panama_open,chokepoint26,Bering Strait,red_sea_diversion,0,23,89,112,0.0,0.0004,22,27,0.4551,0.01706879572401736,0.5,False,False
+daily2025_panama_open,chokepoint11,Taiwan Strait,red_sea_diversion,94,32710,10397,43107,0.0423,0.1675,9,1,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint12,Korea Strait,red_sea_diversion,5,20471,19937,40408,0.0023,0.157,17,2,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint5,Malacca Strait,red_sea_diversion,62,22421,6854,29275,0.0279,0.1137,11,3,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint9,Dover Strait,red_sea_diversion,382,13234,15267,28501,0.172,0.1107,2,4,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint8,Gibraltar Strait,red_sea_diversion,399,11955,8619,20574,0.1796,0.0799,1,5,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint3,Bosporus Strait,red_sea_diversion,78,3582,13873,17455,0.0351,0.0678,10,6,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint17,Bohai Strait,red_sea_diversion,105,7659,7073,14732,0.0473,0.0572,7,7,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint10,Oresund Strait,red_sea_diversion,260,2005,7464,9469,0.1171,0.0368,3,8,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint6,Strait of Hormuz,red_sea_diversion,47,6037,1707,7744,0.0212,0.0301,12,9,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint13,Tsugaru Strait,red_sea_diversion,205,3861,2619,6480,0.0923,0.0252,5,10,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint22,Yucatan Channel,red_sea_diversion,19,3646,1513,5159,0.0086,0.02,14,11,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint1,Suez Canal,red_sea_diversion,0,3351,1522,4873,0.0,0.0189,22,12,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint14,Luzon Strait,red_sea_diversion,28,3027,1708,4735,0.0126,0.0184,13,13,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint4,Bab el-Mandeb Strait,red_sea_diversion,0,2445,1685,4130,0.0,0.016,22,14,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint23,Windward Passage,red_sea_diversion,2,2894,907,3801,0.0009,0.0148,21,15,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint2,Panama Canal,red_sea_diversion,213,2869,852,3721,0.0959,0.0145,4,16,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint28,Kerch Strait,red_sea_diversion,0,46,2574,2620,0.0,0.0102,22,17,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint19,Sunda Strait,red_sea_diversion,97,1193,1274,2467,0.0437,0.0096,8,18,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint24,Mona Passage,red_sea_diversion,198,1244,597,1841,0.0891,0.0072,6,19,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint27,Mindoro Strait,red_sea_diversion,8,632,918,1550,0.0036,0.006,16,20,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint20,Makassar Strait,red_sea_diversion,3,606,823,1429,0.0014,0.0056,18,21,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint18,Torres Strait,red_sea_diversion,3,430,404,834,0.0014,0.0032,18,22,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint25,Balabac Strait,red_sea_diversion,0,271,548,819,0.0,0.0032,22,23,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint16,Ombai Strait,red_sea_diversion,0,420,261,681,0.0,0.0026,22,24,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint15,Lombok Strait,red_sea_diversion,3,88,531,619,0.0014,0.0024,18,25,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint21,Magellan Strait,red_sea_diversion,10,112,95,207,0.0045,0.0008,15,26,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_panama_open,chokepoint26,Bering Strait,red_sea_diversion,0,35,120,155,0.0,0.0006,22,27,0.5629,0.0022382998450958744,0.5,True,False
+daily2025_cape_diversion,chokepoint11,Taiwan Strait,red_sea_diversion,266,32710,10397,43107,0.126,0.1675,4,1,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint12,Korea Strait,red_sea_diversion,5,20471,19937,40408,0.0024,0.157,17,2,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint5,Malacca Strait,red_sea_diversion,62,22421,6854,29275,0.0294,0.1137,8,3,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint9,Dover Strait,red_sea_diversion,445,13234,15267,28501,0.2108,0.1107,1,4,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint8,Gibraltar Strait,red_sea_diversion,399,11955,8619,20574,0.189,0.0799,2,5,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint3,Bosporus Strait,red_sea_diversion,78,3582,13873,17455,0.0369,0.0678,7,6,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint17,Bohai Strait,red_sea_diversion,105,7659,7073,14732,0.0497,0.0572,6,7,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint10,Oresund Strait,red_sea_diversion,260,2005,7464,9469,0.1232,0.0368,5,8,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint6,Strait of Hormuz,red_sea_diversion,47,6037,1707,7744,0.0223,0.0301,9,9,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint13,Tsugaru Strait,red_sea_diversion,34,3861,2619,6480,0.0161,0.0252,11,10,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint22,Yucatan Channel,red_sea_diversion,19,3646,1513,5159,0.009,0.02,14,11,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint1,Suez Canal,red_sea_diversion,0,3351,1522,4873,0.0,0.0189,21,12,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint14,Luzon Strait,red_sea_diversion,29,3027,1708,4735,0.0137,0.0184,12,13,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint4,Bab el-Mandeb Strait,red_sea_diversion,0,2445,1685,4130,0.0,0.016,21,14,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint23,Windward Passage,red_sea_diversion,0,2894,907,3801,0.0,0.0148,21,15,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint2,Panama Canal,red_sea_diversion,38,2869,852,3721,0.018,0.0145,10,16,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint28,Kerch Strait,red_sea_diversion,0,46,2574,2620,0.0,0.0102,21,17,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint19,Sunda Strait,red_sea_diversion,270,1193,1274,2467,0.1279,0.0096,3,18,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint24,Mona Passage,red_sea_diversion,25,1244,597,1841,0.0118,0.0072,13,19,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint27,Mindoro Strait,red_sea_diversion,8,632,918,1550,0.0038,0.006,16,20,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint20,Makassar Strait,red_sea_diversion,3,606,823,1429,0.0014,0.0056,18,21,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint18,Torres Strait,red_sea_diversion,3,430,404,834,0.0014,0.0032,18,22,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint25,Balabac Strait,red_sea_diversion,0,271,548,819,0.0,0.0032,21,23,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint16,Ombai Strait,red_sea_diversion,0,420,261,681,0.0,0.0026,21,24,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint15,Lombok Strait,red_sea_diversion,3,88,531,619,0.0014,0.0024,18,25,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint21,Magellan Strait,red_sea_diversion,12,112,95,207,0.0057,0.0008,15,26,0.6408,0.00031684311196721884,0.5,True,True
+daily2025_cape_diversion,chokepoint26,Bering Strait,red_sea_diversion,0,35,120,155,0.0,0.0006,21,27,0.6408,0.00031684311196721884,0.5,True,True
