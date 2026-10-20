@@ -261,6 +261,23 @@ outputs:
   top_n_labels: 5
   closeups_top_n: 5                  # TODO: confirm how many chokepoint close-ups to draw
   web_layers: [web_chokepoints, web_routes]
+  # House style for every S11 figure: the dark theme of Lab 6 Figure 1
+  # (scripts/prototypes/searoute_visual.py, THEMES["dark"]).
+  style:
+    font: "DejaVu Sans"              # matplotlib's default, as in Figure 1
+    background: "#0b1d2e"            # page, ocean and chart background
+    land: "#243443"
+    borders: "#5b7385"               # country borders, coastlines, map edge, axis lines
+    route: "#4fb3d9"                 # cyan: routes and trade
+    highlight: "#ffb000"             # amber: chokepoints and violence
+    text: "#f2f2f2"
+    title: "#ffffff"
+    note: "#9fb3c2"                  # source notes, tick labels, leader lines
+    label_halo: "#0b1d2e"            # stroke drawn behind label text
+    label_halo_width: 2.5
+    zero_marker: "#c8c8c8"           # hollow light-grey marker for zero values
+    grid: "#1d3448"                  # faint chart gridlines
+    year_scale: ["#b3e6f7", "#4fb3d9", "#1f7aa3"]   # cyan, light (earliest) to dark (latest)
 
 # ---------------------------------------------------------------------
 # GeoPackage layer names (proposal Table 3). Scripts must use these names.

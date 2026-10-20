@@ -16,6 +16,9 @@ Reads the project database and the S06/S09 tables, then draws:
    from outputs/tables/red_sea_context.csv (written by S06).
 
 World maps use outputs.static_map_crs (Equal Earth) over the Natural Earth countries.
+Every figure uses the house style in outputs.style: the dark theme of Lab 6 Figure 1
+(cyan for routes and trade, amber for chokepoints and violence, haloed labels, horizontal
+legends along the bottom, a small source note at bottom right).
 Maps show chokepoint values only, never individual events. Each figure's draft caption
 is written to the log. Tasks 6.1, 6.4 and 6.6-6.9 are not part of the first pass.
 """
@@ -26,32 +29,62 @@ import geopandas as gpd
 import matplotlib
 
 matplotlib.use("Agg")   # draw to files only, no window
+import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import to_rgba
 from matplotlib.lines import Line2D
 from shapely.geometry import Polygon
 
 import common
 
 DPI = 300
-# Okabe-Ito colours (colourblind-safe) and neutral greys for the base map.
-TRADE_COLOR = "#0072B2"      # blue
-VIOLENCE_COLOR = "#D55E00"   # vermilion
-ROUTE_COLOR = "#0072B2"
-POINT_COLOR = "#222222"
-LAND_COLOR = "#E6E6E6"
-BORDER_COLOR = "#FFFFFF"
-OCEAN_COLOR = "#F7FBFF"
-TEXT_COLOR = "#222222"
-MUTED_TEXT = "#555555"
-YEAR_COLORS = ["#9ECAE1", "#4292C6", "#08519C"]   # one hue, light (earliest) to dark
 
 MAX_MARKER_AREA = 700        # points^2 for the largest circle
 MIN_MARKER_AREA = 8          # smallest non-zero circle, so it stays visible
 ZERO_MARKER_AREA = 14        # hollow marker for zero values
 MAX_ROUTE_WIDTH = 6.0        # points for the route with the most trade
 MIN_ROUTE_WIDTH = 0.15
+CIRCLE_ALPHA = 0.5           # fill opacity of the proportional circles (edge stays solid)
+
+
+# ---------------------------------------------------------------------
+# House style (outputs.style)
+# ---------------------------------------------------------------------
+
+def apply_style(style):
+    """Set matplotlib defaults to the Figure 1 dark theme so every figure matches."""
+    plt.rcParams.update({
+        "font.family": style["font"],
+        "figure.facecolor": style["background"],
+        "savefig.facecolor": style["background"],
+        "axes.facecolor": style["background"],
+        "axes.edgecolor": style["borders"],
+        "axes.labelcolor": style["text"],
+        "axes.titlecolor": style["title"],
+        "text.color": style["text"],
+        "xtick.color": style["note"],
+        "ytick.color": style["note"],
+        "legend.labelcolor": style["text"],
+    })
+
+
+def halo(style):
+    """Path effect that outlines label text in the background colour (Figure 1 labels)."""
+    return [pe.withStroke(linewidth=style["label_halo_width"], foreground=style["label_halo"])]
+
+
+def bottom_legend(ax, handles, labels, title=None, y=-0.01, **kw):
+    """Horizontal legend centred under the axes, unframed, as in Figure 1."""
+    return ax.legend(handles, labels, title=title, loc="upper center", bbox_to_anchor=(0.5, y),
+                     ncol=len(handles), frameon=False, **kw)
+
+
+def source_note(fig, text, style):
+    """Small source note at the bottom right of the figure (space reserved by the layout)."""
+    fig.get_layout_engine().set(rect=(0, 0.03, 1, 0.97))
+    fig.text(0.995, 0.008, text, ha="right", va="bottom", fontsize=6.5, color=style["note"])
 
 
 # ---------------------------------------------------------------------
@@ -97,10 +130,10 @@ def world_outline(crs, south=-60):
     return gpd.GeoSeries([Polygon(ring)], crs="EPSG:4326").to_crs(crs)
 
 
-def draw_basemap(ax, basemap, outline):
-    """Ocean-filled map frame with grey land and no axes."""
-    outline.plot(ax=ax, color=OCEAN_COLOR, edgecolor="#BBBBBB", linewidth=0.5, zorder=0)
-    basemap.plot(ax=ax, color=LAND_COLOR, edgecolor=BORDER_COLOR, linewidth=0.2, zorder=1)
+def draw_basemap(ax, basemap, outline, style):
+    """Ocean-filled map frame with dark land and no axes."""
+    outline.plot(ax=ax, color=style["background"], edgecolor=style["borders"], linewidth=0.5, zorder=0)
+    basemap.plot(ax=ax, color=style["land"], edgecolor=style["borders"], linewidth=0.2, zorder=1)
     ax.set_axis_off()
     xmin, ymin, xmax, ymax = outline.total_bounds
     ax.set_xlim(xmin, xmax)
@@ -120,7 +153,10 @@ LABEL_CANDIDATES = [((6, 4), "left", "bottom"), ((6, -4), "left", "top"),
 
 
 # Scatter labels: beside the point first, so each label sits level with its own point.
-SCATTER_CANDIDATES = [((7, 0), "left", "center"), ((-7, 0), "right", "center")] + LABEL_CANDIDATES
+# Farther positions (with a leader line) are the fallback where labels crowd together.
+SCATTER_CANDIDATES = ([((7, 0), "left", "center"), ((-7, 0), "right", "center")] + LABEL_CANDIDATES
+                      + [((dx, dy), "left" if dx > 0 else "right", "center")
+                         for dy in (12, -12, 20, -20) for dx in (10, -10)])
 
 
 def place_labels(ax, xs, ys, texts, avoid_xy=(), candidates=LABEL_CANDIDATES, **text_kw):
@@ -152,44 +188,57 @@ def place_labels(ax, xs, ys, texts, avoid_xy=(), candidates=LABEL_CANDIDATES, **
         taken.append(chosen.get_window_extent(renderer))
 
 
-def label_top(ax, points, field, n):
+def label_top(ax, points, field, n, style):
     """Label the n chokepoints with the largest values of `field`."""
     top = points[points[field] > 0].nlargest(n, field)
-    place_labels(ax, top.geometry.x, top.geometry.y, top["name"],
-                 fontsize=6.5, color=TEXT_COLOR, zorder=5,
-                 bbox={"boxstyle": "round,pad=0.15", "fc": "white", "ec": "none", "alpha": 0.75})
+    place_labels(ax, top.geometry.x, top.geometry.y, top["name"], fontsize=6.5,
+                 fontweight="bold", color=style["text"], path_effects=halo(style), zorder=5)
     return list(top["name"])
 
 
-def size_legend(ax, vmax, refs, fmt, color, title):
-    """Legend of reference circle sizes plus the hollow zero marker."""
-    handles = [plt.scatter([], [], s=marker_areas(np.array([r]), vmax)[0], color=color,
-                           alpha=0.6, edgecolor="white", linewidth=0.5) for r in refs]
-    labels = [fmt(r) for r in refs]
-    handles.append(plt.scatter([], [], s=ZERO_MARKER_AREA, facecolor="none", edgecolor=MUTED_TEXT,
-                               linewidth=0.7))
+def circles(ax, x, y, areas, color, **kw):
+    """Proportional circles: translucent fill, solid edge in the same colour."""
+    return ax.scatter(x, y, s=areas, facecolor=to_rgba(color, CIRCLE_ALPHA), edgecolor=color,
+                      linewidth=0.7, **kw)
+
+
+def zero_markers(ax, x, y, style, **kw):
+    """Small hollow light-grey markers for zero values."""
+    return ax.scatter(x, y, s=ZERO_MARKER_AREA, facecolor="none", edgecolor=style["zero_marker"],
+                      linewidth=0.7, **kw)
+
+
+def size_legend(ax, vmax, refs, fmt, color, title, style):
+    """Horizontal legend of reference circle sizes plus the hollow zero marker.
+
+    The unit leads the row as a handle-less entry; a title above the row would be
+    overlapped by the largest circle, which matplotlib does not count in the row height.
+    """
+    handles = [Line2D([], [], linestyle="none")]
+    handles += [circles(ax, [], [], marker_areas(np.array([r]), vmax), color) for r in refs]
+    labels = [title] + [fmt(r) for r in refs]
+    handles.append(zero_markers(ax, [], [], style))
     labels.append("0")
-    ax.legend(handles, labels, title=title, loc="lower left", fontsize=6, title_fontsize=6.5,
-              frameon=True, framealpha=0.9, edgecolor="none", labelspacing=2.2, borderpad=1.2,
-              handletextpad=2.0)
+    legend = bottom_legend(ax, handles, labels, fontsize=6.5, columnspacing=2.0,
+                           handletextpad=1.8, borderpad=2.2)   # padding holds the largest circle
+    legend.get_texts()[0].set_color(style["note"])
 
 
 # ---------------------------------------------------------------------
 # Task 6.2: component maps
 # ---------------------------------------------------------------------
 
-def component_panel(ax, points, field, color, title, legend_refs, fmt, legend_title, n_labels):
+def component_panel(ax, points, field, color, title, legend_refs, fmt, legend_title, n_labels, style):
     """One component map: proportional circles, hollow zeros, top-n labels."""
     zero = points[points[field] == 0]
     nonzero = points[points[field] > 0].sort_values(field, ascending=False)  # small on top
     vmax = points[field].max()
-    ax.scatter(nonzero.geometry.x, nonzero.geometry.y, s=marker_areas(nonzero[field], vmax),
-               color=color, alpha=0.6, edgecolor="white", linewidth=0.5, zorder=3)
-    ax.scatter(zero.geometry.x, zero.geometry.y, s=ZERO_MARKER_AREA, facecolor="none",
-               edgecolor=MUTED_TEXT, linewidth=0.7, zorder=3)
-    labelled = label_top(ax, points, field, n_labels)
-    size_legend(ax, vmax, legend_refs, fmt, color, legend_title)
-    ax.set_title(title, loc="left", fontsize=9, color=TEXT_COLOR)
+    circles(ax, nonzero.geometry.x, nonzero.geometry.y, marker_areas(nonzero[field], vmax), color,
+            zorder=3)
+    zero_markers(ax, zero.geometry.x, zero.geometry.y, style, zorder=3)
+    labelled = label_top(ax, points, field, n_labels, style)
+    size_legend(ax, vmax, legend_refs, fmt, color, legend_title, style)
+    ax.set_title(title, loc="left", fontsize=9, fontweight="bold")
     return labelled, len(zero)
 
 
@@ -200,17 +249,18 @@ def fig_components(points, basemap, outline, settings, out, log):
     trade_field = settings["scoring"]["correlation_main"]["trade"]
     viol_field = settings["scoring"]["correlation_main"]["conflict"]
 
-    fig, axes = plt.subplots(2, 1, figsize=(7.5, 8.2))
+    style = settings["outputs"]["style"]
+    fig, axes = plt.subplots(2, 1, figsize=(7.5, 9.0), layout="constrained")
     for ax in axes:
-        draw_basemap(ax, basemap, outline)
+        draw_basemap(ax, basemap, outline, style)
     top_trade, zero_trade = component_panel(
-        axes[0], points, trade_field, TRADE_COLOR, "(a) Trade exposure: maritime REE trade crossing each chokepoint",
-        [1e7, 1e8, 5e8], lambda v: f"${v / 1e6:,.0f} M", "US$ (2025)", n)
+        axes[0], points, trade_field, style["route"], "(a) Trade exposure: maritime REE trade crossing each chokepoint",
+        [1e7, 1e8, 5e8], lambda v: f"${v / 1e6:,.0f} M", "US$ (2025)", n, style)
     top_viol, zero_viol = component_panel(
-        axes[1], points, viol_field, VIOLENCE_COLOR,
+        axes[1], points, viol_field, style["highlight"],
         f"(b) Violence exposure: violent events within {ring} km",
-        [100, 1000, 5000], lambda v: f"{v:,.0f}", "Events", n)
-    fig.tight_layout()
+        [100, 1000, 5000], lambda v: f"{v:,.0f}", "Events", n, style)
+    source_note(fig, "Data: UN Comtrade; ACLED; Natural Earth. Equal Earth projection.", style)
     fig.savefig(out, dpi=DPI)
     plt.close(fig)
 
@@ -259,28 +309,36 @@ def fig_routes(routes, subflows, points, basemap, outline, settings, crs, out, l
     routes = route_values(routes, subflows, log).to_crs(crs)
     scenarios = list(settings["routing"]["scenarios"])
     vmax = routes["route_value_usd"].max()
+    style = settings["outputs"]["style"]
+    # Chokepoints as in Figure 1: background-filled dot with an amber ring.
+    point_style = {"facecolor": style["background"], "edgecolor": style["highlight"], "linewidth": 1.0}
 
-    fig, axes = plt.subplots(len(scenarios), 1, figsize=(7.5, 4.1 * len(scenarios)))
-    for ax, scenario in zip(np.atleast_1d(axes), scenarios):
-        draw_basemap(ax, basemap, outline)
+    fig, axes = plt.subplots(len(scenarios), 1, figsize=(7.5, 4.1 * len(scenarios)), layout="constrained")
+    axes = np.atleast_1d(axes)
+    for ax, scenario in zip(axes, scenarios):
+        draw_basemap(ax, basemap, outline, style)
         group = routes[routes["scenario"] == scenario].sort_values("route_value_usd")  # thick on top
-        group.plot(ax=ax, color=ROUTE_COLOR, linewidth=route_widths(group["route_value_usd"], vmax),
+        group.plot(ax=ax, color=style["route"], linewidth=route_widths(group["route_value_usd"], vmax),
                    alpha=0.55, zorder=2)
-        ax.scatter(points.geometry.x, points.geometry.y, s=10, color=POINT_COLOR,
-                   edgecolor="white", linewidth=0.4, zorder=4)
+        ax.scatter(points.geometry.x, points.geometry.y, s=12, zorder=4, **point_style)
         closed = settings["routing"]["scenarios"][scenario]["closed"]
         subtitle = "all chokepoints open" if not closed else "closed: " + ", ".join(closed)
         ax.set_title(f"{scenario.replace('_', ' ').capitalize()} ({subtitle})", loc="left",
-                     fontsize=9, color=TEXT_COLOR)
+                     fontsize=9, fontweight="bold")
 
+    # One legend for both panels (same width scale), under the last map.
     refs = [1e7, 1e8, vmax]
-    handles = [Line2D([], [], color=ROUTE_COLOR, alpha=0.55, linewidth=route_widths(np.array([r]), vmax)[0])
+    handles = [Line2D([], [], color=style["route"], alpha=0.55, linewidth=route_widths(np.array([r]), vmax)[0])
                for r in refs]
-    handles.append(Line2D([], [], marker="o", linestyle="none", markersize=3.5, color=POINT_COLOR))
+    handles.append(Line2D([], [], marker="o", linestyle="none", markersize=4,
+                          markerfacecolor=style["background"], markeredgecolor=style["highlight"],
+                          markeredgewidth=1.0))
     labels = [f"${r / 1e6:,.0f} M" for r in refs] + ["Chokepoint"]
-    np.atleast_1d(axes)[0].legend(handles, labels, title="Route trade, US$ (2025)", loc="lower left",
-                                  fontsize=6, title_fontsize=6.5, framealpha=0.9, edgecolor="none")
-    fig.tight_layout()
+    legend = bottom_legend(axes[-1], handles, labels, title="Route trade, US$ (2025)", fontsize=6.5,
+                           title_fontsize=6.5, columnspacing=2.0)
+    legend.get_title().set_color(style["note"])
+    source_note(fig, "Data: UN Comtrade; NGA World Port Index; searoute; Natural Earth. "
+                     "Equal Earth projection.", style)
     fig.savefig(out, dpi=DPI)
     plt.close(fig)
 
@@ -322,11 +380,13 @@ def fig_trade_conflict(points, settings, out, log):
     main = read_correlation(settings, log)
     x, y = np.log1p(points[xf]), np.log1p(points[yf])
     x_med, y_med = points[xf].median(), points[yf].median()
+    style = settings["outputs"]["style"]
 
     fig, ax = plt.subplots(figsize=(7.5, 6), layout="constrained")
-    ax.axvline(np.log1p(x_med), color=MUTED_TEXT, linestyle="--", linewidth=0.8, zorder=1)
-    ax.axhline(np.log1p(y_med), color=MUTED_TEXT, linestyle="--", linewidth=0.8, zorder=1)
-    ax.scatter(x, y, s=36, color=TRADE_COLOR, edgecolor="white", linewidth=0.8, zorder=3)
+    ax.axvline(np.log1p(x_med), color=style["note"], linestyle="--", linewidth=0.8, zorder=1)
+    ax.axhline(np.log1p(y_med), color=style["note"], linestyle="--", linewidth=0.8, zorder=1)
+    ax.scatter(x, y, s=36, color=style["highlight"], edgecolor=style["background"], linewidth=0.8,
+               zorder=3)
 
     # Every chokepoint labelled; coincident points share one stacked label.
     # Axis limits are fixed first so label positions do not shift after placement.
@@ -337,9 +397,9 @@ def fig_trade_conflict(points, settings, out, log):
     place_labels(ax, np.log1p(groups[xf]), np.log1p(groups[yf]),
                  ["\n".join(names) for names in groups["name"]], avoid_xy=list(zip(x, y)),
                  candidates=SCATTER_CANDIDATES,
-                 arrowprops={"arrowstyle": "-", "color": "#999999", "lw": 0.4, "shrinkA": 0, "shrinkB": 3},
-                 fontsize=6, color=TEXT_COLOR, linespacing=1.1, zorder=4,
-                 bbox={"boxstyle": "square,pad=0.1", "fc": "white", "ec": "none", "alpha": 0.85})
+                 arrowprops={"arrowstyle": "-", "color": style["note"], "lw": 0.4, "shrinkA": 0, "shrinkB": 3},
+                 fontsize=6, color=style["text"], linespacing=1.1, zorder=4,
+                 path_effects=halo(style))
 
     # Axis ticks at round values of the original units.
     xticks = [0, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9]
@@ -349,14 +409,13 @@ def fig_trade_conflict(points, settings, out, log):
     ax.set_xlabel(f"Trade exposure, US$ 2025 ({xf}, log(1 + x) scale)", fontsize=8)
     ring = settings["conflict"]["ring_main_km"]
     ax.set_ylabel(f"Violent events within {ring} km ({yf}, log(1 + x) scale)", fontsize=8)
-    ax.tick_params(labelsize=7, colors=MUTED_TEXT)
+    ax.tick_params(labelsize=7)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
-    for side in ("left", "bottom"):
-        ax.spines[side].set_color("#BBBBBB")
     ax.text(0.02, 0.98, f"Spearman ρ = {main['rho']:.2f}\np = {main['p_value']:.2f}, n = {int(main['n'])}",
-            transform=ax.transAxes, va="top", fontsize=8, color=TEXT_COLOR,
-            bbox={"boxstyle": "round,pad=0.4", "fc": "white", "ec": "#BBBBBB", "lw": 0.6})
+            transform=ax.transAxes, va="top", fontsize=8,
+            bbox={"boxstyle": "round,pad=0.4", "fc": style["background"], "ec": style["borders"], "lw": 0.6})
+    source_note(fig, "Data: UN Comtrade; ACLED.", style)
     fig.savefig(out, dpi=DPI)
     plt.close(fig)
 
@@ -385,31 +444,30 @@ def fig_red_sea(settings, out, log):
     context = settings["routing"]["red_sea_context"]
     names, years = context["chokepoints"], context["years"]
     log.info("Context | read %s (%d rows)", path, len(table))
+    style = settings["outputs"]["style"]
 
-    fig, ax = plt.subplots(figsize=(7.5, 4.2))
+    fig, ax = plt.subplots(figsize=(7.5, 4.2), layout="constrained")
     width = 0.8 / len(years)
     xs = np.arange(len(names))
-    for i, (year, color) in enumerate(zip(years, YEAR_COLORS)):
+    for i, (year, color) in enumerate(zip(years, style["year_scale"])):
         values = [table.loc[(table["name"] == n) & (table["year"] == year), "transits_container"].sum()
                   for n in names]
         bars = ax.bar(xs + (i - (len(years) - 1) / 2) * width, values, width * 0.92, color=color,
                       label=str(year), zorder=2)
-        ax.bar_label(bars, labels=[f"{v:,.0f}" for v in values], fontsize=6.5, color=TEXT_COLOR,
-                     padding=2)
+        ax.bar_label(bars, labels=[f"{v:,.0f}" for v in values], fontsize=6.5, padding=2)
         log.info("Context | %d container transits: %s", year,
                  ", ".join(f"{n} {v:,.0f}" for n, v in zip(names, values)))
     ax.set_xticks(xs, names, fontsize=8)
     ax.set_ylabel("Container ship transits per year", fontsize=8)
-    ax.tick_params(axis="y", labelsize=7, colors=MUTED_TEXT)
+    ax.tick_params(axis="x", colors=style["text"])
+    ax.tick_params(axis="y", labelsize=7)
     ax.yaxis.set_major_formatter(matplotlib.ticker.StrMethodFormatter("{x:,.0f}"))
-    ax.grid(axis="y", color="#E6E6E6", linewidth=0.6, zorder=0)
+    ax.grid(axis="y", color=style["grid"], linewidth=0.6, zorder=0)
     for side in ("top", "right", "left"):
         ax.spines[side].set_visible(False)
-    ax.spines["bottom"].set_color("#BBBBBB")
-    ax.legend(fontsize=7, frameon=False, loc="lower left", bbox_to_anchor=(0, 1.0), ncol=len(years))
-    ax.text(1.0, -0.12, "Source: IMF PortWatch", transform=ax.transAxes, ha="right",
-            fontsize=7, color=MUTED_TEXT)
-    fig.tight_layout()
+    handles, labels = ax.get_legend_handles_labels()
+    bottom_legend(ax, handles, labels, fontsize=7, y=-0.08)
+    source_note(fig, "Data: IMF PortWatch.", style)
     fig.savefig(out, dpi=DPI)
     plt.close(fig)
 
@@ -431,6 +489,7 @@ def main():
     figures = common.get_path(settings, "figures")
     figures.mkdir(parents=True, exist_ok=True)
     crs = settings["outputs"]["static_map_crs"]
+    apply_style(settings["outputs"]["style"])
 
     chokepoints, routes, subflows = read_inputs(settings, log)
     basemap = read_basemap(settings, log).to_crs(crs)
