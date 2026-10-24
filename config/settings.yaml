@@ -216,6 +216,31 @@ redundancy:
   no_alternative_penalty: max_observed   # flows with no sea route get the largest observed penalty
 
 # ---------------------------------------------------------------------
+# Step 5b: reroute time and cost impact layer (S08b; decision 8 in CLAUDE.md)
+# Reported beside the score, not part of it. Task 4.15 fills these in.
+# Each parameter: value (main run), low/high (range), source, accessed (date).
+# ---------------------------------------------------------------------
+reroute_impact:
+  vessel_type: typical_container_ship
+  speed_knots:                       # extra days = extra nm / (speed x 24)
+    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+  fuel_use_t_per_day:                # tonnes of fuel per day at sea
+    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+  fuel_price_usd_per_t:
+    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+  charter_rate_usd_per_day:
+    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+  canal_tolls_usd_per_transit:       # toll avoided (or added) when a detour skips (or uses) a canal
+    suez:
+      {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+    panama:
+      {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+  interest_rate_annual:              # REE holding cost = trade value x rate x extra days / 365
+    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+  suez_check:                        # task 4.17: published estimate of the Suez-to-Cape detour
+    {extra_days: TODO, extra_cost_usd: TODO, source: TODO, accessed: TODO}
+
+# ---------------------------------------------------------------------
 # Step 6: composite score (S09) and sensitivity (S10)
 # ---------------------------------------------------------------------
 scoring:
@@ -250,6 +275,7 @@ sensitivity:
     trade_measure: [net_weight_kg]
     products: [main_plus_magnets]
     combination: [multiplicative]
+    redundancy_measure: [extra_cost_per_voyage]   # decision 8: cost-based redundancy from S08b
 
 # ---------------------------------------------------------------------
 # Step 7: outputs (S11)

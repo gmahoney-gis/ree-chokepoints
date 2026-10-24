@@ -20,6 +20,7 @@ Each script builds the tasks listed for it. "L7" marks tasks needed for the Lab 
 | S06 | 4.1, 4.2, 4.3, 4.4, 4.5 |
 | S07 | 4.7, 4.8, 4.9, 4.10, 4.11 |
 | S08 | 4.12, 4.13, 4.14 |
+| S08b | 4.16, 4.17 |
 | S09 | 5.1, 5.2, 5.3, 5.4 |
 | S10 | 5.5, 5.6, 5.7 |
 | S11 | 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9 |
@@ -97,6 +98,9 @@ Tasks with script "—" are done by hand (downloads, checks, QGIS work, writing)
 | 4.12 | Build an editable copy of the sea-lane network so any chokepoint can be closed. | S08 | Script | P23 Editable sea-lane network | 3.2 |  |
 | 4.13 | For each chokepoint, remove the network inside its zone, reroute affected baseline flows, and measure new lengths. | S08 | Script | P24 Route redundancy values | 4.12, 4.3 |  |
 | 4.14 | Calculate the detour penalty (Equation 4) and the share of trade with no sea alternative. | S08 | Script | P24 Route redundancy values | 4.13 |  |
+| 4.15 | Assemble reroute cost parameters (speed, fuel use, fuel price, charter rate, canal tolls, interest rate) with sources and low/high values. | — | Manual | P02 Settings file (`reroute_impact`) |  |  |
+| 4.16 | Convert each affected flow's extra distance into extra days at sea. | S08b | Script | Reroute time and cost values | 4.14, 4.15 |  |
+| 4.17 | Calculate extra voyage cost and REE holding cost per chokepoint; check Suez against published estimates. | S08b | Script | Reroute time and cost values | 4.16 |  |
 
 ## Phase 5: Integrate
 
@@ -106,7 +110,7 @@ Tasks with script "—" are done by hand (downloads, checks, QGIS work, writing)
 | 5.2 | Transform trade and conflict with log(1 + x), rescale components to 0–1, and average violence and tension. | S09 | Script | P26 Composite scores and ranks | 4.4, 4.8, 4.14 |  |
 | 5.3 | Calculate the composite score (Equation 6), ranks, and the multiplicative score (Equation 7). | S09 | Script | P26 Composite scores and ranks | 5.2 |  |
 | 5.4 | Compare ranks under the baseline and Red Sea diversion. | S09 | Script | P27 Scenario comparison | 5.3 |  |
-| 5.5 | Rerun the scoring with each Table 4 alternative, one change at a time. | S10 | Script | P28 Sensitivity results | 5.3 |  |
+| 5.5 | Rerun the scoring with each Table 4 alternative, one change at a time. Added by decision 8: `redundancy_measure: [extra_cost_per_voyage]` (cost-based redundancy from 4.17 in place of Equation 4). | S10 | Script | P28 Sensitivity results | 5.3 |  |
 | 5.6 | Run the full weight grid (36 combinations). | S10 | Script | P28 Sensitivity results | 5.3 |  |
 | 5.7 | Summarize best, worst, and median rank per chokepoint and each run’s agreement with the main run. | S10 | Script | P28 Sensitivity results | 5.5, 5.6 |  |
 
@@ -121,8 +125,8 @@ Tasks with script "—" are done by hand (downloads, checks, QGIS work, writing)
 | 6.5 | Draft the trade vs. conflict chart (four quadrants). | S11 | Script | P33 Trade vs. conflict chart | 5.1 | L7 |
 | 6.6 | Draft the score breakdown chart. | S11 | Script | P34 Score breakdown chart | 5.3 |  |
 | 6.7 | Draft the sensitivity rank-range chart. | S11 | Script | P35 Sensitivity chart | 5.7 |  |
-| 6.8 | Write the results table (CSV and formatted). | S11 | Script | P36 Results table | 5.3, 5.7 |  |
-| 6.9 | Write web layers: web_chokepoints, web_routes (merged segments, by scenario), and the density raster. | S11 | Script | P37 Web layers | 5.3, 4.2 |  |
+| 6.8 | Write the results table (CSV and formatted). Decision 8: add extra days at sea, extra cost per voyage, and REE holding cost beside the score. | S11 | Script | P36 Results table | 5.3, 5.7, 4.17 |  |
+| 6.9 | Write web layers: web_chokepoints, web_routes (merged segments, by scenario), and the density raster. Decision 8: web_chokepoints pop-up fields for extra days and extra cost (per voyage and holding). | S11 | Script | P37 Web layers | 5.3, 4.2, 4.17 |  |
 | 6.10 | Build and save the QGIS project; style layers with fixed class breaks. | — | Manual (QGIS) | P38 QGIS project and final report maps | 6.9 |  |
 | 6.11 | Finish the final report maps as QGIS print layouts. | — | Manual (QGIS) | P38 QGIS project and final report maps | 6.10 |  |
 | 6.12 | Export the web map with qgis2web, push to GitHub Pages, check it online, and add the “as of” date. | — | Manual (QGIS) | P39 Interactive web map | 6.10 |  |

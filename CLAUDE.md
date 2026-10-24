@@ -54,6 +54,7 @@ docs/                   methodology.md, tasks.md, and the qgis2web export for Gi
 | `s06_trade_exposure.py` | Sub-flows, routing (two scenarios), crossings, Equation 1, validation | 4.1–4.5 |
 | `s07_conflict_exposure.py` | Distances, rings, density, method comparison, ring overlap | 4.7–4.11 |
 | `s08_redundancy.py` | Editable network, close each chokepoint, Equation 4 | 4.12–4.14 |
+| `s08b_reroute_cost.py` | Extra days at sea and extra cost of each chokepoint's detour (impact layer) | 4.15–4.17 |
 | `s09_composite.py` | Trade–conflict correlation, Equations 5–7, ranks, scenario comparison | 5.1–5.4 |
 | `s10_sensitivity.py` | One-at-a-time alternatives and the weight grid | 5.5–5.7 |
 | `s11_figures.py` | Draft maps, charts, results table, web layers | 6.1–6.9 |
@@ -117,6 +118,14 @@ These were decided after the proposal text was written. Follow them where they d
    (`events.window_start` / `window_end`), because the ACLED account only provides data older
    than 12 months. Trade stays calendar 2025. Scripts filter events by these settings, never
    by `study_year`.
+8. **Reroute time and cost are an impact layer, not a score component.** For each chokepoint,
+   S08b converts S08's extra route distance into extra days at sea
+   (extra nautical miles / (speed x 24)) and extra cost: per typical container-ship voyage
+   (extra days x (daily charter cost + daily fuel use x fuel price) +/- change in canal tolls)
+   and REE cargo holding cost (trade value x annual interest rate x extra days / 365). These
+   are reported beside the score (results table, figures, web map). The composite score keeps
+   its three components; a cost-based redundancy measure is tested as one sensitivity
+   alternative (Table 4). Parameters are in `reroute_impact` in the settings file.
 
 ## How to work in this repository
 
