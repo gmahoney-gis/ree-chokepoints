@@ -217,28 +217,83 @@ redundancy:
 
 # ---------------------------------------------------------------------
 # Step 5b: reroute time and cost impact layer (S08b; decision 8 in CLAUDE.md)
-# Reported beside the score, not part of it. Task 4.15 fills these in.
-# Each parameter: value (main run), low/high (range), source, accessed (date).
+# Reported beside the score, not part of it. Values gathered 24 Oct 2026 (task 4.15),
+# workbook Reroute_Cost_Parameters.xlsx; saved source copies in data/raw/REROUTE_SOURCES/.
+# Each parameter: value (main run), low/high (range for S10), source, url, accessed.
 # ---------------------------------------------------------------------
 reroute_impact:
-  vessel_type: typical_container_ship
-  speed_knots:                       # extra days = extra nm / (speed x 24)
-    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
-  fuel_use_t_per_day:                # tonnes of fuel per day at sea
-    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
-  fuel_price_usd_per_t:
-    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
-  charter_rate_usd_per_day:
-    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
+  vessel_type: neo_panamax_container_ship
+  reference_ship_teu:                # P5: fits both the Suez and the Neopanamax locks
+    value: 12600
+    source: "Panama Canal Authority, Panama Canal commemorates seventh anniversary of the Neopanamax Locks (2023)"
+    url: "https://pancanal.com/en/panama-canal-commemorates-seventh-anniversary-of-the-neopanamax-locks-2/"
+    accessed: "2026-10-24"
+  # P1 and P2 are PAIRED: fuel use depends on speed. S10 changes them together
+  # (low case 12 kn with 105 t/day; high case 21 kn with 370 t/day), never one alone.
+  speed_knots:                       # P1: extra days = extra nm / (speed x 24)
+    value: 16
+    low: 12
+    high: 21
+    source: "Rodrigue, The Geography of Transport Systems, Fuel Consumption by Containership Size and Speed (Neo-Panamax 10,000-12,500 TEU)"
+    url: "https://transportgeography.org/contents/chapter4/transportation-and-energy/fuel-consumption-containerships/"
+    accessed: "2026-10-24"
+  fuel_use_t_per_day:                # P2: tonnes per day at sea, at the paired speed
+    value: 175
+    low: 105
+    high: 370
+    paired_with: speed_knots
+    source: "Rodrigue, The Geography of Transport Systems, Fuel Consumption by Containership Size and Speed (Neo-Panamax 10,000-12,500 TEU)"
+    url: "https://transportgeography.org/contents/chapter4/transportation-and-energy/fuel-consumption-containerships/"
+    accessed: "2026-10-24"
+  fuel_price_usd_per_t:              # P3: VLSFO, 2025 average across key bunkering ports
+    value: 535.5
+    low: 455.5
+    high: 620.5
+    source: "Ship & Bunker, Analysis: Average VLSFO Bunker Prices at Key Ports Fall 20% in 2025"
+    url: "https://shipandbunker.com/news/world/223373-analysis-average-vlsfo-bunker-prices-at-key-ports-fall-20-in-2025"
+    accessed: "2026-10-24"
+  charter_rate_usd_per_day:          # P4: mean of 4 New ConTex issues (12 Jun, 31 Jul, 30 Oct, 18 Dec 2025; no Q1 issue found).
+                                     # 6,500 TEU 12-month rate = largest published size, so a LOWER BOUND for the 12,600 TEU ship.
+    value: 66308
+    low: 66044
+    high: 66547
+    source: "VHBS (Association of Hamburg and Bremen Shipbrokers), New ConTex Commentary 2025 weeks 24, 31, 44, 51, via Hellenic Shipping News"
+    url:
+      - "https://www.hellenicshippingnews.com/wp-content/uploads/2025/06/New-Contex-Commentary-2025-week-24.pdf"
+      - "https://www.hellenicshippingnews.com/wp-content/uploads/2025/08/New_Contex_Commentary_2025_week_31.pdf"
+      - "https://www.hellenicshippingnews.com/wp-content/uploads/2025/10/New-Contex-Commentary-2025-week-44.pdf"
+      - "https://www.hellenicshippingnews.com/wp-content/uploads/2025/12/New-Contex-Commentary-2025-week-51.pdf"
+    accessed: "2026-10-24"
   canal_tolls_usd_per_transit:       # toll avoided (or added) when a detour skips (or uses) a canal
-    suez:
-      {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
-    panama:
-      {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
-  interest_rate_annual:              # REE holding cost = trade value x rate x extra days / 365
-    {value: TODO, low: TODO, high: TODO, source: TODO, accessed: TODO}
-  suez_check:                        # task 4.17: published estimate of the Suez-to-Cape detour
-    {extra_days: TODO, extra_cost_usd: TODO, source: TODO, accessed: TODO}
+    suez:                            # P6: 2026 rates applied to 2025 trade (no 2025 schedule saved); incl. temporary 12% container surcharge
+      value: 635000
+      low: 580000
+      high: 720000
+      source: "Suez Canal Authority, Circular 02/2026 (containerships, Rate 7 of the Transit Dues Schedule), computed with the SCA toll calculator"
+      url: "https://www.suezcanal.gov.eg/English/Navigation/NavigationCirculars/Pages/Cir_02_2026.aspx"
+      accessed: "2026-10-24"
+    panama:                          # P7: toll 1,156,000 + reservation 100,000 + tugs 30,000; low = toll only; high = late reservation (200,000)
+      value: 1286000
+      low: 1156000
+      high: 1386000
+      source: "Panama Canal Authority, Maritime Tariff List"
+      url: "https://pancanal.com/en/maritime-services/maritime-tariff/"
+      accessed: "2026-10-24"
+  interest_rate_annual:              # P8: decimal per year (0.0402 = 4.02%). REE holding cost = trade value x rate x extra days / 365
+    value: 0.0402
+    low: 0.0372
+    high: 0.0433
+    source: "Federal Reserve Bank of St. Louis, FRED, Federal Funds Effective Rate (FEDFUNDS), 2025"
+    url: "https://fred.stlouisfed.org/series/fedfunds"
+    accessed: "2026-10-24"
+  hull_value_usd:                    # P11: OPTIONAL, only needed if war-risk premiums (P9-P10, not collected) are added later
+    value: 210500000
+    source: "Vessels Link, Prices of new container ships increased by more than 50% year-on-year (2024)"
+    url: "https://vesselslink.com/blogs/news/prices-of-new-container-ships-increased-by-more-than-50-year-on-year-2024"
+    accessed: "2026-10-24"
+  war_risk_premium: null             # P9-P10 not collected; not used in the main run
+  suez_check:                        # task 4.17 (C1-C2): published Suez-to-Cape detour estimate, still to find
+    {extra_days: TODO, extra_cost_usd: TODO, source: TODO, url: TODO, accessed: TODO}
 
 # ---------------------------------------------------------------------
 # Step 6: composite score (S09) and sensitivity (S10)

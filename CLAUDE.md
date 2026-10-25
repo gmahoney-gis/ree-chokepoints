@@ -139,8 +139,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Proposal (Lab 6) complete. Repository is on GitHub (gmahoney-gis/ree-chokepoints).
-Phase 0 done. Phase 1 data checks done except PortWatch ports (1.2), the GDELT pull (1.5)
-and ASAM. S01, S03, S05 (ACLED only) and S07 (violence only) built for the Lab 7 first pass.
-Next: S02, S04, S06.
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check (task 4.17) still to find. Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Next: S08.
 <!-- Update this section as work progresses. -->
