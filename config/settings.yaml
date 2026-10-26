@@ -292,8 +292,13 @@ reroute_impact:
     url: "https://vesselslink.com/blogs/news/prices-of-new-container-ships-increased-by-more-than-50-year-on-year-2024"
     accessed: "2026-10-24"
   war_risk_premium: null             # P9-P10 not collected; not used in the main run
-  suez_check:                        # task 4.17 (C1-C2): published Suez-to-Cape detour estimate, still to find
-    {extra_days: TODO, extra_cost_usd: TODO, source: TODO, url: TODO, accessed: TODO}
+  suez_check:                        # task 4.17 (C1-C2): published Suez-to-Cape detour estimate for checking S08b
+    extra_days: 10                   # one way, Far East-Europe, 15-16 knots (20 per round trip)
+    extra_cost_usd: 1700000          # per ROUND TRIP, 12,500 TEU ship: fuel + charter (50,000/day) + container hire - Suez tolls (300,000/transit); excludes insurance
+    extra_cost_usd_one_way: 850000   # half of the round-trip figure, for comparison with S08b's one-way voyage cost
+    source: "Merk, Olaf. The Red Sea Crisis: Impacts on Global Shipping and the Case for International Co-operation. International Transport Forum, OECD, 2024 (pp. 12-16, Table 4)"
+    url: "https://www.itf-oecd.org/sites/default/files/repositories/red-sea-crisis-impacts-global-shipping.pdf"
+    accessed: "2026-10-25"
 
 # ---------------------------------------------------------------------
 # Step 6: composite score (S09) and sensitivity (S10)

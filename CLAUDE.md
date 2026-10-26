@@ -139,5 +139,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check (task 4.17) still to find. Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Next: S08.
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Next: S08.
 <!-- Update this section as work progresses. -->
