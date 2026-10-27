@@ -7,10 +7,17 @@ and writes two layers to the project database:
 - zones: a true-distance circle for each included chokepoint only. The radius is
   chokepoints.zone_radius_km, or the override for that chokepoint by name.
 
+- gates: a gate line for each chokepoint listed in config/chokepoint_gates.csv
+  (Decision 12: the four wide straits). S06 and S08 use the gate in place of the zone.
+
 Each circle is built in an azimuthal equidistant projection centred on its own
 chokepoint (distances from the centre are true there), then converted to EPSG:4326.
 The projection uses the same spherical Earth radius as common.great_circle_km, so
 the zone edge sits at exactly the radius by the project's great-circle distance.
+
+Each gate is checked before it is written: its chokepoint must be included, its WKT must
+be a line, and both ends must lie on land (Natural Earth countries). The log gives its
+great-circle length, the km over water and the number of searoute network edges crossing it.
 """
 
 from pathlib import Path
@@ -18,14 +25,21 @@ from pathlib import Path
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+import pyogrio
+import searoute
 from pyproj import CRS, Transformer
-from shapely.geometry import Point
-from shapely.ops import transform
+from shapely import wkt
+from shapely.affinity import translate
+from shapely.errors import ShapelyError
+from shapely.geometry import LineString, Point
+from shapely.ops import transform, unary_union
 
 import common
 
 REQUIRED_COLUMNS = ["chokepoint_id", "name", "lat", "lon", "included", "reason",
                     "narrowest_width_km", "territorial_seas_overlap"]
+GATE_COLUMNS = ["chokepoint_id", "name", "wkt", "source", "notes"]
+WATER_STEP_DEG = 0.005     # gate pieces are this short (about 0.5 km) when measuring km over water
 
 
 def read_screening(settings, log):
@@ -118,6 +132,88 @@ def check_zone_edges(zones, included, settings, log):
         raise ValueError(f"Zone edges are up to {worst:.4f} km off their radius")
 
 
+def read_gates(points, settings, log):
+    """Decision 12: read the gate file and check its IDs and lines.
+
+    Stops with an error if an ID is not an included chokepoint, its name differs from the
+    screening file, or its WKT does not parse as a line.
+    """
+    path = common.ROOT / settings["chokepoints"]["gates_file"]
+    table = pd.read_csv(path, dtype=str)
+    log.info("Decision 12 | read %s: %d gates", path, len(table))
+    missing = [c for c in GATE_COLUMNS if c not in table.columns]
+    if missing:
+        raise ValueError(f"Gate file is missing columns: {missing}")
+
+    included = points[points["included"] == "yes"].set_index("chokepoint_id")["name"]
+    lines = []
+    for row in table.itertuples():
+        if row.chokepoint_id not in included.index:
+            raise ValueError(f"Gate file: {row.chokepoint_id} ({row.name}) is not an included chokepoint")
+        if row.name != included[row.chokepoint_id]:
+            raise ValueError(f"Gate file: {row.chokepoint_id} is named '{row.name}', but "
+                             f"'{included[row.chokepoint_id]}' in the screening file")
+        try:
+            line = wkt.loads(row.wkt)
+        except (ShapelyError, TypeError) as err:
+            raise ValueError(f"Gate file: WKT for {row.chokepoint_id} does not parse: {err}") from err
+        if line.geom_type != "LineString" or not line.is_valid or len(line.coords) < 2:
+            raise ValueError(f"Gate file: WKT for {row.chokepoint_id} must be a LINESTRING")
+        lines.append(line)
+    if table["chokepoint_id"].duplicated().any():
+        raise ValueError("Gate file has more than one gate for a chokepoint")
+    return gpd.GeoDataFrame(table[GATE_COLUMNS[:2] + GATE_COLUMNS[3:]], geometry=lines,
+                            crs=settings["project"]["storage_crs"])
+
+
+def read_land(settings, log):
+    """Decision 12: Natural Earth country polygons, used as land for the gate checks."""
+    path = common.get_path(settings, "raw_files.natural_earth_countries")
+    land = pyogrio.read_dataframe(path, columns=["ADMIN"])
+    log.info("Read %s (%d features)", path.name, len(land))
+    return land
+
+
+def network_edges(settings):
+    """Every searoute network edge as a line, without the zero-length edges joining 180 and -180."""
+    lines = [LineString([u, v]) for u, v in searoute.setup_M().edges()
+             if not (abs(u[0]) == 180 and abs(v[0]) == 180 and u[1] == v[1] and u[0] != v[0])]
+    return gpd.GeoSeries(lines, crs=settings["project"]["storage_crs"])
+
+
+def line_km(coords, settings):
+    """Great-circle length of a line in km, summed between its vertices."""
+    xy = np.asarray(coords)
+    return float(np.sum(common.great_circle_km(xy[:-1, 0], xy[:-1, 1], xy[1:, 0], xy[1:, 1], settings)))
+
+
+def check_gates(gates, land, edges, settings, log):
+    """Decision 12: both gate ends on land; log length, km over water and edges crossing.
+
+    Edges are tested as S06 tests routes: straight lines in longitude/latitude, with the
+    gate copied 360 degrees east and west.
+    """
+    for i, row in gates.iterrows():
+        coords = list(row.geometry.coords)
+        for end in (coords[0], coords[-1]):
+            if not land.contains(Point(end)).any():
+                raise ValueError(f"Gate {row.chokepoint_id} ({row['name']}): end {end} is not on land")
+        near = unary_union(land.geometry[land.intersects(row.geometry.buffer(0.5))].values)
+        water = row.geometry.segmentize(WATER_STEP_DEG).difference(near)
+        water_km = sum(line_km(p.coords, settings) for p in getattr(water, "geoms", [water]) if not p.is_empty)
+        crossing = set()
+        for dx in (-360.0, 0.0, 360.0):
+            crossing |= set(edges.index[edges.intersects(translate(row.geometry, xoff=dx))])
+        gates.loc[i, "length_km"] = round(line_km(coords, settings), 1)
+        gates.loc[i, "water_km"] = round(water_km, 1)
+        gates.loc[i, "network_edges"] = len(crossing)
+        log.info("Decision 12 | gate %-13s %-16s %d vertices, ends on land | length %6.1f km | over "
+                 "water %6.1f km | network edges crossing %d", row.chokepoint_id, row["name"],
+                 len(coords), gates.loc[i, "length_km"], water_km, len(crossing))
+    gates["network_edges"] = gates["network_edges"].astype("int64")
+    return gates
+
+
 def log_counts(points, zones, log):
     """Log the counts reported in Lab 7."""
     excluded = points[points["included"] == "no"]
@@ -141,9 +237,13 @@ def main():
     points = build_points(table, settings)
     zones = build_zones(points, settings, log)
     log_counts(points, zones, log)
+    # Task 2.9 / Decision 12: gate lines for the wide straits.
+    gates = read_gates(points, settings, log)
+    gates = check_gates(gates, read_land(settings, log), network_edges(settings), settings, log)
 
     common.write_layer(points, settings, "chokepoints", log)
     common.write_layer(zones, settings, "zones", log)
+    common.write_layer(gates, settings, "gates", log)
     log.info("Run of s03_chokepoints finished")
 
 

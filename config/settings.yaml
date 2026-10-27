@@ -77,17 +77,15 @@ trade:
 # ---------------------------------------------------------------------
 chokepoints:
   screening_file: config/chokepoint_screening.csv   # filled by hand (task 2.8)
+  gates_file: config/chokepoint_gates.csv           # gate lines for the four wide straits (Decision 12)
   zone_radius_km: 50
-  # radius = half narrowest width + 10 km, rounded up to 10 km, min 50; Korea capped at 90 so
-  # Busan stays outside (Decision 11)
+  # Decision 11 radii: half narrowest width + 10 km, rounded up to 10 km, min 50. The four
+  # gated straits (Taiwan, Korea, Luzon, Yucatan) use the default circle for maps only;
+  # their crossings and closures use the gate line (Decision 12).
   zone_radius_overrides_km:
-    "Taiwan Strait": 90
-    "Korea Strait": 90
-    "Luzon Strait": 170
     "Torres Strait": 100
     "Bohai Strait": 70
     "Makassar Strait": 80
-    "Yucatan Channel": 120
     "Mona Passage": 80
   zone_quad_segments: 64             # circle smoothness: vertices per quarter circle (256 per zone)
 
@@ -382,6 +380,7 @@ layers:
   trade_flows: trade_flows
   chokepoints: chokepoints
   zones: zones
+  gates: gates                       # S03 (Decision 12): gate lines; S06 and S08 use them in place of the zone
   ports: ports
   country_port_shares: country_port_shares
   events: events

@@ -18,7 +18,8 @@ Lab 7 first pass (ports.assignment_first_pass = nearest_gateway):
    route is split at the antimeridian and stored as a MultiLineString inside +-180.
    -> routes layer.
 3. Task 4.3: a flow crosses a chokepoint if its route intersects that chokepoint's zone
-   (included chokepoints only). Crossings are found on the split routes, then checked
+   (included chokepoints only), or its gate line where it has one (Decision 12, the four
+   wide straits; common.crossing_geometries). Crossings are found on the split routes, then checked
    again on the continuous routes against zones shifted by -360, 0 and +360 degrees; the
    log reports whether the two agree. -> route_crossings table.
 4. Task 4.4: Equation 1, the value and weight of crossing flows summed for each
@@ -100,6 +101,17 @@ def read_zones(settings, log):
     common.log_filter(log, "Task 4.3 | included chokepoint zones", int(included.sum()),
                       int((~included).sum()), "included is not 'yes' in the screening file")
     return zones[included][["chokepoint_id", "name", "geometry"]].reset_index(drop=True)
+
+
+def read_crossing_shapes(zones, settings, log):
+    """Task 4.3 / Decision 12: the gate line where a chokepoint has one, otherwise its zone."""
+    shapes = common.crossing_geometries(zones, settings)
+    counts = shapes["crossing_method"].value_counts()
+    log.info("Task 4.3 | crossing test: gate line %d, zone %d (Decision 12)",
+             counts.get("gate", 0), counts.get("zone", 0))
+    for r in shapes[shapes["crossing_method"] == "gate"].itertuples():
+        log.info("Task 4.3 |   gate: %s %s", r.chokepoint_id, r.name)
+    return shapes
 
 
 # ---------------------------------------------------------------------
@@ -649,23 +661,25 @@ def main(test_pairs=None):
     base = [n for n, sc in settings["routing"]["scenarios"].items() if sc.get("main")][0]
     base_routes, base_failures = route_pairs(pairs, ports, restrictions[base]["tags"], base, settings, log)
     zones = read_zones(settings, log)
-    base_hits = route_zone_hits(base_routes, zones, log, base)
+    # Task 4.3 / Decision 12: crossings are tested on the gate where there is one, else the zone.
+    shapes = read_crossing_shapes(zones, settings, log)
+    base_hits = route_zone_hits(base_routes, shapes, log, base)
     all_routes, all_hits, all_failures = [base_routes], [base_hits], [base_failures]
     open_variant = {}
     for name, spec in restrictions.items():
         if name == base:
             continue
-        routes_s, fail_s, moved = scenario_routes(name, spec, base_routes, base_hits, zones, ports,
+        routes_s, fail_s, moved = scenario_routes(name, spec, base_routes, base_hits, shapes, ports,
                                                   spec["diverted_tags"], settings, log, label=name)
         all_routes.append(routes_s)
-        all_hits.append(route_zone_hits(routes_s, zones, log, name))
+        all_hits.append(route_zone_hits(routes_s, shapes, log, name))
         all_failures.append(fail_s)
         if spec["diverted_tags"] != spec["tags"]:
             # Validation variant: displaced routes with diverted_also_closed left open (first run).
             label = f"{name}, diverted_also_closed open (validation variant)"
-            open_routes, _, _ = scenario_routes(name, spec, base_routes, base_hits, zones, ports,
+            open_routes, _, _ = scenario_routes(name, spec, base_routes, base_hits, shapes, ports,
                                                 spec["tags"], settings, log, label=label)
-            open_variant[name] = (open_routes, route_zone_hits(open_routes, zones, log, label))
+            open_variant[name] = (open_routes, route_zone_hits(open_routes, shapes, log, label))
             correction_log(name, moved, routes_s, open_routes, subflows, log)
 
     routes = gpd.GeoDataFrame(pd.concat(all_routes, ignore_index=True), geometry="geometry",
@@ -675,7 +689,8 @@ def main(test_pairs=None):
     arctic_check(routes, settings, log)
 
     # Task 4.3: crossings.
-    endpoint_zone_check(routes, ports, zones, log)
+    # A port cannot lie inside a gate line, so only zone-tested chokepoints are checked.
+    endpoint_zone_check(routes, ports, shapes[shapes["crossing_method"] == "zone"], log)
     crossings, sub_cross = build_crossings(hits, routes, subflows, log)
 
     # Task 4.4: Equation 1.

@@ -5,6 +5,7 @@
 - Distance: great-circle (haversine) distance in kilometres.
 - Country codes: clean ISO-3 codes, flag non-country codes, apply remaps.
 - GeoPackage: read and write project layers by their settings key.
+- Crossing geometry: the gate line or zone each chokepoint is crossed at (Decision 12).
 """
 
 import logging
@@ -219,3 +220,29 @@ def write_layer(df, settings, key, log=None, database=None):
     pyogrio.write_dataframe(df, path, layer=name, driver="GPKG")
     if log:
         log.info("Wrote layer '%s' (%s rows) to %s", name, f"{len(df):,}", path)
+
+
+# ---------------------------------------------------------------------
+# Chokepoint crossing geometry
+# ---------------------------------------------------------------------
+
+def crossing_geometries(zones, settings, database=None):
+    """The shape a route must touch to cross each chokepoint (Decision 12).
+
+    A chokepoint with a gate line (the gates layer written by S03) is crossed when a route
+    crosses the gate; every other chokepoint is crossed when a route intersects its zone.
+    Used by S06 (crossings, task 4.3) and S08 (closures). `zones` holds the chokepoints to
+    test (chokepoint_id, name, geometry). Returns chokepoint_id, name, crossing_method
+    ("gate" or "zone") and geometry, one row per zone.
+    """
+    gates = read_layer(settings, "gates", database)
+    unknown = sorted(set(gates["chokepoint_id"]) - set(zones["chokepoint_id"]))
+    if unknown:
+        raise ValueError(f"Gates for chokepoints that are not in the zones given: {unknown}")
+    gate_by_id = gates.set_index("chokepoint_id").geometry
+    shapes = zones[["chokepoint_id", "name"]].copy()
+    has_gate = shapes["chokepoint_id"].isin(gate_by_id.index)
+    shapes["crossing_method"] = np.where(has_gate, "gate", "zone")
+    geometry = [gate_by_id[cid] if gate else zone
+                for cid, gate, zone in zip(shapes["chokepoint_id"], has_gate, zones.geometry)]
+    return gpd.GeoDataFrame(shapes, geometry=geometry, crs=zones.crs)

@@ -160,6 +160,26 @@ These were decided after the proposal text was written. Follow them where they d
    path passes through the strait outside the zone). The Kanmon Strait and Seto Inland Sea
    route is accepted as a real alternative to the Korea Strait, for smaller ships only, and
    stated as a limitation. The same radii apply to S06 crossings and S08 closures.
+   Amended by Decision 12 for the Taiwan, Korea and Luzon straits and the Yucatán Channel.
+12. **Gate lines for the four wide straits (amends Decision 11).** For the Taiwan Strait,
+   Korea Strait, Luzon Strait and Yucatán Channel, a circle wide enough to span the passage
+   also caught routes that only clipped its edge without passing through (at Korea,
+   Shanghai–Nagasaki was 46% of the value). These four use a gate line drawn across the
+   passage from shore to shore, using islands as stepping stones, stored as WKT in
+   `config/chokepoint_gates.csv` with the reason for each line. A route crosses the
+   chokepoint if it crosses the gate, with no exceptions (so Busan and Incheon flows through
+   the Western Channel and Europe–Wakamatsu flows through the Iki channel count). S08 closes
+   a gated chokepoint by removing every network edge that crosses the gate; for a gate, no
+   port is "inside the zone", so Decision 10(c) does not apply. Gate ends lie about 5 km
+   inland on Natural Earth 10m countries, and no network edge passes round an end within
+   50 km. The other 23 chokepoints keep circles under Decision 11 (Torres 100, Bohai 70,
+   Makassar 80, Mona 80 km). The four gated straits keep a 50 km circle for maps only; the
+   Korea 90 km exception no longer applies. The leak test and a clipping check (crossings
+   whose closest approach exceeds 60% of the radius) were run for all 27 chokepoints.
+   Limitations: a gate counts only ships that cross it (Taichung–Europe is not counted at
+   Taiwan); results depend on where each line is drawn; Dalian–Seattle is about 54% of
+   Korea's value; small edge clips remain at Dover (London–Antwerp, $53K) and Gibraltar
+   (Tanger Med flows), under 0.1% of each.
 
 ## How to work in this repository
 
@@ -173,5 +193,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 26 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set; next: build S08.
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 27 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set. Decision 12 recorded (gate lines for four wide straits); S03/S06 updated and rerun. Next: build S08.
 <!-- Update this section as work progresses. -->
