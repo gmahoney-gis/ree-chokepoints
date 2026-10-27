@@ -5,6 +5,8 @@
 - Distance: great-circle (haversine) distance in kilometres.
 - Country codes: clean ISO-3 codes, flag non-country codes, apply remaps.
 - GeoPackage: read and write project layers by their settings key.
+- Events to count: the IMO GISIS counting rule (Decision 9), so every script drops the
+  same incidents.
 - Crossing geometry: the gate line or zone each chokepoint is crossed at (Decision 12).
 - Sea routes: searoute paths, their length in nautical miles, splitting at 180 degrees
   (S06 and S08).
@@ -226,6 +228,38 @@ def write_layer(df, settings, key, log=None, database=None):
     pyogrio.write_dataframe(df, path, layer=name, driver="GPKG")
     if log:
         log.info("Wrote layer '%s' (%s rows) to %s", name, f"{len(df):,}", path)
+
+
+# ---------------------------------------------------------------------
+# Events to count (Decision 9)
+# ---------------------------------------------------------------------
+
+GISIS_SOURCE = "IMO GISIS"              # the source label S05 gives IMO GISIS incidents
+COUNT_RULES = ("crew_harm", "all")      # allowed values of events.imo_gisis.count_rule
+
+
+def countable_events(events, settings, log=None, count_rule=None):
+    """Return the events to count after the IMO GISIS counting rule (Decision 9).
+
+    "crew_harm" (the main run) drops IMO GISIS incidents where crew were not threatened,
+    injured or held (crew_harm is not 1); "all" keeps every incident (S10 alternative).
+    Events from other sources are always kept. count_rule defaults to
+    events.imo_gisis.count_rule; S10 passes the alternative here instead.
+    """
+    rule = count_rule or settings["events"]["imo_gisis"]["count_rule"]
+    if rule not in COUNT_RULES:
+        raise ValueError(f"Unknown IMO GISIS count_rule '{rule}'; use one of {COUNT_RULES}")
+    gisis = events["source"] == GISIS_SOURCE
+    if rule == "crew_harm":
+        drop = gisis & (events["crew_harm"] != 1)
+        reason = "crew not threatened, injured or held (crew_harm)"
+    else:
+        drop = pd.Series(False, index=events.index)
+        reason = "none (count_rule all keeps every incident)"
+    if log:
+        log_filter(log, f"Decision 9 | IMO GISIS count_rule {rule}", int((gisis & ~drop).sum()),
+                   int(drop.sum()), reason)
+    return events[~drop].reset_index(drop=True)
 
 
 # ---------------------------------------------------------------------

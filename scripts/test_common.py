@@ -176,8 +176,34 @@ def test_geopackage():
             raise AssertionError(f"expected {error.__name__}")
 
 
+# ---------------------------------------------------------------------
+# Events to count (Decision 9)
+# ---------------------------------------------------------------------
+
+def test_countable_events():
+    # crew_harm as read back from the GeoPackage: 1.0 / 0.0 for IMO GISIS, empty for ACLED.
+    events = pd.DataFrame({"event_id": ["A1", "A2", "G1", "G2", "G3"],
+                           "source": ["ACLED", "ACLED", "IMO GISIS", "IMO GISIS", "IMO GISIS"],
+                           "crew_harm": [np.nan, np.nan, 1.0, 0.0, 0.0]})
+    kept = common.countable_events(events, SETTINGS, count_rule="crew_harm")
+    assert kept["event_id"].tolist() == ["A1", "A2", "G1"], kept["event_id"].tolist()
+    kept = common.countable_events(events, SETTINGS, count_rule="all")
+    assert kept["event_id"].tolist() == ["A1", "A2", "G1", "G2", "G3"]
+    # With no count_rule given, the settings value is used.
+    settings = copy.deepcopy(SETTINGS)
+    settings["events"]["imo_gisis"]["count_rule"] = "all"
+    assert len(common.countable_events(events, settings)) == 5
+    try:
+        common.countable_events(events, SETTINGS, count_rule="crew harm")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("an unknown count_rule must raise ValueError")
+
+
 def main():
-    tests = [test_settings, test_log, test_distance, test_iso3_simple, test_iso3_on_comtrade, test_geopackage]
+    tests = [test_settings, test_log, test_distance, test_iso3_simple, test_iso3_on_comtrade, test_geopackage,
+             test_countable_events]
     failed = 0
     for test in tests:
         print(f"{test.__name__}")

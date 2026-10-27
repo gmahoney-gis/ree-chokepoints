@@ -384,6 +384,7 @@ sensitivity:
       - {violence: 0.75, tension: 0.25}
     gdelt_min_sources: [1, 3]
     event_weighting: [fatalities_plus_one]
+    imo_count_rule: [all]            # Decision 9: count every IMO GISIS incident, not only crew_harm
     port_assignment: [nearest_gateway]
     trade_measure: [net_weight_kg]
     products: [main_plus_magnets]

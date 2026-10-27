@@ -27,3 +27,7 @@ Thumbs.db
 
 # PyCharm settings, personal
 .idea/
+
+# Personal workbooks at the top level (trackers, notes) and Excel lock files
+/*.xlsx
+~$*

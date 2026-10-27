@@ -17,9 +17,15 @@ scripts add their own fields to that table, so S07 replaces only its own columns
 (those starting with the prefixes in S07_PREFIXES) and keeps all others. A copy goes
 to outputs/tables/conflict_exposure.csv.
 
-Only the event categories present for the sources in events.sources are scored. In the
-first pass that is ACLED violence; tension (GDELT) and the GDELT source thresholds are
-skipped and the log says so. The log holds counts and per-chokepoint summaries only,
+Before any of these steps, the IMO GISIS counting rule is applied (Decision 9,
+events.imo_gisis.count_rule, through common.countable_events): under crew_harm only
+incidents where crew were threatened, injured or held are counted; under all, every
+incident. Each IMO GISIS incident has 0 fatalities, so it weighs 1 in the
+fatality-weighted variant.
+
+Only the event categories present for the sources in events.sources are scored. Violence
+is ACLED events plus IMO GISIS incidents; tension (GDELT) and the GDELT source thresholds
+are skipped and the log says so. The log holds counts and per-chokepoint summaries only,
 never individual event rows.
 """
 
@@ -85,6 +91,18 @@ def event_distances(events, chokepoints, settings, log):
              "distance median %.0f km, max %.0f km", f"{distances.shape[0]:,}", distances.shape[1],
              np.median(distances.min(axis=1)), distances.min(axis=1).max())
     return distances
+
+
+def log_gisis_rings(events, distances, chokepoints, settings, log):
+    """Log how many IMO GISIS incidents fall in each chokepoint's main ring (counts only)."""
+    ring = settings["conflict"]["ring_main_km"]
+    gisis = (events["source"] == common.GISIS_SOURCE).to_numpy()
+    counts = (distances[gisis] <= ring).sum(axis=0)
+    log.info("Task 4.8 | IMO GISIS incidents within %d km, chokepoints with at least one: %d",
+             ring, int((counts > 0).sum()))
+    for i in np.argsort(-counts, kind="stable"):
+        if counts[i] > 0:
+            log.info("Task 4.8 |   %-20s %3d", chokepoints.at[i, "name"], counts[i])
 
 
 # ---------------------------------------------------------------------
@@ -245,7 +263,8 @@ def main():
     tables.mkdir(parents=True, exist_ok=True)
 
     chokepoints = read_chokepoints(settings, log)
-    events = read_events(settings, log)
+    # Decision 9: apply the IMO GISIS counting rule before distances, rings, density and overlap.
+    events = common.countable_events(read_events(settings, log), settings, log)
 
     scores = chokepoints[["chokepoint_id", "name"]].copy()
     method_rows, overlap_rows = [], []
@@ -254,6 +273,7 @@ def main():
         subset = events[events["category"] == category].reset_index(drop=True)
         log.info("Task 4.7 | category %s: %s events", category, f"{len(subset):,}")
         distances = event_distances(subset, chokepoints, settings, log)
+        log_gisis_rings(subset, distances, chokepoints, settings, log)
         fatalities = subset["fatalities"].fillna(0).to_numpy(dtype=float)
 
         scores = scores.assign(**ring_exposure(distances, fatalities, prefix, settings, log))

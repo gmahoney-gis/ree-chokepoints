@@ -87,6 +87,15 @@ def source_note(fig, text, style):
     fig.text(0.995, 0.008, text, ha="right", va="bottom", fontsize=6.5, color=style["note"])
 
 
+def violence_sources(settings):
+    """Caption wording for what the violence counts include (Decision 9 count_rule)."""
+    if settings["events"]["imo_gisis"]["count_rule"] == "crew_harm":
+        gisis = "piracy incidents in which crew were threatened, injured or held (IMO GISIS)"
+    else:
+        gisis = "all piracy and armed-robbery incidents (IMO GISIS)"
+    return f"violent events (ACLED) and {gisis}"
+
+
 # ---------------------------------------------------------------------
 # Inputs
 # ---------------------------------------------------------------------
@@ -260,7 +269,7 @@ def fig_components(points, basemap, outline, settings, out, log):
         axes[1], points, viol_field, style["highlight"],
         f"(b) Violence exposure: violent events within {ring} km",
         [100, 1000, 5000], lambda v: f"{v:,.0f}", "Events", n, style)
-    source_note(fig, "Data: UN Comtrade; ACLED; Natural Earth. Equal Earth projection.", style)
+    source_note(fig, "Data: UN Comtrade; ACLED; IMO GISIS; Natural Earth. Equal Earth projection.", style)
     fig.savefig(out, dpi=DPI)
     plt.close(fig)
 
@@ -268,11 +277,12 @@ def fig_components(points, basemap, outline, settings, out, log):
     caption = (f"Figure 6.2 (draft). Component exposure at the {len(points)} included maritime "
                f"chokepoints (Equal Earth). (a) Value of 2025 maritime rare earth trade "
                f"(HS {', '.join(settings['trade']['hs_codes_main'])}) whose baseline route crosses "
-               f"each chokepoint zone; circle area is proportional to value. (b) ACLED violent "
-               f"events within {ring} km, {w['window_start']} to {w['window_end']}; circle area is "
+               f"each chokepoint zone; circle area is proportional to value. (b) Number of "
+               f"{violence_sources(settings)} within {ring} km, {w['window_start']} to "
+               f"{w['window_end']}; circle area is "
                f"proportional to the count. Hollow markers show zero values ({zero_trade} for "
                f"trade, {zero_viol} for violence). The top {n} on each panel are labelled. "
-               f"Sources: UN Comtrade, ACLED, Natural Earth.")
+               f"Sources: UN Comtrade, ACLED, IMO GISIS, Natural Earth.")
     log.info("Task 6.2 | labelled trade: %s", ", ".join(top_trade))
     log.info("Task 6.2 | labelled violence: %s", ", ".join(top_viol))
     return caption
@@ -415,21 +425,22 @@ def fig_trade_conflict(points, settings, out, log):
     ax.text(0.02, 0.98, f"Spearman ρ = {main['rho']:.2f}\np = {main['p_value']:.2f}, n = {int(main['n'])}",
             transform=ax.transAxes, va="top", fontsize=8,
             bbox={"boxstyle": "round,pad=0.4", "fc": style["background"], "ec": style["borders"], "lw": 0.6})
-    source_note(fig, "Data: UN Comtrade; ACLED.", style)
+    source_note(fig, "Data: UN Comtrade; ACLED; IMO GISIS.", style)
     fig.savefig(out, dpi=DPI)
     plt.close(fig)
 
     # The log goes to a cp1252 console on Windows, so the caption spells out "rho".
     verdict = "no significant association" if main["p_value"] >= 0.05 else "significant at p < 0.05"
     caption = (f"Figure 6.5 (draft). Trade exposure against violence exposure for the "
-               f"{len(points)} included chokepoints, both on log(1 + x) axes. Dashed lines mark "
+               f"{len(points)} included chokepoints, both on log(1 + x) axes. Violence exposure "
+               f"is the number of {violence_sources(settings)} within {ring} km. Dashed lines mark "
                f"the medians (trade US$ {x_med:,.0f}; violence {y_med:,.0f} events) and divide "
                f"the four quadrants. The violence median is only {y_med:,.0f} events within "
                f"{ring} km, so the \"high violence\" side includes chokepoints with very few "
                f"events. {int(main['zero_trade'])} chokepoints have zero trade and "
                f"{int(main['zero_conflict'])} have zero violent events; coincident points share "
                f"one label. Spearman rho = {main['rho']:.2f} (p = {main['p_value']:.2f}): "
-               f"{verdict}. Sources: UN Comtrade, ACLED.")
+               f"{verdict}. Sources: UN Comtrade, ACLED, IMO GISIS.")
     return caption
 
 
