@@ -40,21 +40,18 @@ Test the routing first with:  python scripts/s06_trade_exposure.py --test-pairs 
 
 import argparse
 import csv
-import warnings
 from pathlib import Path
 
 import geopandas as gpd
 import numpy as np
 import pandas as pd
-import searoute
 from scipy.stats import spearmanr
 from searoute.classes.passages import Passage
 from shapely.affinity import translate
-from shapely.geometry import LineString, MultiLineString, Point
+from shapely.geometry import LineString, Point
 
 import common
 
-KM_PER_NM = 1.852          # definition of the nautical mile
 # Field suffix for each scenario in chokepoint_scores.
 SCENARIO_SUFFIX = {"baseline": "base", "red_sea_diversion": "redsea"}
 S06_PREFIX = "trade_"      # S06 owns every chokepoint_scores column starting with this
@@ -210,69 +207,6 @@ def searoute_version():
     return version("searoute")
 
 
-def route_line(origin, destination, restrictions):
-    """Task 4.2: searoute coordinates between two network nodes, or None when no route exists.
-
-    The coordinates are continuous across 180 degrees (longitudes may pass +-180).
-    """
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore")   # searoute warns when restrictions leave no path
-        feature = searoute.searoute(list(origin), list(destination), units="naut",
-                                    restrictions=restrictions, return_passages=True)
-    coords = [tuple(map(float, c)) for c in feature["geometry"]["coordinates"]]
-    if len(coords) < 2 or not np.isfinite(feature["properties"]["length"]):
-        return None, []
-    return coords, feature["properties"]["traversed_passages"]
-
-
-def length_nm(coords, settings):
-    """Route length in nautical miles, summed great-circle distance between vertices."""
-    xy = np.asarray(coords)
-    km = common.great_circle_km(xy[:-1, 0], xy[:-1, 1], xy[1:, 0], xy[1:, 1], settings)
-    return float(np.sum(km)) / KM_PER_NM
-
-
-def split_antimeridian(coords):
-    """Task 4.2: split a continuous line at +-180 and shift every part into -180..180.
-
-    Each vertex belongs to the 360-degree "copy" k = floor((lon + 180) / 360). Where two
-    vertices fall in different copies, the segment is cut at the boundary between them
-    (latitude interpolated linearly) and a new part starts on the other side. A vertex
-    lying exactly on a boundary (the network has nodes on 180 and -180) joins the copy of
-    its neighbour, so a route that only touches 180 degrees is not split.
-    """
-    copies = [int(np.floor((x + 180.0) / 360.0)) for x, _ in coords]
-    on_boundary = [(x + 180.0) % 360.0 == 0 for x, _ in coords]
-    for order in (range(1, len(coords)), range(len(coords) - 2, -1, -1)):
-        for i in order:
-            neighbour = copies[i - 1] if order.step == 1 else copies[i + 1]
-            if on_boundary[i] and neighbour in (copies[i], copies[i] - 1):
-                copies[i] = neighbour
-
-    parts, current = [], [coords[0]]
-    for i in range(1, len(coords)):
-        (x0, y0), (x1, y1) = coords[i - 1], coords[i]
-        k0, k1 = copies[i - 1], copies[i]
-        while k0 != k1:
-            step = 1 if k1 > k0 else -1
-            boundary = -180.0 + 360.0 * (k0 + (1 if step > 0 else 0))
-            y_cut = y0 if x1 == x0 else y0 + (y1 - y0) * (boundary - x0) / (x1 - x0)
-            current.append((boundary, y_cut))
-            parts.append((current, k0))
-            current = [(boundary, y_cut)]
-            k0 += step
-        current.append((x1, y1))
-    parts.append((current, copies[-1]))
-
-    lines = []
-    for part, k in parts:
-        shifted = [(x - 360.0 * k, y) for x, y in part]
-        shifted = [p for j, p in enumerate(shifted) if j == 0 or p != shifted[j - 1]]
-        if len(shifted) >= 2:
-            lines.append(LineString(shifted))
-    return MultiLineString(lines)
-
-
 def route_pairs(pairs, ports, tags, scenario, settings, log, label=None):
     """Task 4.2: route each port pair once with one set of searoute restrictions.
 
@@ -282,15 +216,15 @@ def route_pairs(pairs, ports, tags, scenario, settings, log, label=None):
     snap = ports.drop_duplicates("port_id").set_index("port_id")[["snap_lon", "snap_lat"]]
     rows, failures, passages = [], [], {}
     for o, d in pairs:
-        coords, traversed = route_line(tuple(snap.loc[o]), tuple(snap.loc[d]), tags)
+        coords, traversed = common.route_line(tuple(snap.loc[o]), tuple(snap.loc[d]), tags)
         if coords is None:
             failures.append({"origin_port": o, "dest_port": d, "scenario": scenario})
             continue
         for p in set(traversed):
             passages[p] = passages.get(p, 0) + 1
-        geometry = split_antimeridian(coords)
+        geometry = common.split_antimeridian(coords)
         rows.append({"route_id": f"{o}__{d}__{scenario}", "origin_port": o, "dest_port": d,
-                     "scenario": scenario, "length_nm": round(length_nm(coords, settings), 1),
+                     "scenario": scenario, "length_nm": round(common.length_nm(coords, settings), 1),
                      "crosses_180": len(geometry.geoms) > 1,
                      "max_lat": max(c[1] for c in coords), "passages": sorted(set(traversed)),
                      "continuous": LineString(coords), "geometry": geometry})

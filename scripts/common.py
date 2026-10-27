@@ -6,19 +6,25 @@
 - Country codes: clean ISO-3 codes, flag non-country codes, apply remaps.
 - GeoPackage: read and write project layers by their settings key.
 - Crossing geometry: the gate line or zone each chokepoint is crossed at (Decision 12).
+- Sea routes: searoute paths, their length in nautical miles, splitting at 180 degrees
+  (S06 and S08).
 """
 
 import logging
 import platform
 import sys
+import warnings
 from datetime import datetime
 from pathlib import Path
 
 import geopandas as gpd
+import networkx as nx
 import numpy as np
 import pandas as pd
 import pyogrio
+import searoute
 import yaml
+from shapely.geometry import LineString, MultiLineString
 
 # The repository root is the folder above scripts/, so paths work from any folder.
 ROOT = Path(__file__).resolve().parents[1]
@@ -246,3 +252,80 @@ def crossing_geometries(zones, settings, database=None):
     geometry = [gate_by_id[cid] if gate else zone
                 for cid, gate, zone in zip(shapes["chokepoint_id"], has_gate, zones.geometry)]
     return gpd.GeoDataFrame(shapes, geometry=geometry, crs=zones.crs)
+
+
+# ---------------------------------------------------------------------
+# Sea routes (S06 task 4.2, S08 task 4.13)
+# ---------------------------------------------------------------------
+
+KM_PER_NM = 1.852          # definition of the nautical mile
+
+
+def route_line(origin, destination, restrictions, network=None):
+    """searoute coordinates between two network nodes, or None when no route exists.
+
+    `network` is a searoute Marnet to route on (searoute's M=); None uses searoute's
+    own network. S08 passes an edited copy with a chokepoint's edges removed. Returns
+    (coords, traversed passages). The coordinates are continuous across 180 degrees
+    (longitudes may pass +-180).
+    """
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")   # searoute warns when restrictions leave no path
+        try:
+            feature = searoute.searoute(list(origin), list(destination), units="naut",
+                                        restrictions=restrictions, return_passages=True, M=network)
+        except nx.NetworkXNoPath:
+            # Removing edges can cut a node off; searoute then raises instead of returning inf.
+            return None, []
+    coords = [tuple(map(float, c)) for c in feature["geometry"]["coordinates"]]
+    if len(coords) < 2 or not np.isfinite(feature["properties"]["length"]):
+        return None, []
+    return coords, feature["properties"]["traversed_passages"]
+
+
+def length_nm(coords, settings):
+    """Route length in nautical miles, summed great-circle distance between vertices."""
+    xy = np.asarray(coords)
+    km = great_circle_km(xy[:-1, 0], xy[:-1, 1], xy[1:, 0], xy[1:, 1], settings)
+    return float(np.sum(km)) / KM_PER_NM
+
+
+def split_antimeridian(coords):
+    """Split a continuous line at +-180 and shift every part into -180..180.
+
+    Each vertex belongs to the 360-degree "copy" k = floor((lon + 180) / 360). Where two
+    vertices fall in different copies, the segment is cut at the boundary between them
+    (latitude interpolated linearly) and a new part starts on the other side. A vertex
+    lying exactly on a boundary (the network has nodes on 180 and -180) joins the copy of
+    its neighbour, so a route that only touches 180 degrees is not split.
+    """
+    copies = [int(np.floor((x + 180.0) / 360.0)) for x, _ in coords]
+    on_boundary = [(x + 180.0) % 360.0 == 0 for x, _ in coords]
+    for order in (range(1, len(coords)), range(len(coords) - 2, -1, -1)):
+        for i in order:
+            neighbour = copies[i - 1] if order.step == 1 else copies[i + 1]
+            if on_boundary[i] and neighbour in (copies[i], copies[i] - 1):
+                copies[i] = neighbour
+
+    parts, current = [], [coords[0]]
+    for i in range(1, len(coords)):
+        (x0, y0), (x1, y1) = coords[i - 1], coords[i]
+        k0, k1 = copies[i - 1], copies[i]
+        while k0 != k1:
+            step = 1 if k1 > k0 else -1
+            boundary = -180.0 + 360.0 * (k0 + (1 if step > 0 else 0))
+            y_cut = y0 if x1 == x0 else y0 + (y1 - y0) * (boundary - x0) / (x1 - x0)
+            current.append((boundary, y_cut))
+            parts.append((current, k0))
+            current = [(boundary, y_cut)]
+            k0 += step
+        current.append((x1, y1))
+    parts.append((current, copies[-1]))
+
+    lines = []
+    for part, k in parts:
+        shifted = [(x - 360.0 * k, y) for x, y in part]
+        shifted = [p for j, p in enumerate(shifted) if j == 0 or p != shifted[j - 1]]
+        if len(shifted) >= 2:
+            lines.append(LineString(shifted))
+    return MultiLineString(lines)
