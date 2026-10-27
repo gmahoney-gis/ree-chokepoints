@@ -1,40 +1,47 @@
-2026-10-18 17:21:42 INFO    Run of s03_chokepoints started 2026-10-18T17:21:42
-2026-10-18 17:21:42 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-18 17:21:42 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-18 17:21:42 INFO    Read C:\Users\garre\ree-chokepoints\config\chokepoint_screening.csv: 28 rows
-2026-10-18 17:21:43 INFO    Task 2.9 | default zone radius 50 km; overrides: Luzon Strait 150 km, Torres Strait 100 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone edge check: largest gap between edge distance and radius = 0.000000 km
-2026-10-18 17:21:43 INFO    Task 2.9 | chokepoints in screening file: 28
-2026-10-18 17:21:43 INFO    Task 2.9 | included chokepoints | kept 27 | removed 1 | reason: included = no in screening file
-2026-10-18 17:21:43 INFO    Task 2.9 | excluded: Cape of Good Hope (chokepoint7): First pass: open-water passage, fails physical-constraint criterion (no narrow passage between landmasses); full screening (task 2.8) pending
-2026-10-18 17:21:43 INFO    Task 2.9 | zones written: 27
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint1   Suez Canal             radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint2   Panama Canal           radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint3   Bosporus Strait        radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint4   Bab el-Mandeb Strait   radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint5   Malacca Strait         radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint6   Strait of Hormuz       radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint8   Gibraltar Strait       radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint9   Dover Strait           radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint10  Oresund Strait         radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint11  Taiwan Strait          radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint12  Korea Strait           radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint13  Tsugaru Strait         radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint14  Luzon Strait           radius   150 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint15  Lombok Strait          radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint16  Ombai Strait           radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint17  Bohai Strait           radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint18  Torres Strait          radius   100 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint19  Sunda Strait           radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint20  Makassar Strait        radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint21  Magellan Strait        radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint22  Yucatan Channel        radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint23  Windward Passage       radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint24  Mona Passage           radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint25  Balabac Strait         radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint26  Bering Strait          radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint27  Mindoro Strait         radius    50 km
-2026-10-18 17:21:43 INFO    Task 2.9 | zone chokepoint28  Kerch Strait           radius    50 km
-2026-10-18 17:21:43 INFO    Wrote layer 'chokepoints' (28 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-18 17:21:43 INFO    Wrote layer 'zones' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-18 17:21:43 INFO    Run of s03_chokepoints finished
+2026-10-27 15:44:40 INFO    Run of s03_chokepoints started 2026-10-27T15:44:40
+2026-10-27 15:44:40 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-27 15:44:40 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-27 15:44:40 INFO    Read C:\Users\garre\ree-chokepoints\config\chokepoint_screening.csv: 28 rows
+2026-10-27 15:44:40 INFO    Task 2.9 | default zone radius 50 km; overrides: Torres Strait 100 km, Bohai Strait 70 km, Makassar Strait 80 km, Mona Passage 80 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone edge check: largest gap between edge distance and radius = 0.000000 km
+2026-10-27 15:44:41 INFO    Task 2.9 | chokepoints in screening file: 28
+2026-10-27 15:44:41 INFO    Task 2.9 | included chokepoints | kept 27 | removed 1 | reason: included = no in screening file
+2026-10-27 15:44:41 INFO    Task 2.9 | excluded: Cape of Good Hope (chokepoint7): First pass: open-water passage, fails physical-constraint criterion (no narrow passage between landmasses); full screening (task 2.8) pending
+2026-10-27 15:44:41 INFO    Task 2.9 | zones written: 27
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint1   Suez Canal             radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint2   Panama Canal           radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint3   Bosporus Strait        radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint4   Bab el-Mandeb Strait   radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint5   Malacca Strait         radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint6   Strait of Hormuz       radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint8   Gibraltar Strait       radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint9   Dover Strait           radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint10  Oresund Strait         radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint11  Taiwan Strait          radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint12  Korea Strait           radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint13  Tsugaru Strait         radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint14  Luzon Strait           radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint15  Lombok Strait          radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint16  Ombai Strait           radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint17  Bohai Strait           radius    70 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint18  Torres Strait          radius   100 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint19  Sunda Strait           radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint20  Makassar Strait        radius    80 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint21  Magellan Strait        radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint22  Yucatan Channel        radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint23  Windward Passage       radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint24  Mona Passage           radius    80 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint25  Balabac Strait         radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint26  Bering Strait          radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint27  Mindoro Strait         radius    50 km
+2026-10-27 15:44:41 INFO    Task 2.9 | zone chokepoint28  Kerch Strait           radius    50 km
+2026-10-27 15:44:41 INFO    Decision 12 | read C:\Users\garre\ree-chokepoints\config\chokepoint_gates.csv: 4 gates
+2026-10-27 15:44:41 INFO    Read ne_10m_admin_0_countries.shp (258 features)
+2026-10-27 15:44:42 INFO    Decision 12 | gate chokepoint11  Taiwan Strait    2 vertices, ends on land | length  180.3 km | over water  155.6 km | network edges crossing 4
+2026-10-27 15:44:42 INFO    Decision 12 | gate chokepoint12  Korea Strait     5 vertices, ends on land | length  236.3 km | over water  151.2 km | network edges crossing 5
+2026-10-27 15:44:42 INFO    Decision 12 | gate chokepoint14  Luzon Strait     5 vertices, ends on land | length  458.4 km | over water  418.0 km | network edges crossing 3
+2026-10-27 15:44:42 INFO    Decision 12 | gate chokepoint22  Yucatan Channel  2 vertices, ends on land | length  236.3 km | over water  216.7 km | network edges crossing 12
+2026-10-27 15:44:42 INFO    Wrote layer 'chokepoints' (28 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 15:44:42 INFO    Wrote layer 'zones' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 15:44:42 INFO    Wrote layer 'gates' (4 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 15:44:42 INFO    Run of s03_chokepoints finished
