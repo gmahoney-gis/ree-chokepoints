@@ -1,0 +1,251 @@
+2026-10-27 16:58:53 INFO    Run of s08_redundancy started 2026-10-27T16:58:53
+2026-10-27 16:58:53 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-27 16:58:53 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-27 16:58:53 INFO    Task 4.13 | sub-flows with a route | kept 1,395 | removed 1 | reason: both ports snap to the same network node (left unrouted by S06)
+2026-10-27 16:58:53 INFO    Task 4.13 | scenario baseline (redundancy.routes_from): routes 833 | crossings 3,035
+2026-10-27 16:58:54 INFO    Task 4.12 | chokepoints to close: 27 (gate line 4, zone 23)
+2026-10-27 16:58:54 INFO    Task 4.13 | searoute restrictions in every closure: ['northwest'] (routing.always_closed)
+2026-10-27 16:58:55 INFO    Task 4.12 | network copy: nodes 9,708 | edges 15,970 | zero-length 180/-180 edges skipped in the zone test 12
+2026-10-27 16:59:49 INFO    Check | baseline rerouted on the unedited copy: 833 pairs | lengths equal to S06 routes: 833 | differ: 0
+2026-10-27 17:00:12 INFO    Task 4.13 | Suez Canal             zone edges removed   3 | affected pairs 238, sub-flows 370 | port in zone   0 pairs | rerouted 238 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:00:12 INFO    Task 4.13 |   ports inside the zone: EGY_WPI48040
+2026-10-27 17:00:15 INFO    Task 4.13 | Panama Canal           zone edges removed   9 | affected pairs  30, sub-flows  42 | port in zone   2 pairs | rerouted  28 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:00:15 INFO    Task 4.13 |   ports inside the zone: PAN_WPI15410, PAN_WPI9860, PAN_WPI9865
+2026-10-27 17:00:17 INFO    Task 4.13 | Bosporus Strait        zone edges removed  22 | affected pairs  50, sub-flows  78 | port in zone  11 pairs | rerouted   0 pairs | no route  39 pairs | leak test passed
+2026-10-27 17:00:17 INFO    Task 4.13 |   ports inside the zone: TUR_WPI43420
+2026-10-27 17:00:39 INFO    Task 4.13 | Bab el-Mandeb Strait   zone edges removed   2 | affected pairs 237, sub-flows 370 | port in zone   0 pairs | rerouted 237 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:00:53 INFO    Task 4.13 | Malacca Strait         zone edges removed   1 | affected pairs 188, sub-flows 304 | port in zone   0 pairs | rerouted 188 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:00:54 INFO    Task 4.13 | Strait of Hormuz       zone edges removed   5 | affected pairs  29, sub-flows  47 | port in zone   0 pairs | rerouted   0 pairs | no route  29 pairs | leak test passed
+2026-10-27 17:01:19 INFO    Task 4.13 | Gibraltar Strait       zone edges removed  19 | affected pairs 294, sub-flows 483 | port in zone  11 pairs | rerouted 283 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:01:19 INFO    Task 4.13 |   ports inside the zone: MAR_WPI45753
+2026-10-27 17:01:35 INFO    Task 4.13 | Dover Strait           zone edges removed  49 | affected pairs 259, sub-flows 446 | port in zone   0 pairs | rerouted 259 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:01:41 INFO    Task 4.13 | Oresund Strait         zone edges removed  16 | affected pairs 151, sub-flows 260 | port in zone  25 pairs | rerouted 126 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:01:41 INFO    Task 4.13 |   ports inside the zone: DNK_WPI29230, SWE_WPI24210
+2026-10-27 17:01:52 INFO    Task 4.13 | Taiwan Strait          gate edges removed   4 | affected pairs 150, sub-flows 266 | port in zone   0 pairs | rerouted 150 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:01:56 INFO    Task 4.13 | Korea Strait           gate edges removed   5 | affected pairs  62, sub-flows 110 | port in zone   0 pairs | rerouted  62 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:01:58 INFO    Task 4.13 | Tsugaru Strait         zone edges removed   2 | affected pairs  17, sub-flows  34 | port in zone   0 pairs | rerouted  17 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:01:59 INFO    Task 4.13 | Luzon Strait           gate edges removed   3 | affected pairs  11, sub-flows  21 | port in zone   0 pairs | rerouted  11 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:01 INFO    Task 4.13 | Lombok Strait          zone edges removed   9 | affected pairs   2, sub-flows   3 | port in zone   0 pairs | rerouted   2 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:02 INFO    Task 4.13 | Ombai Strait           zone edges removed   6 | affected pairs   0, sub-flows   0 | port in zone   0 pairs | rerouted   0 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:03 INFO    Task 4.13 | Bohai Strait           zone edges removed  10 | affected pairs  55, sub-flows 105 | port in zone   0 pairs | rerouted   0 pairs | no route  55 pairs | leak test passed
+2026-10-27 17:02:04 INFO    Task 4.13 | Torres Strait          zone edges removed   4 | affected pairs   2, sub-flows   3 | port in zone   0 pairs | rerouted   2 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:07 INFO    Task 4.13 | Sunda Strait           zone edges removed   8 | affected pairs  18, sub-flows  28 | port in zone   0 pairs | rerouted  18 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:08 INFO    Task 4.13 | Makassar Strait        zone edges removed   7 | affected pairs   2, sub-flows   3 | port in zone   0 pairs | rerouted   2 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:10 INFO    Task 4.13 | Magellan Strait        zone edges removed   2 | affected pairs   4, sub-flows   6 | port in zone   0 pairs | rerouted   4 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:11 INFO    Task 4.13 | Yucatan Channel        gate edges removed  12 | affected pairs  13, sub-flows  19 | port in zone   0 pairs | rerouted  13 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:12 INFO    Task 4.13 | Windward Passage       zone edges removed   9 | affected pairs   0, sub-flows   0 | port in zone   0 pairs | rerouted   0 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:15 INFO    Task 4.13 | Mona Passage           zone edges removed  13 | affected pairs  20, sub-flows  29 | port in zone   0 pairs | rerouted  20 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:16 INFO    Task 4.13 | Balabac Strait         zone edges removed   5 | affected pairs   0, sub-flows   0 | port in zone   0 pairs | rerouted   0 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:17 INFO    Task 4.13 | Bering Strait          zone edges removed   1 | affected pairs   0, sub-flows   0 | port in zone   0 pairs | rerouted   0 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:19 INFO    Task 4.13 | Mindoro Strait         zone edges removed   3 | affected pairs   4, sub-flows   8 | port in zone   0 pairs | rerouted   4 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:20 INFO    Task 4.13 | Kerch Strait           zone edges removed  16 | affected pairs   0, sub-flows   0 | port in zone   0 pairs | rerouted   0 pairs | no route   0 pairs | leak test passed
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: CHN_WPI60190 -> GEO_WPI44350 (1 sub-flows, 105,300 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: CHN_WPI60190 -> UKR_WPI43760 (3 sub-flows, 131,404 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: HKG_WPI57840 -> GEO_WPI44350 (1 sub-flows, 114,088 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: NLD_WPI31060 -> BGR_WPI43510 (3 sub-flows, 46,368 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: NLD_WPI31060 -> ROU_WPI43560 (3 sub-flows, 32,539 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: NLD_WPI31060 -> UKR_WPI43650 (1 sub-flows, 24,613 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: ROU_WPI43560 -> NLD_WPI31060 (3 sub-flows, 68 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: USA_WPI7250 -> KAZ_WPI44200 (3 sub-flows, 5,329 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: BEL_WPI31250 -> BGR_WPI43510 (2 sub-flows, 347 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: BEL_WPI31250 -> UKR_WPI43650 (2 sub-flows, 3,708 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: BGR_WPI43510 -> BEL_WPI31250 (1 sub-flows, 52 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: BGR_WPI43510 -> ISL_WPI100 (1 sub-flows, 23 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: BGR_WPI43510 -> ITA_WPI40500 (1 sub-flows, 266 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: BGR_WPI43510 -> NLD_WPI31060 (2 sub-flows, 15 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: CHN_WPI60190 -> ROU_WPI43560 (2 sub-flows, 1,499 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: CHN_WPI60190 -> TUR_WPI44450 (2 sub-flows, 792,894 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: FRA_WPI38870 -> KAZ_WPI44200 (2 sub-flows, 1,304 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: IND_WPI48840 -> KAZ_WPI44200 (2 sub-flows, 596 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: IND_WPI48840 -> RUS_WPI44200 (2 sub-flows, 2,862 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: IND_WPI48840 -> TUR_WPI44450 (2 sub-flows, 65,258 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: POL_WPI28710 -> MDA_WPI43650 (1 sub-flows, 16,254 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: TUR_WPI44450 -> CHN_WPI60190 (2 sub-flows, 51,983 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: TUR_WPI44450 -> JPN_WPI62120 (2 sub-flows, 69,131 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: TUR_WPI44450 -> KOR_WPI60320 (2 sub-flows, 28,680 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: UKR_WPI43650 -> BEL_WPI31250 (1 sub-flows, 19 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: UKR_WPI43650 -> LTU_WPI28660 (1 sub-flows, 20 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: USA_WPI7250 -> BGR_WPI43510 (2 sub-flows, 15,102 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: ARM_WPI44450 -> CHN_WPI60190 (1 sub-flows, 589 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: ARM_WPI44450 -> JPN_WPI62120 (1 sub-flows, 8,557 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: ARM_WPI44450 -> KOR_WPI60320 (1 sub-flows, 28,677 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: ARM_WPI44450 -> SGP_WPI50017 (1 sub-flows, 58 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: ARM_WPI44450 -> USA_WPI7250 (1 sub-flows, 249,385 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: AUT_WPI40790 -> KAZ_WPI44200 (1 sub-flows, 1,453 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: BGR_WPI43510 -> HUN_WPI41010 (1 sub-flows, 38 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: DEU_WPI28860 -> KAZ_WPI44200 (1 sub-flows, 415 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: KOR_WPI60320 -> TUR_WPI44450 (1 sub-flows, 71,275 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: TUR_WPI44450 -> SGP_WPI50017 (1 sub-flows, 46 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: UKR_WPI43760 -> CHN_WPI60190 (1 sub-flows, 501 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bosporus Strait, no sea route: UKR_WPI43760 -> KOR_WPI60320 (1 sub-flows, 38 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: BEL_WPI31250 -> SAU_WPI48340 (3 sub-flows, 766 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: CHN_WPI60190 -> ARE_WPI48276 (3 sub-flows, 953,950 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: CHN_WPI60190 -> SAU_WPI48340 (3 sub-flows, 77,513 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: ESP_WPI38550 -> SAU_WPI48340 (1 sub-flows, 315 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IND_WPI48840 -> ARE_WPI48276 (3 sub-flows, 2,834,999 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: USA_WPI7250 -> ARE_WPI48276 (2 sub-flows, 6,217 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: USA_WPI7250 -> SAU_WPI48340 (3 sub-flows, 7,053 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: ARE_WPI48276 -> LKA_WPI49240 (1 sub-flows, 183 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: ARE_WPI48276 -> SYC_WPI47220 (2 sub-flows, 1,020 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: AUT_WPI40790 -> SAU_WPI48340 (1 sub-flows, 3,062 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: BEL_WPI31250 -> ARE_WPI48276 (1 sub-flows, 271 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: CHN_WPI60190 -> IRN_WPI48520 (2 sub-flows, 852,587 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: DEU_WPI28860 -> SAU_WPI48340 (2 sub-flows, 3,543 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IND_WPI48840 -> IRN_WPI48520 (1 sub-flows, 462 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IND_WPI48840 -> IRQ_WPI48400 (1 sub-flows, 147 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IND_WPI48840 -> QAT_WPI48297 (2 sub-flows, 40 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IND_WPI48840 -> SAU_WPI48340 (2 sub-flows, 9,676 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IND_WPI48840 -> UZB_WPI48520 (2 sub-flows, 8,045 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IRL_WPI34130 -> ARE_WPI48276 (1 sub-flows, 42 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IRL_WPI34130 -> KWT_WPI48357 (1 sub-flows, 5 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: IRL_WPI34130 -> SAU_WPI48340 (1 sub-flows, 42 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: QAT_WPI48297 -> OMN_WPI48235 (2 sub-flows, 1,300 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: ARE_WPI48276 -> HKG_WPI57840 (1 sub-flows, 691,867 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: AUT_WPI40790 -> ARE_WPI48276 (1 sub-flows, 33 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: CHE_WPI39470 -> SAU_WPI48340 (1 sub-flows, 984 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: ESP_WPI38550 -> ARE_WPI48276 (1 sub-flows, 6,830 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: GBR_WPI31470 -> SAU_WPI48340 (1 sub-flows, 28,629 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: POL_WPI28710 -> IRQ_WPI48400 (1 sub-flows, 350 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Strait of Hormuz, no sea route: UZB_WPI48520 -> PAK_WPI48600 (1 sub-flows, 1,942 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: BEL_WPI31250 -> CHN_WPI60190 (3 sub-flows, 7,782 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> ARE_WPI48276 (3 sub-flows, 953,950 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> AUT_WPI40790 (3 sub-flows, 2,101,008 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> BEL_WPI31250 (3 sub-flows, 326,090 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> BRA_WPI12855 (3 sub-flows, 2,800,472 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> CIV_WPI46000 (1 sub-flows, 31 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> CPV_WPI45910 (1 sub-flows, 93 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> DEU_WPI28860 (3 sub-flows, 19,114,266 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> DNK_WPI29230 (2 sub-flows, 41,534 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> EGY_WPI45140 (3 sub-flows, 131,087 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> ESP_WPI38550 (3 sub-flows, 1,543,688 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> EST_WPI28425 (1 sub-flows, 1,466,060 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> FRA_WPI35850 (3 sub-flows, 6,541,612 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> GBR_WPI32170 (3 sub-flows, 3,528,581 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> GEO_WPI44350 (1 sub-flows, 105,300 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> IRL_WPI34130 (3 sub-flows, 9,235 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> ITA_WPI40820 (3 sub-flows, 747,989 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> NLD_WPI31060 (3 sub-flows, 4,267,867 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> NOR_WPI23810 (3 sub-flows, 3,326,724 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> POL_WPI28710 (3 sub-flows, 2,735,560 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> SAU_WPI48340 (3 sub-flows, 77,513 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> UKR_WPI43760 (3 sub-flows, 131,404 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: DEU_WPI28860 -> CHN_WPI60190 (3 sub-flows, 3,139,542 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: GBR_WPI32170 -> CHN_WPI60190 (3 sub-flows, 626,037 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: ITA_WPI40820 -> CHN_WPI60190 (2 sub-flows, 41,662 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: AUT_WPI40790 -> CHN_WPI60190 (2 sub-flows, 228,136 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> CYP_WPI44950 (2 sub-flows, 4,030 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> FIN_WPI27520 (2 sub-flows, 6,072 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> GRC_WPI42230 (1 sub-flows, 5,028 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> IRN_WPI48520 (2 sub-flows, 852,587 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> ISL_WPI100 (1 sub-flows, 4,777 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> LTU_WPI28660 (1 sub-flows, 20 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> MAR_WPI45753 (2 sub-flows, 27,104 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> ROU_WPI43560 (2 sub-flows, 1,499 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> TUR_WPI44450 (2 sub-flows, 792,894 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: ESP_WPI38550 -> CHN_WPI60190 (1 sub-flows, 55 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: FRA_WPI35850 -> CHN_WPI60190 (2 sub-flows, 6,071,259 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: NOR_WPI23810 -> CHN_WPI60190 (2 sub-flows, 4,510,311 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: TUR_WPI44450 -> CHN_WPI60190 (2 sub-flows, 51,983 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: ARM_WPI44450 -> CHN_WPI60190 (1 sub-flows, 589 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: BRA_WPI12855 -> CHN_WPI60190 (1 sub-flows, 2,414,262 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHE_WPI39470 -> CHN_WPI60190 (1 sub-flows, 415,637 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> BLR_WPI28610 (1 sub-flows, 523,047 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> CZE_WPI28823 (1 sub-flows, 23,335 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> HRV_WPI41320 (1 sub-flows, 900 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> ISR_WPI45080 (1 sub-flows, 8,361 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> LBN_WPI45030 (1 sub-flows, 500 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CHN_WPI60190 -> PRT_WPI37990 (1 sub-flows, 99,506 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: CZE_WPI28823 -> CHN_WPI60190 (1 sub-flows, 168,915 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: EST_WPI28425 -> CHN_WPI60190 (1 sub-flows, 4,541,160 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: FIN_WPI27520 -> CHN_WPI60190 (1 sub-flows, 2,124 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: ISR_WPI45080 -> CHN_WPI60190 (1 sub-flows, 314 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: PRT_WPI37990 -> CHN_WPI60190 (1 sub-flows, 28,700 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: UKR_WPI43760 -> CHN_WPI60190 (1 sub-flows, 501 USD)
+2026-10-27 17:02:20 INFO    Task 4.13 |   Bohai Strait, no sea route: USA_WPI17730 -> MNG_WPI60190 (1 sub-flows, 83,400 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Panama Canal, port inside the zone: CHN_WPI60250 -> PAN_WPI9860 (1 sub-flows, 2,334 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Panama Canal, port inside the zone: USA_WPI8980 -> PAN_WPI9860 (1 sub-flows, 14,788 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: NLD_WPI31060 -> TUR_WPI43420 (2 sub-flows, 59,495 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: TUR_WPI43420 -> POL_WPI28710 (2 sub-flows, 1,745 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: TUR_WPI43420 -> USA_WPI7250 (3 sub-flows, 679,598 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: AUT_WPI40790 -> TUR_WPI43420 (1 sub-flows, 78,308 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: DEU_WPI28860 -> TUR_WPI43420 (2 sub-flows, 502 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: TUR_WPI43420 -> ISL_WPI100 (1 sub-flows, 150 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: TUR_WPI43420 -> BEL_WPI31250 (1 sub-flows, 620,017 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: TUR_WPI43420 -> IRL_WPI34130 (1 sub-flows, 3,938 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: TUR_WPI43420 -> NLD_WPI31060 (1 sub-flows, 1,367,560 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: TUR_WPI43420 -> NOR_WPI23810 (1 sub-flows, 2,129 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Bosporus Strait, port inside the zone: USA_WPI7250 -> TUR_WPI43420 (1 sub-flows, 2,415 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: BEL_WPI31250 -> MAR_WPI45753 (3 sub-flows, 930 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: DEU_WPI30810 -> MAR_WPI45753 (3 sub-flows, 24,157 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: FRA_WPI37190 -> MAR_WPI45753 (3 sub-flows, 1,427 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: AUT_WPI40790 -> MAR_WPI45753 (1 sub-flows, 478 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: CHN_WPI60190 -> MAR_WPI45753 (2 sub-flows, 27,104 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: GBR_WPI35580 -> MAR_WPI45753 (2 sub-flows, 536 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: IND_WPI48840 -> MAR_WPI45753 (2 sub-flows, 1,021 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: ITA_WPI39470 -> MAR_WPI45753 (1 sub-flows, 4,510 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: AUS_WPI54520 -> MAR_WPI45753 (1 sub-flows, 961 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: EGY_WPI45165 -> MAR_WPI45753 (1 sub-flows, 791 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Gibraltar Strait, port inside the zone: TUR_WPI44750 -> MAR_WPI45753 (1 sub-flows, 564 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: AUT_WPI40790 -> SWE_WPI24210 (3 sub-flows, 680,146 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: BEL_WPI31250 -> DNK_WPI29230 (3 sub-flows, 2,248 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: BEL_WPI31250 -> SWE_WPI24210 (3 sub-flows, 11,758 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: CHN_WPI60190 -> DNK_WPI29230 (2 sub-flows, 41,534 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: DEU_WPI28860 -> SWE_WPI24210 (3 sub-flows, 73,893 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: DNK_WPI29230 -> NLD_WPI31060 (3 sub-flows, 53 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: ESP_WPI38550 -> DNK_WPI29230 (3 sub-flows, 98 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: IND_WPI48840 -> DNK_WPI29230 (1 sub-flows, 209 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: NLD_WPI31060 -> DNK_WPI29230 (2 sub-flows, 113,222 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: NLD_WPI31060 -> SWE_WPI24210 (3 sub-flows, 281,052 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: SWE_WPI24210 -> NLD_WPI31060 (3 sub-flows, 6 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: DNK_WPI29230 -> ISL_WPI100 (1 sub-flows, 32,644 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: DNK_WPI29230 -> NOR_WPI23810 (1 sub-flows, 30 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: FRA_WPI35850 -> DNK_WPI29230 (2 sub-flows, 57,970 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: FRA_WPI35850 -> SWE_WPI24210 (2 sub-flows, 269,254 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: GBR_WPI31720 -> DNK_WPI29230 (2 sub-flows, 4,223 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: ITA_WPI40820 -> SWE_WPI24210 (1 sub-flows, 395 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: JPN_WPI62120 -> DNK_WPI29230 (2 sub-flows, 1,198,035 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: NOR_WPI23810 -> DNK_WPI29230 (2 sub-flows, 23,635 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: USA_WPI7250 -> DNK_WPI29230 (2 sub-flows, 86,441 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: AUT_WPI40790 -> DNK_WPI29230 (1 sub-flows, 82,083 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: DNK_WPI29230 -> FRO_WPI32676 (1 sub-flows, 86 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: KOR_WPI60320 -> DNK_WPI29230 (1 sub-flows, 6,344 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: POL_WPI28710 -> SWE_WPI24210 (1 sub-flows, 23,760 USD)
+2026-10-27 17:02:21 INFO    Task 4.13 |   Oresund Strait, port inside the zone: SWE_WPI24210 -> DEU_WPI28860 (1 sub-flows, 2,314 USD)
+2026-10-27 17:02:21 INFO    Check | rerouted sub-flows with a shorter new route than the baseline: 0
+2026-10-27 17:02:21 INFO    Check | detour routes reaching north of 66.56 N: 0
+2026-10-27 17:02:21 INFO    Task 4.14 | largest detour penalty (given to sub-flows with no sea route): 627.288% | sub-flow BEL_DZA_284610_1 (BEL_WPI31250 -> DZA_WPI45570, 659 USD) when Gibraltar Strait is closed: 1,812.5 -> 13,182.1 nm
+2026-10-27 17:02:21 INFO    Task 4.14 | route redundancy by chokepoint (flows; penalties in %):
+2026-10-27 17:02:21 INFO      chokepoint             test edges affected rerouted no route  port zn   median   routed   no-alt     Eq.4
+2026-10-27 17:02:21 INFO      Strait of Hormuz       zone     5       47        0       47        0     null     null    100.0    627.3
+2026-10-27 17:02:21 INFO      Bosporus Strait        zone    22       78        0       62       16     null     null    100.0    627.3
+2026-10-27 17:02:21 INFO      Bohai Strait           zone    10      105        0      105        0     null     null    100.0    627.3
+2026-10-27 17:02:21 INFO      Gibraltar Strait       zone    19      483      463        0       20    103.0     79.8      0.0     79.8
+2026-10-27 17:02:21 INFO      Panama Canal           zone     9       42       40        0        2     58.2     77.3      0.0     77.3
+2026-10-27 17:02:21 INFO      Bab el-Mandeb Strait   zone     2      370      370        0        0     47.2     31.7      0.0     31.7
+2026-10-27 17:02:21 INFO      Suez Canal             zone     3      370      370        0        0     47.2     31.6      0.0     31.6
+2026-10-27 17:02:21 INFO      Yucatan Channel        gate    12       19       19        0        0     13.2     21.4      0.0     21.4
+2026-10-27 17:02:21 INFO      Malacca Strait         zone     1      304      304        0        0      6.2     10.8      0.0     10.8
+2026-10-27 17:02:21 INFO      Dover Strait           zone    49      446      446        0        0      8.1      8.9      0.0      8.9
+2026-10-27 17:02:21 INFO      Makassar Strait        zone     7        3        3        0        0      6.0      6.0      0.0      6.0
+2026-10-27 17:02:21 INFO      Korea Strait           gate     5      110      110        0        0      2.6      4.8      0.0      4.8
+2026-10-27 17:02:21 INFO      Sunda Strait           zone     8       28       28        0        0      2.7      4.3      0.0      4.3
+2026-10-27 17:02:21 INFO      Oresund Strait         zone    16      260      211        0       49      2.4      2.7      0.0      2.7
+2026-10-27 17:02:21 INFO      Tsugaru Strait         zone     2       34       34        0        0      2.5      2.5      0.0      2.5
+2026-10-27 17:02:21 INFO      Luzon Strait           gate     3       21       21        0        0      0.2      2.4      0.0      2.4
+2026-10-27 17:02:21 INFO      Mindoro Strait         zone     3        8        8        0        0      1.9      1.9      0.0      1.9
+2026-10-27 17:02:21 INFO      Magellan Strait        zone     2        6        6        0        0      1.4      1.9      0.0      1.9
+2026-10-27 17:02:21 INFO      Taiwan Strait          gate     4      266      266        0        0      1.1      1.8      0.0      1.8
+2026-10-27 17:02:21 INFO      Torres Strait          zone     4        3        3        0        0      1.6      1.6      0.0      1.6
+2026-10-27 17:02:21 INFO      Lombok Strait          zone     9        3        3        0        0      1.6      1.6      0.0      1.6
+2026-10-27 17:02:21 INFO      Mona Passage           zone    13       29       29        0        0      0.4      1.4      0.0      1.4
+2026-10-27 17:02:21 INFO      Ombai Strait           zone     6        0        0        0        0     null     null     null     null
+2026-10-27 17:02:21 INFO      Windward Passage       zone     9        0        0        0        0     null     null     null     null
+2026-10-27 17:02:21 INFO      Balabac Strait         zone     5        0        0        0        0     null     null     null     null
+2026-10-27 17:02:21 INFO      Bering Strait          zone     1        0        0        0        0     null     null     null     null
+2026-10-27 17:02:21 INFO      Kerch Strait           zone    16        0        0        0        0     null     null     null     null
+2026-10-27 17:02:21 INFO    Task 4.14 | detours rows 3,035 (baseline route_crossings rows for these chokepoints: 3,035)
+2026-10-27 17:02:21 INFO    Wrote layer 'detours' (3,035 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 17:02:22 INFO    Wrote layer 'detour_routes' (1,664 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 17:02:22 INFO    chokepoint_scores exists (27 rows); writing 12 S08 columns, keeping 18 others
+2026-10-27 17:02:22 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 17:02:22 INFO    Run of s08_redundancy finished
