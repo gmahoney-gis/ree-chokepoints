@@ -1,50 +1,50 @@
-2026-10-27 16:25:22 INFO    Run of s06_trade_exposure started 2026-10-27T16:25:22
-2026-10-27 16:25:22 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-27 16:25:22 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-27 16:25:23 INFO    Task 4.1 | trade flows in main run with maritime_value_usd > 0 | kept 1,396 | removed 5,473 | reason: not in main run, or no seaborne value
-2026-10-27 16:25:23 INFO    Task 4.1 | flows 1,396 | maritime value 1,943,497,016 USD | maritime weight 127,496,747 kg (68 flows have no weight)
-2026-10-27 16:25:23 INFO    Task 4.1 | ports with use_for_routing = true | kept 283 | removed 9 | reason: flagged by S04 (far from the network, country has another port)
-2026-10-27 16:25:24 INFO    Task 4.1 | country pairs 834 | candidate ports compared per pair: nearest pair of snapped network points
-2026-10-27 16:25:24 INFO    Task 4.1 | sub-flows 1,396 (one per flow, share 1)
-2026-10-27 16:25:24 INFO    Task 4.1 | sub-flows with different origin and destination network points | kept 1,395 | removed 1 | reason: both ports snap to the same network node; left unrouted, 44,493 USD
-2026-10-27 16:25:24 INFO    Task 4.1 |   unrouted KEN_RWA_284690 (KEN_WPI47100 -> RWA_WPI47100): 44,493 USD
-2026-10-27 16:25:24 INFO    Task 4.2 | searoute 1.6.0 passage tags: babalmandab, bering, bosporus, chili, gibraltar, malacca, northwest, ormuz, panama, south_africa, suez, sunda
-2026-10-27 16:25:24 INFO    Task 4.2 | scenario baseline: closed chokepoints none -> searoute restrictions ['northwest']
-2026-10-27 16:25:24 INFO    Task 4.2 | scenario red_sea_diversion: closed chokepoints ['Suez Canal', 'Bab el-Mandeb Strait'] -> searoute restrictions ['northwest', 'suez', 'babalmandab']; displaced routes also close ['Panama Canal'] -> ['northwest', 'suez', 'babalmandab', 'panama']
-2026-10-27 16:25:24 INFO    Task 4.2 | unique port pairs to route: 833 (from 1,395 sub-flows)
-2026-10-27 16:25:49 INFO    Task 4.2 | baseline (restrictions ['northwest']): port pairs 833 | routed 833 | failed (no sea route with these restrictions) 0 | routes crossing 180 degrees 48
-2026-10-27 16:25:49 INFO    Task 4.2 | baseline: routes through each searoute passage: babalmandab 237, bosporus 50, chili 4, gibraltar 293, malacca 194, ormuz 29, panama 30, south_africa 23, suez 239, sunda 18
-2026-10-27 16:25:49 INFO    Task 4.3 | included chokepoint zones | kept 27 | removed 0 | reason: included is not 'yes' in the screening file
-2026-10-27 16:25:49 INFO    Task 4.3 | crossing test: gate line 4, zone 23 (Decision 12)
-2026-10-27 16:25:49 INFO    Task 4.3 |   gate: chokepoint11 Taiwan Strait
-2026-10-27 16:25:49 INFO    Task 4.3 |   gate: chokepoint12 Korea Strait
-2026-10-27 16:25:49 INFO    Task 4.3 |   gate: chokepoint14 Luzon Strait
-2026-10-27 16:25:49 INFO    Task 4.3 |   gate: chokepoint22 Yucatan Channel
-2026-10-27 16:25:50 INFO    Task 4.3 | baseline: route-zone intersections 1,836 | check on continuous routes with zones shifted +-360: 1,836 | agree
-2026-10-27 16:25:50 INFO    Task 4.3 | baseline: routes crossing 180 degrees that cross a zone: 37 of 48
-2026-10-27 16:26:08 INFO    Task 4.2 | red_sea_diversion, displaced routes (restrictions ['northwest', 'suez', 'babalmandab', 'panama']): port pairs 240 | routed 235 | failed (no sea route with these restrictions) 5 | routes crossing 180 degrees 1
-2026-10-27 16:26:08 INFO    Task 4.2 | red_sea_diversion, displaced routes: routes through each searoute passage: bosporus 19, chili 3, gibraltar 98, malacca 6, ormuz 15, south_africa 234, sunda 154
-2026-10-27 16:26:08 INFO    Task 4.2 | red_sea_diversion: baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 240, rerouted (5 failed) | other routes copied from the baseline: 593
-2026-10-27 16:26:08 INFO    Task 4.3 | red_sea_diversion: route-zone intersections 1,315 | check on continuous routes with zones shifted +-360: 1,315 | agree
-2026-10-27 16:26:08 INFO    Task 4.3 | red_sea_diversion: routes crossing 180 degrees that cross a zone: 38 of 49
-2026-10-27 16:26:27 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes (restrictions ['northwest', 'suez', 'babalmandab']): port pairs 240 | routed 235 | failed (no sea route with these restrictions) 5 | routes crossing 180 degrees 101
-2026-10-27 16:26:27 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes: routes through each searoute passage: bosporus 19, chili 2, gibraltar 98, malacca 6, ormuz 15, panama 101, south_africa 134, sunda 54
-2026-10-27 16:26:27 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant): baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 240, rerouted (5 failed) | other routes copied from the baseline: 593
-2026-10-27 16:26:27 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): route-zone intersections 1,422 | check on continuous routes with zones shifted +-360: 1,422 | agree
-2026-10-27 16:26:27 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): routes crossing 180 degrees that cross a zone: 138 of 149
-2026-10-27 16:26:27 INFO    Task 4.6 | correction | red_sea_diversion: 240 baseline routes crossing the closed chokepoints (373 sub-flows, 183,650,376 USD) are rerouted with diverted_also_closed as well | reason: the first run sent displaced Northeast Asia-Europe flows through the Panama Canal (shortest network distance), but the proposal defines the scenario as forcing ships round the Cape of Good Hope; Panama stays open for all other flows
-2026-10-27 16:26:27 INFO    Task 4.6 | displaced routes, Cape diversion: 235 routed | via south_africa 234 | via panama 0 | median length 13,214 nm
-2026-10-27 16:26:27 INFO    Task 4.6 | displaced routes, Panama open (first run): 235 routed | via south_africa 134 | via panama 101 | median length 13,035 nm
-2026-10-27 16:26:27 INFO    Task 4.2 | scenario red_sea_diversion: failed pairs carry 6 sub-flows, 26,066 USD
-2026-10-27 16:26:27 INFO    Task 4.2 |   failed BEL_WPI31250 -> JOR_WPI48090 (1 sub-flows, 524 USD)
-2026-10-27 16:26:27 INFO    Task 4.2 |   failed ESP_WPI38550 -> JOR_WPI48090 (1 sub-flows, 109 USD)
-2026-10-27 16:26:27 INFO    Task 4.2 |   failed IND_WPI48840 -> EGY_WPI48055 (2 sub-flows, 738 USD)
-2026-10-27 16:26:27 INFO    Task 4.2 |   failed IND_WPI48840 -> YEM_WPI48155 (1 sub-flows, 22,176 USD)
-2026-10-27 16:26:27 INFO    Task 4.2 |   failed USA_WPI7250 -> JOR_WPI48090 (1 sub-flows, 2,518 USD)
-2026-10-27 16:26:27 INFO    Task 4.2 | check: routes reaching north of 66.56 N: 2
+2026-10-27 16:38:18 INFO    Run of s06_trade_exposure started 2026-10-27T16:38:18
+2026-10-27 16:38:18 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-27 16:38:18 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-27 16:38:18 INFO    Task 4.1 | trade flows in main run with maritime_value_usd > 0 | kept 1,396 | removed 5,473 | reason: not in main run, or no seaborne value
+2026-10-27 16:38:18 INFO    Task 4.1 | flows 1,396 | maritime value 1,943,497,016 USD | maritime weight 127,496,747 kg (68 flows have no weight)
+2026-10-27 16:38:18 INFO    Task 4.1 | ports with use_for_routing = true | kept 283 | removed 9 | reason: flagged by S04 (far from the network, country has another port)
+2026-10-27 16:38:20 INFO    Task 4.1 | country pairs 834 | candidate ports compared per pair: nearest pair of snapped network points
+2026-10-27 16:38:20 INFO    Task 4.1 | sub-flows 1,396 (one per flow, share 1)
+2026-10-27 16:38:20 INFO    Task 4.1 | sub-flows with different origin and destination network points | kept 1,395 | removed 1 | reason: both ports snap to the same network node; left unrouted, 44,493 USD
+2026-10-27 16:38:20 INFO    Task 4.1 |   unrouted KEN_RWA_284690 (KEN_WPI47100 -> RWA_WPI47100): 44,493 USD
+2026-10-27 16:38:20 INFO    Task 4.2 | searoute 1.6.0 passage tags: babalmandab, bering, bosporus, chili, gibraltar, malacca, northwest, ormuz, panama, south_africa, suez, sunda
+2026-10-27 16:38:20 INFO    Task 4.2 | scenario baseline: closed chokepoints none -> searoute restrictions ['northwest']
+2026-10-27 16:38:20 INFO    Task 4.2 | scenario red_sea_diversion: closed chokepoints ['Suez Canal', 'Bab el-Mandeb Strait'] -> searoute restrictions ['northwest', 'suez', 'babalmandab']; displaced routes also close ['Panama Canal'] -> ['northwest', 'suez', 'babalmandab', 'panama']
+2026-10-27 16:38:20 INFO    Task 4.2 | unique port pairs to route: 833 (from 1,395 sub-flows)
+2026-10-27 16:38:48 INFO    Task 4.2 | baseline (restrictions ['northwest']): port pairs 833 | routed 833 | failed (no sea route with these restrictions) 0 | routes crossing 180 degrees 48
+2026-10-27 16:38:48 INFO    Task 4.2 | baseline: routes through each searoute passage: babalmandab 237, bosporus 50, chili 4, gibraltar 293, malacca 194, ormuz 29, panama 30, south_africa 23, suez 239, sunda 18
+2026-10-27 16:38:48 INFO    Task 4.3 | included chokepoint zones | kept 27 | removed 0 | reason: included is not 'yes' in the screening file
+2026-10-27 16:38:49 INFO    Task 4.3 | crossing test: gate line 4, zone 23 (Decision 12)
+2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint11 Taiwan Strait
+2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint12 Korea Strait
+2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint14 Luzon Strait
+2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint22 Yucatan Channel
+2026-10-27 16:38:49 INFO    Task 4.3 | baseline: route-zone intersections 1,836 | check on continuous routes with zones shifted +-360: 1,836 | agree
+2026-10-27 16:38:49 INFO    Task 4.3 | baseline: routes crossing 180 degrees that cross a zone: 37 of 48
+2026-10-27 16:39:11 INFO    Task 4.2 | red_sea_diversion, displaced routes (restrictions ['northwest', 'suez', 'babalmandab', 'panama']): port pairs 240 | routed 235 | failed (no sea route with these restrictions) 5 | routes crossing 180 degrees 1
+2026-10-27 16:39:11 INFO    Task 4.2 | red_sea_diversion, displaced routes: routes through each searoute passage: bosporus 19, chili 3, gibraltar 98, malacca 6, ormuz 15, south_africa 234, sunda 154
+2026-10-27 16:39:11 INFO    Task 4.2 | red_sea_diversion: baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 240, rerouted (5 failed) | other routes copied from the baseline: 593
+2026-10-27 16:39:11 INFO    Task 4.3 | red_sea_diversion: route-zone intersections 1,315 | check on continuous routes with zones shifted +-360: 1,315 | agree
+2026-10-27 16:39:11 INFO    Task 4.3 | red_sea_diversion: routes crossing 180 degrees that cross a zone: 38 of 49
+2026-10-27 16:39:32 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes (restrictions ['northwest', 'suez', 'babalmandab']): port pairs 240 | routed 235 | failed (no sea route with these restrictions) 5 | routes crossing 180 degrees 101
+2026-10-27 16:39:32 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes: routes through each searoute passage: bosporus 19, chili 2, gibraltar 98, malacca 6, ormuz 15, panama 101, south_africa 134, sunda 54
+2026-10-27 16:39:32 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant): baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 240, rerouted (5 failed) | other routes copied from the baseline: 593
+2026-10-27 16:39:33 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): route-zone intersections 1,422 | check on continuous routes with zones shifted +-360: 1,422 | agree
+2026-10-27 16:39:33 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): routes crossing 180 degrees that cross a zone: 138 of 149
+2026-10-27 16:39:33 INFO    Task 4.6 | correction | red_sea_diversion: 240 baseline routes crossing the closed chokepoints (373 sub-flows, 183,650,376 USD) are rerouted with diverted_also_closed as well | reason: the first run sent displaced Northeast Asia-Europe flows through the Panama Canal (shortest network distance), but the proposal defines the scenario as forcing ships round the Cape of Good Hope; Panama stays open for all other flows
+2026-10-27 16:39:33 INFO    Task 4.6 | displaced routes, Cape diversion: 235 routed | via south_africa 234 | via panama 0 | median length 13,214 nm
+2026-10-27 16:39:33 INFO    Task 4.6 | displaced routes, Panama open (first run): 235 routed | via south_africa 134 | via panama 101 | median length 13,035 nm
+2026-10-27 16:39:33 INFO    Task 4.2 | scenario red_sea_diversion: failed pairs carry 6 sub-flows, 26,066 USD
+2026-10-27 16:39:33 INFO    Task 4.2 |   failed BEL_WPI31250 -> JOR_WPI48090 (1 sub-flows, 524 USD)
+2026-10-27 16:39:33 INFO    Task 4.2 |   failed ESP_WPI38550 -> JOR_WPI48090 (1 sub-flows, 109 USD)
+2026-10-27 16:39:33 INFO    Task 4.2 |   failed IND_WPI48840 -> EGY_WPI48055 (2 sub-flows, 738 USD)
+2026-10-27 16:39:33 INFO    Task 4.2 |   failed IND_WPI48840 -> YEM_WPI48155 (1 sub-flows, 22,176 USD)
+2026-10-27 16:39:33 INFO    Task 4.2 |   failed USA_WPI7250 -> JOR_WPI48090 (1 sub-flows, 2,518 USD)
+2026-10-27 16:39:33 INFO    Task 4.2 | check: routes reaching north of 66.56 N: 2
     RUS_WPI62950__USA_WPI7250__baseline (max lat 71.3, 3,807 nm)
     RUS_WPI62950__USA_WPI7250__red_sea_diversion (max lat 71.3, 3,807 nm)
-2026-10-27 16:26:27 INFO    Task 4.3 | ports whose network point lies inside a zone (their routes cross it): 8
+2026-10-27 16:39:33 INFO    Task 4.3 | ports whose network point lies inside a zone (their routes cross it): 8
     DNK_WPI29230 in Oresund Strait
     EGY_WPI48040 in Suez Canal
     MAR_WPI45753 in Gibraltar Strait
@@ -53,143 +53,143 @@
     PAN_WPI9865 in Panama Canal
     SWE_WPI24210 in Oresund Strait
     TUR_WPI43420 in Bosporus Strait
-2026-10-27 16:26:27 INFO    Task 4.3 | scenario baseline: routed flows 1,395 | crossings 3,035 | flows crossing at least one chokepoint 1,108 | flows crossing none 287
-2026-10-27 16:26:27 INFO    Task 4.3 | scenario red_sea_diversion: routed flows 1,389 | crossings 2,208 | flows crossing at least one chokepoint 1,091 | flows crossing none 298
-2026-10-27 16:26:27 INFO    Task 4.4 | main ranking field: trade_value_base -> trade_rank_base (1 = most exposed; ties share the higher rank)
-2026-10-27 16:26:27 INFO    Task 4.4 | trade exposure by chokepoint (value USD, share of the column total, flows):
-2026-10-27 16:26:27 INFO      rank  chokepoint                 baseline USD   share  flows        red sea USD   share  flows
-2026-10-27 16:26:27 INFO         1  Taiwan Strait               506,193,811   24.1%    266        506,193,811   31.5%    266
-2026-10-27 16:26:27 INFO         2  Korea Strait                230,442,963   11.0%    110        230,442,963   14.4%    110
-2026-10-27 16:26:27 INFO         3  Malacca Strait              201,911,830    9.6%    304         33,452,711    2.1%     62
-2026-10-27 16:26:27 INFO         4  Gibraltar Strait            186,705,458    8.9%    483         62,960,554    3.9%    399
-2026-10-27 16:26:27 INFO         5  Bab el-Mandeb Strait        183,647,224    8.8%    370                  0    0.0%      0
-2026-10-27 16:26:27 INFO         6  Suez Canal                  183,627,462    8.8%    370                  0    0.0%      0
-2026-10-27 16:26:27 INFO         7  Tsugaru Strait              154,517,515    7.4%     34        154,517,515    9.6%     34
-2026-10-27 16:26:27 INFO         8  Dover Strait                110,851,342    5.3%    446        110,850,817    6.9%    445
-2026-10-27 16:26:27 INFO         9  Sunda Strait                107,545,842    5.1%     28        276,004,960   17.2%    270
-2026-10-27 16:26:27 INFO        10  Oresund Strait               81,356,496    3.9%    260         81,356,496    5.1%    260
-2026-10-27 16:26:27 INFO        11  Bohai Strait                 74,632,095    3.6%    105         74,632,095    4.6%    105
-2026-10-27 16:26:27 INFO        12  Luzon Strait                 61,739,636    2.9%     21         61,739,636    3.8%     21
-2026-10-27 16:26:27 INFO        13  Strait of Hormuz              5,491,873    0.3%     47          5,491,873    0.3%     47
-2026-10-27 16:26:27 INFO        14  Bosporus Strait               4,686,610    0.2%     78          4,686,610    0.3%     78
-2026-10-27 16:26:27 INFO        15  Mindoro Strait                  924,444    0.0%      8            924,444    0.1%      8
-2026-10-27 16:26:27 INFO        16  Panama Canal                    638,948    0.0%     42            618,774    0.0%     38
-2026-10-27 16:26:27 INFO        17  Mona Passage                    536,016    0.0%     29            515,842    0.0%     25
-2026-10-27 16:26:27 INFO        18  Lombok Strait                   506,997    0.0%      3            506,997    0.0%      3
-2026-10-27 16:26:27 INFO        18  Makassar Strait                 506,997    0.0%      3            506,997    0.0%      3
-2026-10-27 16:26:27 INFO        20  Yucatan Channel                 103,570    0.0%     19            103,570    0.0%     19
-2026-10-27 16:26:27 INFO        21  Magellan Strait                  35,665    0.0%      6             56,042    0.0%     12
-2026-10-27 16:26:27 INFO        22  Torres Strait                    20,604    0.0%      3             20,604    0.0%      3
-2026-10-27 16:26:27 INFO        23  Balabac Strait                        0    0.0%      0                  0    0.0%      0
-2026-10-27 16:26:27 INFO        23  Bering Strait                         0    0.0%      0                  0    0.0%      0
-2026-10-27 16:26:27 INFO        23  Kerch Strait                          0    0.0%      0                  0    0.0%      0
-2026-10-27 16:26:27 INFO        23  Ombai Strait                          0    0.0%      0                  0    0.0%      0
-2026-10-27 16:26:27 INFO        23  Windward Passage                      0    0.0%      0                  0    0.0%      0
-2026-10-27 16:26:27 INFO    Task 4.3 | scenario red_sea_diversion (diverted_also_closed open): routed flows 1,389 | crossings 2,401 | flows crossing at least one chokepoint 1,091 | flows crossing none 298
-2026-10-27 16:26:28 INFO    Read Daily_Chokepoints_Data.csv: 79,548 rows | 28 chokepoints | 2019-01-01 to 2026-10-11
-2026-10-27 16:26:28 INFO    Task 4.5 | daily transits 2025-01-01 to 2025-12-31: 10,220 rows | days per chokepoint 365 expected, all complete
-2026-10-27 16:26:28 INFO    Read PortWatch IMF Chokepoints.csv: 28 rows | header fields 25 | fields per row [25]
-2026-10-27 16:26:28 INFO    Task 4.5 | check: vessel_count_total = sum of container+dry_bulk+general_cargo+RoRo+tanker in 28 of 28 rows
-2026-10-27 16:26:28 INFO    Task 4.5 | variant summary_file_panama_open: flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.518, p = 0.0057 -> PASS (pass mark 0.50)
-2026-10-27 16:26:28 INFO        PortWatch rank  1  model rank 10  Taiwan Strait          pw share  16.4%  model share   3.9%
-2026-10-27 16:26:28 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.9%  model share   8.0%
-2026-10-27 16:26:28 INFO        PortWatch rank  3  model rank  2  Dover Strait           pw share  10.5%  model share  15.9%
-2026-10-27 16:26:28 INFO        PortWatch rank  4  model rank 12  Malacca Strait         pw share   9.1%  model share   2.6%
-2026-10-27 16:26:28 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   7.7%  model share  16.6%
-2026-10-27 16:26:28 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   7.1%  model share   3.2%
-2026-10-27 16:26:28 INFO        PortWatch rank  7  model rank  8  Bohai Strait           pw share   5.8%  model share   4.4%
-2026-10-27 16:26:28 INFO        PortWatch rank  8  model rank  3  Oresund Strait         pw share   3.9%  model share  10.8%
-2026-10-27 16:26:28 INFO        PortWatch rank  9  model rank 22  Suez Canal             pw share   2.9%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 10  model rank 22  Kerch Strait           pw share   2.8%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 11  model rank 22  Bab el-Mandeb Strait   pw share   2.6%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 12  model rank 13  Strait of Hormuz       pw share   2.6%  model share   2.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 13  model rank  5  Tsugaru Strait         pw share   2.5%  model share   8.5%
-2026-10-27 16:26:28 INFO        PortWatch rank 14  model rank 15  Yucatan Channel        pw share   1.8%  model share   0.8%
-2026-10-27 16:26:28 INFO        PortWatch rank 15  model rank 14  Luzon Strait           pw share   1.6%  model share   0.8%
-2026-10-27 16:26:28 INFO        PortWatch rank 16  model rank 21  Windward Passage       pw share   1.4%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 17  model rank  4  Panama Canal           pw share   1.3%  model share   8.9%
-2026-10-27 16:26:28 INFO        PortWatch rank 18  model rank  9  Sunda Strait           pw share   0.9%  model share   4.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 19  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.3%
-2026-10-27 16:26:28 INFO        PortWatch rank 20  model rank  6  Mona Passage           pw share   0.6%  model share   8.2%
-2026-10-27 16:26:28 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.4%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 23  model rank 22  Ombai Strait           pw share   0.3%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 24  model rank 22  Balabac Strait         pw share   0.3%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.4%
-2026-10-27 16:26:28 INFO        PortWatch rank 27  model rank 22  Bering Strait          pw share   0.0%  model share   0.0%
-2026-10-27 16:26:28 INFO    Task 4.5 | variant daily2025_panama_open: flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.621, p = 0.00055 -> PASS (pass mark 0.50)
-2026-10-27 16:26:28 INFO        PortWatch rank  1  model rank 10  Taiwan Strait          pw share  16.7%  model share   3.9%
-2026-10-27 16:26:28 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.7%  model share   8.0%
-2026-10-27 16:26:28 INFO        PortWatch rank  3  model rank 12  Malacca Strait         pw share  11.4%  model share   2.6%
-2026-10-27 16:26:28 INFO        PortWatch rank  4  model rank  2  Dover Strait           pw share  11.1%  model share  15.9%
-2026-10-27 16:26:28 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   8.0%  model share  16.6%
-2026-10-27 16:26:28 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   6.8%  model share   3.2%
-2026-10-27 16:26:28 INFO        PortWatch rank  7  model rank  8  Bohai Strait           pw share   5.7%  model share   4.4%
-2026-10-27 16:26:28 INFO        PortWatch rank  8  model rank  3  Oresund Strait         pw share   3.7%  model share  10.8%
-2026-10-27 16:26:28 INFO        PortWatch rank  9  model rank 13  Strait of Hormuz       pw share   3.0%  model share   2.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 10  model rank  5  Tsugaru Strait         pw share   2.5%  model share   8.5%
-2026-10-27 16:26:28 INFO        PortWatch rank 11  model rank 15  Yucatan Channel        pw share   2.0%  model share   0.8%
-2026-10-27 16:26:28 INFO        PortWatch rank 12  model rank 22  Suez Canal             pw share   1.9%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 13  model rank 14  Luzon Strait           pw share   1.8%  model share   0.8%
-2026-10-27 16:26:28 INFO        PortWatch rank 14  model rank 22  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 15  model rank 21  Windward Passage       pw share   1.5%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 16  model rank  4  Panama Canal           pw share   1.4%  model share   8.9%
-2026-10-27 16:26:28 INFO        PortWatch rank 17  model rank 22  Kerch Strait           pw share   1.0%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 18  model rank  9  Sunda Strait           pw share   1.0%  model share   4.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 19  model rank  6  Mona Passage           pw share   0.7%  model share   8.2%
-2026-10-27 16:26:28 INFO        PortWatch rank 20  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.3%
-2026-10-27 16:26:28 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 23  model rank 22  Balabac Strait         pw share   0.3%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 24  model rank 22  Ombai Strait           pw share   0.3%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.4%
-2026-10-27 16:26:28 INFO        PortWatch rank 27  model rank 22  Bering Strait          pw share   0.1%  model share   0.0%
-2026-10-27 16:26:28 INFO    Task 4.5 | variant daily2025_cape_diversion (main result): flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.710, p = 3.4e-05 -> PASS (pass mark 0.50)
-2026-10-27 16:26:28 INFO        PortWatch rank  1  model rank  4  Taiwan Strait          pw share  16.7%  model share  12.0%
-2026-10-27 16:26:28 INFO        PortWatch rank  2  model rank  6  Korea Strait           pw share  15.7%  model share   5.0%
-2026-10-27 16:26:28 INFO        PortWatch rank  3  model rank  9  Malacca Strait         pw share  11.4%  model share   2.8%
-2026-10-27 16:26:28 INFO        PortWatch rank  4  model rank  1  Dover Strait           pw share  11.1%  model share  20.2%
-2026-10-27 16:26:28 INFO        PortWatch rank  5  model rank  2  Gibraltar Strait       pw share   8.0%  model share  18.1%
-2026-10-27 16:26:28 INFO        PortWatch rank  6  model rank  8  Bosporus Strait        pw share   6.8%  model share   3.5%
-2026-10-27 16:26:28 INFO        PortWatch rank  7  model rank  7  Bohai Strait           pw share   5.7%  model share   4.8%
-2026-10-27 16:26:28 INFO        PortWatch rank  8  model rank  5  Oresund Strait         pw share   3.7%  model share  11.8%
-2026-10-27 16:26:28 INFO        PortWatch rank  9  model rank 10  Strait of Hormuz       pw share   3.0%  model share   2.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 10  model rank 12  Tsugaru Strait         pw share   2.5%  model share   1.5%
-2026-10-27 16:26:28 INFO        PortWatch rank 11  model rank 15  Yucatan Channel        pw share   2.0%  model share   0.9%
-2026-10-27 16:26:28 INFO        PortWatch rank 12  model rank 21  Suez Canal             pw share   1.9%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 13  model rank 14  Luzon Strait           pw share   1.8%  model share   1.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 14  model rank 21  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 15  model rank 21  Windward Passage       pw share   1.5%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 16  model rank 11  Panama Canal           pw share   1.4%  model share   1.7%
-2026-10-27 16:26:28 INFO        PortWatch rank 17  model rank 21  Kerch Strait           pw share   1.0%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 18  model rank  3  Sunda Strait           pw share   1.0%  model share  12.2%
-2026-10-27 16:26:28 INFO        PortWatch rank 19  model rank 13  Mona Passage           pw share   0.7%  model share   1.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 20  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.4%
-2026-10-27 16:26:28 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 23  model rank 21  Balabac Strait         pw share   0.3%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 24  model rank 21  Ombai Strait           pw share   0.3%  model share   0.0%
-2026-10-27 16:26:28 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
-2026-10-27 16:26:28 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.5%
-2026-10-27 16:26:28 INFO        PortWatch rank 27  model rank 21  Bering Strait          pw share   0.1%  model share   0.0%
-2026-10-27 16:26:28 INFO    Task 4.5 | for reference only, baseline flow shares vs daily 2025 transits: rho = 0.804, p = 4.4e-07
-2026-10-27 16:26:28 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\validation.csv (81 rows, 3 variants)
-2026-10-27 16:26:29 INFO    Context | PortWatch transits per calendar year (all types / container):
-2026-10-27 16:26:29 INFO        Suez Canal             2023  days 365  all  26,895  container  6,977
-2026-10-27 16:26:29 INFO        Suez Canal             2024  days 366  all  14,498  container  3,198
-2026-10-27 16:26:29 INFO        Suez Canal             2025  days 365  all  14,070  container  3,351
-2026-10-27 16:26:29 INFO        Bab el-Mandeb Strait   2023  days 365  all  27,015  container  6,739
-2026-10-27 16:26:29 INFO        Bab el-Mandeb Strait   2024  days 366  all  11,901  container  1,967
-2026-10-27 16:26:29 INFO        Bab el-Mandeb Strait   2025  days 365  all  12,218  container  2,445
-2026-10-27 16:26:29 INFO        Cape of Good Hope      2023  days 365  all  17,926  container  2,249
-2026-10-27 16:26:29 INFO        Cape of Good Hope      2024  days 366  all  31,846  container  6,961
-2026-10-27 16:26:29 INFO        Cape of Good Hope      2025  days 365  all  32,653  container  7,387
-2026-10-27 16:26:29 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\red_sea_context.csv (9 rows)
-2026-10-27 16:26:29 INFO    Wrote layer 'subflows' (1,396 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:26:29 INFO    Wrote layer 'routes' (1,661 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:26:29 INFO    Wrote layer 'route_crossings' (5,243 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:26:29 INFO    chokepoint_scores exists (27 rows); replacing 8 S06 columns, keeping 10 others: ['viol_n_100', 'viol_fw_100', 'viol_n_250', 'viol_fw_250', 'viol_n_500', 'viol_fw_500', 'viol_kde_100', 'viol_kde_250', 'viol_kde_500', 'viol_rank']
-2026-10-27 16:26:29 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:26:29 INFO    Run of s06_trade_exposure finished
+2026-10-27 16:39:33 INFO    Task 4.3 | scenario baseline: routed flows 1,395 | crossings 3,035 | flows crossing at least one chokepoint 1,108 | flows crossing none 287
+2026-10-27 16:39:33 INFO    Task 4.3 | scenario red_sea_diversion: routed flows 1,389 | crossings 2,208 | flows crossing at least one chokepoint 1,091 | flows crossing none 298
+2026-10-27 16:39:33 INFO    Task 4.4 | main ranking field: trade_value_base -> trade_rank_base (1 = most exposed; ties share the higher rank)
+2026-10-27 16:39:33 INFO    Task 4.4 | trade exposure by chokepoint (value USD, share of the column total, flows):
+2026-10-27 16:39:33 INFO      rank  chokepoint                 baseline USD   share  flows        red sea USD   share  flows
+2026-10-27 16:39:33 INFO         1  Taiwan Strait               506,193,811   24.1%    266        506,193,811   31.5%    266
+2026-10-27 16:39:33 INFO         2  Korea Strait                230,442,963   11.0%    110        230,442,963   14.4%    110
+2026-10-27 16:39:33 INFO         3  Malacca Strait              201,911,830    9.6%    304         33,452,711    2.1%     62
+2026-10-27 16:39:33 INFO         4  Gibraltar Strait            186,705,458    8.9%    483         62,960,554    3.9%    399
+2026-10-27 16:39:33 INFO         5  Bab el-Mandeb Strait        183,647,224    8.8%    370                  0    0.0%      0
+2026-10-27 16:39:33 INFO         6  Suez Canal                  183,627,462    8.8%    370                  0    0.0%      0
+2026-10-27 16:39:33 INFO         7  Tsugaru Strait              154,517,515    7.4%     34        154,517,515    9.6%     34
+2026-10-27 16:39:33 INFO         8  Dover Strait                110,851,342    5.3%    446        110,850,817    6.9%    445
+2026-10-27 16:39:33 INFO         9  Sunda Strait                107,545,842    5.1%     28        276,004,960   17.2%    270
+2026-10-27 16:39:33 INFO        10  Oresund Strait               81,356,496    3.9%    260         81,356,496    5.1%    260
+2026-10-27 16:39:33 INFO        11  Bohai Strait                 74,632,095    3.6%    105         74,632,095    4.6%    105
+2026-10-27 16:39:33 INFO        12  Luzon Strait                 61,739,636    2.9%     21         61,739,636    3.8%     21
+2026-10-27 16:39:33 INFO        13  Strait of Hormuz              5,491,873    0.3%     47          5,491,873    0.3%     47
+2026-10-27 16:39:33 INFO        14  Bosporus Strait               4,686,610    0.2%     78          4,686,610    0.3%     78
+2026-10-27 16:39:33 INFO        15  Mindoro Strait                  924,444    0.0%      8            924,444    0.1%      8
+2026-10-27 16:39:33 INFO        16  Panama Canal                    638,948    0.0%     42            618,774    0.0%     38
+2026-10-27 16:39:33 INFO        17  Mona Passage                    536,016    0.0%     29            515,842    0.0%     25
+2026-10-27 16:39:33 INFO        18  Lombok Strait                   506,997    0.0%      3            506,997    0.0%      3
+2026-10-27 16:39:33 INFO        18  Makassar Strait                 506,997    0.0%      3            506,997    0.0%      3
+2026-10-27 16:39:33 INFO        20  Yucatan Channel                 103,570    0.0%     19            103,570    0.0%     19
+2026-10-27 16:39:33 INFO        21  Magellan Strait                  35,665    0.0%      6             56,042    0.0%     12
+2026-10-27 16:39:33 INFO        22  Torres Strait                    20,604    0.0%      3             20,604    0.0%      3
+2026-10-27 16:39:33 INFO        23  Balabac Strait                        0    0.0%      0                  0    0.0%      0
+2026-10-27 16:39:33 INFO        23  Bering Strait                         0    0.0%      0                  0    0.0%      0
+2026-10-27 16:39:33 INFO        23  Kerch Strait                          0    0.0%      0                  0    0.0%      0
+2026-10-27 16:39:33 INFO        23  Ombai Strait                          0    0.0%      0                  0    0.0%      0
+2026-10-27 16:39:33 INFO        23  Windward Passage                      0    0.0%      0                  0    0.0%      0
+2026-10-27 16:39:33 INFO    Task 4.3 | scenario red_sea_diversion (diverted_also_closed open): routed flows 1,389 | crossings 2,401 | flows crossing at least one chokepoint 1,091 | flows crossing none 298
+2026-10-27 16:39:34 INFO    Read Daily_Chokepoints_Data.csv: 79,548 rows | 28 chokepoints | 2019-01-01 to 2026-10-11
+2026-10-27 16:39:34 INFO    Task 4.5 | daily transits 2025-01-01 to 2025-12-31: 10,220 rows | days per chokepoint 365 expected, all complete
+2026-10-27 16:39:34 INFO    Read PortWatch IMF Chokepoints.csv: 28 rows | header fields 25 | fields per row [25]
+2026-10-27 16:39:34 INFO    Task 4.5 | check: vessel_count_total = sum of container+dry_bulk+general_cargo+RoRo+tanker in 28 of 28 rows
+2026-10-27 16:39:34 INFO    Task 4.5 | variant summary_file_panama_open: flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.518, p = 0.0057 -> PASS (pass mark 0.50)
+2026-10-27 16:39:34 INFO        PortWatch rank  1  model rank 10  Taiwan Strait          pw share  16.4%  model share   3.9%
+2026-10-27 16:39:34 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.9%  model share   8.0%
+2026-10-27 16:39:34 INFO        PortWatch rank  3  model rank  2  Dover Strait           pw share  10.5%  model share  15.9%
+2026-10-27 16:39:34 INFO        PortWatch rank  4  model rank 12  Malacca Strait         pw share   9.1%  model share   2.6%
+2026-10-27 16:39:34 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   7.7%  model share  16.6%
+2026-10-27 16:39:34 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   7.1%  model share   3.2%
+2026-10-27 16:39:34 INFO        PortWatch rank  7  model rank  8  Bohai Strait           pw share   5.8%  model share   4.4%
+2026-10-27 16:39:34 INFO        PortWatch rank  8  model rank  3  Oresund Strait         pw share   3.9%  model share  10.8%
+2026-10-27 16:39:34 INFO        PortWatch rank  9  model rank 22  Suez Canal             pw share   2.9%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 10  model rank 22  Kerch Strait           pw share   2.8%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 11  model rank 22  Bab el-Mandeb Strait   pw share   2.6%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 12  model rank 13  Strait of Hormuz       pw share   2.6%  model share   2.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 13  model rank  5  Tsugaru Strait         pw share   2.5%  model share   8.5%
+2026-10-27 16:39:34 INFO        PortWatch rank 14  model rank 15  Yucatan Channel        pw share   1.8%  model share   0.8%
+2026-10-27 16:39:34 INFO        PortWatch rank 15  model rank 14  Luzon Strait           pw share   1.6%  model share   0.8%
+2026-10-27 16:39:34 INFO        PortWatch rank 16  model rank 21  Windward Passage       pw share   1.4%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 17  model rank  4  Panama Canal           pw share   1.3%  model share   8.9%
+2026-10-27 16:39:34 INFO        PortWatch rank 18  model rank  9  Sunda Strait           pw share   0.9%  model share   4.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 19  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.3%
+2026-10-27 16:39:34 INFO        PortWatch rank 20  model rank  6  Mona Passage           pw share   0.6%  model share   8.2%
+2026-10-27 16:39:34 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.4%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 23  model rank 22  Ombai Strait           pw share   0.3%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 24  model rank 22  Balabac Strait         pw share   0.3%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.4%
+2026-10-27 16:39:34 INFO        PortWatch rank 27  model rank 22  Bering Strait          pw share   0.0%  model share   0.0%
+2026-10-27 16:39:34 INFO    Task 4.5 | variant daily2025_panama_open: flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.621, p = 0.00055 -> PASS (pass mark 0.50)
+2026-10-27 16:39:34 INFO        PortWatch rank  1  model rank 10  Taiwan Strait          pw share  16.7%  model share   3.9%
+2026-10-27 16:39:34 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.7%  model share   8.0%
+2026-10-27 16:39:34 INFO        PortWatch rank  3  model rank 12  Malacca Strait         pw share  11.4%  model share   2.6%
+2026-10-27 16:39:34 INFO        PortWatch rank  4  model rank  2  Dover Strait           pw share  11.1%  model share  15.9%
+2026-10-27 16:39:34 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   8.0%  model share  16.6%
+2026-10-27 16:39:34 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   6.8%  model share   3.2%
+2026-10-27 16:39:34 INFO        PortWatch rank  7  model rank  8  Bohai Strait           pw share   5.7%  model share   4.4%
+2026-10-27 16:39:34 INFO        PortWatch rank  8  model rank  3  Oresund Strait         pw share   3.7%  model share  10.8%
+2026-10-27 16:39:34 INFO        PortWatch rank  9  model rank 13  Strait of Hormuz       pw share   3.0%  model share   2.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 10  model rank  5  Tsugaru Strait         pw share   2.5%  model share   8.5%
+2026-10-27 16:39:34 INFO        PortWatch rank 11  model rank 15  Yucatan Channel        pw share   2.0%  model share   0.8%
+2026-10-27 16:39:34 INFO        PortWatch rank 12  model rank 22  Suez Canal             pw share   1.9%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 13  model rank 14  Luzon Strait           pw share   1.8%  model share   0.8%
+2026-10-27 16:39:34 INFO        PortWatch rank 14  model rank 22  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 15  model rank 21  Windward Passage       pw share   1.5%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 16  model rank  4  Panama Canal           pw share   1.4%  model share   8.9%
+2026-10-27 16:39:34 INFO        PortWatch rank 17  model rank 22  Kerch Strait           pw share   1.0%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 18  model rank  9  Sunda Strait           pw share   1.0%  model share   4.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 19  model rank  6  Mona Passage           pw share   0.7%  model share   8.2%
+2026-10-27 16:39:34 INFO        PortWatch rank 20  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.3%
+2026-10-27 16:39:34 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 23  model rank 22  Balabac Strait         pw share   0.3%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 24  model rank 22  Ombai Strait           pw share   0.3%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.4%
+2026-10-27 16:39:34 INFO        PortWatch rank 27  model rank 22  Bering Strait          pw share   0.1%  model share   0.0%
+2026-10-27 16:39:34 INFO    Task 4.5 | variant daily2025_cape_diversion (main result): flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.710, p = 3.4e-05 -> PASS (pass mark 0.50)
+2026-10-27 16:39:34 INFO        PortWatch rank  1  model rank  4  Taiwan Strait          pw share  16.7%  model share  12.0%
+2026-10-27 16:39:34 INFO        PortWatch rank  2  model rank  6  Korea Strait           pw share  15.7%  model share   5.0%
+2026-10-27 16:39:34 INFO        PortWatch rank  3  model rank  9  Malacca Strait         pw share  11.4%  model share   2.8%
+2026-10-27 16:39:34 INFO        PortWatch rank  4  model rank  1  Dover Strait           pw share  11.1%  model share  20.2%
+2026-10-27 16:39:34 INFO        PortWatch rank  5  model rank  2  Gibraltar Strait       pw share   8.0%  model share  18.1%
+2026-10-27 16:39:34 INFO        PortWatch rank  6  model rank  8  Bosporus Strait        pw share   6.8%  model share   3.5%
+2026-10-27 16:39:34 INFO        PortWatch rank  7  model rank  7  Bohai Strait           pw share   5.7%  model share   4.8%
+2026-10-27 16:39:34 INFO        PortWatch rank  8  model rank  5  Oresund Strait         pw share   3.7%  model share  11.8%
+2026-10-27 16:39:34 INFO        PortWatch rank  9  model rank 10  Strait of Hormuz       pw share   3.0%  model share   2.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 10  model rank 12  Tsugaru Strait         pw share   2.5%  model share   1.5%
+2026-10-27 16:39:34 INFO        PortWatch rank 11  model rank 15  Yucatan Channel        pw share   2.0%  model share   0.9%
+2026-10-27 16:39:34 INFO        PortWatch rank 12  model rank 21  Suez Canal             pw share   1.9%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 13  model rank 14  Luzon Strait           pw share   1.8%  model share   1.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 14  model rank 21  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 15  model rank 21  Windward Passage       pw share   1.5%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 16  model rank 11  Panama Canal           pw share   1.4%  model share   1.7%
+2026-10-27 16:39:34 INFO        PortWatch rank 17  model rank 21  Kerch Strait           pw share   1.0%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 18  model rank  3  Sunda Strait           pw share   1.0%  model share  12.2%
+2026-10-27 16:39:34 INFO        PortWatch rank 19  model rank 13  Mona Passage           pw share   0.7%  model share   1.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 20  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.4%
+2026-10-27 16:39:34 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 23  model rank 21  Balabac Strait         pw share   0.3%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 24  model rank 21  Ombai Strait           pw share   0.3%  model share   0.0%
+2026-10-27 16:39:34 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
+2026-10-27 16:39:34 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.5%
+2026-10-27 16:39:34 INFO        PortWatch rank 27  model rank 21  Bering Strait          pw share   0.1%  model share   0.0%
+2026-10-27 16:39:34 INFO    Task 4.5 | for reference only, baseline flow shares vs daily 2025 transits: rho = 0.804, p = 4.4e-07
+2026-10-27 16:39:34 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\validation.csv (81 rows, 3 variants)
+2026-10-27 16:39:34 INFO    Context | PortWatch transits per calendar year (all types / container):
+2026-10-27 16:39:34 INFO        Suez Canal             2023  days 365  all  26,895  container  6,977
+2026-10-27 16:39:34 INFO        Suez Canal             2024  days 366  all  14,498  container  3,198
+2026-10-27 16:39:34 INFO        Suez Canal             2025  days 365  all  14,070  container  3,351
+2026-10-27 16:39:34 INFO        Bab el-Mandeb Strait   2023  days 365  all  27,015  container  6,739
+2026-10-27 16:39:34 INFO        Bab el-Mandeb Strait   2024  days 366  all  11,901  container  1,967
+2026-10-27 16:39:34 INFO        Bab el-Mandeb Strait   2025  days 365  all  12,218  container  2,445
+2026-10-27 16:39:34 INFO        Cape of Good Hope      2023  days 365  all  17,926  container  2,249
+2026-10-27 16:39:34 INFO        Cape of Good Hope      2024  days 366  all  31,846  container  6,961
+2026-10-27 16:39:34 INFO        Cape of Good Hope      2025  days 365  all  32,653  container  7,387
+2026-10-27 16:39:34 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\red_sea_context.csv (9 rows)
+2026-10-27 16:39:35 INFO    Wrote layer 'subflows' (1,396 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 16:39:35 INFO    Wrote layer 'routes' (1,661 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 16:39:35 INFO    Wrote layer 'route_crossings' (5,243 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 16:39:35 INFO    chokepoint_scores exists (27 rows); replacing 8 S06 columns, keeping 11 others: ['viol_n_100', 'viol_fw_100', 'viol_n_250', 'viol_fw_250', 'viol_n_500', 'viol_fw_500', 'viol_kde_100', 'viol_kde_250', 'viol_kde_500', 'viol_rank', 'quad_trade_conflict']
+2026-10-27 16:39:35 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 16:39:35 INFO    Run of s06_trade_exposure finished

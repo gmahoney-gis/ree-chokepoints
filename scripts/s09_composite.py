@@ -11,7 +11,8 @@ and S07), then:
 2. Quadrants for the trade-vs-conflict chart (task 6.5): each chokepoint is high or
    low trade and high or low violence, split at the median of the main fields
    ("high" = above the median). Written to chokepoint_scores as
-   trade_conflict_quadrant; every other column is left as it is.
+   quad_trade_conflict. S09 owns the columns starting with "quad_" and keeps every
+   other column.
 
 The composite score (tasks 5.2-5.4) is not part of the Lab 7 first pass.
 """
@@ -23,7 +24,8 @@ from scipy.stats import spearmanr
 
 import common
 
-QUADRANT_FIELD = "trade_conflict_quadrant"   # the only chokepoint_scores column S09 writes so far
+S09_PREFIX = "quad_"       # S09 owns every chokepoint_scores column starting with this
+QUADRANT_FIELD = "quad_trade_conflict"   # the only chokepoint_scores column S09 writes so far
 CSV_COLUMNS = ["variant", "rho", "p_value", "n", "zero_trade", "zero_conflict"]
 
 
@@ -128,7 +130,8 @@ def main():
     table[CSV_COLUMNS].to_csv(out, index=False)
     log.info("Wrote %s (%d rows)", out, len(table))
 
-    # Task 6.5 support: replace only the quadrant column; keep every other column.
+    # Task 6.5 support: replace only S09's columns; keep every other column.
+    scores = scores.drop(columns=[c for c in scores.columns if c.startswith(S09_PREFIX)])
     scores[QUADRANT_FIELD] = quadrants(scores, settings, log)
     log_quadrants(scores, settings, log)
     common.write_layer(scores, settings, "chokepoint_scores", log)

@@ -73,6 +73,8 @@ Run with `python scripts/run_all.py` (everything) or `python scripts/run_all.py 
   `common.start_log(Path(__file__).stem, settings)`, so the log is named after the script.
 - **Fixed names.** Use the GeoPackage layer names under `layers:` in the settings file and
   keep field names stable between runs (QGIS styling and the web map depend on them).
+  Each script's columns in chokepoint_scores start with a prefix no other script uses
+  (trade_ S06, viol_/tens_ S07, redund_ S08, quad_ S09); a script clears only its own prefix.
 - **Shared keys.** Countries are ISO-3 codes; chokepoints keep their permanent IDs from the
   screening file; flows have a flow ID; routes carry a scenario label.
 - **Coordinates and distances.** Store layers in EPSG:4326. Measure distances along the
