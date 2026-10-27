@@ -1,0 +1,4 @@
+comparison,n_subflows,value_usd,extra_nm,extra_days,extra_days_median,voyage_cost_usd,voyage_cost_median_usd,voyage_cost_itf_params_usd,itf_extra_days,itf_cost_one_way_usd,ratio_days,ratio_cost,ratio_cost_itf_params
+Cape-only (S06 red_sea_diversion; main comparison),367,183624310.06,3683.6,9.593,9.854,899897.0,941869.0,1078458.0,10,850000,0.959,1.059,1.269
+S08 Suez-only closure (Panama open),370,183627461.84,2979.7,7.76,9.854,1579798.0,1616790.0,1788252.0,10,850000,0.776,1.859,2.104
+Reference voyage Shanghai-Rotterdam,0,,3319.9,8.646,8.646,748475.0,748475.0,942482.0,10,850000,0.865,0.881,1.109

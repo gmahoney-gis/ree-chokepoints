@@ -21,7 +21,7 @@ import common
 # Task 0.5: the standard run order. check_db (task 3.2) checks the database
 # that S01-S05 build, so it runs straight after S05.
 RUN_ORDER = ["s01", "s02", "s03", "s04", "s05", "check_db",
-             "s06", "s07", "s08", "s09", "s10", "s11"]
+             "s06", "s07", "s08", "s08b", "s09", "s10", "s11"]
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 
@@ -49,11 +49,11 @@ def choose_scripts(names):
 
 
 def find_script(name, scripts_dir):
-    """Find the file for a short name: "s02" -> s02_*.py, "check_db" -> check_db.py.
+    """Find the file for a short name: "s02" -> s02_*.py, "s08b" -> s08b_*.py, "check_db" -> check_db.py.
 
     Returns the path, or None if the script has not been written yet.
     """
-    if name.startswith("s") and name[1:].isdigit():
+    if name.startswith("s") and name[1:].rstrip("abcdefghijklmnopqrstuvwxyz").isdigit():
         matches = sorted(scripts_dir.glob(f"{name}_*.py"))
     else:
         matches = sorted(scripts_dir.glob(f"{name}.py"))

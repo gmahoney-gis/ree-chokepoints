@@ -1,0 +1,124 @@
+2026-10-27 17:25:11 INFO    Run of s08b_reroute_cost started 2026-10-27T17:25:11
+2026-10-27 17:25:11 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-27 17:25:11 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-27 17:25:11 INFO    Task 4.15 | reroute parameters (main value, low, high; source):
+2026-10-27 17:25:11 INFO      speed_knots                          16           12           21  Rodrigue, The Geography of Transport Systems, Fuel Consumption by Containership Size and Speed (Neo-Panamax 10,000-12,500 TEU)
+2026-10-27 17:25:11 INFO      fuel_use_t_per_day                  175          105          370  Rodrigue, The Geography of Transport Systems, Fuel Consumption by Containership Size and Speed (Neo-Panamax 10,000-12,500 TEU)
+2026-10-27 17:25:11 INFO      fuel_price_usd_per_t              535.5        455.5        620.5  Ship & Bunker, Analysis: Average VLSFO Bunker Prices at Key Ports Fall 20% in 2025
+2026-10-27 17:25:11 INFO      charter_rate_usd_per_day          66308        66044        66547  VHBS (Association of Hamburg and Bremen Shipbrokers), New ConTex Commentary 2025 weeks 24, 31, 44, 51, via Hellenic Shipping News
+2026-10-27 17:25:11 INFO      interest_rate_annual             0.0402       0.0372       0.0433  Federal Reserve Bank of St. Louis, FRED, Federal Funds Effective Rate (FEDFUNDS), 2025
+2026-10-27 17:25:11 INFO      toll suez                        635000       580000       720000  Suez Canal Authority, Circular 02/2026 (containerships, Rate 7 of the Transit Dues Schedule), computed with the SCA toll calculator
+2026-10-27 17:25:11 INFO      toll panama                     1286000      1156000      1386000  Panama Canal Authority, Maritime Tariff List
+2026-10-27 17:25:11 INFO    Task 4.16 | ship cost per day at sea: 160,020.5 USD (charter 66308 + 175 t/day x 535.5 USD/t) | 384 nm per day
+2026-10-27 17:25:11 INFO    Decision 13 | headline per chokepoint: value_weighted_mean (reroute_impact.typical_voyage); median beside it
+2026-10-27 17:25:12 INFO    Inputs | detours rows 3,035 (sub-flows 1,108, chokepoints 22) | detour_routes 1,664 | routes 1,661 (baseline 833, red_sea_diversion 828) | route_crossings 5,243
+2026-10-27 17:25:13 INFO    Task 4.17 | canal suez: Suez Canal (chokepoint1), tested with its zone
+2026-10-27 17:25:13 INFO    Task 4.17 | canal panama: Panama Canal (chokepoint2), tested with its zone
+2026-10-27 17:25:14 INFO    Check | baseline flows crossing suez: by geometry 370 | in route_crossings 370 | agree
+2026-10-27 17:25:14 INFO    Check | baseline flows crossing panama: by geometry 42 | in route_crossings 42 | agree
+2026-10-27 17:25:14 INFO    Check | baseline port pairs crossing suez and panama: 2
+2026-10-27 17:25:14 INFO      IND_WPI48840 -> ECU_WPI15275: 2 sub-flows, 340 USD
+2026-10-27 17:25:14 INFO      IND_WPI48840 -> PER_WPI14950: 2 sub-flows, 19,834 USD
+2026-10-27 17:25:14 INFO    Task 4.17 | canal changes per closure (sub-flows; added = detour crosses a canal the baseline did not):
+2026-10-27 17:25:14 INFO      Suez Canal             suez added 0, skipped 370 | panama added 175, skipped 4
+2026-10-27 17:25:14 INFO      Panama Canal           suez added 4, skipped 4 | panama added 0, skipped 40
+2026-10-27 17:25:14 INFO      Bab el-Mandeb Strait   suez added 3, skipped 367 | panama added 175, skipped 4
+2026-10-27 17:25:14 INFO      Malacca Strait         suez added 0, skipped 1 | panama added 1, skipped 0
+2026-10-27 17:25:14 INFO      Gibraltar Strait       suez added 239, skipped 224 | panama added 104, skipped 8
+2026-10-27 17:25:15 INFO    Check | costed sub-flows whose detour costs less than the baseline (tolls skipped > ship cost): 71
+2026-10-27 17:25:15 INFO      Suez Canal             AUS_WPI54520 -> DEU_WPI28860: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             AUS_WPI54520 -> MAR_WPI45753: 1 sub-flows, 3.87 days, -15,962 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             AUS_WPI54520 -> NLD_WPI31060: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             AUS_WPI54520 -> NOR_WPI23810: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             BEL_WPI31250 -> AUS_WPI54520: 3 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             CHN_WPI60190 -> CPV_WPI45910: 1 sub-flows, 1.87 days, -335,337 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             FRA_WPI38870 -> ZAF_WPI46850: 1 sub-flows, 1.31 days, -424,765 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             GBR_WPI31470 -> AUS_WPI54520: 2 sub-flows, 3.06 days, -145,312 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             IND_WPI48840 -> ECU_WPI15275: 2 sub-flows, 4.40 days, -1,216,826 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             IND_WPI48840 -> GIN_WPI45855: 2 sub-flows, 2.34 days, -260,952 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             IND_WPI48840 -> PER_WPI14950: 2 sub-flows, 1.24 days, -1,722,475 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             IND_WPI48840 -> TTO_WPI11720: 1 sub-flows, 3.92 days, -7,545 USD per voyage
+2026-10-27 17:25:15 INFO      Suez Canal             USA_WPI7250 -> KEN_WPI47100: 1 sub-flows, 3.35 days, -98,681 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           BEL_WPI31250 -> CHL_WPI14660: 1 sub-flows, 6.04 days, -319,793 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           BRA_WPI12970 -> ECU_WPI15275: 1 sub-flows, 0.29 days, -1,239,536 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           CHL_WPI14660 -> DEU_WPI30810: 1 sub-flows, 6.04 days, -319,793 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           CZE_WPI28823 -> NZL_WPI55060: 1 sub-flows, 1.98 days, -968,501 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           DEU_WPI28860 -> NZL_WPI55060: 1 sub-flows, 1.98 days, -968,501 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           DEU_WPI30810 -> CHL_WPI14660: 2 sub-flows, 6.04 days, -319,793 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           ESP_WPI38170 -> CHL_WPI14660: 3 sub-flows, 3.95 days, -653,252 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           FRA_WPI35850 -> NZL_WPI55060: 1 sub-flows, 1.61 days, -1,028,342 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           IND_WPI48840 -> ECU_WPI15275: 2 sub-flows, 4.40 days, -1,216,826 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           IND_WPI48840 -> PER_WPI14950: 2 sub-flows, 1.24 days, -1,722,475 USD per voyage
+2026-10-27 17:25:15 INFO      Panama Canal           ITA_WPI39470 -> CHL_WPI14660: 1 sub-flows, 4.61 days, -548,155 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   AUS_WPI54520 -> DEU_WPI28860: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   AUS_WPI54520 -> MAR_WPI45753: 1 sub-flows, 3.87 days, -15,962 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   AUS_WPI54520 -> NLD_WPI31060: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   AUS_WPI54520 -> NOR_WPI23810: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   BEL_WPI31250 -> AUS_WPI54520: 3 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   CHN_WPI60190 -> CPV_WPI45910: 1 sub-flows, 1.87 days, -335,337 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   FRA_WPI38870 -> ZAF_WPI46850: 1 sub-flows, 1.31 days, -424,765 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   GBR_WPI31470 -> AUS_WPI54520: 2 sub-flows, 3.06 days, -145,312 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   IND_WPI48840 -> ECU_WPI15275: 2 sub-flows, 4.40 days, -1,216,826 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   IND_WPI48840 -> GIN_WPI45855: 2 sub-flows, 2.34 days, -260,952 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   IND_WPI48840 -> PER_WPI14950: 2 sub-flows, 1.24 days, -1,722,475 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   IND_WPI48840 -> TTO_WPI11720: 1 sub-flows, 3.92 days, -7,545 USD per voyage
+2026-10-27 17:25:15 INFO      Bab el-Mandeb Strait   USA_WPI7250 -> KEN_WPI47100: 1 sub-flows, 3.35 days, -98,681 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       AUS_WPI54520 -> DEU_WPI28860: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       AUS_WPI54520 -> NLD_WPI31060: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       AUS_WPI54520 -> NOR_WPI23810: 1 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       BEL_WPI31250 -> AUS_WPI54520: 3 sub-flows, 3.06 days, -145,271 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       CHN_WPI60190 -> CPV_WPI45910: 1 sub-flows, 1.87 days, -335,337 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       GBR_WPI31470 -> AUS_WPI54520: 2 sub-flows, 3.06 days, -145,312 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       IND_WPI48840 -> ECU_WPI15275: 2 sub-flows, 4.40 days, -1,216,826 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       IND_WPI48840 -> GIN_WPI45855: 2 sub-flows, 2.34 days, -260,952 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       IND_WPI48840 -> PER_WPI14950: 2 sub-flows, 1.24 days, -1,722,475 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       IND_WPI48840 -> TTO_WPI11720: 1 sub-flows, 3.92 days, -7,545 USD per voyage
+2026-10-27 17:25:15 INFO      Gibraltar Strait       USA_WPI7250 -> KEN_WPI47100: 1 sub-flows, 3.35 days, -98,681 USD per voyage
+2026-10-27 17:25:16 INFO    Decision 13 | range cases (one change at a time from the main values): 12 | speed_knots + fuel_use_t_per_day low, speed_knots + fuel_use_t_per_day high, fuel_price_usd_per_t low, fuel_price_usd_per_t high, charter_rate_usd_per_day low, charter_rate_usd_per_day high, interest_rate_annual low, interest_rate_annual high, toll_suez low, toll_suez high, toll_panama low, toll_panama high
+2026-10-27 17:25:16 INFO    Tasks 4.16-4.17 | reroute time and cost by chokepoint (days; USD; flows):
+2026-10-27 17:25:16 INFO      chokepoint             flows    days  median     max    days range    toll chg      voyage          voyage range    holding   add  skip nocst
+2026-10-27 17:25:16 INFO      Gibraltar Strait         463    9.96   14.83   29.61    7.59-13.27     443,644   2,036,767   1,897,387-2,449,531    204,653   343   228    20
+2026-10-27 17:25:16 INFO      Bab el-Mandeb Strait     370    7.76    9.85   28.48    5.91-10.35     338,135   1,580,234   1,471,564-1,902,050    156,999   178   367     0
+2026-10-27 17:25:16 INFO      Suez Canal               370    7.76    9.85   23.29    5.91-10.35     338,081   1,579,798   1,471,162-1,901,516    156,934   175   370     0
+2026-10-27 17:25:16 INFO      Panama Canal              40   10.36   10.70   24.94    7.89-13.81  -1,271,202     386,584       241,546-816,102        710     4    40     2
+2026-10-27 17:25:16 INFO      Malacca Strait           304    1.71    1.48    3.30     1.30-2.28           0     273,560       249,627-344,438     38,017     1     1     0
+2026-10-27 17:25:16 INFO      Yucatan Channel           19    1.24    1.22    3.26     0.95-1.66           0     198,755       181,366-250,250         14     0     0     0
+2026-10-27 17:25:16 INFO      Dover Strait             446    1.03    1.43    3.20     0.79-1.38           0     165,599       151,111-208,505     12,634     0     0     0
+2026-10-27 17:25:16 INFO      Korea Strait             110    0.53    0.48    1.24     0.41-0.71           0      85,388        77,918-107,512     13,543     0     0     0
+2026-10-27 17:25:16 INFO      Makassar Strait            3    0.52    0.52    0.52     0.40-0.70           0      83,594        76,280-105,253         29     0     0     0
+2026-10-27 17:25:16 INFO      Magellan Strait            6    0.42    0.39    0.70     0.32-0.57           0      67,891         61,952-85,481          2     0     0     0
+2026-10-27 17:25:16 INFO      Tsugaru Strait            34    0.34    0.34    0.34     0.26-0.45           0      54,007         49,282-68,000      5,744     0     0     0
+2026-10-27 17:25:16 INFO      Sunda Strait              28    0.28    0.46    0.81     0.22-0.38           0      45,510         41,528-57,301      3,369     0     0     0
+2026-10-27 17:25:16 INFO      Mona Passage              29    0.24    0.08    0.42     0.18-0.32           0      37,800         34,493-47,594         14     0     0     0
+2026-10-27 17:25:16 INFO      Torres Strait              3    0.22    0.22    1.26     0.17-0.29           0      34,944         31,886-43,997          0     0     0     0
+2026-10-27 17:25:16 INFO      Taiwan Strait            266    0.18    0.33    0.70     0.14-0.24           0      28,636         26,131-36,055      9,977     0     0     0
+2026-10-27 17:25:16 INFO      Oresund Strait           211    0.16    0.23    0.26     0.12-0.21           0      25,784         23,528-32,464      1,391     0     0    49
+2026-10-27 17:25:16 INFO      Lombok Strait              3    0.14    0.14    0.14     0.11-0.19           0      22,420         20,458-28,228          8     0     0     0
+2026-10-27 17:25:16 INFO      Mindoro Strait             8    0.13    0.09    0.17     0.10-0.18           0      21,189         19,335-26,679         13     0     0     0
+2026-10-27 17:25:16 INFO      Luzon Strait              21    0.10    0.04    0.16     0.07-0.13           0      15,445         14,094-19,446        656     0     0     0
+2026-10-27 17:25:16 INFO      Bosporus Strait            0    null    null    null     null-null        null        null             null-null       null     0     0    78
+2026-10-27 17:25:16 INFO      Strait of Hormuz           0    null    null    null     null-null        null        null             null-null       null     0     0    47
+2026-10-27 17:25:16 INFO      Ombai Strait               0    null    null    null     null-null        null        null             null-null       null     0     0     0
+2026-10-27 17:25:16 INFO      Bohai Strait               0    null    null    null     null-null        null        null             null-null       null     0     0   105
+2026-10-27 17:25:16 INFO      Windward Passage           0    null    null    null     null-null        null        null             null-null       null     0     0     0
+2026-10-27 17:25:16 INFO      Balabac Strait             0    null    null    null     null-null        null        null             null-null       null     0     0     0
+2026-10-27 17:25:16 INFO      Bering Strait              0    null    null    null     null-null        null        null             null-null       null     0     0     0
+2026-10-27 17:25:16 INFO      Kerch Strait               0    null    null    null     null-null        null        null             null-null       null     0     0     0
+2026-10-27 17:25:16 INFO    Tasks 4.16-4.17 | detours rows 3,035: costed 2,734 (sub-flows) | no sea route 214 (81,994,723 USD) | port inside the zone 87 (5,886,889 USD); both left null (Decision 13)
+2026-10-27 17:25:16 INFO    Task 4.17 | REE holding cost, all closures summed: 604,707 USD (range 460,729-806,276)
+2026-10-27 17:25:16 INFO    Task 4.17 | Cape-only: baseline pairs crossing suez 238 | with a red_sea_diversion route 235 | without (no sea route in S06): BEL_WPI31250 -> JOR_WPI48090, ESP_WPI38550 -> JOR_WPI48090, USA_WPI7250 -> JOR_WPI48090
+2026-10-27 17:25:16 INFO    Task 4.17 | Cape-only: diversion routes that still cross a tolled canal: suez 0, panama 0
+2026-10-27 17:25:17 INFO    Task 4.17 | reference voyage Shanghai-Rotterdam: via Suez 10,546.1 nm (suez) | via the Cape 13,866.0 nm (no canal; closed ['northwest', 'suez', 'babalmandab', 'panama'])
+2026-10-27 17:25:17 INFO    Task 4.17 | Suez check against Merk, Olaf: 10 extra days and 850,000 USD one way
+2026-10-27 17:25:17 INFO      comparison                                             days  median         cost  cost ITF p.   r days   r cost   r ITF p.
+2026-10-27 17:25:17 INFO      Cape-only (S06 red_sea_diversion; main comparison)     9.59    9.85      899,897    1,078,458    0.959    1.059      1.269
+2026-10-27 17:25:17 INFO      S08 Suez-only closure (Panama open)                    7.76    9.85    1,579,798    1,788,252    0.776    1.859      2.104
+2026-10-27 17:25:17 INFO      Reference voyage Shanghai-Rotterdam                    8.65    8.65      748,475      942,482    0.865    0.881      1.109
+2026-10-27 17:25:17 INFO      (ITF parameters: charter 50,000 USD/day and Suez toll 300,000 USD in place of ours; fuel unchanged)
+2026-10-27 17:25:17 INFO    Wrote layer 'reroute_costs' (3,035 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 17:25:17 INFO    chokepoint_scores exists (27 rows); writing 19 S08b columns, keeping 30 others
+2026-10-27 17:25:18 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 17:25:18 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\reroute_cost.csv (27 rows)
+2026-10-27 17:25:18 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\reroute_cost_ranges.csv (247 rows)
+2026-10-27 17:25:18 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\suez_check.csv (3 rows)
+2026-10-27 17:25:18 INFO    Run of s08b_reroute_cost finished

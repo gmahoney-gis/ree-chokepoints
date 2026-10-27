@@ -74,7 +74,7 @@ Run with `python scripts/run_all.py` (everything) or `python scripts/run_all.py 
 - **Fixed names.** Use the GeoPackage layer names under `layers:` in the settings file and
   keep field names stable between runs (QGIS styling and the web map depend on them).
   Each script's columns in chokepoint_scores start with a prefix no other script uses
-  (trade_ S06, viol_/tens_ S07, redund_ S08, quad_ S09); a script clears only its own prefix.
+  (trade_ S06, viol_/tens_ S07, redund_ S08, impact_ S08b, quad_ S09); a script clears only its own prefix.
 - **Shared keys.** Countries are ISO-3 codes; chokepoints keep their permanent IDs from the
   screening file; flows have a flow ID; routes carry a scenario label.
 - **Coordinates and distances.** Store layers in EPSG:4326. Measure distances along the
@@ -182,6 +182,16 @@ These were decided after the proposal text was written. Follow them where they d
    Taiwan); results depend on where each line is drawn; Dalian–Seattle is about 54% of
    Korea's value; small edge clips remain at Dover (London–Antwerp, $53K) and Gibraltar
    (Tanger Med flows), under 0.1% of each.
+13. **How S08b summarises reroute time and cost.** Per chokepoint, the headline extra days and
+   extra cost per voyage are value-weighted means over rerouted sub-flows (the same weighting as
+   Equation 4), with the median beside them. Canal tolls are added or subtracted by testing whether
+   the baseline and detour routes cross Suez or Panama. Routing picks the shortest path and ignores
+   tolls, so with Panama open some Suez detours go via Panama (a limitation). Flows with no sea
+   route, and port-in-zone flows, get no cost (null) and are reported as counts and value. S08b
+   reports low/high ranges itself, changing one parameter at a time (speed and fuel always paired)
+   and taking the smallest and largest result. REE holding cost is a total for 2025 trade, not a
+   per-voyage figure. The Suez check (task 4.17) compares the Cape-only detour from S06's Red Sea
+   diversion routes with ITF/OECD (Merk 2024), plus a variant using ITF's own charter rate and toll.
 
 ## How to work in this repository
 
@@ -195,5 +205,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 27 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set. Decision 12 recorded (gate lines for four wide straits); S03/S06 updated and rerun. S08 built 27 Oct 2026 (tasks 4.12-4.14): 22 chokepoints scored, 5 null; largest penalty 627.3% (Gibraltar, BEL_DZA_284610_1) applied to Hormuz, Bosporus, Bohai.
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 27 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set. Decision 12 recorded (gate lines for four wide straits); S03/S06 updated and rerun. S08 built 27 Oct 2026 (tasks 4.12-4.14): 22 chokepoints scored, 5 null; largest penalty 627.3% (Gibraltar, BEL_DZA_284610_1) applied to Hormuz, Bosporus, Bohai. Decision 13 recorded; S08b built 27 Oct 2026 (tasks 4.16-4.17): 19 chokepoints costed, 8 null (3 no sea route, 5 no affected flows); Suez check Cape-only 9.59 days and $900K one way vs ITF/OECD 10 days and $850K (ratios 0.96, 1.06).
 <!-- Update this section as work progresses. -->

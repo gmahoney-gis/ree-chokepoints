@@ -1,9 +1,9 @@
-2026-10-27 15:46:45 INFO    Run of run_all started 2026-10-27T15:46:45
-2026-10-27 15:46:45 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-27 15:46:45 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-27 15:46:45 INFO    Requested: s11
-2026-10-27 15:46:45 INFO    Will run, in order: s11
-2026-10-27 15:46:45 INFO    ---- s11_figures.py started
-2026-10-27 15:47:12 INFO    ---- s11_figures.py finished OK in 27.4 s
-2026-10-27 15:47:12 INFO    Summary | passed: s11_figures.py
-2026-10-27 15:47:12 INFO    Summary | all 1 script(s) finished OK
+2026-10-27 17:25:08 INFO    Run of run_all started 2026-10-27T17:25:08
+2026-10-27 17:25:08 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-27 17:25:09 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-27 17:25:09 INFO    Requested: s08b
+2026-10-27 17:25:09 INFO    Will run, in order: s08b
+2026-10-27 17:25:09 INFO    ---- s08b_reroute_cost.py started
+2026-10-27 17:25:18 INFO    ---- s08b_reroute_cost.py finished OK in 9.5 s
+2026-10-27 17:25:18 INFO    Summary | passed: s08b_reroute_cost.py
+2026-10-27 17:25:18 INFO    Summary | all 1 script(s) finished OK

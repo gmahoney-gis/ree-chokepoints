@@ -227,16 +227,26 @@ redundancy:
 # Step 5b: reroute time and cost impact layer (S08b; decision 8 in CLAUDE.md)
 # Reported beside the score, not part of it. Values gathered 24 Oct 2026 (task 4.15),
 # workbook Reroute_Cost_Parameters.xlsx; saved source copies in data/raw/REROUTE_SOURCES/.
-# Each parameter: value (main run), low/high (range for S10), source, url, accessed.
+# Each parameter: value (main run), low/high (range S08b reports, one parameter at a time;
+# Decision 13), source, url, accessed.
 # ---------------------------------------------------------------------
 reroute_impact:
   vessel_type: neo_panamax_container_ship
+  # Decision 13: per chokepoint, the headline extra days and extra cost per voyage are
+  # value-weighted means over rerouted sub-flows (as Equation 4); the median is reported beside them.
+  typical_voyage: value_weighted_mean   # alternative: median
+  # Canals whose toll is added or subtracted when a detour starts or stops crossing them.
+  # Chokepoint name (screening file) -> key under canal_tolls_usd_per_transit.
+  canal_chokepoints: {"Suez Canal": suez, "Panama Canal": panama}
+  # Ranges: change one parameter at a time from the main values (speed and fuel always
+  # paired) and report the smallest and largest result (Decision 13).
+  range_method: one_at_a_time
   reference_ship_teu:                # P5: fits both the Suez and the Neopanamax locks
     value: 12600
     source: "Panama Canal Authority, Panama Canal commemorates seventh anniversary of the Neopanamax Locks (2023)"
     url: "https://pancanal.com/en/panama-canal-commemorates-seventh-anniversary-of-the-neopanamax-locks-2/"
     accessed: "2026-10-24"
-  # P1 and P2 are PAIRED: fuel use depends on speed. S10 changes them together
+  # P1 and P2 are PAIRED: fuel use depends on speed. S08b changes them together
   # (low case 12 kn with 105 t/day; high case 21 kn with 370 t/day), never one alone.
   speed_knots:                       # P1: extra days = extra nm / (speed x 24)
     value: 16
@@ -304,6 +314,12 @@ reroute_impact:
     extra_days: 10                   # one way, Far East-Europe, 15-16 knots (20 per round trip)
     extra_cost_usd: 1700000          # per ROUND TRIP, 12,500 TEU ship: fuel + charter (50,000/day) + container hire - Suez tolls (300,000/transit); excludes insurance
     extra_cost_usd_one_way: 850000   # half of the round-trip figure, for comparison with S08b's one-way voyage cost
+    itf_charter_usd_per_day: 50000   # ITF's own charter rate, for the variant with ITF's charter and toll
+    itf_suez_toll_usd: 300000        # ITF's own Suez toll per transit, same variant
+    reference_voyage:                # one Far East-North Europe voyage routed via Suez and via the Cape
+      name: "Shanghai-Rotterdam"
+      origin: [121.8, 31.2]          # lon, lat
+      destination: [4.0, 51.95]
     source: "Merk, Olaf. The Red Sea Crisis: Impacts on Global Shipping and the Case for International Co-operation. International Transport Forum, OECD, 2024 (pp. 12-16, Table 4)"
     url: "https://www.itf-oecd.org/sites/default/files/repositories/red-sea-crisis-impacts-global-shipping.pdf"
     accessed: "2026-10-25"
@@ -390,6 +406,7 @@ layers:
   route_crossings: route_crossings
   detours: detours                   # S08 (Decision 10): per-flow detour lengths, one row per flow and closed chokepoint
   detour_routes: detour_routes       # S08 (Decision 10): rerouted lines; S08 never writes to routes
+  reroute_costs: reroute_costs       # S08b (Decision 13): extra days and costs per detours row; not published
   chokepoint_scores: chokepoint_scores
   web_chokepoints: web_chokepoints
   web_routes: web_routes
