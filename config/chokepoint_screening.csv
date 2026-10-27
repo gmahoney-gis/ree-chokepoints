@@ -1,29 +1,29 @@
-chokepoint_id,name,lat,lon,included,reason,narrowest_width_km,territorial_seas_overlap
-chokepoint1,Suez Canal,30.59334599,32.43688221,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint2,Panama Canal,9.120512367,-79.76723825,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint3,Bosporus Strait,41.16928167,29.09150126,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint4,Bab el-Mandeb Strait,12.78859715,43.34954476,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint5,Malacca Strait,1.516954817,102.6651061,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint6,Strait of Hormuz,26.29685349,56.85984844,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint7,Cape of Good Hope,-34.92728556,20.88273666,no,"First pass: open-water passage, fails physical-constraint criterion (no narrow passage between landmasses); full screening (task 2.8) pending",,
-chokepoint8,Gibraltar Strait,35.94227416,-5.754895722,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint9,Dover Strait,51.03022414,1.505839717,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint10,Oresund Strait,55.50784043,12.85079477,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint11,Taiwan Strait,24.72350972,119.8313644,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint12,Korea Strait,34.13076811,129.209206,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint13,Tsugaru Strait,41.32803599,140.3532743,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint14,Luzon Strait,20.48889071,121.352295,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint15,Lombok Strait,-8.419145141,115.801433,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint16,Ombai Strait,-8.3985412,125.0909814,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint17,Bohai Strait,38.37304425,120.9000492,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint18,Torres Strait,-9.862534132,142.2475287,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint19,Sunda Strait,-5.96684057,105.7752199,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint20,Makassar Strait,0.352280587,119.2570654,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint21,Magellan Strait,-52.64033967,-69.59483246,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint22,Yucatan Channel,21.81525419,-85.64727922,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint23,Windward Passage,19.98618719,-73.6975399,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint24,Mona Passage,18.44873557,-67.71135449,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint25,Balabac Strait,7.413614993,117.1146217,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint26,Bering Strait,65.96648859,-165.5498286,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint27,Mindoro Strait,12.46831537,120.4034279,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
-chokepoint28,Kerch Strait,45.26676309,36.5439017,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,
+chokepoint_id,name,lat,lon,included,reason,narrowest_width_km,territorial_seas_overlap,width_source
+chokepoint1,Suez Canal,30.59334599,32.43688221,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint2,Panama Canal,9.120512367,-79.76723825,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint3,Bosporus Strait,41.16928167,29.09150126,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint4,Bab el-Mandeb Strait,12.78859715,43.34954476,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint5,Malacca Strait,1.516954817,102.6651061,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint6,Strait of Hormuz,26.29685349,56.85984844,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint7,Cape of Good Hope,-34.92728556,20.88273666,no,"First pass: open-water passage, fails physical-constraint criterion (no narrow passage between landmasses); full screening (task 2.8) pending",,,
+chokepoint8,Gibraltar Strait,35.94227416,-5.754895722,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint9,Dover Strait,51.03022414,1.505839717,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint10,Oresund Strait,55.50784043,12.85079477,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint11,Taiwan Strait,24.72350972,119.8313644,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,160,,"Britannica, Taiwan Strait (updated 15 Oct 2026)"
+chokepoint12,Korea Strait,34.13076811,129.209206,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,200,,"Wikipedia, Korea Strait (uncited; replace)"
+chokepoint13,Tsugaru Strait,41.32803599,140.3532743,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint14,Luzon Strait,20.48889071,121.352295,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,320,,"Britannica, Luzon Strait"
+chokepoint15,Lombok Strait,-8.419145141,115.801433,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint16,Ombai Strait,-8.3985412,125.0909814,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint17,Bohai Strait,38.37304425,120.9000492,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,105,,"Britannica, Bo Hai"
+chokepoint18,Torres Strait,-9.862534132,142.2475287,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,130,,"Britannica, Torres Strait"
+chokepoint19,Sunda Strait,-5.96684057,105.7752199,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint20,Makassar Strait,0.352280587,119.2570654,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,130,,"Britannica, Makassar Strait (narrowest)"
+chokepoint21,Magellan Strait,-52.64033967,-69.59483246,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint22,Yucatan Channel,21.81525419,-85.64727922,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,217,,"Britannica, Yucatan Channel"
+chokepoint23,Windward Passage,19.98618719,-73.6975399,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint24,Mona Passage,18.44873557,-67.71135449,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,130,,"Wikipedia, Mona Passage (uncited; replace)"
+chokepoint25,Balabac Strait,7.413614993,117.1146217,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,50,,"Wang and Li, The South China Sea, Springer 2009, p. 26"
+chokepoint26,Bering Strait,65.96648859,-165.5498286,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint27,Mindoro Strait,12.46831537,120.4034279,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,
+chokepoint28,Kerch Strait,45.26676309,36.5439017,yes,First pass: meets physical-constraint and navigational-control criteria; full screening (task 2.8) pending,,,

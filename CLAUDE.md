@@ -149,9 +149,17 @@ These were decided after the proposal text was written. Follow them where they d
    S09 decides how to treat it. (f) Outputs: redundancy columns in `chokepoint_scores` start
    with `redund_`; per-flow detours go in a new table `detours` (flow_id, chokepoint_id, old
    and new length in nm, no_route flag, port_in_zone flag); rerouted lines go in a new layer
-   `detour_routes`. S08 never writes to `routes`. Open: the Taiwan and Korea Strait zones are
-   narrower than the straits, so a closure can leak along a parallel lane; zone sizes are
-   reviewed (task 2.8) before S08 is run, and any change applies to S06 and S08 alike.
+   `detour_routes`. S08 never writes to `routes`. Zone sizes resolved by Decision 11.
+11. **A chokepoint's zone spans the whole passage.** Otherwise ships can cross the strait
+   outside the zone; the S08 groundwork found this at Taiwan, Korea, Luzon and Yucatán. Rule:
+   radius = half the narrowest width + 10 km, rounded up to the next 10 km, never below
+   `zone_radius_km` and never below an existing override (Torres, 100 km). Widths and sources
+   are in `narrowest_width_km` and `width_source` in the screening file. Exception: the Korea
+   Strait is 90 km, not 110, because at 100 km Busan falls inside the zone; the leak test
+   showed 90 km closes both channels. Every radius is checked with the leak test (no rerouted
+   path passes through the strait outside the zone). The Kanmon Strait and Seto Inland Sea
+   route is accepted as a real alternative to the Korea Strait, for smaller ships only, and
+   stated as a limitation. The same radii apply to S06 crossings and S08 closures.
 
 ## How to work in this repository
 
@@ -165,5 +173,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 26 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs); next: review Taiwan and Korea zone sizes (task 2.8), then build S08.
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 26 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set; next: build S08.
 <!-- Update this section as work progresses. -->

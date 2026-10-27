@@ -78,9 +78,17 @@ trade:
 chokepoints:
   screening_file: config/chokepoint_screening.csv   # filled by hand (task 2.8)
   zone_radius_km: 50
+  # radius = half narrowest width + 10 km, rounded up to 10 km, min 50; Korea capped at 90 so
+  # Busan stays outside (Decision 11)
   zone_radius_overrides_km:
-    "Luzon Strait": 150
+    "Taiwan Strait": 90
+    "Korea Strait": 90
+    "Luzon Strait": 170
     "Torres Strait": 100
+    "Bohai Strait": 70
+    "Makassar Strait": 80
+    "Yucatan Channel": 120
+    "Mona Passage": 80
   zone_quad_segments: 64             # circle smoothness: vertices per quarter circle (256 per zone)
 
 # ---------------------------------------------------------------------
