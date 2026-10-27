@@ -4,6 +4,7 @@ Run with:  python scripts/test_common.py
 Writes only to a temporary folder; reads the raw Comtrade files without changing them.
 """
 
+import copy
 import sys
 import tempfile
 import traceback
@@ -34,9 +35,13 @@ def test_settings():
     assert SETTINGS["project"]["study_year"] == 2025
     assert common.get_path(SETTINGS, "database") == common.ROOT / "data" / "project.gpkg"
     assert common.get_path(SETTINGS, "raw_files.comtrade_dir").is_dir()
-    for bad_key, error in [("raw_files.asam", ValueError), ("no_such_path", KeyError)]:
+    # A TODO entry must raise ValueError. Test it on a copy with a made-up TODO entry, so the
+    # test does not go stale when a real path is filled in (raw_files.asam was, see Decision 9).
+    settings = copy.deepcopy(SETTINGS)
+    settings["paths"]["raw_files"]["test_todo"] = "TODO"
+    for bad_key, error in [("raw_files.test_todo", ValueError), ("no_such_path", KeyError)]:
         try:
-            common.get_path(SETTINGS, bad_key)
+            common.get_path(settings, bad_key)
         except error:
             pass
         else:
