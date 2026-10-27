@@ -142,7 +142,7 @@ events:
   # another window later only means changing these two dates.
   window_start: "2024-10-01"
   window_end: "2025-09-30"
-  sources: [acled]                   # first pass for Lab 7; add asam and gdelt later
+  sources: [acled, imo_gisis]        # IMO GISIS replaces ASAM (Decision 9); add gdelt later (tasks 2.16-2.17)
   prefilter_radius_km: 500           # keep only events within this distance of any candidate chokepoint
   acled:
     event_types:
@@ -150,10 +150,39 @@ events:
       - "Explosions/Remote violence"
       - "Violence against civilians"
     exclude_geo_precision: [3]       # region-level locations removed
-  # match rules apply to IMO GISIS incidents (Decision 9)
-  asam:
-    match_acled_km: 50               # ASAM record within 50 km and 1 day of an ACLED event = same event
-    match_acled_days: 1
+  # IMO GISIS piracy and armed-robbery incidents at sea (Decision 9; replaces ASAM, task 2.15)
+  imo_gisis:
+    match_acled_km: 50               # incident within 50 km and 1 day of a kept ACLED event = same event;
+    match_acled_days: 1              # the ACLED record is kept and flagged imo_match
+    # Counting rule. S05 stores crew_harm on every incident; S07 applies the rule
+    # (as with the GDELT source count, Decision 5).
+    count_rule: crew_harm            # main: crew threatened, injured or held; alternative (S10): all
+    # crew_harm is true when the "Consequences for crew" or "Incident details" text
+    # contains a word below (matched at the start of a word, lower case), after negated
+    # phrases are removed: a negation word followed, within negation_window_words
+    # words, by a keyword ("crew were not injured", "no one was hurt").
+    crew_harm_keywords:
+      injured: [injur, assault, hurt, wound, beat, stabb, punch, "hit on the head", killed, died]
+      held: [hostage, kidnap, abduct, "tied up", "tied the crew", "tied the master", "tied the duty", hijack,
+             restrain, "taken captive", "locked in", "locked up"]
+      threatened: [threaten, knifepoint, "knife point", gunpoint, "gun point", "knife to", "pointed a",
+                   "held at knifepoint", "held at gunpoint", "fired at", "fired upon", shots]
+    negation_words: ["not", "no", "never", "nobody", "without", "none of the"]   # quoted: YAML reads a bare no as false
+    negation_window_words: 3         # 2 missed "No crew members were injured"; 3 and 5 give the same result
+    # Hand check, 27 Oct 2026: every keyword flag read, and the narratives of every incident
+    # within the prefilter radius that the keywords left unflagged searched by hand.
+    crew_harm_hand_check: "2026-10-27"
+    # Corrections where the keywords misclassify an incident: event_id -> crew_harm and a
+    # short reason category (never incident text). Fix misses here, not with more keywords.
+    crew_harm_overrides:
+      IMO-20241019-1: {crew_harm: true, reason: "keyword miss: threatened"}
+      IMO-20241024-1: {crew_harm: true, reason: "keyword miss: threatened"}
+      IMO-20241023-1: {crew_harm: true, reason: "keyword miss: held"}
+      IMO-20241202-1: {crew_harm: true, reason: "keyword miss: held"}
+      IMO-20250119-1: {crew_harm: true, reason: "keyword miss: held"}
+      IMO-20250918-1: {crew_harm: true, reason: "attempted attack"}
+      IMO-20250502-1: {crew_harm: false, reason: "injury not caused by perpetrators"}
+      IMO-20250530-3: {crew_harm: false, reason: "unconfirmed"}
   gdelt:
     cameo_root_codes: [10, 11, 12, 13, 14, 15, 16, 17]   # conflict short of physical violence
     keep_location_types: [3, 4]      # city-level (US city, world city); country/state centroids removed

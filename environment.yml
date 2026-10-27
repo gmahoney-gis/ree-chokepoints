@@ -2,6 +2,9 @@
 # Create it with:   conda env create -f environment.yml
 # Use it with:      conda activate ree
 # After any change: conda env update -f environment.yml --prune
+# On this PC a network filter intercepts HTTPS, so conda may fail with an SSL certificate
+# error; if so, set CONDA_SSL_VERIFY=truststore for that one command (uses the Windows
+# certificate store), e.g. in PowerShell: $env:CONDA_SSL_VERIFY = "truststore"
 name: ree
 channels:
   - conda-forge
@@ -11,6 +14,7 @@ dependencies:
   - pandas
   - numpy
   - pyarrow          # reads the GDELT .parquet files
+  - xlrd             # reads the IMO GISIS .xls export (Decision 9)
   # Spatial data
   - geopandas
   - shapely

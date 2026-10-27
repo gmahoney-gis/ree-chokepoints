@@ -1,74 +1,101 @@
-2026-10-18 17:38:34 INFO    Run of s05_events started 2026-10-18T17:38:34
-2026-10-18 17:38:34 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-18 17:38:34 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-18 17:38:34 INFO    Source asam: skipped (not in events.sources)
-2026-10-18 17:38:34 INFO    Source gdelt: skipped (not in events.sources)
-2026-10-18 17:38:34 INFO    Task 2.14 | reading 28 ACLED chunks from C:\Users\garre\ree-chokepoints\data\raw\ACLED\acled_output\raw
-2026-10-18 17:38:34 INFO    Task 2.14 | chunk chokepoint1_2024-10-01_2025-09-30.csv           38,261 rows
-2026-10-18 17:38:34 INFO    Task 2.14 | chunk chokepoint2_2024-10-01_2025-09-30.csv            2,130 rows
-2026-10-18 17:38:34 INFO    Task 2.14 | chunk chokepoint3_2024-10-01_2025-09-30.csv            6,777 rows
-2026-10-18 17:38:34 INFO    Task 2.14 | chunk chokepoint4_2024-10-01_2025-09-30.csv           15,541 rows
-2026-10-18 17:38:34 INFO    Task 2.14 | chunk chokepoint5_2024-10-01_2025-09-30.csv              982 rows
-2026-10-18 17:38:34 INFO    Task 2.14 | chunk chokepoint6_2024-10-01_2025-09-30.csv            1,094 rows
-2026-10-18 17:38:34 INFO    Task 2.14 | chunk chokepoint7_2024-10-01_2025-09-30.csv              410 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint8_2024-10-01_2025-09-30.csv            4,784 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint9_2024-10-01_2025-09-30.csv            9,124 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint10_2024-10-01_2025-09-30.csv           6,382 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint11_2024-10-01_2025-09-30.csv           1,283 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint12_2024-10-01_2025-09-30.csv           7,039 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint13_2024-10-01_2025-09-30.csv             274 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint14_2024-10-01_2025-09-30.csv           1,167 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint15_2024-10-01_2025-09-30.csv             990 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint16_2024-10-01_2025-09-30.csv             307 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint17_2024-10-01_2025-09-30.csv           5,019 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint18_2024-10-01_2025-09-30.csv             262 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint19_2024-10-01_2025-09-30.csv           1,852 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint20_2024-10-01_2025-09-30.csv             606 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint21_2024-10-01_2025-09-30.csv             129 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint22_2024-10-01_2025-09-30.csv             811 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint23_2024-10-01_2025-09-30.csv           3,515 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint24_2024-10-01_2025-09-30.csv           3,170 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint25_2024-10-01_2025-09-30.csv             188 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint26_2024-10-01_2025-09-30.csv               3 rows
-2026-10-18 17:38:35 INFO    Task 2.14 | chunk chokepoint27_2024-10-01_2025-09-30.csv             918 rows
-2026-10-18 17:38:36 INFO    Task 2.14 | chunk chokepoint28_2024-10-01_2025-09-30.csv          58,485 rows
-2026-10-18 17:38:36 INFO    Task 2.14 | ACLED rows read in total: 171,503
-2026-10-18 17:38:36 INFO    Task 2.14 | repeated event IDs | kept 157,534 | removed 13,969 | reason: same event ID in more than one chunk
-2026-10-18 17:38:36 INFO    Task 2.14 | event dates in data: 2024-10-01 to 2025-09-30
-2026-10-18 17:38:36 INFO    Task 2.14 | event window 2024-10-01 to 2025-09-30 | kept 157,534 | removed 0 | reason: event date outside window
-2026-10-18 17:38:36 INFO    Task 2.18 | distance to 28 candidate chokepoints (all points in layer 'chokepoints', included or not)
-2026-10-18 17:38:37 INFO    Task 2.18 | within 500 km of a chokepoint | kept 136,791 | removed 20,743 | reason: farther than 500 km from every candidate chokepoint
-2026-10-18 17:38:37 INFO    Task 2.18 | check: 136,791 events within radius here vs 136,791 in the old derived file (difference +0)
-2026-10-18 17:38:37 INFO    Task 2.14 | events by type before filter:
-2026-10-18 17:38:37 INFO    Task 2.14 |   Explosions/Remote violence       44,616
-2026-10-18 17:38:37 INFO    Task 2.14 |   Protests                         41,352
-2026-10-18 17:38:37 INFO    Task 2.14 |   Battles                          28,463
-2026-10-18 17:38:37 INFO    Task 2.14 |   Strategic developments           11,064
-2026-10-18 17:38:37 INFO    Task 2.14 |   Riots                             5,817
-2026-10-18 17:38:37 INFO    Task 2.14 |   Violence against civilians        5,479
-2026-10-18 17:38:37 INFO    Task 2.14 | event types | kept 78,558 | removed 58,233 | reason: event type not in events.acled.event_types
-2026-10-18 17:38:37 INFO    Task 2.14 | events by type after filter:
-2026-10-18 17:38:37 INFO    Task 2.14 |   Explosions/Remote violence       44,616
-2026-10-18 17:38:37 INFO    Task 2.14 |   Battles                          28,463
-2026-10-18 17:38:37 INFO    Task 2.14 |   Violence against civilians        5,479
-2026-10-18 17:38:37 INFO    Task 2.14 | geo precision before filter: 1: 38,148, 2: 39,391, 3: 1,019
-2026-10-18 17:38:37 INFO    Task 2.14 | geo precision [3] | kept 77,539 | removed 1,019 | reason: location precise only to a region
-2026-10-18 17:38:37 INFO    Task 2.14 | removed for geo precision, top 10 countries:
-2026-10-18 17:38:37 INFO    Task 2.14 |   Ukraine                             708
-2026-10-18 17:38:37 INFO    Task 2.14 |   Yemen                               143
-2026-10-18 17:38:37 INFO    Task 2.14 |   Lebanon                              40
-2026-10-18 17:38:37 INFO    Task 2.14 |   Palestine                            40
-2026-10-18 17:38:37 INFO    Task 2.14 |   Israel                               28
-2026-10-18 17:38:37 INFO    Task 2.14 |   Syria                                13
-2026-10-18 17:38:37 INFO    Task 2.14 |   Haiti                                12
-2026-10-18 17:38:37 INFO    Task 2.14 |   Indian Ocean                          7
-2026-10-18 17:38:37 INFO    Task 2.14 |   Ethiopia                              6
-2026-10-18 17:38:37 INFO    Task 2.14 |   Mediterranean Sea                     5
-2026-10-18 17:38:37 INFO    Task 2.14 | ISO-3 codes assigned to 77,516 events; 23 left empty
-2026-10-18 17:38:37 INFO    Task 2.14 |   no ISO-3 for ACLED area 'Indian Ocean': 17 events
-2026-10-18 17:38:37 INFO    Task 2.14 |   no ISO-3 for ACLED area 'Mediterranean Sea': 5 events
-2026-10-18 17:38:37 INFO    Task 2.14 |   no ISO-3 for ACLED area 'Atlantic Ocean': 1 events
-2026-10-18 17:38:37 INFO    Task 2.14 | ACLED events kept: 77,539 (87,153 fatalities)
-2026-10-18 17:38:37 INFO    Task 2.18 | events layer: 77,539 events; by source: ACLED 77,539
-2026-10-18 17:38:39 INFO    Wrote layer 'events' (77,539 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-18 17:38:39 INFO    Run of s05_events finished
+2026-10-27 18:38:12 INFO    Run of s05_events started 2026-10-27T18:38:12
+2026-10-27 18:38:12 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-27 18:38:12 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-27 18:38:12 INFO    Source gdelt: skipped (not in events.sources)
+2026-10-27 18:38:12 INFO    Task 2.14 | reading 28 ACLED chunks from C:\Users\garre\ree-chokepoints\data\raw\ACLED\acled_output\raw
+2026-10-27 18:38:12 INFO    Task 2.14 | chunk chokepoint1_2024-10-01_2025-09-30.csv           38,261 rows
+2026-10-27 18:38:12 INFO    Task 2.14 | chunk chokepoint2_2024-10-01_2025-09-30.csv            2,130 rows
+2026-10-27 18:38:12 INFO    Task 2.14 | chunk chokepoint3_2024-10-01_2025-09-30.csv            6,777 rows
+2026-10-27 18:38:12 INFO    Task 2.14 | chunk chokepoint4_2024-10-01_2025-09-30.csv           15,541 rows
+2026-10-27 18:38:12 INFO    Task 2.14 | chunk chokepoint5_2024-10-01_2025-09-30.csv              982 rows
+2026-10-27 18:38:12 INFO    Task 2.14 | chunk chokepoint6_2024-10-01_2025-09-30.csv            1,094 rows
+2026-10-27 18:38:12 INFO    Task 2.14 | chunk chokepoint7_2024-10-01_2025-09-30.csv              410 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint8_2024-10-01_2025-09-30.csv            4,784 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint9_2024-10-01_2025-09-30.csv            9,124 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint10_2024-10-01_2025-09-30.csv           6,382 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint11_2024-10-01_2025-09-30.csv           1,283 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint12_2024-10-01_2025-09-30.csv           7,039 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint13_2024-10-01_2025-09-30.csv             274 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint14_2024-10-01_2025-09-30.csv           1,167 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint15_2024-10-01_2025-09-30.csv             990 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint16_2024-10-01_2025-09-30.csv             307 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint17_2024-10-01_2025-09-30.csv           5,019 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint18_2024-10-01_2025-09-30.csv             262 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint19_2024-10-01_2025-09-30.csv           1,852 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint20_2024-10-01_2025-09-30.csv             606 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint21_2024-10-01_2025-09-30.csv             129 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint22_2024-10-01_2025-09-30.csv             811 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint23_2024-10-01_2025-09-30.csv           3,515 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint24_2024-10-01_2025-09-30.csv           3,170 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint25_2024-10-01_2025-09-30.csv             188 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint26_2024-10-01_2025-09-30.csv               3 rows
+2026-10-27 18:38:13 INFO    Task 2.14 | chunk chokepoint27_2024-10-01_2025-09-30.csv             918 rows
+2026-10-27 18:38:14 INFO    Task 2.14 | chunk chokepoint28_2024-10-01_2025-09-30.csv          58,485 rows
+2026-10-27 18:38:14 INFO    Task 2.14 | ACLED rows read in total: 171,503
+2026-10-27 18:38:14 INFO    Task 2.14 | repeated event IDs | kept 157,534 | removed 13,969 | reason: same event ID in more than one chunk
+2026-10-27 18:38:14 INFO    Task 2.14 | event dates in data: 2024-10-01 to 2025-09-30
+2026-10-27 18:38:14 INFO    Task 2.14 | event window 2024-10-01 to 2025-09-30 | kept 157,534 | removed 0 | reason: event date outside window
+2026-10-27 18:38:14 INFO    Task 2.18 | ACLED: distance to 28 candidate chokepoints (all points in layer 'chokepoints', included or not)
+2026-10-27 18:38:15 INFO    Task 2.18 | within 500 km of a chokepoint | kept 136,791 | removed 20,743 | reason: farther than 500 km from every candidate chokepoint
+2026-10-27 18:38:15 INFO    Task 2.18 | check: 136,791 events within radius here vs 136,791 in the old derived file (difference +0)
+2026-10-27 18:38:15 INFO    Task 2.14 | events by type before filter:
+2026-10-27 18:38:15 INFO    Task 2.14 |   Explosions/Remote violence       44,616
+2026-10-27 18:38:15 INFO    Task 2.14 |   Protests                         41,352
+2026-10-27 18:38:15 INFO    Task 2.14 |   Battles                          28,463
+2026-10-27 18:38:15 INFO    Task 2.14 |   Strategic developments           11,064
+2026-10-27 18:38:15 INFO    Task 2.14 |   Riots                             5,817
+2026-10-27 18:38:15 INFO    Task 2.14 |   Violence against civilians        5,479
+2026-10-27 18:38:15 INFO    Task 2.14 | event types | kept 78,558 | removed 58,233 | reason: event type not in events.acled.event_types
+2026-10-27 18:38:15 INFO    Task 2.14 | events by type after filter:
+2026-10-27 18:38:15 INFO    Task 2.14 |   Explosions/Remote violence       44,616
+2026-10-27 18:38:15 INFO    Task 2.14 |   Battles                          28,463
+2026-10-27 18:38:15 INFO    Task 2.14 |   Violence against civilians        5,479
+2026-10-27 18:38:15 INFO    Task 2.14 | geo precision before filter: 1: 38,148, 2: 39,391, 3: 1,019
+2026-10-27 18:38:15 INFO    Task 2.14 | geo precision [3] | kept 77,539 | removed 1,019 | reason: location precise only to a region
+2026-10-27 18:38:15 INFO    Task 2.14 | removed for geo precision, top 10 countries:
+2026-10-27 18:38:15 INFO    Task 2.14 |   Ukraine                             708
+2026-10-27 18:38:15 INFO    Task 2.14 |   Yemen                               143
+2026-10-27 18:38:15 INFO    Task 2.14 |   Lebanon                              40
+2026-10-27 18:38:15 INFO    Task 2.14 |   Palestine                            40
+2026-10-27 18:38:15 INFO    Task 2.14 |   Israel                               28
+2026-10-27 18:38:15 INFO    Task 2.14 |   Syria                                13
+2026-10-27 18:38:15 INFO    Task 2.14 |   Haiti                                12
+2026-10-27 18:38:15 INFO    Task 2.14 |   Indian Ocean                          7
+2026-10-27 18:38:15 INFO    Task 2.14 |   Ethiopia                              6
+2026-10-27 18:38:15 INFO    Task 2.14 |   Mediterranean Sea                     5
+2026-10-27 18:38:15 INFO    Task 2.14 | ISO-3 codes assigned to 77,516 events; 23 left empty
+2026-10-27 18:38:15 INFO    Task 2.14 |   no ISO-3 for ACLED area 'Indian Ocean': 17 events
+2026-10-27 18:38:15 INFO    Task 2.14 |   no ISO-3 for ACLED area 'Mediterranean Sea': 5 events
+2026-10-27 18:38:15 INFO    Task 2.14 |   no ISO-3 for ACLED area 'Atlantic Ocean': 1 events
+2026-10-27 18:38:15 INFO    Task 2.14 | ACLED events kept: 77,539 (87,153 fatalities)
+2026-10-27 18:38:15 INFO    Task 2.15 | IMO GISIS incidents read from ListOfIncidents.xls: 200
+2026-10-27 18:38:15 INFO    Task 2.15 | no date | kept 200 | removed 0 | reason: row has no incident date
+2026-10-27 18:38:15 INFO    Task 2.15 | event dates in data: 2024-10-02 to 2025-09-30
+2026-10-27 18:38:15 INFO    Task 2.15 | event window 2024-10-01 to 2025-09-30 | kept 200 | removed 0 | reason: event date outside window
+2026-10-27 18:38:15 INFO    Task 2.15 | crew injured (keywords): 7
+2026-10-27 18:38:15 INFO    Task 2.15 | crew held (keywords): 21
+2026-10-27 18:38:15 INFO    Task 2.15 | crew threatened (keywords): 14
+2026-10-27 18:38:15 INFO    Task 2.15 | crew threatened, injured or held (keywords): 37 of 200
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20241019-1: keywords false -> true (keyword miss: threatened)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20241024-1: keywords false -> true (keyword miss: threatened)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20241023-1: keywords false -> true (keyword miss: held)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20241202-1: keywords false -> true (keyword miss: held)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20250119-1: keywords false -> true (keyword miss: held)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20250918-1: keywords false -> true (attempted attack)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20250502-1: keywords true -> false (injury not caused by perpetrators)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm override IMO-20250530-3: keywords true -> false (unconfirmed)
+2026-10-27 18:38:15 INFO    Task 2.15 | crew_harm review: keyword flags 37, overrides to true 6, overrides to false 2, crew_harm after overrides 41 of 200
+2026-10-27 18:38:15 INFO    Task 2.15 | by area (all / crew_harm): In territorial waters 128 / 25, In port area 54 / 10, In international waters 18 / 6
+2026-10-27 18:38:15 INFO    Task 2.15 | coordinates: 193 with both, 4 with neither, 3 with only one; 0 with both that could not be parsed
+2026-10-27 18:38:15 INFO    Task 2.15 | coordinates | kept 193 | removed 7 | reason: latitude or longitude missing or not in degrees and decimal minutes
+2026-10-27 18:38:15 INFO    Task 2.18 | IMO GISIS: distance to 28 candidate chokepoints (all points in layer 'chokepoints', included or not)
+2026-10-27 18:38:15 INFO    Task 2.18 | within 500 km of a chokepoint | kept 145 | removed 48 | reason: farther than 500 km from every candidate chokepoint
+2026-10-27 18:38:15 INFO    Task 2.15 | hand check 2026-10-27, within the prefilter radius: keyword flags 21, crew_harm after overrides 26 of 145; keyword-unflagged incidents searched by hand 124
+2026-10-27 18:38:15 INFO    Task 2.15 | within the prefilter radius, by area (all / crew_harm): In territorial waters 122 / 21, In port area 15 / 2, In international waters 8 / 3
+2026-10-27 18:38:17 INFO    Task 2.15 | ACLED match rule: within 50 km and dates at most 1 day(s) apart, against the 77,539 cleaned ACLED events
+2026-10-27 18:38:17 INFO    Task 2.15 | same event as ACLED | kept 136 | removed 9 | reason: matches a kept ACLED event; the ACLED record is kept
+2026-10-27 18:38:17 INFO    Task 2.15 | matched incidents with crew_harm: 1; ACLED events flagged imo_match: 28
+2026-10-27 18:38:17 INFO    Task 2.15 | IMO GISIS incidents kept: 136 (crew_harm 25, other 111)
+2026-10-27 18:38:18 INFO    Task 2.18 | events layer: 77,675 events; by source: ACLED 77,539, IMO GISIS 136
+2026-10-27 18:38:20 INFO    Wrote layer 'events' (77,675 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-27 18:38:20 INFO    Run of s05_events finished

@@ -132,11 +132,19 @@ These were decided after the proposal text was written. Follow them where they d
    records after 25 June 2024, so none fall in the event window. Piracy and armed-robbery
    incidents at sea come instead from the IMO GISIS Piracy and Armed Robbery module
    (`data/raw/GISIS/ListOfIncidents.xls`: all areas, 2 Oct 2024 to 30 Sep 2025, 200 incidents,
-   195 with coordinates in degrees and decimal minutes). Wherever the proposal, `docs/tasks.md`
+   193 with both coordinates in degrees and decimal minutes). Wherever the proposal, `docs/tasks.md`
    or the settings say ASAM, read IMO GISIS. The ASAM rules still apply: filter to the event
-   window, treat an incident within 50 km and one day of an ACLED event as the same event, and
-   publish only derived results, never individual incident rows. Which incidents count (all,
-   or only those where crew were threatened, injured or held) is decided when S05 is updated.
+   window, treat an incident within 50 km of a kept (cleaned, violent) ACLED event, with dates at
+   most one day apart, as the same event, and publish only derived results, never individual
+   incident rows. On a match the ACLED record is kept and flagged `imo_match`; the incident is
+   dropped. Counting rule: the main run counts only incidents where crew were threatened,
+   injured or held (`crew_harm`), set from keywords and negation words in
+   `events.imo_gisis` in the settings, corrected by a hand-checked overrides list there
+   (event ID -> crew_harm and a short reason category); misses are fixed by overrides, not more
+   keywords. S05 stores `crew_harm` on every incident and S07 applies `count_rule` (as with the
+   GDELT source count, Decision 5); counting all incidents is an S10 alternative. S05 reads only
+   the date, area, coordinates and the two crew texts; ship names, IMO numbers and narrative
+   text are never stored or logged.
 10. **How S08 closes chokepoints and where it writes.** (a) Closing a chokepoint removes every
    network edge that intersects its zone (the same test S06 uses for crossings), not only
    edges with an end inside; this replaces the wording of Decision 4. S08 routes on a copy of
@@ -205,5 +213,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 27 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set. Decision 12 recorded (gate lines for four wide straits); S03/S06 updated and rerun. S08 built 27 Oct 2026 (tasks 4.12-4.14): 22 chokepoints scored, 5 null; largest penalty 627.3% (Gibraltar, BEL_DZA_284610_1) applied to Hormuz, Bosporus, Bohai. Decision 13 recorded; S08b built 27 Oct 2026 (tasks 4.16-4.17): 19 chokepoints costed, 8 null (3 no sea route, 5 no affected flows); Suez check Cape-only 9.59 days and $900K one way vs ITF/OECD 10 days and $850K (ratios 0.96, 1.06).
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 27 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM. S05 updated 27 Oct 2026 (task 2.15): 136 IMO GISIS incidents in the events layer (25 crew_harm), 9 merged into ACLED events; S07 must apply count_rule before it is rerun (S07, S09, S11 not yet rerun). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set. Decision 12 recorded (gate lines for four wide straits); S03/S06 updated and rerun. S08 built 27 Oct 2026 (tasks 4.12-4.14): 22 chokepoints scored, 5 null; largest penalty 627.3% (Gibraltar, BEL_DZA_284610_1) applied to Hormuz, Bosporus, Bohai. Decision 13 recorded; S08b built 27 Oct 2026 (tasks 4.16-4.17): 19 chokepoints costed, 8 null (3 no sea route, 5 no affected flows); Suez check Cape-only 9.59 days and $900K one way vs ITF/OECD 10 days and $850K (ratios 0.96, 1.06).
 <!-- Update this section as work progresses. -->
