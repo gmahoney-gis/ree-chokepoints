@@ -381,6 +381,8 @@ layers:
   subflows: subflows
   routes: routes
   route_crossings: route_crossings
+  detours: detours                   # S08 (Decision 10): per-flow detour lengths, one row per flow and closed chokepoint
+  detour_routes: detour_routes       # S08 (Decision 10): rerouted lines; S08 never writes to routes
   chokepoint_scores: chokepoint_scores
   web_chokepoints: web_chokepoints
   web_routes: web_routes

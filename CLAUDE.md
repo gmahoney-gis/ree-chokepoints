@@ -135,6 +135,23 @@ These were decided after the proposal text was written. Follow them where they d
    window, treat an incident within 50 km and one day of an ACLED event as the same event, and
    publish only derived results, never individual incident rows. Which incidents count (all,
    or only those where crew were threatened, injured or held) is decided when S05 is updated.
+10. **How S08 closes chokepoints and where it writes.** (a) Closing a chokepoint removes every
+   network edge that intersects its zone (the same test S06 uses for crossings), not only
+   edges with an end inside; this replaces the wording of Decision 4. S08 routes on a copy of
+   searoute's own network passed with `M=`, and skips the zero-length edges joining 180° and
+   −180° when testing against zones. (b) One chokepoint is closed at a time; all other
+   passages stay open, including Panama when Suez is closed. For the Suez check (task 4.17),
+   S08b also reports a Cape-only figure from S06's Red Sea diversion routes. (c) Flows from or
+   to a port inside the closed zone are not rerouted; they are left out of Equation 4 and
+   reported as a separate count. (d) Flows with no remaining sea route get the largest penalty
+   observed across all chokepoints and count toward the share with no sea alternative; a lower
+   cap is tested in S10. (e) A chokepoint with no affected flows gets an empty (null) penalty;
+   S09 decides how to treat it. (f) Outputs: redundancy columns in `chokepoint_scores` start
+   with `redund_`; per-flow detours go in a new table `detours` (flow_id, chokepoint_id, old
+   and new length in nm, no_route flag, port_in_zone flag); rerouted lines go in a new layer
+   `detour_routes`. S08 never writes to `routes`. Open: the Taiwan and Korea Strait zones are
+   narrower than the straits, so a closure can leak along a parallel lane; zone sizes are
+   reviewed (task 2.8) before S08 is run, and any change applies to S06 and S08 alike.
 
 ## How to work in this repository
 
@@ -148,5 +165,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 26 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Next: S08.
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 26 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Decision 10 recorded (S08 closure rule and outputs); next: review Taiwan and Korea zone sizes (task 2.8), then build S08.
 <!-- Update this section as work progresses. -->
