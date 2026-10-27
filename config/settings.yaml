@@ -30,7 +30,8 @@ paths:
     portwatch_ports: data/raw/PORTWATCH/Ports.csv
     world_port_index: data/raw/WORLD_PORT_INDEX/NGA World Port Index-Pub150.csv
     acled: data/raw/ACLED/acled_output/raw          # one CSV per chokepoint, 2024-10-01 to 2025-09-30
-    asam: "data/raw/ASAM/ASAM_shp/Asam_data_download/All ASAM Events.shp"   # export ends 2024-06-25: 0 records in event window; check msi.nga.mil for newer data before S05
+    asam: "data/raw/ASAM/ASAM_shp/Asam_data_download/All ASAM Events.shp"   # export ends 2024-06-25; superseded by Decision 9: no records in event window
+    imo_gisis: data/raw/GISIS/ListOfIncidents.xls   # Decision 9 in CLAUDE.md: replaces ASAM; 2024-10-02 to 2025-09-30, 200 incidents
     gdelt: data/raw/GDELT                           # one parquet per day, 2025-05-01 to 2025-05-11 only
     natural_earth_countries: data/raw/NATURAL_EARTH/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp
     natural_earth_land: TODO
@@ -131,7 +132,7 @@ ports:
 events:
   # Event window, both dates inclusive (CLAUDE.md decision 7). The ACLED account has a
   # 12-month recency limit, so the window ends 12 months before the download. It applies
-  # to ACLED, ASAM and GDELT; trade stays calendar 2025 (project.study_year). Switching to
+  # to ACLED, IMO GISIS (Decision 9) and GDELT; trade stays calendar 2025 (project.study_year). Switching to
   # another window later only means changing these two dates.
   window_start: "2024-10-01"
   window_end: "2025-09-30"
@@ -143,6 +144,7 @@ events:
       - "Explosions/Remote violence"
       - "Violence against civilians"
     exclude_geo_precision: [3]       # region-level locations removed
+  # match rules apply to IMO GISIS incidents (Decision 9)
   asam:
     match_acled_km: 50               # ASAM record within 50 km and 1 day of an ACLED event = same event
     match_acled_days: 1

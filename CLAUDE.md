@@ -49,7 +49,7 @@ docs/                   methodology.md, tasks.md, and the qgis2web export for Gi
 | `s02_clean_trade.py` | ISO-3 codes, reconcile flows, classify transport mode, coverage report | 2.3–2.6 |
 | `s03_chokepoints.py` | Points and true-distance zones from the screening file | 2.9 |
 | `s04_ports.py` | Principal ports, port trade shares, landlocked gateways, snapping | 2.10–2.13 |
-| `s05_events.py` | ACLED, ASAM, GDELT filtered and merged into one event layer | 2.14–2.18 |
+| `s05_events.py` | ACLED, IMO GISIS, GDELT filtered and merged into one event layer | 2.14–2.18 |
 | `check_db.py` | Integrity check of the project database | 3.2 |
 | `s06_trade_exposure.py` | Sub-flows, routing (two scenarios), crossings, Equation 1, validation | 4.1–4.5 |
 | `s07_conflict_exposure.py` | Distances, rings, density, method comparison, ring overlap | 4.7–4.11 |
@@ -126,6 +126,15 @@ These were decided after the proposal text was written. Follow them where they d
    are reported beside the score (results table, figures, web map). The composite score keeps
    its three components; a cost-based redundancy measure is tested as one sensitivity
    alternative (Table 4). Parameters are in `reroute_impact` in the settings file.
+9. **IMO GISIS replaces ASAM as the at-sea incident source.** The ASAM download has no
+   records after 25 June 2024, so none fall in the event window. Piracy and armed-robbery
+   incidents at sea come instead from the IMO GISIS Piracy and Armed Robbery module
+   (`data/raw/GISIS/ListOfIncidents.xls`: all areas, 2 Oct 2024 to 30 Sep 2025, 200 incidents,
+   195 with coordinates in degrees and decimal minutes). Wherever the proposal, `docs/tasks.md`
+   or the settings say ASAM, read IMO GISIS. The ASAM rules still apply: filter to the event
+   window, treat an incident within 50 km and one day of an ACLED event as the same event, and
+   publish only derived results, never individual incident rows. Which incidents count (all,
+   or only those where crew were threatened, injured or held) is decided when S05 is updated.
 
 ## How to work in this repository
 
@@ -139,5 +148,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Next: S08.
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 26 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM (task 2.15; S05 not yet updated to read it). Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S08, S08b, S09 composite (5.2-5.4), S10, check_db.py, web map. Next: S08.
 <!-- Update this section as work progresses. -->
