@@ -420,6 +420,36 @@ outputs:
     year_scale: ["#b3e6f7", "#4fb3d9", "#1f7aa3"]   # cyan, light (earliest) to dark (latest)
 
 # ---------------------------------------------------------------------
+# Integrity check of the project database (check_db.py, task 3.2)
+# ---------------------------------------------------------------------
+check_db:
+  # Layers checked by "--stage inputs" (run straight after S05): the S01-S05 layers,
+  # by their key under layers:. "--stage all" (end of run_all) checks every layer.
+  inputs_layers: [trade_flows, chokepoints, zones, gates, ports, country_port_shares,
+                  events, gdelt_country_context]
+  # Layers not built yet. A missing layer listed here is a WARN (expected gap) with its
+  # reason; any other missing layer is a FAIL. Remove an entry once its script writes it.
+  expected_missing_layers:
+    country_port_shares: "waits for PortWatch ports (task 2.11)"
+    gdelt_country_context: "waits for GDELT (tasks 2.16-2.17)"
+    web_chokepoints: "written by S11 (task 6.9)"
+    web_routes: "written by S11 (task 6.9)"
+  # chokepoint_scores columns (besides chokepoint_id and name) must start with one of
+  # these prefixes; the script named owns the prefix (CLAUDE.md prefix rule).
+  score_prefixes:
+    trade_: S06
+    viol_: S07
+    tens_: S07
+    redund_: S08
+    impact_: S08b
+    quad_: S09
+    score_: S09
+    sens_: S10
+  max_ids_listed: 10                 # IDs listed per failed check; project-made keys only, never event IDs
+  zone_radius_tolerance: 0.01        # zone vertices within 1% of the radius from the centre (true-distance circles)
+  length_tolerance_nm: 1             # a detour may not be shorter than its original route by more than this
+
+# ---------------------------------------------------------------------
 # GeoPackage layer names (proposal Table 3). Scripts must use these names.
 # ---------------------------------------------------------------------
 layers:

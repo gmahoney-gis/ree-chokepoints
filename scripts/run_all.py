@@ -4,6 +4,10 @@ Usage:
     python scripts/run_all.py                  # everything, S01 to S11
     python scripts/run_all.py s02              # one script
     python scripts/run_all.py s06 s07 s09 s11  # several, always in the standard order
+    python scripts/run_all.py check_db_all     # the integrity check of every layer
+
+check_db.py runs twice: "check_db" checks the S01-S05 layers straight after S05
+(--stage inputs) and "check_db_all" checks every layer at the end (--stage all).
 
 Each script runs in its own Python process. The run stops at the first script
 that fails or has not been written yet, and says which one and why.
@@ -18,10 +22,15 @@ from pathlib import Path
 
 import common
 
-# Task 0.5: the standard run order. check_db (task 3.2) checks the database
-# that S01-S05 build, so it runs straight after S05.
+# Task 0.5: the standard run order. check_db (task 3.2) checks the layers that
+# S01-S05 build straight after S05, and check_db_all checks every layer at the end.
 RUN_ORDER = ["s01", "s02", "s03", "s04", "s05", "check_db",
-             "s06", "s07", "s08", "s08b", "s09", "s10", "s11"]
+             "s06", "s07", "s08", "s08b", "s09", "s10", "s11", "check_db_all"]
+
+# Steps that run a script under another name or with options: step -> (script, arguments).
+# Every other step runs the script of the same name with no arguments.
+STEP_SCRIPTS = {"check_db": ("check_db", ["--stage", "inputs"]),
+                "check_db_all": ("check_db", ["--stage", "all"])}
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 
@@ -62,14 +71,14 @@ def find_script(name, scripts_dir):
     return matches[0] if matches else None
 
 
-def run_script(path):
-    """Run one script in its own Python process.
+def run_script(path, args=()):
+    """Run one script (with its arguments, if any) in its own Python process.
 
     Its normal output goes straight to the screen. Its error output is shown
     on screen too and kept, so the last line (the error message) can be reported.
     Returns (exit code, last line of error output).
     """
-    process = subprocess.Popen([sys.executable, str(path)], cwd=common.ROOT,
+    process = subprocess.Popen([sys.executable, str(path), *args], cwd=common.ROOT,
                                stderr=subprocess.PIPE, text=True,
                                encoding="utf-8", errors="replace")
     last_error_line = ""
@@ -101,30 +110,32 @@ def main():
     passed = []
     for i, name in enumerate(chosen):
         not_run = chosen[i + 1:]
-        path = find_script(name, scripts_dir)
+        script, script_args = STEP_SCRIPTS.get(name, (name, []))
+        path = find_script(script, scripts_dir)
         if path is None:
             log.error("STOPPED: %s has not been written yet (no %s in %s)",
-                      name, f"{name}_*.py" if name != "check_db" else "check_db.py", scripts_dir)
+                      name, f"{script}_*.py" if script != "check_db" else "check_db.py", scripts_dir)
             summarise(log, passed, f"{name} (not written yet)", not_run)
             return 1
 
-        log.info("---- %s started", path.name)
+        label = " ".join([path.name, *script_args])
+        log.info("---- %s started", label)
         start = time.perf_counter()
-        exit_code, error_line = run_script(path)
+        exit_code, error_line = run_script(path, script_args)
         seconds = time.perf_counter() - start
 
         if exit_code != 0:
             log.error("STOPPED: %s failed after %.1f s (exit code %d): %s",
-                      path.name, seconds, exit_code, error_line or "no error message")
+                      label, seconds, exit_code, error_line or "no error message")
             script_log = log_dir / f"{path.stem}.log"
             if script_log.exists():
                 log.error("Details: %s", script_log)
             else:
                 log.error("Details: %s (no log was written)", script_log)
-            summarise(log, passed, f"{path.name} (failed)", not_run)
+            summarise(log, passed, f"{label} (failed)", not_run)
             return 1
-        log.info("---- %s finished OK in %.1f s", path.name, seconds)
-        passed.append(path.name)
+        log.info("---- %s finished OK in %.1f s", label, seconds)
+        passed.append(label)
 
     summarise(log, passed, None, [])
     return 0
