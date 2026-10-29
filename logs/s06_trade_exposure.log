@@ -1,195 +1,908 @@
-2026-10-27 16:38:18 INFO    Run of s06_trade_exposure started 2026-10-27T16:38:18
-2026-10-27 16:38:18 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-27 16:38:18 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-27 16:38:18 INFO    Task 4.1 | trade flows in main run with maritime_value_usd > 0 | kept 1,396 | removed 5,473 | reason: not in main run, or no seaborne value
-2026-10-27 16:38:18 INFO    Task 4.1 | flows 1,396 | maritime value 1,943,497,016 USD | maritime weight 127,496,747 kg (68 flows have no weight)
-2026-10-27 16:38:18 INFO    Task 4.1 | ports with use_for_routing = true | kept 283 | removed 9 | reason: flagged by S04 (far from the network, country has another port)
-2026-10-27 16:38:20 INFO    Task 4.1 | country pairs 834 | candidate ports compared per pair: nearest pair of snapped network points
-2026-10-27 16:38:20 INFO    Task 4.1 | sub-flows 1,396 (one per flow, share 1)
-2026-10-27 16:38:20 INFO    Task 4.1 | sub-flows with different origin and destination network points | kept 1,395 | removed 1 | reason: both ports snap to the same network node; left unrouted, 44,493 USD
-2026-10-27 16:38:20 INFO    Task 4.1 |   unrouted KEN_RWA_284690 (KEN_WPI47100 -> RWA_WPI47100): 44,493 USD
-2026-10-27 16:38:20 INFO    Task 4.2 | searoute 1.6.0 passage tags: babalmandab, bering, bosporus, chili, gibraltar, malacca, northwest, ormuz, panama, south_africa, suez, sunda
-2026-10-27 16:38:20 INFO    Task 4.2 | scenario baseline: closed chokepoints none -> searoute restrictions ['northwest']
-2026-10-27 16:38:20 INFO    Task 4.2 | scenario red_sea_diversion: closed chokepoints ['Suez Canal', 'Bab el-Mandeb Strait'] -> searoute restrictions ['northwest', 'suez', 'babalmandab']; displaced routes also close ['Panama Canal'] -> ['northwest', 'suez', 'babalmandab', 'panama']
-2026-10-27 16:38:20 INFO    Task 4.2 | unique port pairs to route: 833 (from 1,395 sub-flows)
-2026-10-27 16:38:48 INFO    Task 4.2 | baseline (restrictions ['northwest']): port pairs 833 | routed 833 | failed (no sea route with these restrictions) 0 | routes crossing 180 degrees 48
-2026-10-27 16:38:48 INFO    Task 4.2 | baseline: routes through each searoute passage: babalmandab 237, bosporus 50, chili 4, gibraltar 293, malacca 194, ormuz 29, panama 30, south_africa 23, suez 239, sunda 18
-2026-10-27 16:38:48 INFO    Task 4.3 | included chokepoint zones | kept 27 | removed 0 | reason: included is not 'yes' in the screening file
-2026-10-27 16:38:49 INFO    Task 4.3 | crossing test: gate line 4, zone 23 (Decision 12)
-2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint11 Taiwan Strait
-2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint12 Korea Strait
-2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint14 Luzon Strait
-2026-10-27 16:38:49 INFO    Task 4.3 |   gate: chokepoint22 Yucatan Channel
-2026-10-27 16:38:49 INFO    Task 4.3 | baseline: route-zone intersections 1,836 | check on continuous routes with zones shifted +-360: 1,836 | agree
-2026-10-27 16:38:49 INFO    Task 4.3 | baseline: routes crossing 180 degrees that cross a zone: 37 of 48
-2026-10-27 16:39:11 INFO    Task 4.2 | red_sea_diversion, displaced routes (restrictions ['northwest', 'suez', 'babalmandab', 'panama']): port pairs 240 | routed 235 | failed (no sea route with these restrictions) 5 | routes crossing 180 degrees 1
-2026-10-27 16:39:11 INFO    Task 4.2 | red_sea_diversion, displaced routes: routes through each searoute passage: bosporus 19, chili 3, gibraltar 98, malacca 6, ormuz 15, south_africa 234, sunda 154
-2026-10-27 16:39:11 INFO    Task 4.2 | red_sea_diversion: baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 240, rerouted (5 failed) | other routes copied from the baseline: 593
-2026-10-27 16:39:11 INFO    Task 4.3 | red_sea_diversion: route-zone intersections 1,315 | check on continuous routes with zones shifted +-360: 1,315 | agree
-2026-10-27 16:39:11 INFO    Task 4.3 | red_sea_diversion: routes crossing 180 degrees that cross a zone: 38 of 49
-2026-10-27 16:39:32 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes (restrictions ['northwest', 'suez', 'babalmandab']): port pairs 240 | routed 235 | failed (no sea route with these restrictions) 5 | routes crossing 180 degrees 101
-2026-10-27 16:39:32 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes: routes through each searoute passage: bosporus 19, chili 2, gibraltar 98, malacca 6, ormuz 15, panama 101, south_africa 134, sunda 54
-2026-10-27 16:39:32 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant): baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 240, rerouted (5 failed) | other routes copied from the baseline: 593
-2026-10-27 16:39:33 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): route-zone intersections 1,422 | check on continuous routes with zones shifted +-360: 1,422 | agree
-2026-10-27 16:39:33 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): routes crossing 180 degrees that cross a zone: 138 of 149
-2026-10-27 16:39:33 INFO    Task 4.6 | correction | red_sea_diversion: 240 baseline routes crossing the closed chokepoints (373 sub-flows, 183,650,376 USD) are rerouted with diverted_also_closed as well | reason: the first run sent displaced Northeast Asia-Europe flows through the Panama Canal (shortest network distance), but the proposal defines the scenario as forcing ships round the Cape of Good Hope; Panama stays open for all other flows
-2026-10-27 16:39:33 INFO    Task 4.6 | displaced routes, Cape diversion: 235 routed | via south_africa 234 | via panama 0 | median length 13,214 nm
-2026-10-27 16:39:33 INFO    Task 4.6 | displaced routes, Panama open (first run): 235 routed | via south_africa 134 | via panama 101 | median length 13,035 nm
-2026-10-27 16:39:33 INFO    Task 4.2 | scenario red_sea_diversion: failed pairs carry 6 sub-flows, 26,066 USD
-2026-10-27 16:39:33 INFO    Task 4.2 |   failed BEL_WPI31250 -> JOR_WPI48090 (1 sub-flows, 524 USD)
-2026-10-27 16:39:33 INFO    Task 4.2 |   failed ESP_WPI38550 -> JOR_WPI48090 (1 sub-flows, 109 USD)
-2026-10-27 16:39:33 INFO    Task 4.2 |   failed IND_WPI48840 -> EGY_WPI48055 (2 sub-flows, 738 USD)
-2026-10-27 16:39:33 INFO    Task 4.2 |   failed IND_WPI48840 -> YEM_WPI48155 (1 sub-flows, 22,176 USD)
-2026-10-27 16:39:33 INFO    Task 4.2 |   failed USA_WPI7250 -> JOR_WPI48090 (1 sub-flows, 2,518 USD)
-2026-10-27 16:39:33 INFO    Task 4.2 | check: routes reaching north of 66.56 N: 2
-    RUS_WPI62950__USA_WPI7250__baseline (max lat 71.3, 3,807 nm)
-    RUS_WPI62950__USA_WPI7250__red_sea_diversion (max lat 71.3, 3,807 nm)
-2026-10-27 16:39:33 INFO    Task 4.3 | ports whose network point lies inside a zone (their routes cross it): 8
-    DNK_WPI29230 in Oresund Strait
-    EGY_WPI48040 in Suez Canal
-    MAR_WPI45753 in Gibraltar Strait
-    PAN_WPI15410 in Panama Canal
-    PAN_WPI9860 in Panama Canal
-    PAN_WPI9865 in Panama Canal
-    SWE_WPI24210 in Oresund Strait
-    TUR_WPI43420 in Bosporus Strait
-2026-10-27 16:39:33 INFO    Task 4.3 | scenario baseline: routed flows 1,395 | crossings 3,035 | flows crossing at least one chokepoint 1,108 | flows crossing none 287
-2026-10-27 16:39:33 INFO    Task 4.3 | scenario red_sea_diversion: routed flows 1,389 | crossings 2,208 | flows crossing at least one chokepoint 1,091 | flows crossing none 298
-2026-10-27 16:39:33 INFO    Task 4.4 | main ranking field: trade_value_base -> trade_rank_base (1 = most exposed; ties share the higher rank)
-2026-10-27 16:39:33 INFO    Task 4.4 | trade exposure by chokepoint (value USD, share of the column total, flows):
-2026-10-27 16:39:33 INFO      rank  chokepoint                 baseline USD   share  flows        red sea USD   share  flows
-2026-10-27 16:39:33 INFO         1  Taiwan Strait               506,193,811   24.1%    266        506,193,811   31.5%    266
-2026-10-27 16:39:33 INFO         2  Korea Strait                230,442,963   11.0%    110        230,442,963   14.4%    110
-2026-10-27 16:39:33 INFO         3  Malacca Strait              201,911,830    9.6%    304         33,452,711    2.1%     62
-2026-10-27 16:39:33 INFO         4  Gibraltar Strait            186,705,458    8.9%    483         62,960,554    3.9%    399
-2026-10-27 16:39:33 INFO         5  Bab el-Mandeb Strait        183,647,224    8.8%    370                  0    0.0%      0
-2026-10-27 16:39:33 INFO         6  Suez Canal                  183,627,462    8.8%    370                  0    0.0%      0
-2026-10-27 16:39:33 INFO         7  Tsugaru Strait              154,517,515    7.4%     34        154,517,515    9.6%     34
-2026-10-27 16:39:33 INFO         8  Dover Strait                110,851,342    5.3%    446        110,850,817    6.9%    445
-2026-10-27 16:39:33 INFO         9  Sunda Strait                107,545,842    5.1%     28        276,004,960   17.2%    270
-2026-10-27 16:39:33 INFO        10  Oresund Strait               81,356,496    3.9%    260         81,356,496    5.1%    260
-2026-10-27 16:39:33 INFO        11  Bohai Strait                 74,632,095    3.6%    105         74,632,095    4.6%    105
-2026-10-27 16:39:33 INFO        12  Luzon Strait                 61,739,636    2.9%     21         61,739,636    3.8%     21
-2026-10-27 16:39:33 INFO        13  Strait of Hormuz              5,491,873    0.3%     47          5,491,873    0.3%     47
-2026-10-27 16:39:33 INFO        14  Bosporus Strait               4,686,610    0.2%     78          4,686,610    0.3%     78
-2026-10-27 16:39:33 INFO        15  Mindoro Strait                  924,444    0.0%      8            924,444    0.1%      8
-2026-10-27 16:39:33 INFO        16  Panama Canal                    638,948    0.0%     42            618,774    0.0%     38
-2026-10-27 16:39:33 INFO        17  Mona Passage                    536,016    0.0%     29            515,842    0.0%     25
-2026-10-27 16:39:33 INFO        18  Lombok Strait                   506,997    0.0%      3            506,997    0.0%      3
-2026-10-27 16:39:33 INFO        18  Makassar Strait                 506,997    0.0%      3            506,997    0.0%      3
-2026-10-27 16:39:33 INFO        20  Yucatan Channel                 103,570    0.0%     19            103,570    0.0%     19
-2026-10-27 16:39:33 INFO        21  Magellan Strait                  35,665    0.0%      6             56,042    0.0%     12
-2026-10-27 16:39:33 INFO        22  Torres Strait                    20,604    0.0%      3             20,604    0.0%      3
-2026-10-27 16:39:33 INFO        23  Balabac Strait                        0    0.0%      0                  0    0.0%      0
-2026-10-27 16:39:33 INFO        23  Bering Strait                         0    0.0%      0                  0    0.0%      0
-2026-10-27 16:39:33 INFO        23  Kerch Strait                          0    0.0%      0                  0    0.0%      0
-2026-10-27 16:39:33 INFO        23  Ombai Strait                          0    0.0%      0                  0    0.0%      0
-2026-10-27 16:39:33 INFO        23  Windward Passage                      0    0.0%      0                  0    0.0%      0
-2026-10-27 16:39:33 INFO    Task 4.3 | scenario red_sea_diversion (diverted_also_closed open): routed flows 1,389 | crossings 2,401 | flows crossing at least one chokepoint 1,091 | flows crossing none 298
-2026-10-27 16:39:34 INFO    Read Daily_Chokepoints_Data.csv: 79,548 rows | 28 chokepoints | 2019-01-01 to 2026-10-11
-2026-10-27 16:39:34 INFO    Task 4.5 | daily transits 2025-01-01 to 2025-12-31: 10,220 rows | days per chokepoint 365 expected, all complete
-2026-10-27 16:39:34 INFO    Read PortWatch IMF Chokepoints.csv: 28 rows | header fields 25 | fields per row [25]
-2026-10-27 16:39:34 INFO    Task 4.5 | check: vessel_count_total = sum of container+dry_bulk+general_cargo+RoRo+tanker in 28 of 28 rows
-2026-10-27 16:39:34 INFO    Task 4.5 | variant summary_file_panama_open: flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.518, p = 0.0057 -> PASS (pass mark 0.50)
-2026-10-27 16:39:34 INFO        PortWatch rank  1  model rank 10  Taiwan Strait          pw share  16.4%  model share   3.9%
-2026-10-27 16:39:34 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.9%  model share   8.0%
-2026-10-27 16:39:34 INFO        PortWatch rank  3  model rank  2  Dover Strait           pw share  10.5%  model share  15.9%
-2026-10-27 16:39:34 INFO        PortWatch rank  4  model rank 12  Malacca Strait         pw share   9.1%  model share   2.6%
-2026-10-27 16:39:34 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   7.7%  model share  16.6%
-2026-10-27 16:39:34 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   7.1%  model share   3.2%
-2026-10-27 16:39:34 INFO        PortWatch rank  7  model rank  8  Bohai Strait           pw share   5.8%  model share   4.4%
-2026-10-27 16:39:34 INFO        PortWatch rank  8  model rank  3  Oresund Strait         pw share   3.9%  model share  10.8%
-2026-10-27 16:39:34 INFO        PortWatch rank  9  model rank 22  Suez Canal             pw share   2.9%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 10  model rank 22  Kerch Strait           pw share   2.8%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 11  model rank 22  Bab el-Mandeb Strait   pw share   2.6%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 12  model rank 13  Strait of Hormuz       pw share   2.6%  model share   2.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 13  model rank  5  Tsugaru Strait         pw share   2.5%  model share   8.5%
-2026-10-27 16:39:34 INFO        PortWatch rank 14  model rank 15  Yucatan Channel        pw share   1.8%  model share   0.8%
-2026-10-27 16:39:34 INFO        PortWatch rank 15  model rank 14  Luzon Strait           pw share   1.6%  model share   0.8%
-2026-10-27 16:39:34 INFO        PortWatch rank 16  model rank 21  Windward Passage       pw share   1.4%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 17  model rank  4  Panama Canal           pw share   1.3%  model share   8.9%
-2026-10-27 16:39:34 INFO        PortWatch rank 18  model rank  9  Sunda Strait           pw share   0.9%  model share   4.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 19  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.3%
-2026-10-27 16:39:34 INFO        PortWatch rank 20  model rank  6  Mona Passage           pw share   0.6%  model share   8.2%
-2026-10-27 16:39:34 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.4%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 23  model rank 22  Ombai Strait           pw share   0.3%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 24  model rank 22  Balabac Strait         pw share   0.3%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.4%
-2026-10-27 16:39:34 INFO        PortWatch rank 27  model rank 22  Bering Strait          pw share   0.0%  model share   0.0%
-2026-10-27 16:39:34 INFO    Task 4.5 | variant daily2025_panama_open: flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.621, p = 0.00055 -> PASS (pass mark 0.50)
-2026-10-27 16:39:34 INFO        PortWatch rank  1  model rank 10  Taiwan Strait          pw share  16.7%  model share   3.9%
-2026-10-27 16:39:34 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.7%  model share   8.0%
-2026-10-27 16:39:34 INFO        PortWatch rank  3  model rank 12  Malacca Strait         pw share  11.4%  model share   2.6%
-2026-10-27 16:39:34 INFO        PortWatch rank  4  model rank  2  Dover Strait           pw share  11.1%  model share  15.9%
-2026-10-27 16:39:34 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   8.0%  model share  16.6%
-2026-10-27 16:39:34 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   6.8%  model share   3.2%
-2026-10-27 16:39:34 INFO        PortWatch rank  7  model rank  8  Bohai Strait           pw share   5.7%  model share   4.4%
-2026-10-27 16:39:34 INFO        PortWatch rank  8  model rank  3  Oresund Strait         pw share   3.7%  model share  10.8%
-2026-10-27 16:39:34 INFO        PortWatch rank  9  model rank 13  Strait of Hormuz       pw share   3.0%  model share   2.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 10  model rank  5  Tsugaru Strait         pw share   2.5%  model share   8.5%
-2026-10-27 16:39:34 INFO        PortWatch rank 11  model rank 15  Yucatan Channel        pw share   2.0%  model share   0.8%
-2026-10-27 16:39:34 INFO        PortWatch rank 12  model rank 22  Suez Canal             pw share   1.9%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 13  model rank 14  Luzon Strait           pw share   1.8%  model share   0.8%
-2026-10-27 16:39:34 INFO        PortWatch rank 14  model rank 22  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 15  model rank 21  Windward Passage       pw share   1.5%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 16  model rank  4  Panama Canal           pw share   1.4%  model share   8.9%
-2026-10-27 16:39:34 INFO        PortWatch rank 17  model rank 22  Kerch Strait           pw share   1.0%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 18  model rank  9  Sunda Strait           pw share   1.0%  model share   4.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 19  model rank  6  Mona Passage           pw share   0.7%  model share   8.2%
-2026-10-27 16:39:34 INFO        PortWatch rank 20  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.3%
-2026-10-27 16:39:34 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 23  model rank 22  Balabac Strait         pw share   0.3%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 24  model rank 22  Ombai Strait           pw share   0.3%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.4%
-2026-10-27 16:39:34 INFO        PortWatch rank 27  model rank 22  Bering Strait          pw share   0.1%  model share   0.0%
-2026-10-27 16:39:34 INFO    Task 4.5 | variant daily2025_cape_diversion (main result): flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.710, p = 3.4e-05 -> PASS (pass mark 0.50)
-2026-10-27 16:39:34 INFO        PortWatch rank  1  model rank  4  Taiwan Strait          pw share  16.7%  model share  12.0%
-2026-10-27 16:39:34 INFO        PortWatch rank  2  model rank  6  Korea Strait           pw share  15.7%  model share   5.0%
-2026-10-27 16:39:34 INFO        PortWatch rank  3  model rank  9  Malacca Strait         pw share  11.4%  model share   2.8%
-2026-10-27 16:39:34 INFO        PortWatch rank  4  model rank  1  Dover Strait           pw share  11.1%  model share  20.2%
-2026-10-27 16:39:34 INFO        PortWatch rank  5  model rank  2  Gibraltar Strait       pw share   8.0%  model share  18.1%
-2026-10-27 16:39:34 INFO        PortWatch rank  6  model rank  8  Bosporus Strait        pw share   6.8%  model share   3.5%
-2026-10-27 16:39:34 INFO        PortWatch rank  7  model rank  7  Bohai Strait           pw share   5.7%  model share   4.8%
-2026-10-27 16:39:34 INFO        PortWatch rank  8  model rank  5  Oresund Strait         pw share   3.7%  model share  11.8%
-2026-10-27 16:39:34 INFO        PortWatch rank  9  model rank 10  Strait of Hormuz       pw share   3.0%  model share   2.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 10  model rank 12  Tsugaru Strait         pw share   2.5%  model share   1.5%
-2026-10-27 16:39:34 INFO        PortWatch rank 11  model rank 15  Yucatan Channel        pw share   2.0%  model share   0.9%
-2026-10-27 16:39:34 INFO        PortWatch rank 12  model rank 21  Suez Canal             pw share   1.9%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 13  model rank 14  Luzon Strait           pw share   1.8%  model share   1.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 14  model rank 21  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 15  model rank 21  Windward Passage       pw share   1.5%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 16  model rank 11  Panama Canal           pw share   1.4%  model share   1.7%
-2026-10-27 16:39:34 INFO        PortWatch rank 17  model rank 21  Kerch Strait           pw share   1.0%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 18  model rank  3  Sunda Strait           pw share   1.0%  model share  12.2%
-2026-10-27 16:39:34 INFO        PortWatch rank 19  model rank 13  Mona Passage           pw share   0.7%  model share   1.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 20  model rank 17  Mindoro Strait         pw share   0.6%  model share   0.4%
-2026-10-27 16:39:34 INFO        PortWatch rank 21  model rank 18  Makassar Strait        pw share   0.6%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 23  model rank 21  Balabac Strait         pw share   0.3%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 24  model rank 21  Ombai Strait           pw share   0.3%  model share   0.0%
-2026-10-27 16:39:34 INFO        PortWatch rank 25  model rank 18  Lombok Strait          pw share   0.2%  model share   0.1%
-2026-10-27 16:39:34 INFO        PortWatch rank 26  model rank 16  Magellan Strait        pw share   0.1%  model share   0.5%
-2026-10-27 16:39:34 INFO        PortWatch rank 27  model rank 21  Bering Strait          pw share   0.1%  model share   0.0%
-2026-10-27 16:39:34 INFO    Task 4.5 | for reference only, baseline flow shares vs daily 2025 transits: rho = 0.804, p = 4.4e-07
-2026-10-27 16:39:34 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\validation.csv (81 rows, 3 variants)
-2026-10-27 16:39:34 INFO    Context | PortWatch transits per calendar year (all types / container):
-2026-10-27 16:39:34 INFO        Suez Canal             2023  days 365  all  26,895  container  6,977
-2026-10-27 16:39:34 INFO        Suez Canal             2024  days 366  all  14,498  container  3,198
-2026-10-27 16:39:34 INFO        Suez Canal             2025  days 365  all  14,070  container  3,351
-2026-10-27 16:39:34 INFO        Bab el-Mandeb Strait   2023  days 365  all  27,015  container  6,739
-2026-10-27 16:39:34 INFO        Bab el-Mandeb Strait   2024  days 366  all  11,901  container  1,967
-2026-10-27 16:39:34 INFO        Bab el-Mandeb Strait   2025  days 365  all  12,218  container  2,445
-2026-10-27 16:39:34 INFO        Cape of Good Hope      2023  days 365  all  17,926  container  2,249
-2026-10-27 16:39:34 INFO        Cape of Good Hope      2024  days 366  all  31,846  container  6,961
-2026-10-27 16:39:34 INFO        Cape of Good Hope      2025  days 365  all  32,653  container  7,387
-2026-10-27 16:39:34 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\red_sea_context.csv (9 rows)
-2026-10-27 16:39:35 INFO    Wrote layer 'subflows' (1,396 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:39:35 INFO    Wrote layer 'routes' (1,661 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:39:35 INFO    Wrote layer 'route_crossings' (5,243 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:39:35 INFO    chokepoint_scores exists (27 rows); replacing 8 S06 columns, keeping 11 others: ['viol_n_100', 'viol_fw_100', 'viol_n_250', 'viol_fw_250', 'viol_n_500', 'viol_fw_500', 'viol_kde_100', 'viol_kde_250', 'viol_kde_500', 'viol_rank', 'quad_trade_conflict']
-2026-10-27 16:39:35 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 16:39:35 INFO    Run of s06_trade_exposure finished
+2026-10-29 15:41:38 INFO    Run of s06_trade_exposure started 2026-10-29T15:41:38
+2026-10-29 15:41:38 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-29 15:41:38 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-29 15:41:38 INFO    Task 4.1 | trade flows in main run with maritime_value_usd > 0 | kept 1,396 | removed 5,473 | reason: not in main run, or no seaborne value
+2026-10-29 15:41:38 INFO    Task 4.1 | flows 1,396 | maritime value 1,943,497,016 USD | maritime weight 127,496,747 kg (68 flows have no weight)
+2026-10-29 15:41:38 INFO    Task 4.1 | ports with use_for_routing = true | kept 480 | removed 1 | reason: not used by the port assignment (S04)
+2026-10-29 15:41:38 INFO    Task 4.1 | ports 480 on 407 distinct network points
+2026-10-29 15:41:38 INFO    Task 4.1 | port assignment: principal_ports (ports.assignment; Decision 14)
+2026-10-29 15:41:38 INFO    Task 4.1 | country_port_shares: 671 rows | 65 exporting countries | 122 importing countries
+2026-10-29 15:41:38 INFO    Task 4.1 | sub-flows 52,292 from 1,396 flows (origin export ports x destination import ports) | per flow: 1 sub-flow 50 flows, median 16, max 484 (JPN_CHN_280530)
+2026-10-29 15:41:38 INFO    Task 4.1 | check: shares sum to 1 for 1396 of 1396 flows | sub-flow value total differs from the flow total by 0.00 USD
+2026-10-29 15:41:38 INFO    Task 4.1 | sub-flows with different origin and destination network points | kept 52,289 | removed 3 | reason: both ports snap to the same network point: no sea leg, no route, cross no chokepoint; value kept in the totals, 46,938 USD
+2026-10-29 15:41:38 INFO    Task 4.1 |   same network point EST_FIN_284690_30 (EST_port874 -> FIN_port497): 18 USD
+2026-10-29 15:41:38 INFO    Task 4.1 |   same network point KEN_RWA_284690_1 (KEN_port757 -> RWA_port757): 44,493 USD
+2026-10-29 15:41:38 INFO    Task 4.1 |   same network point RUS_EST_284610_2 (RUS_port1095 -> EST_port2133): 2,427 USD
+2026-10-29 15:41:38 INFO    Task 4.1 | routed sub-flows 52,289 | port pairs 27,502 | network-point pairs 21,619
+2026-10-29 15:41:38 INFO    Task 4.2 | searoute 1.6.0 passage tags: babalmandab, bering, bosporus, chili, gibraltar, malacca, northwest, ormuz, panama, south_africa, suez, sunda
+2026-10-29 15:41:38 INFO    Task 4.2 | scenario baseline: closed chokepoints none -> searoute restrictions ['northwest']
+2026-10-29 15:41:38 INFO    Task 4.2 | scenario red_sea_diversion: closed chokepoints ['Suez Canal', 'Bab el-Mandeb Strait'] -> searoute restrictions ['northwest', 'suez', 'babalmandab']; displaced routes also close ['Panama Canal'] -> ['northwest', 'suez', 'babalmandab', 'panama']
+2026-10-29 15:41:39 INFO    Task 4.2 | unique network-point pairs to route: 21,619 (from 52,289 sub-flows)
+2026-10-29 15:52:31 INFO    Task 4.2 | baseline (restrictions ['northwest']): network-point pairs 21,619 | routed 21,619 | failed (no sea route with these restrictions) 0 | routes crossing 180 degrees 2275
+2026-10-29 15:52:31 INFO    Task 4.2 | baseline: routes through each searoute passage: babalmandab 7,694, bosporus 462, chili 129, gibraltar 7,750, malacca 6,940, ormuz 282, panama 2,450, south_africa 578, suez 7,768, sunda 488
+2026-10-29 15:52:32 INFO    Task 4.3 | included chokepoint zones | kept 27 | removed 0 | reason: included is not 'yes' in the screening file
+2026-10-29 15:52:32 INFO    Task 4.3 | crossing test: gate line 4, zone 23 (Decision 12)
+2026-10-29 15:52:32 INFO    Task 4.3 |   gate: chokepoint11 Taiwan Strait
+2026-10-29 15:52:32 INFO    Task 4.3 |   gate: chokepoint12 Korea Strait
+2026-10-29 15:52:32 INFO    Task 4.3 |   gate: chokepoint14 Luzon Strait
+2026-10-29 15:52:32 INFO    Task 4.3 |   gate: chokepoint22 Yucatan Channel
+2026-10-29 15:52:35 INFO    Task 4.3 | baseline: route-zone intersections 56,609 | check on continuous routes with zones shifted +-360: 56,609 | agree
+2026-10-29 15:52:35 INFO    Task 4.3 | baseline: routes crossing 180 degrees that cross a zone: 2029 of 2275
+2026-10-29 16:01:07 INFO    Task 4.2 | red_sea_diversion, displaced routes (restrictions ['northwest', 'suez', 'babalmandab', 'panama']): network-point pairs 7,793 | routed 7,651 | failed (no sea route with these restrictions) 142 | routes crossing 180 degrees 43
+2026-10-29 16:01:07 INFO    Task 4.2 | red_sea_diversion, displaced routes: routes through each searoute passage: bosporus 288, chili 60, gibraltar 2,646, malacca 70, ormuz 111, south_africa 7,599, sunda 5,792
+2026-10-29 16:01:07 INFO    Task 4.2 | red_sea_diversion: baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 7793, rerouted (142 failed) | other routes copied from the baseline: 13826
+2026-10-29 16:01:10 INFO    Task 4.3 | red_sea_diversion: route-zone intersections 38,548 | check on continuous routes with zones shifted +-360: 38,548 | agree
+2026-10-29 16:01:10 INFO    Task 4.3 | red_sea_diversion: routes crossing 180 degrees that cross a zone: 2072 of 2318
+2026-10-29 16:09:14 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes (restrictions ['northwest', 'suez', 'babalmandab']): network-point pairs 7,793 | routed 7,651 | failed (no sea route with these restrictions) 142 | routes crossing 180 degrees 4171
+2026-10-29 16:09:14 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant), displaced routes: routes through each searoute passage: bosporus 288, chili 38, gibraltar 2,646, malacca 67, ormuz 111, panama 4,156, south_africa 3,471, sunda 1,762
+2026-10-29 16:09:14 INFO    Task 4.2 | red_sea_diversion, diverted_also_closed open (validation variant): baseline routes crossing Suez Canal or Bab el-Mandeb Strait: 7793, rerouted (142 failed) | other routes copied from the baseline: 13826
+2026-10-29 16:09:17 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): route-zone intersections 40,950 | check on continuous routes with zones shifted +-360: 40,950 | agree
+2026-10-29 16:09:17 INFO    Task 4.3 | red_sea_diversion, diverted_also_closed open (validation variant): routes crossing 180 degrees that cross a zone: 6200 of 6446
+2026-10-29 16:09:18 INFO    Task 4.6 | correction | red_sea_diversion: 7793 baseline network-point routes crossing the closed chokepoints (17928 sub-flows, 209,149,528 USD) are rerouted with diverted_also_closed as well | reason: the first run sent displaced Northeast Asia-Europe flows through the Panama Canal (shortest network distance), but the proposal defines the scenario as forcing ships round the Cape of Good Hope; Panama stays open for all other flows
+2026-10-29 16:09:18 INFO    Task 4.6 | displaced routes, Cape diversion: 7651 routed | via south_africa 7599 | via panama 0 | median length 14,082 nm
+2026-10-29 16:09:18 INFO    Task 4.6 | displaced routes, Panama open (first run): 7651 routed | via south_africa 3471 | via panama 4156 | median length 13,156 nm
+2026-10-29 16:09:18 INFO    Task 4.2 | scenario red_sea_diversion: failed network-point pairs 142 carry 159 port pairs, 267 sub-flows, 134,460 USD
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port493 -> EGY_port828 (1 sub-flows, 568 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port493 -> SAU_port518 (1 sub-flows, 2,366 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1348 -> EGY_port828 (1 sub-flows, 29 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1348 -> JOR_port19 (1 sub-flows, 24 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1348 -> SAU_port518 (1 sub-flows, 42 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port219 -> EGY_port828 (1 sub-flows, 7 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port219 -> JOR_port19 (1 sub-flows, 6 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port219 -> SAU_port518 (1 sub-flows, 10 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port1279 -> EGY_port828 (1 sub-flows, 872 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port1279 -> SAU_port518 (1 sub-flows, 3,630 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port342 -> EGY_port828 (1 sub-flows, 414 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port342 -> SAU_port518 (1 sub-flows, 1,723 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port1216 -> EGY_port828 (1 sub-flows, 1,028 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port1216 -> SAU_port518 (1 sub-flows, 4,279 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port664 -> EGY_port828 (1 sub-flows, 286 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port664 -> JOR_port19 (1 sub-flows, 243 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port664 -> SAU_port518 (3 sub-flows, 423 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port839 -> EGY_port828 (1 sub-flows, 64 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port839 -> JOR_port19 (1 sub-flows, 55 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port839 -> SAU_port518 (3 sub-flows, 95 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port993 -> EGY_port828 (1 sub-flows, 62 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port993 -> JOR_port19 (1 sub-flows, 53 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port993 -> SAU_port518 (3 sub-flows, 91 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port635 -> EGY_port828 (1 sub-flows, 18 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port635 -> JOR_port19 (1 sub-flows, 15 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port635 -> SAU_port518 (1 sub-flows, 26 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1041 -> EGY_port828 (1 sub-flows, 6 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1041 -> JOR_port19 (1 sub-flows, 5 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1041 -> SAU_port518 (1 sub-flows, 9 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port654 -> EGY_port828 (1 sub-flows, 210 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port654 -> SAU_port518 (1 sub-flows, 875 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1038 -> EGY_port828 (1 sub-flows, 7 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1038 -> JOR_port19 (1 sub-flows, 5 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port1038 -> SAU_port518 (1 sub-flows, 10 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port31 -> EGY_port828 (1 sub-flows, 39 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port31 -> JOR_port19 (1 sub-flows, 32 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port31 -> SAU_port518 (1 sub-flows, 56 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IRL_port307 -> SAU_port518 (1 sub-flows, 16 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port483 -> EGY_port828 (1 sub-flows, 8 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port483 -> JOR_port19 (1 sub-flows, 7 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port483 -> SAU_port518 (1 sub-flows, 12 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port815 -> EGY_port828 (1 sub-flows, 119 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port815 -> JOR_port19 (1 sub-flows, 101 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port815 -> SAU_port518 (3 sub-flows, 175 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port2066 -> EGY_port828 (1 sub-flows, 86 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port2066 -> JOR_port19 (1 sub-flows, 73 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port2066 -> SAU_port518 (3 sub-flows, 127 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port818 -> EGY_port828 (1 sub-flows, 106 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port826 -> EGY_port828 (1 sub-flows, 98 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port818 -> JOR_port19 (1 sub-flows, 90 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port826 -> JOR_port19 (1 sub-flows, 83 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port818 -> SAU_port518 (3 sub-flows, 157 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port826 -> SAU_port518 (3 sub-flows, 145 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port103 -> EGY_port828 (1 sub-flows, 104 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port103 -> JOR_port19 (1 sub-flows, 89 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port103 -> SAU_port518 (3 sub-flows, 154 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IRL_port262 -> SAU_port518 (1 sub-flows, 10 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port1170 -> EGY_port828 (1 sub-flows, 119 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port1170 -> JOR_port19 (1 sub-flows, 101 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port1170 -> SAU_port518 (3 sub-flows, 175 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port754 -> EGY_port828 (1 sub-flows, 76 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port754 -> JOR_port19 (1 sub-flows, 65 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port754 -> SAU_port518 (3 sub-flows, 113 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port812 -> EGY_port828 (1 sub-flows, 465 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port812 -> JOR_port19 (1 sub-flows, 395 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port812 -> SAU_port518 (3 sub-flows, 688 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port1214 -> EGY_port828 (1 sub-flows, 372 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port1214 -> JOR_port19 (1 sub-flows, 316 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port1214 -> SAU_port518 (3 sub-flows, 549 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port481 -> EGY_port828 (1 sub-flows, 893 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port481 -> JOR_port19 (1 sub-flows, 759 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port481 -> SAU_port518 (3 sub-flows, 1,320 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port358 -> EGY_port828 (1 sub-flows, 114 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port358 -> JOR_port19 (1 sub-flows, 96 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed USA_port358 -> SAU_port518 (3 sub-flows, 168 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port659 -> EGY_port828 (1 sub-flows, 229 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port659 -> SAU_port518 (1 sub-flows, 954 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port343 -> EGY_port828 (1 sub-flows, 950 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed GBR_port343 -> SAU_port518 (1 sub-flows, 3,955 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port425 -> EGY_port828 (3 sub-flows, 2,228 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port425 -> SAU_port518 (3 sub-flows, 3,807 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1189 -> EGY_port828 (3 sub-flows, 2,698 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1189 -> SAU_port518 (3 sub-flows, 4,610 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1195 -> EGY_port828 (3 sub-flows, 1,596 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1297 -> EGY_port828 (3 sub-flows, 3,077 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1195 -> SAU_port518 (3 sub-flows, 2,728 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1297 -> SAU_port518 (3 sub-flows, 5,258 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1404 -> EGY_port828 (3 sub-flows, 1,203 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1404 -> SAU_port518 (3 sub-flows, 2,056 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port154 -> EGY_port828 (3 sub-flows, 1,961 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port154 -> SAU_port518 (3 sub-flows, 3,351 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1266 -> EGY_port828 (3 sub-flows, 1,084 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1266 -> SAU_port518 (3 sub-flows, 1,853 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1072 -> EGY_port828 (3 sub-flows, 1,505 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1072 -> SAU_port518 (3 sub-flows, 2,572 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1069 -> EGY_port828 (3 sub-flows, 2,800 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1069 -> SAU_port518 (3 sub-flows, 4,784 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1188 -> EGY_port828 (3 sub-flows, 3,663 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port1188 -> SAU_port518 (3 sub-flows, 6,259 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port824 -> EGY_port828 (3 sub-flows, 3,705 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port824 -> SAU_port518 (3 sub-flows, 6,331 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port2027 -> EGY_port828 (3 sub-flows, 2,652 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHN_port2027 -> SAU_port518 (3 sub-flows, 4,533 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed AUT_port758 -> SAU_port518 (1 sub-flows, 1,902 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port118 -> EGY_port828 (1 sub-flows, 21 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port118 -> JOR_port19 (1 sub-flows, 17 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed ESP_port118 -> SAU_port518 (1 sub-flows, 30 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port805 -> EGY_port828 (2 sub-flows, 255 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port1280 -> EGY_port828 (2 sub-flows, 161 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port2049 -> EGY_port828 (2 sub-flows, 263 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port504 -> EGY_port828 (2 sub-flows, 422 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port385 -> EGY_port828 (2 sub-flows, 96 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port2034 -> EGY_port828 (2 sub-flows, 119 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed EGY_port828 -> MAR_port1265 (1 sub-flows, 42 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed EGY_port828 -> MAR_port220 (1 sub-flows, 10 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed EGY_port828 -> MAR_port319 (1 sub-flows, 16 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port735 -> EGY_port828 (2 sub-flows, 210 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port162 -> EGY_port828 (2 sub-flows, 442 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed TUR_port1406 -> EGY_port828 (2 sub-flows, 159 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed BEL_port57 -> EGY_port828 (2 sub-flows, 122 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed BEL_port57 -> JOR_port19 (1 sub-flows, 524 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed BEL_port57 -> SAU_port518 (3 sub-flows, 476 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port777 -> EGY_port828 (2 sub-flows, 17 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port777 -> SAU_port518 (2 sub-flows, 639 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port777 -> YEM_port18 (1 sub-flows, 759 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port777 -> YEM_port2219 (1 sub-flows, 455 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port540 -> EGY_port828 (2 sub-flows, 15 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port540 -> SAU_port518 (2 sub-flows, 571 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port540 -> YEM_port18 (1 sub-flows, 678 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port540 -> YEM_port2219 (1 sub-flows, 407 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port776 -> EGY_port828 (2 sub-flows, 48 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port776 -> SAU_port518 (2 sub-flows, 1,815 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port776 -> YEM_port18 (1 sub-flows, 2,157 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port776 -> YEM_port2219 (1 sub-flows, 1,294 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port811 -> EGY_port828 (2 sub-flows, 8 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port811 -> SAU_port518 (2 sub-flows, 306 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port811 -> YEM_port18 (1 sub-flows, 364 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port811 -> YEM_port2219 (1 sub-flows, 218 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed DEU_port168 -> EGY_port828 (2 sub-flows, 50 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed DEU_port168 -> SAU_port518 (2 sub-flows, 781 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed CHE_port387 -> SAU_port518 (1 sub-flows, 611 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port529 -> EGY_port828 (2 sub-flows, 7 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port529 -> SAU_port518 (2 sub-flows, 248 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port529 -> YEM_port18 (1 sub-flows, 295 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port529 -> YEM_port2219 (1 sub-flows, 177 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port1367 -> EGY_port828 (2 sub-flows, 22 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port1367 -> SAU_port518 (2 sub-flows, 840 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port1367 -> YEM_port18 (1 sub-flows, 998 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port1367 -> YEM_port2219 (1 sub-flows, 598 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port290 -> EGY_port828 (2 sub-flows, 7 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port883 -> EGY_port828 (2 sub-flows, 35 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port290 -> SAU_port518 (2 sub-flows, 277 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port883 -> SAU_port518 (2 sub-flows, 1,314 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port290 -> YEM_port18 (1 sub-flows, 329 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port290 -> YEM_port2219 (1 sub-flows, 198 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port883 -> YEM_port18 (1 sub-flows, 1,561 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed IND_port883 -> YEM_port2219 (1 sub-flows, 936 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed DEU_port446 -> EGY_port828 (2 sub-flows, 91 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 |   failed DEU_port446 -> SAU_port518 (2 sub-flows, 1,419 USD)
+2026-10-29 16:09:18 INFO    Task 4.2 | check: network-point routes reaching north of 66.56 N: 514
+    118.60000_-19.60000__14.04465_67.18487__baseline (max lat 67.3, 10,734 nm)
+    116.72937_-20.62239__14.04465_67.18487__baseline (max lat 67.3, 10,645 nm)
+    152.25000_-33.00000__14.04465_67.18487__baseline (max lat 67.3, 12,684 nm)
+    149.26025_-21.22794__14.04465_67.18487__baseline (max lat 67.3, 12,578 nm)
+    151.26474_-23.81487__14.04465_67.18487__baseline (max lat 67.3, 12,753 nm)
+    13.59707_45.75705__14.04465_67.18487__baseline (max lat 67.3, 4,050 nm)
+    4.26132_51.34091__14.04465_67.18487__baseline (max lat 67.3, 1,104 nm)
+    -123.03314_49.29468__14.04465_67.18487__baseline (max lat 68.0, 9,461 nm)
+    -66.19263_50.10649__14.04465_67.18487__baseline (max lat 68.0, 2,786 nm)
+    -130.36755_54.30370__14.04465_67.18487__baseline (max lat 68.0, 9,748 nm)
+    -66.04706_45.21494__14.04465_67.18487__baseline (max lat 68.0, 3,208 nm)
+    8.96004_44.37835__14.04465_67.18487__baseline (max lat 67.3, 3,218 nm)
+    121.88370_29.94779__14.04465_67.18487__baseline (max lat 67.3, 11,428 nm)
+    121.83975_31.25860__14.04465_67.18487__baseline (max lat 67.3, 11,520 nm)
+    117.85034_38.89103__14.04465_67.18487__baseline (max lat 67.3, 12,102 nm)
+    120.26459_36.03133__14.04465_67.18487__baseline (max lat 67.3, 11,811 nm)
+    113.75341_22.47214__14.04465_67.18487__baseline (max lat 67.3, 10,785 nm)
+    122.13501_30.48418__14.04465_67.18487__baseline (max lat 67.3, 11,488 nm)
+    113.56430_22.86352__14.04465_67.18487__baseline (max lat 67.3, 10,811 nm)
+    118.21289_38.20365__14.04465_67.18487__baseline (max lat 67.3, 12,087 nm)
+    119.78750_39.80140__14.04465_67.18487__baseline (max lat 67.3, 12,052 nm)
+    117.91626_24.45153__14.04465_67.18487__baseline (max lat 67.3, 11,010 nm)
+    119.42383_38.75420__14.04465_67.18487__baseline (max lat 67.3, 12,034 nm)
+    14.28659_53.93713__14.04465_67.18487__baseline (max lat 67.3, 1,111 nm)
+    9.92725_53.54511__14.04465_67.18487__baseline (max lat 67.3, 1,053 nm)
+    8.53671_53.55888__14.04465_67.18487__baseline (max lat 67.3, 1,007 nm)
+    10.90000_55.60000__14.04465_67.18487__baseline (max lat 67.3, 966 nm)
+    9.85199_55.57136__14.04465_67.18487__baseline (max lat 67.3, 992 nm)
+    10.24939_56.15900__14.04465_67.18487__baseline (max lat 67.3, 962 nm)
+    11.09455_55.04684__14.04465_67.18487__baseline (max lat 67.3, 1,000 nm)
+    10.02502_55.05635__14.04465_67.18487__baseline (max lat 67.3, 1,084 nm)
+    10.77316_57.13748__14.04465_67.18487__baseline (max lat 67.3, 870 nm)
+    10.17494_55.65904__14.04465_67.18487__baseline (max lat 67.3, 979 nm)
+    8.26250_55.40510__14.04465_67.18487__baseline (max lat 67.3, 908 nm)
+    -5.41268_36.16694__14.04465_67.18487__baseline (max lat 67.3, 2,363 nm)
+    -0.30984_39.43002__14.04465_67.18487__baseline (max lat 67.3, 2,747 nm)
+    2.20942_41.31217__14.04465_67.18487__baseline (max lat 67.3, 2,886 nm)
+    -15.12817_27.99925__14.04465_67.18487__baseline (max lat 67.3, 2,716 nm)
+    -6.84780_37.08720__14.04465_67.18487__baseline (max lat 67.3, 2,289 nm)
+    -1.08680_37.51550__14.04465_67.18487__baseline (max lat 67.3, 2,591 nm)
+    -3.06574_43.40745__14.04465_67.18487__baseline (max lat 67.3, 1,750 nm)
+    -2.10000_36.60000__14.04465_67.18487__baseline (max lat 67.3, 2,518 nm)
+    0.26764_49.43468__14.04465_67.18487__baseline (max lat 67.3, 1,235 nm)
+    2.36687_51.06384__14.04465_67.18487__baseline (max lat 67.3, 1,093 nm)
+    -2.15742_47.28191__14.04465_67.18487__baseline (max lat 67.3, 1,572 nm)
+    -1.26123_46.23916__14.04465_67.18487__baseline (max lat 67.3, 1,622 nm)
+    -1.39695_50.88494__14.04465_67.18487__baseline (max lat 67.3, 1,229 nm)
+    1.29664_51.92169__14.04465_67.18487__baseline (max lat 67.3, 1,077 nm)
+    -1.14258_54.66986__14.04465_67.18487__baseline (max lat 67.3, 934 nm)
+    -0.29938_53.73084__14.04465_67.18487__baseline (max lat 67.3, 1,007 nm)
+    -1.29730_50.82203__14.04465_67.18487__baseline (max lat 67.3, 1,224 nm)
+    0.50340_51.49960__14.04465_67.18487__baseline (max lat 67.3, 1,117 nm)
+    -3.04218_53.45944__14.04465_67.18487__baseline (max lat 67.3, 1,164 nm)
+    72.80777_18.94136__14.04465_67.18487__baseline (max lat 67.3, 7,336 nm)
+    88.00000_21.00000__14.04465_67.18487__baseline (max lat 67.3, 8,891 nm)
+    83.38980_17.62210__14.04465_67.18487__baseline (max lat 67.3, 8,636 nm)
+    69.44458_22.57344__14.04465_67.18487__baseline (max lat 67.3, 7,323 nm)
+    70.24658_22.85720__14.04465_67.18487__baseline (max lat 67.3, 7,370 nm)
+    74.77844_12.81716__14.04465_67.18487__baseline (max lat 67.3, 7,722 nm)
+    82.37137_16.99901__14.04465_67.18487__baseline (max lat 67.3, 8,613 nm)
+    72.80777_18.94136__33.03726_68.97170__baseline (max lat 71.3, 7,892 nm)
+    88.00000_21.00000__33.03726_68.97170__baseline (max lat 71.3, 9,447 nm)
+    83.38980_17.62210__33.03726_68.97170__baseline (max lat 71.3, 9,192 nm)
+    69.44458_22.57344__33.03726_68.97170__baseline (max lat 71.3, 7,879 nm)
+    70.24658_22.85720__33.03726_68.97170__baseline (max lat 71.3, 7,926 nm)
+    74.77844_12.81716__33.03726_68.97170__baseline (max lat 71.3, 8,278 nm)
+    82.37137_16.99901__33.03726_68.97170__baseline (max lat 71.3, 9,169 nm)
+    136.77292_35.00244__14.04465_67.18487__baseline (max lat 67.3, 12,177 nm)
+    139.68567_35.36610__14.04465_67.18487__baseline (max lat 67.3, 12,274 nm)
+    139.84566_35.49757__14.04465_67.18487__baseline (max lat 67.3, 12,285 nm)
+    135.26367_34.57669__14.04465_67.18487__baseline (max lat 67.3, 12,112 nm)
+    140.04753_35.60149__14.04465_67.18487__baseline (max lat 67.3, 12,297 nm)
+    133.63495_34.33210__14.04465_67.18487__baseline (max lat 67.3, 12,050 nm)
+    131.56128_33.30987__14.04465_67.18487__baseline (max lat 67.3, 11,947 nm)
+    140.66620_36.26421__14.04465_67.18487__baseline (max lat 67.3, 12,364 nm)
+    130.91480_33.90177__14.04465_67.18487__baseline (max lat 67.3, 11,921 nm)
+    131.21246_33.79513__14.04465_67.18487__baseline (max lat 67.3, 11,943 nm)
+    131.90000_33.75000__14.04465_67.18487__baseline (max lat 67.3, 11,945 nm)
+    135.10000_34.37745__14.04465_67.18487__baseline (max lat 67.3, 12,098 nm)
+    139.79279_35.23889__14.04465_67.18487__baseline (max lat 67.3, 12,265 nm)
+    133.36029_33.31446__14.04465_67.18487__baseline (max lat 67.3, 11,987 nm)
+    130.83687_33.95817__14.04465_67.18487__baseline (max lat 67.3, 11,916 nm)
+    132.27539_34.18454__14.04465_67.18487__baseline (max lat 67.3, 12,007 nm)
+    128.72681_35.04855__14.04465_67.18487__baseline (max lat 67.3, 11,870 nm)
+    129.39079_35.46179__14.04465_67.18487__baseline (max lat 67.3, 11,913 nm)
+    127.82044_34.71001__14.04465_67.18487__baseline (max lat 67.3, 11,832 nm)
+    128.72681_35.04855__33.03726_68.97170__baseline (max lat 71.3, 12,426 nm)
+    129.39079_35.46179__33.03726_68.97170__baseline (max lat 71.3, 12,469 nm)
+    127.82044_34.71001__33.03726_68.97170__baseline (max lat 71.3, 12,388 nm)
+    4.23042_51.92267__14.04465_67.18487__baseline (max lat 67.3, 1,060 nm)
+    4.54765_52.46229__14.04465_67.18487__baseline (max lat 67.3, 1,022 nm)
+    16.87995_68.86666__-58.47061_-34.32529__baseline (max lat 70.0, 7,515 nm)
+    16.87995_68.86666__-60.08560_-33.40737__baseline (max lat 70.0, 7,614 nm)
+    16.87995_68.86666__-60.59921_-32.97065__baseline (max lat 70.0, 7,650 nm)
+    16.87995_68.86666__13.59707_45.75705__baseline (max lat 70.0, 4,240 nm)
+    16.87995_68.86666__-46.34788_-23.98155__baseline (max lat 70.0, 6,625 nm)
+    16.87995_68.86666__-48.49434_-25.49163__baseline (max lat 70.0, 6,757 nm)
+    16.87995_68.86666__-43.14331_-22.93057__baseline (max lat 70.0, 6,432 nm)
+    16.87995_68.86666__-34.85962_-8.08234__baseline (max lat 70.0, 5,342 nm)
+    16.87995_68.86666__-38.41370_-3.64500__baseline (max lat 70.0, 5,240 nm)
+    16.87995_68.86666__-48.79578_-1.50495__baseline (max lat 70.0, 5,252 nm)
+    16.87995_68.86666__-51.80000_-32.20000__baseline (max lat 70.0, 7,095 nm)
+    16.87995_68.86666__-44.45618_-2.64128__baseline (max lat 70.0, 5,214 nm)
+    16.87995_68.86666__-48.65982_-26.24169__baseline (max lat 70.0, 6,764 nm)
+    16.87995_68.86666__-38.52905_-12.87607__baseline (max lat 70.0, 5,736 nm)
+    16.87995_68.86666__121.88370_29.94779__baseline (max lat 70.0, 11,618 nm)
+    16.87995_68.86666__121.83975_31.25860__baseline (max lat 70.0, 11,710 nm)
+    16.87995_68.86666__117.85034_38.89103__baseline (max lat 70.0, 12,292 nm)
+    16.87995_68.86666__120.26459_36.03133__baseline (max lat 70.0, 12,001 nm)
+    16.87995_68.86666__113.56430_22.86352__baseline (max lat 70.0, 11,001 nm)
+    16.87995_68.86666__119.51340_35.31849__baseline (max lat 70.0, 11,977 nm)
+    16.87995_68.86666__122.13501_30.48418__baseline (max lat 70.0, 11,678 nm)
+    16.87995_68.86666__121.13937_31.74394__baseline (max lat 70.0, 11,757 nm)
+    16.87995_68.86666__119.42383_38.75420__baseline (max lat 70.0, 12,224 nm)
+    16.87995_68.86666__117.91626_24.45153__baseline (max lat 70.0, 11,200 nm)
+    16.87995_68.86666__120.24914_31.93264__baseline (max lat 70.0, 11,812 nm)
+    16.87995_68.86666__110.42633_21.22026__baseline (max lat 70.0, 10,948 nm)
+    16.87995_68.86666__120.59967_31.99992__baseline (max lat 70.0, 11,792 nm)
+    16.87995_68.86666__119.70291_35.57580__baseline (max lat 70.0, 11,992 nm)
+    16.87995_68.86666__120.75348_32.01448__baseline (max lat 70.0, 11,784 nm)
+    16.87995_68.86666__119.50516_34.73033__baseline (max lat 70.0, 11,953 nm)
+    16.87995_68.86666__118.21289_38.20365__baseline (max lat 70.0, 12,277 nm)
+    16.87995_68.86666__108.62045_21.57572__baseline (max lat 70.0, 10,866 nm)
+    16.87995_68.86666__122.09450_30.16650__baseline (max lat 70.0, 11,642 nm)
+    16.87995_68.86666__9.92725_53.54511__baseline (max lat 70.0, 1,278 nm)
+    16.87995_68.86666__8.53671_53.55888__baseline (max lat 70.0, 1,232 nm)
+    16.87995_68.86666__8.19168_53.48886__baseline (max lat 70.0, 1,234 nm)
+    16.87995_68.86666__9.22735_53.87705__baseline (max lat 70.0, 1,244 nm)
+    16.87995_68.86666__10.90000_55.60000__baseline (max lat 70.0, 1,191 nm)
+    16.87995_68.86666__10.24939_56.15900__baseline (max lat 70.0, 1,188 nm)
+    16.87995_68.86666__12.92541_55.65125__baseline (max lat 70.0, 1,211 nm)
+    16.87995_68.86666__9.85199_55.57136__baseline (max lat 70.0, 1,217 nm)
+    16.87995_68.86666__11.09455_55.04684__baseline (max lat 70.0, 1,225 nm)
+    16.87995_68.86666__10.02502_55.05635__baseline (max lat 70.0, 1,309 nm)
+    16.87995_68.86666__10.77316_57.13748__baseline (max lat 70.0, 1,096 nm)
+    16.87995_68.86666__8.26250_55.40510__baseline (max lat 70.0, 1,134 nm)
+    16.87995_68.86666__-6.11894_53.32212__baseline (max lat 70.0, 1,338 nm)
+    16.87995_68.86666__-8.27580_51.84511__baseline (max lat 70.0, 1,500 nm)
+    16.87995_68.86666__-9.09085_52.63593__baseline (max lat 70.0, 1,429 nm)
+    16.87995_68.86666__-21.98099_64.23417__baseline (max lat 70.8, 1,230 nm)
+    16.87995_68.86666__-13.76587_64.97006__baseline (max lat 70.0, 902 nm)
+    16.87995_68.86666__13.76696_45.61293__baseline (max lat 70.0, 4,240 nm)
+    16.87995_68.86666__8.96004_44.37835__baseline (max lat 70.0, 3,408 nm)
+    16.87995_68.86666__12.35806_44.51846__baseline (max lat 70.0, 4,192 nm)
+    16.87995_68.86666__15.72767_38.36632__baseline (max lat 70.0, 3,558 nm)
+    16.87995_68.86666__12.44665_45.40883__baseline (max lat 70.0, 4,232 nm)
+    16.87995_68.86666__15.34600_37.14860__baseline (max lat 70.0, 3,591 nm)
+    16.87995_68.86666__17.10000_40.40000__baseline (max lat 70.0, 3,788 nm)
+    16.87995_68.86666__10.28183_43.52864__baseline (max lat 70.0, 3,432 nm)
+    16.87995_68.86666__9.92280_44.00990__baseline (max lat 70.0, 3,426 nm)
+    16.87995_68.86666__8.52127_44.30026__baseline (max lat 70.0, 3,384 nm)
+    16.87995_68.86666__129.39079_35.46179__baseline (max lat 70.0, 12,102 nm)
+    16.87995_68.86666__127.82044_34.71001__baseline (max lat 70.0, 12,022 nm)
+    16.87995_68.86666__128.72681_35.04855__baseline (max lat 70.0, 12,059 nm)
+    16.87995_68.86666__126.26312_37.55982__baseline (max lat 70.0, 12,129 nm)
+    16.87995_68.86666__126.72455_37.01133__baseline (max lat 70.0, 12,102 nm)
+    16.87995_68.86666__22.91566_40.62035__baseline (max lat 70.0, 4,230 nm)
+    16.87995_68.86666__4.23042_51.92267__baseline (max lat 70.0, 1,286 nm)
+    16.87995_68.86666__4.54765_52.46229__baseline (max lat 70.0, 1,247 nm)
+    16.87995_68.86666__19.10523_54.48919__baseline (max lat 70.0, 1,485 nm)
+    16.87995_68.86666__14.41619_45.30224__baseline (max lat 70.0, 4,193 nm)
+    16.87995_68.86666__-118.19449_33.70390__baseline (max lat 70.8, 8,311 nm)
+    16.87995_68.86666__-74.15548_40.64040__baseline (max lat 70.8, 3,584 nm)
+    16.87995_68.86666__-95.11002_29.74023__baseline (max lat 70.8, 5,334 nm)
+    16.87995_68.86666__-90.02953_29.95583__baseline (max lat 70.8, 5,114 nm)
+    16.87995_68.86666__-80.83534_32.03311__baseline (max lat 70.8, 4,126 nm)
+    16.87995_68.86666__-79.93584_32.85421__baseline (max lat 70.8, 4,076 nm)
+    16.87995_68.86666__-76.26984_36.99926__baseline (max lat 70.8, 3,760 nm)
+    16.87995_68.86666__-90.30090_30.29480__baseline (max lat 70.8, 5,141 nm)
+    16.87995_68.86666__-87.99912_30.66981__baseline (max lat 70.8, 5,056 nm)
+    16.87995_68.86666__-79.93850_26.09850__baseline (max lat 70.8, 4,376 nm)
+    16.87995_68.86666__-82.45239_27.88642__baseline (max lat 70.8, 4,738 nm)
+    16.87995_68.86666__-122.39584_37.84212__baseline (max lat 70.8, 8,699 nm)
+    16.87995_68.86666__-122.47662_47.30112__baseline (max lat 70.8, 9,546 nm)
+    19.10523_54.48919__14.04465_67.18487__baseline (max lat 67.3, 1,260 nm)
+    33.03726_68.97170__24.70000_59.80000__baseline (max lat 71.3, 2,098 nm)
+    33.03726_68.97170__27.41089_59.50367__baseline (max lat 71.3, 2,182 nm)
+    33.03726_68.97170__24.01142_59.70163__baseline (max lat 71.3, 2,076 nm)
+    33.03726_68.97170__113.91724_22.45165__baseline (max lat 71.3, 11,345 nm)
+    33.03726_68.97170__136.77292_35.00244__baseline (max lat 71.3, 12,734 nm)
+    33.03726_68.97170__133.63495_34.33210__baseline (max lat 71.3, 12,606 nm)
+    33.03726_68.97170__139.68567_35.36610__baseline (max lat 71.3, 12,830 nm)
+    33.03726_68.97170__140.66620_36.26421__baseline (max lat 71.3, 12,920 nm)
+    33.03726_68.97170__139.84566_35.49757__baseline (max lat 71.3, 12,841 nm)
+    33.03726_68.97170__131.56128_33.30987__baseline (max lat 71.3, 12,504 nm)
+    33.03726_68.97170__140.04753_35.60149__baseline (max lat 71.3, 12,853 nm)
+    33.03726_68.97170__135.26367_34.57669__baseline (max lat 71.3, 12,668 nm)
+    33.03726_68.97170__139.79279_35.23889__baseline (max lat 71.3, 12,821 nm)
+    33.03726_68.97170__134.67041_34.74330__baseline (max lat 71.3, 12,666 nm)
+    33.03726_68.97170__141.69067_42.46399__baseline (max lat 71.3, 13,175 nm)
+    33.03726_68.97170__131.90000_33.75000__baseline (max lat 71.3, 12,501 nm)
+    33.03726_68.97170__135.10000_34.37745__baseline (max lat 71.3, 12,654 nm)
+    33.03726_68.97170__141.06720_38.19934__baseline (max lat 71.3, 13,036 nm)
+    33.03726_68.97170__130.83687_33.95817__baseline (max lat 71.3, 12,472 nm)
+    33.03726_68.97170__132.27539_34.18454__baseline (max lat 71.3, 12,563 nm)
+    33.03726_68.97170__141.37346_36.90678__baseline (max lat 71.3, 12,957 nm)
+    33.03726_68.97170__134.89563_33.79969__baseline (max lat 71.3, 12,615 nm)
+    33.03726_68.97170__141.58630_40.62646__baseline (max lat 71.3, 13,192 nm)
+    33.03726_68.97170__134.00574_34.41824__baseline (max lat 71.3, 12,625 nm)
+    33.03726_68.97170__139.08417_38.00698__baseline (max lat 71.3, 12,964 nm)
+    33.03726_68.97170__129.39079_35.46179__baseline (max lat 71.3, 12,469 nm)
+    33.03726_68.97170__127.82044_34.71001__baseline (max lat 71.3, 12,388 nm)
+    33.03726_68.97170__128.72681_35.04855__baseline (max lat 71.3, 12,426 nm)
+    33.03726_68.97170__126.26312_37.55982__baseline (max lat 71.3, 12,495 nm)
+    33.03726_68.97170__126.72455_37.01133__baseline (max lat 71.3, 12,468 nm)
+    33.03726_68.97170__176.26739_-37.52933__baseline (max lat 71.3, 12,530 nm)
+    33.03726_68.97170__174.92157_-36.68164__baseline (max lat 71.3, 12,604 nm)
+    33.03726_68.97170__174.47182_-35.80528__baseline (max lat 71.3, 12,582 nm)
+    33.03726_68.97170__172.78439_-43.55862__baseline (max lat 71.3, 12,640 nm)
+    33.03726_68.97170__168.20000_-46.60000__baseline (max lat 71.3, 12,646 nm)
+    33.03726_68.97170__171.32629_-44.46123__baseline (max lat 71.3, 12,724 nm)
+    33.03726_68.97170__103.68313_1.29525__baseline (max lat 71.3, 9,895 nm)
+    33.03726_68.97170__-118.19449_33.70390__baseline (max lat 71.3, 8,677 nm)
+    33.03726_68.97170__-74.15548_40.64040__baseline (max lat 71.3, 3,950 nm)
+    33.03726_68.97170__-95.11002_29.74023__baseline (max lat 71.3, 5,701 nm)
+    33.03726_68.97170__-90.02953_29.95583__baseline (max lat 71.3, 5,481 nm)
+    33.03726_68.97170__-80.83534_32.03311__baseline (max lat 71.3, 4,492 nm)
+    33.03726_68.97170__-79.93584_32.85421__baseline (max lat 71.3, 4,442 nm)
+    33.03726_68.97170__-76.26984_36.99926__baseline (max lat 71.3, 4,126 nm)
+    33.03726_68.97170__-90.30090_30.29480__baseline (max lat 71.3, 5,508 nm)
+    33.03726_68.97170__-87.99912_30.66981__baseline (max lat 71.3, 5,422 nm)
+    33.03726_68.97170__-79.93850_26.09850__baseline (max lat 71.3, 4,742 nm)
+    33.03726_68.97170__-82.45239_27.88642__baseline (max lat 71.3, 5,104 nm)
+    33.03726_68.97170__-122.39584_37.84212__baseline (max lat 71.3, 9,065 nm)
+    33.03726_68.97170__-122.47662_47.30112__baseline (max lat 71.3, 9,913 nm)
+    36.00223_36.89130__14.04465_67.18487__baseline (max lat 67.3, 4,389 nm)
+    28.67532_40.95765__14.04465_67.18487__baseline (max lat 67.3, 4,126 nm)
+    26.88143_38.76418__14.04465_67.18487__baseline (max lat 67.3, 3,992 nm)
+    34.66250_36.75531__14.04465_67.18487__baseline (max lat 67.3, 4,326 nm)
+    27.59020_40.87950__14.04465_67.18487__baseline (max lat 67.3, 4,079 nm)
+    36.12843_36.60348__14.04465_67.18487__baseline (max lat 67.3, 4,393 nm)
+    29.74746_40.73320__14.04465_67.18487__baseline (max lat 67.3, 4,172 nm)
+    29.09398_40.41797__14.04465_67.18487__baseline (max lat 67.3, 4,165 nm)
+    36.00223_36.89130__33.03726_68.97170__baseline (max lat 71.3, 4,945 nm)
+    28.67532_40.95765__33.03726_68.97170__baseline (max lat 71.3, 4,682 nm)
+    26.88143_38.76418__33.03726_68.97170__baseline (max lat 71.3, 4,548 nm)
+    34.66250_36.75531__33.03726_68.97170__baseline (max lat 71.3, 4,883 nm)
+    27.59020_40.87950__33.03726_68.97170__baseline (max lat 71.3, 4,636 nm)
+    36.12843_36.60348__33.03726_68.97170__baseline (max lat 71.3, 4,949 nm)
+    29.74746_40.73320__33.03726_68.97170__baseline (max lat 71.3, 4,728 nm)
+    29.09398_40.41797__33.03726_68.97170__baseline (max lat 71.3, 4,721 nm)
+    -95.11002_29.74023__14.04465_67.18487__baseline (max lat 68.0, 5,242 nm)
+    -90.02953_29.95583__14.04465_67.18487__baseline (max lat 68.0, 5,022 nm)
+    -90.30090_30.29480__14.04465_67.18487__baseline (max lat 68.0, 5,049 nm)
+    -118.19449_33.70390__14.04465_67.18487__baseline (max lat 68.0, 8,219 nm)
+    -80.83534_32.03311__14.04465_67.18487__baseline (max lat 68.0, 4,034 nm)
+    -74.15548_40.64040__14.04465_67.18487__baseline (max lat 68.0, 3,492 nm)
+    -95.30850_28.94270__14.04465_67.18487__baseline (max lat 68.0, 5,246 nm)
+    -76.44287_36.93562__14.04465_67.18487__baseline (max lat 68.0, 3,677 nm)
+    -76.57780_39.25592__14.04465_67.18487__baseline (max lat 68.0, 3,804 nm)
+    -76.26984_36.99926__14.04465_67.18487__baseline (max lat 68.0, 3,668 nm)
+    -87.99912_30.66981__14.04465_67.18487__baseline (max lat 68.0, 4,964 nm)
+    -122.39584_37.84212__14.04465_67.18487__baseline (max lat 68.0, 8,607 nm)
+    -122.76295_45.65365__14.04465_67.18487__baseline (max lat 68.0, 9,229 nm)
+    32.92053_-28.44937__14.04465_67.18487__baseline (max lat 67.3, 8,098 nm)
+    18.23730_-33.84076__14.04465_67.18487__baseline (max lat 67.3, 7,253 nm)
+    31.17371_-29.81682__14.04465_67.18487__baseline (max lat 67.3, 7,977 nm)
+    13.59707_45.75705__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,050 nm)
+    4.26132_51.34091__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,104 nm)
+    -123.03314_49.29468__14.04465_67.18487__red_sea_diversion (max lat 68.0, 9,461 nm)
+    -66.19263_50.10649__14.04465_67.18487__red_sea_diversion (max lat 68.0, 2,786 nm)
+    -130.36755_54.30370__14.04465_67.18487__red_sea_diversion (max lat 68.0, 9,748 nm)
+    -66.04706_45.21494__14.04465_67.18487__red_sea_diversion (max lat 68.0, 3,208 nm)
+    8.96004_44.37835__14.04465_67.18487__red_sea_diversion (max lat 67.3, 3,218 nm)
+    14.28659_53.93713__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,111 nm)
+    9.92725_53.54511__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,053 nm)
+    8.53671_53.55888__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,007 nm)
+    10.90000_55.60000__14.04465_67.18487__red_sea_diversion (max lat 67.3, 966 nm)
+    9.85199_55.57136__14.04465_67.18487__red_sea_diversion (max lat 67.3, 992 nm)
+    10.24939_56.15900__14.04465_67.18487__red_sea_diversion (max lat 67.3, 962 nm)
+    11.09455_55.04684__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,000 nm)
+    10.02502_55.05635__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,084 nm)
+    10.77316_57.13748__14.04465_67.18487__red_sea_diversion (max lat 67.3, 870 nm)
+    10.17494_55.65904__14.04465_67.18487__red_sea_diversion (max lat 67.3, 979 nm)
+    8.26250_55.40510__14.04465_67.18487__red_sea_diversion (max lat 67.3, 908 nm)
+    -5.41268_36.16694__14.04465_67.18487__red_sea_diversion (max lat 67.3, 2,363 nm)
+    -0.30984_39.43002__14.04465_67.18487__red_sea_diversion (max lat 67.3, 2,747 nm)
+    2.20942_41.31217__14.04465_67.18487__red_sea_diversion (max lat 67.3, 2,886 nm)
+    -15.12817_27.99925__14.04465_67.18487__red_sea_diversion (max lat 67.3, 2,716 nm)
+    -6.84780_37.08720__14.04465_67.18487__red_sea_diversion (max lat 67.3, 2,289 nm)
+    -1.08680_37.51550__14.04465_67.18487__red_sea_diversion (max lat 67.3, 2,591 nm)
+    -3.06574_43.40745__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,750 nm)
+    -2.10000_36.60000__14.04465_67.18487__red_sea_diversion (max lat 67.3, 2,518 nm)
+    0.26764_49.43468__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,235 nm)
+    2.36687_51.06384__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,093 nm)
+    -2.15742_47.28191__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,572 nm)
+    -1.26123_46.23916__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,622 nm)
+    -1.39695_50.88494__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,229 nm)
+    1.29664_51.92169__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,077 nm)
+    -1.14258_54.66986__14.04465_67.18487__red_sea_diversion (max lat 67.3, 934 nm)
+    -0.29938_53.73084__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,007 nm)
+    -1.29730_50.82203__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,224 nm)
+    0.50340_51.49960__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,117 nm)
+    -3.04218_53.45944__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,164 nm)
+    4.23042_51.92267__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,060 nm)
+    4.54765_52.46229__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,022 nm)
+    16.87995_68.86666__-58.47061_-34.32529__red_sea_diversion (max lat 70.0, 7,515 nm)
+    16.87995_68.86666__-60.08560_-33.40737__red_sea_diversion (max lat 70.0, 7,614 nm)
+    16.87995_68.86666__-60.59921_-32.97065__red_sea_diversion (max lat 70.0, 7,650 nm)
+    16.87995_68.86666__13.59707_45.75705__red_sea_diversion (max lat 70.0, 4,240 nm)
+    16.87995_68.86666__-46.34788_-23.98155__red_sea_diversion (max lat 70.0, 6,625 nm)
+    16.87995_68.86666__-48.49434_-25.49163__red_sea_diversion (max lat 70.0, 6,757 nm)
+    16.87995_68.86666__-43.14331_-22.93057__red_sea_diversion (max lat 70.0, 6,432 nm)
+    16.87995_68.86666__-34.85962_-8.08234__red_sea_diversion (max lat 70.0, 5,342 nm)
+    16.87995_68.86666__-38.41370_-3.64500__red_sea_diversion (max lat 70.0, 5,240 nm)
+    16.87995_68.86666__-48.79578_-1.50495__red_sea_diversion (max lat 70.0, 5,252 nm)
+    16.87995_68.86666__-51.80000_-32.20000__red_sea_diversion (max lat 70.0, 7,095 nm)
+    16.87995_68.86666__-44.45618_-2.64128__red_sea_diversion (max lat 70.0, 5,214 nm)
+    16.87995_68.86666__-48.65982_-26.24169__red_sea_diversion (max lat 70.0, 6,764 nm)
+    16.87995_68.86666__-38.52905_-12.87607__red_sea_diversion (max lat 70.0, 5,736 nm)
+    16.87995_68.86666__9.92725_53.54511__red_sea_diversion (max lat 70.0, 1,278 nm)
+    16.87995_68.86666__8.53671_53.55888__red_sea_diversion (max lat 70.0, 1,232 nm)
+    16.87995_68.86666__8.19168_53.48886__red_sea_diversion (max lat 70.0, 1,234 nm)
+    16.87995_68.86666__9.22735_53.87705__red_sea_diversion (max lat 70.0, 1,244 nm)
+    16.87995_68.86666__10.90000_55.60000__red_sea_diversion (max lat 70.0, 1,191 nm)
+    16.87995_68.86666__10.24939_56.15900__red_sea_diversion (max lat 70.0, 1,188 nm)
+    16.87995_68.86666__12.92541_55.65125__red_sea_diversion (max lat 70.0, 1,211 nm)
+    16.87995_68.86666__9.85199_55.57136__red_sea_diversion (max lat 70.0, 1,217 nm)
+    16.87995_68.86666__11.09455_55.04684__red_sea_diversion (max lat 70.0, 1,225 nm)
+    16.87995_68.86666__10.02502_55.05635__red_sea_diversion (max lat 70.0, 1,309 nm)
+    16.87995_68.86666__10.77316_57.13748__red_sea_diversion (max lat 70.0, 1,096 nm)
+    16.87995_68.86666__8.26250_55.40510__red_sea_diversion (max lat 70.0, 1,134 nm)
+    16.87995_68.86666__-6.11894_53.32212__red_sea_diversion (max lat 70.0, 1,338 nm)
+    16.87995_68.86666__-8.27580_51.84511__red_sea_diversion (max lat 70.0, 1,500 nm)
+    16.87995_68.86666__-9.09085_52.63593__red_sea_diversion (max lat 70.0, 1,429 nm)
+    16.87995_68.86666__-21.98099_64.23417__red_sea_diversion (max lat 70.8, 1,230 nm)
+    16.87995_68.86666__-13.76587_64.97006__red_sea_diversion (max lat 70.0, 902 nm)
+    16.87995_68.86666__13.76696_45.61293__red_sea_diversion (max lat 70.0, 4,240 nm)
+    16.87995_68.86666__8.96004_44.37835__red_sea_diversion (max lat 70.0, 3,408 nm)
+    16.87995_68.86666__12.35806_44.51846__red_sea_diversion (max lat 70.0, 4,192 nm)
+    16.87995_68.86666__15.72767_38.36632__red_sea_diversion (max lat 70.0, 3,558 nm)
+    16.87995_68.86666__12.44665_45.40883__red_sea_diversion (max lat 70.0, 4,232 nm)
+    16.87995_68.86666__15.34600_37.14860__red_sea_diversion (max lat 70.0, 3,591 nm)
+    16.87995_68.86666__17.10000_40.40000__red_sea_diversion (max lat 70.0, 3,788 nm)
+    16.87995_68.86666__10.28183_43.52864__red_sea_diversion (max lat 70.0, 3,432 nm)
+    16.87995_68.86666__9.92280_44.00990__red_sea_diversion (max lat 70.0, 3,426 nm)
+    16.87995_68.86666__8.52127_44.30026__red_sea_diversion (max lat 70.0, 3,384 nm)
+    16.87995_68.86666__22.91566_40.62035__red_sea_diversion (max lat 70.0, 4,230 nm)
+    16.87995_68.86666__4.23042_51.92267__red_sea_diversion (max lat 70.0, 1,286 nm)
+    16.87995_68.86666__4.54765_52.46229__red_sea_diversion (max lat 70.0, 1,247 nm)
+    16.87995_68.86666__19.10523_54.48919__red_sea_diversion (max lat 70.0, 1,485 nm)
+    16.87995_68.86666__14.41619_45.30224__red_sea_diversion (max lat 70.0, 4,193 nm)
+    16.87995_68.86666__-118.19449_33.70390__red_sea_diversion (max lat 70.8, 8,311 nm)
+    16.87995_68.86666__-74.15548_40.64040__red_sea_diversion (max lat 70.8, 3,584 nm)
+    16.87995_68.86666__-95.11002_29.74023__red_sea_diversion (max lat 70.8, 5,334 nm)
+    16.87995_68.86666__-90.02953_29.95583__red_sea_diversion (max lat 70.8, 5,114 nm)
+    16.87995_68.86666__-80.83534_32.03311__red_sea_diversion (max lat 70.8, 4,126 nm)
+    16.87995_68.86666__-79.93584_32.85421__red_sea_diversion (max lat 70.8, 4,076 nm)
+    16.87995_68.86666__-76.26984_36.99926__red_sea_diversion (max lat 70.8, 3,760 nm)
+    16.87995_68.86666__-90.30090_30.29480__red_sea_diversion (max lat 70.8, 5,141 nm)
+    16.87995_68.86666__-87.99912_30.66981__red_sea_diversion (max lat 70.8, 5,056 nm)
+    16.87995_68.86666__-79.93850_26.09850__red_sea_diversion (max lat 70.8, 4,376 nm)
+    16.87995_68.86666__-82.45239_27.88642__red_sea_diversion (max lat 70.8, 4,738 nm)
+    16.87995_68.86666__-122.39584_37.84212__red_sea_diversion (max lat 70.8, 8,699 nm)
+    16.87995_68.86666__-122.47662_47.30112__red_sea_diversion (max lat 70.8, 9,546 nm)
+    19.10523_54.48919__14.04465_67.18487__red_sea_diversion (max lat 67.3, 1,260 nm)
+    33.03726_68.97170__24.70000_59.80000__red_sea_diversion (max lat 71.3, 2,098 nm)
+    33.03726_68.97170__27.41089_59.50367__red_sea_diversion (max lat 71.3, 2,182 nm)
+    33.03726_68.97170__24.01142_59.70163__red_sea_diversion (max lat 71.3, 2,076 nm)
+    33.03726_68.97170__176.26739_-37.52933__red_sea_diversion (max lat 71.3, 12,530 nm)
+    33.03726_68.97170__174.92157_-36.68164__red_sea_diversion (max lat 71.3, 12,604 nm)
+    33.03726_68.97170__174.47182_-35.80528__red_sea_diversion (max lat 71.3, 12,582 nm)
+    33.03726_68.97170__172.78439_-43.55862__red_sea_diversion (max lat 71.3, 12,640 nm)
+    33.03726_68.97170__168.20000_-46.60000__red_sea_diversion (max lat 71.3, 12,646 nm)
+    33.03726_68.97170__171.32629_-44.46123__red_sea_diversion (max lat 71.3, 12,724 nm)
+    33.03726_68.97170__-118.19449_33.70390__red_sea_diversion (max lat 71.3, 8,677 nm)
+    33.03726_68.97170__-74.15548_40.64040__red_sea_diversion (max lat 71.3, 3,950 nm)
+    33.03726_68.97170__-95.11002_29.74023__red_sea_diversion (max lat 71.3, 5,701 nm)
+    33.03726_68.97170__-90.02953_29.95583__red_sea_diversion (max lat 71.3, 5,481 nm)
+    33.03726_68.97170__-80.83534_32.03311__red_sea_diversion (max lat 71.3, 4,492 nm)
+    33.03726_68.97170__-79.93584_32.85421__red_sea_diversion (max lat 71.3, 4,442 nm)
+    33.03726_68.97170__-76.26984_36.99926__red_sea_diversion (max lat 71.3, 4,126 nm)
+    33.03726_68.97170__-90.30090_30.29480__red_sea_diversion (max lat 71.3, 5,508 nm)
+    33.03726_68.97170__-87.99912_30.66981__red_sea_diversion (max lat 71.3, 5,422 nm)
+    33.03726_68.97170__-79.93850_26.09850__red_sea_diversion (max lat 71.3, 4,742 nm)
+    33.03726_68.97170__-82.45239_27.88642__red_sea_diversion (max lat 71.3, 5,104 nm)
+    33.03726_68.97170__-122.39584_37.84212__red_sea_diversion (max lat 71.3, 9,065 nm)
+    33.03726_68.97170__-122.47662_47.30112__red_sea_diversion (max lat 71.3, 9,913 nm)
+    36.00223_36.89130__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,389 nm)
+    28.67532_40.95765__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,126 nm)
+    26.88143_38.76418__14.04465_67.18487__red_sea_diversion (max lat 67.3, 3,992 nm)
+    34.66250_36.75531__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,326 nm)
+    27.59020_40.87950__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,079 nm)
+    36.12843_36.60348__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,393 nm)
+    29.74746_40.73320__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,172 nm)
+    29.09398_40.41797__14.04465_67.18487__red_sea_diversion (max lat 67.3, 4,165 nm)
+    36.00223_36.89130__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,945 nm)
+    28.67532_40.95765__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,682 nm)
+    26.88143_38.76418__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,548 nm)
+    34.66250_36.75531__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,883 nm)
+    27.59020_40.87950__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,636 nm)
+    36.12843_36.60348__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,949 nm)
+    29.74746_40.73320__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,728 nm)
+    29.09398_40.41797__33.03726_68.97170__red_sea_diversion (max lat 71.3, 4,721 nm)
+    -95.11002_29.74023__14.04465_67.18487__red_sea_diversion (max lat 68.0, 5,242 nm)
+    -90.02953_29.95583__14.04465_67.18487__red_sea_diversion (max lat 68.0, 5,022 nm)
+    -90.30090_30.29480__14.04465_67.18487__red_sea_diversion (max lat 68.0, 5,049 nm)
+    -118.19449_33.70390__14.04465_67.18487__red_sea_diversion (max lat 68.0, 8,219 nm)
+    -80.83534_32.03311__14.04465_67.18487__red_sea_diversion (max lat 68.0, 4,034 nm)
+    -74.15548_40.64040__14.04465_67.18487__red_sea_diversion (max lat 68.0, 3,492 nm)
+    -95.30850_28.94270__14.04465_67.18487__red_sea_diversion (max lat 68.0, 5,246 nm)
+    -76.44287_36.93562__14.04465_67.18487__red_sea_diversion (max lat 68.0, 3,677 nm)
+    -76.57780_39.25592__14.04465_67.18487__red_sea_diversion (max lat 68.0, 3,804 nm)
+    -76.26984_36.99926__14.04465_67.18487__red_sea_diversion (max lat 68.0, 3,668 nm)
+    -87.99912_30.66981__14.04465_67.18487__red_sea_diversion (max lat 68.0, 4,964 nm)
+    -122.39584_37.84212__14.04465_67.18487__red_sea_diversion (max lat 68.0, 8,607 nm)
+    -122.76295_45.65365__14.04465_67.18487__red_sea_diversion (max lat 68.0, 9,229 nm)
+    32.92053_-28.44937__14.04465_67.18487__red_sea_diversion (max lat 67.3, 8,098 nm)
+    18.23730_-33.84076__14.04465_67.18487__red_sea_diversion (max lat 67.3, 7,253 nm)
+    31.17371_-29.81682__14.04465_67.18487__red_sea_diversion (max lat 67.3, 7,977 nm)
+    118.60000_-19.60000__14.04465_67.18487__red_sea_diversion (max lat 67.3, 12,456 nm)
+    116.72937_-20.62239__14.04465_67.18487__red_sea_diversion (max lat 67.3, 12,368 nm)
+    152.25000_-33.00000__14.04465_67.18487__red_sea_diversion (max lat 67.3, 13,677 nm)
+    149.26025_-21.22794__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,560 nm)
+    151.26474_-23.81487__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,349 nm)
+    121.88370_29.94779__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,736 nm)
+    121.83975_31.25860__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,828 nm)
+    117.85034_38.89103__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,409 nm)
+    120.26459_36.03133__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,119 nm)
+    113.75341_22.47214__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,107 nm)
+    122.13501_30.48418__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,796 nm)
+    113.56430_22.86352__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,134 nm)
+    118.21289_38.20365__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,394 nm)
+    119.78750_39.80140__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,360 nm)
+    117.91626_24.45153__14.04465_67.18487__red_sea_diversion (max lat 67.3, 14,317 nm)
+    119.42383_38.75420__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,342 nm)
+    72.80777_18.94136__14.04465_67.18487__red_sea_diversion (max lat 67.3, 11,792 nm)
+    88.00000_21.00000__14.04465_67.18487__red_sea_diversion (max lat 67.3, 12,568 nm)
+    83.38980_17.62210__14.04465_67.18487__red_sea_diversion (max lat 67.3, 12,313 nm)
+    69.44458_22.57344__14.04465_67.18487__red_sea_diversion (max lat 67.3, 11,989 nm)
+    70.24658_22.85720__14.04465_67.18487__red_sea_diversion (max lat 67.3, 12,036 nm)
+    74.77844_12.81716__14.04465_67.18487__red_sea_diversion (max lat 67.3, 11,822 nm)
+    82.37137_16.99901__14.04465_67.18487__red_sea_diversion (max lat 67.3, 12,290 nm)
+    72.80777_18.94136__33.03726_68.97170__red_sea_diversion (max lat 71.3, 12,348 nm)
+    88.00000_21.00000__33.03726_68.97170__red_sea_diversion (max lat 71.3, 13,124 nm)
+    83.38980_17.62210__33.03726_68.97170__red_sea_diversion (max lat 71.3, 12,869 nm)
+    69.44458_22.57344__33.03726_68.97170__red_sea_diversion (max lat 71.3, 12,545 nm)
+    70.24658_22.85720__33.03726_68.97170__red_sea_diversion (max lat 71.3, 12,593 nm)
+    74.77844_12.81716__33.03726_68.97170__red_sea_diversion (max lat 71.3, 12,378 nm)
+    82.37137_16.99901__33.03726_68.97170__red_sea_diversion (max lat 71.3, 12,846 nm)
+    136.77292_35.00244__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,463 nm)
+    139.68567_35.36610__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,554 nm)
+    139.84566_35.49757__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,565 nm)
+    135.26367_34.57669__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,398 nm)
+    140.04753_35.60149__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,577 nm)
+    133.63495_34.33210__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,336 nm)
+    131.56128_33.30987__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,233 nm)
+    140.66620_36.26421__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,644 nm)
+    130.91480_33.90177__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,228 nm)
+    131.21246_33.79513__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,251 nm)
+    131.90000_33.75000__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,231 nm)
+    135.10000_34.37745__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,384 nm)
+    139.79279_35.23889__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,545 nm)
+    133.36029_33.31446__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,272 nm)
+    130.83687_33.95817__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,223 nm)
+    132.27539_34.18454__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,292 nm)
+    128.72681_35.04855__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,177 nm)
+    129.39079_35.46179__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,220 nm)
+    127.82044_34.71001__14.04465_67.18487__red_sea_diversion (max lat 67.3, 15,140 nm)
+    128.72681_35.04855__33.03726_68.97170__red_sea_diversion (max lat 71.3, 15,733 nm)
+    129.39079_35.46179__33.03726_68.97170__red_sea_diversion (max lat 71.3, 15,776 nm)
+    127.82044_34.71001__33.03726_68.97170__red_sea_diversion (max lat 71.3, 15,696 nm)
+    16.87995_68.86666__121.88370_29.94779__red_sea_diversion (max lat 70.0, 14,926 nm)
+    16.87995_68.86666__121.83975_31.25860__red_sea_diversion (max lat 70.0, 15,018 nm)
+    16.87995_68.86666__117.85034_38.89103__red_sea_diversion (max lat 70.0, 15,599 nm)
+    16.87995_68.86666__120.26459_36.03133__red_sea_diversion (max lat 70.0, 15,308 nm)
+    16.87995_68.86666__113.56430_22.86352__red_sea_diversion (max lat 70.0, 14,323 nm)
+    16.87995_68.86666__119.51340_35.31849__red_sea_diversion (max lat 70.0, 15,285 nm)
+    16.87995_68.86666__122.13501_30.48418__red_sea_diversion (max lat 70.0, 14,986 nm)
+    16.87995_68.86666__121.13937_31.74394__red_sea_diversion (max lat 70.0, 15,064 nm)
+    16.87995_68.86666__119.42383_38.75420__red_sea_diversion (max lat 70.0, 15,532 nm)
+    16.87995_68.86666__117.91626_24.45153__red_sea_diversion (max lat 70.0, 14,507 nm)
+    16.87995_68.86666__120.24914_31.93264__red_sea_diversion (max lat 70.0, 15,120 nm)
+    16.87995_68.86666__110.42633_21.22026__red_sea_diversion (max lat 70.0, 14,280 nm)
+    16.87995_68.86666__120.59967_31.99992__red_sea_diversion (max lat 70.0, 15,099 nm)
+    16.87995_68.86666__119.70291_35.57580__red_sea_diversion (max lat 70.0, 15,300 nm)
+    16.87995_68.86666__120.75348_32.01448__red_sea_diversion (max lat 70.0, 15,091 nm)
+    16.87995_68.86666__119.50516_34.73033__red_sea_diversion (max lat 70.0, 15,260 nm)
+    16.87995_68.86666__118.21289_38.20365__red_sea_diversion (max lat 70.0, 15,584 nm)
+    16.87995_68.86666__108.62045_21.57572__red_sea_diversion (max lat 70.0, 14,197 nm)
+    16.87995_68.86666__122.09450_30.16650__red_sea_diversion (max lat 70.0, 14,950 nm)
+    16.87995_68.86666__129.39079_35.46179__red_sea_diversion (max lat 70.0, 15,410 nm)
+    16.87995_68.86666__127.82044_34.71001__red_sea_diversion (max lat 70.0, 15,330 nm)
+    16.87995_68.86666__128.72681_35.04855__red_sea_diversion (max lat 70.0, 15,367 nm)
+    16.87995_68.86666__126.26312_37.55982__red_sea_diversion (max lat 70.0, 15,436 nm)
+    16.87995_68.86666__126.72455_37.01133__red_sea_diversion (max lat 70.0, 15,409 nm)
+    33.03726_68.97170__113.91724_22.45165__red_sea_diversion (max lat 71.3, 14,667 nm)
+    33.03726_68.97170__136.77292_35.00244__red_sea_diversion (max lat 71.3, 16,019 nm)
+    33.03726_68.97170__133.63495_34.33210__red_sea_diversion (max lat 71.3, 15,892 nm)
+    33.03726_68.97170__139.68567_35.36610__red_sea_diversion (max lat 71.3, 16,110 nm)
+    33.03726_68.97170__140.66620_36.26421__red_sea_diversion (max lat 71.3, 16,200 nm)
+    33.03726_68.97170__139.84566_35.49757__red_sea_diversion (max lat 71.3, 16,121 nm)
+    33.03726_68.97170__131.56128_33.30987__red_sea_diversion (max lat 71.3, 15,789 nm)
+    33.03726_68.97170__140.04753_35.60149__red_sea_diversion (max lat 71.3, 16,133 nm)
+    33.03726_68.97170__135.26367_34.57669__red_sea_diversion (max lat 71.3, 15,954 nm)
+    33.03726_68.97170__139.79279_35.23889__red_sea_diversion (max lat 71.3, 16,101 nm)
+    33.03726_68.97170__134.67041_34.74330__red_sea_diversion (max lat 71.3, 15,952 nm)
+    33.03726_68.97170__141.69067_42.46399__red_sea_diversion (max lat 71.3, 16,482 nm)
+    33.03726_68.97170__131.90000_33.75000__red_sea_diversion (max lat 71.3, 15,787 nm)
+    33.03726_68.97170__135.10000_34.37745__red_sea_diversion (max lat 71.3, 15,940 nm)
+    33.03726_68.97170__141.06720_38.19934__red_sea_diversion (max lat 71.3, 16,316 nm)
+    33.03726_68.97170__130.83687_33.95817__red_sea_diversion (max lat 71.3, 15,779 nm)
+    33.03726_68.97170__132.27539_34.18454__red_sea_diversion (max lat 71.3, 15,849 nm)
+    33.03726_68.97170__141.37346_36.90678__red_sea_diversion (max lat 71.3, 16,237 nm)
+    33.03726_68.97170__134.89563_33.79969__red_sea_diversion (max lat 71.3, 15,901 nm)
+    33.03726_68.97170__141.58630_40.62646__red_sea_diversion (max lat 71.3, 16,472 nm)
+    33.03726_68.97170__134.00574_34.41824__red_sea_diversion (max lat 71.3, 15,911 nm)
+    33.03726_68.97170__139.08417_38.00698__red_sea_diversion (max lat 71.3, 16,271 nm)
+    33.03726_68.97170__129.39079_35.46179__red_sea_diversion (max lat 71.3, 15,776 nm)
+    33.03726_68.97170__127.82044_34.71001__red_sea_diversion (max lat 71.3, 15,696 nm)
+    33.03726_68.97170__128.72681_35.04855__red_sea_diversion (max lat 71.3, 15,733 nm)
+    33.03726_68.97170__126.26312_37.55982__red_sea_diversion (max lat 71.3, 15,803 nm)
+    33.03726_68.97170__126.72455_37.01133__red_sea_diversion (max lat 71.3, 15,776 nm)
+    33.03726_68.97170__103.68313_1.29525__red_sea_diversion (max lat 71.3, 13,371 nm)
+2026-10-29 16:09:18 INFO    Task 4.3 | ports whose network point lies inside a zone (their routes cross it): 12
+    DNK_port582 in Oresund Strait
+    ESP_port31 in Gibraltar Strait
+    IDN_port114 in Sunda Strait
+    IDN_port731 in Sunda Strait
+    MAR_port1265 in Gibraltar Strait
+    PAN_port101 in Panama Canal
+    PAN_port700 in Panama Canal
+    SWE_port459 in Oresund Strait
+    SWE_port690 in Oresund Strait
+    TUR_port2049 in Bosporus Strait
+    TUR_port504 in Bosporus Strait
+    UKR_port559 in Kerch Strait
+2026-10-29 16:09:19 INFO    Task 4.3 | scenario baseline: routed sub-flows 52,289 (flows 1,395) | sub-flows crossing at least one chokepoint 45,154 | flow-chokepoint crossings 4,504 | flows with a crossing sub-flow 1,306 | flows crossing none 89
+2026-10-29 16:09:19 INFO    Task 4.3 | scenario red_sea_diversion: routed sub-flows 52,022 (flows 1,392) | sub-flows crossing at least one chokepoint 43,725 | flow-chokepoint crossings 3,521 | flows with a crossing sub-flow 1,292 | flows crossing none 100
+2026-10-29 16:09:19 INFO    Task 4.4 | main ranking field: trade_value_base -> trade_rank_base (1 = most exposed; ties share the higher rank)
+2026-10-29 16:09:19 INFO    Task 4.4 | trade exposure by chokepoint (value USD, share of the column total, flows):
+2026-10-29 16:09:19 INFO      rank  chokepoint                 baseline USD   share  flows        red sea USD   share  flows
+2026-10-29 16:09:19 INFO         1  Taiwan Strait               817,704,288   22.6%    373        787,440,892   25.8%    373
+2026-10-29 16:09:19 INFO         2  Malacca Strait              664,685,268   18.4%    390        474,043,999   15.5%    113
+2026-10-29 16:09:19 INFO         3  Korea Strait                357,486,589    9.9%    228        357,486,589   11.7%    228
+2026-10-29 16:09:19 INFO         4  Gibraltar Strait            213,807,691    5.9%    611         60,890,626    2.0%    462
+2026-10-29 16:09:19 INFO         5  Panama Canal                211,052,713    5.8%    242        211,037,728    6.9%    232
+2026-10-29 16:09:19 INFO         6  Bohai Strait                210,720,848    5.8%    190        210,695,863    6.9%    190
+2026-10-29 16:09:19 INFO         7  Bab el-Mandeb Strait        209,108,977    5.8%    422                  0    0.0%      0
+2026-10-29 16:09:19 INFO         8  Suez Canal                  209,055,619    5.8%    429                  0    0.0%      0
+2026-10-29 16:09:19 INFO         9  Tsugaru Strait              145,190,467    4.0%     91        145,190,467    4.8%     91
+2026-10-29 16:09:19 INFO        10  Yucatan Channel             124,757,223    3.4%     71        124,853,479    4.1%     85
+2026-10-29 16:09:19 INFO        11  Dover Strait                122,554,584    3.4%    557        122,340,815    4.0%    556
+2026-10-29 16:09:19 INFO        12  Luzon Strait                 78,772,432    2.2%    101        108,976,115    3.6%    101
+2026-10-29 16:09:19 INFO        13  Lombok Strait                73,123,122    2.0%     16         73,123,122    2.4%     16
+2026-10-29 16:09:19 INFO        14  Windward Passage             62,788,462    1.7%     80         62,788,462    2.1%     80
+2026-10-29 16:09:19 INFO        15  Oresund Strait               52,350,892    1.4%    234         52,350,892    1.7%    234
+2026-10-29 16:09:19 INFO        16  Torres Strait                27,247,145    0.8%     32         27,222,740    0.9%     20
+2026-10-29 16:09:19 INFO        17  Mona Passage                 22,312,602    0.6%    160         25,939,862    0.8%    171
+2026-10-29 16:09:19 INFO        18  Sunda Strait                  6,512,398    0.2%     39        197,078,183    6.5%    321
+2026-10-29 16:09:19 INFO        19  Strait of Hormuz              5,410,148    0.1%     47          5,410,148    0.2%     47
+2026-10-29 16:09:19 INFO        20  Balabac Strait                2,980,351    0.1%     17          1,711,088    0.1%     21
+2026-10-29 16:09:19 INFO        21  Bosporus Strait               2,830,285    0.1%     99          2,829,385    0.1%     99
+2026-10-29 16:09:19 INFO        22  Mindoro Strait                  263,314    0.0%     17            263,314    0.0%     17
+2026-10-29 16:09:19 INFO        23  Makassar Strait                 212,843    0.0%     12          1,482,937    0.0%     23
+2026-10-29 16:09:19 INFO        24  Magellan Strait                  49,007    0.0%     18             62,073    0.0%     25
+2026-10-29 16:09:19 INFO        25  Ombai Strait                     33,848    0.0%     19              9,442    0.0%      7
+2026-10-29 16:09:19 INFO        26  Kerch Strait                        255    0.0%      9                255    0.0%      9
+2026-10-29 16:09:19 INFO        27  Bering Strait                         0    0.0%      0                  0    0.0%      0
+2026-10-29 16:09:19 INFO    Task 4.3 | scenario red_sea_diversion (diverted_also_closed open): routed sub-flows 52,022 (flows 1,392) | sub-flows crossing at least one chokepoint 43,767 | flow-chokepoint crossings 3,825 | flows with a crossing sub-flow 1,292 | flows crossing none 100
+2026-10-29 16:09:20 INFO    Read Daily_Chokepoints_Data.csv: 79,548 rows | 28 chokepoints | 2019-01-01 to 2026-10-11
+2026-10-29 16:09:20 INFO    Task 4.5 | daily transits 2025-01-01 to 2025-12-31: 10,220 rows | days per chokepoint 365 expected, all complete
+2026-10-29 16:09:20 INFO    Read PortWatch IMF Chokepoints.csv: 28 rows | header fields 25 | fields per row [25]
+2026-10-29 16:09:20 INFO    Task 4.5 | check: vessel_count_total = sum of container+dry_bulk+general_cargo+RoRo+tanker in 28 of 28 rows
+2026-10-29 16:09:20 INFO    Task 4.5 | variant summary_file_panama_open: share-weighted flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.513, p = 0.0063 -> PASS (pass mark 0.50) | for reference, flows with any crossing sub-flow: rho = 0.514, p = 0.0062
+2026-10-29 16:09:20 INFO        PortWatch rank  1  model rank  6  Taiwan Strait          pw share  16.4%  model share   6.1%
+2026-10-29 16:09:20 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.9%  model share   5.6%
+2026-10-29 16:09:20 INFO        PortWatch rank  3  model rank  2  Dover Strait           pw share  10.5%  model share  17.2%
+2026-10-29 16:09:20 INFO        PortWatch rank  4  model rank 10  Malacca Strait         pw share   9.1%  model share   3.2%
+2026-10-29 16:09:20 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   7.7%  model share  17.2%
+2026-10-29 16:09:20 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   7.1%  model share   2.8%
+2026-10-29 16:09:20 INFO        PortWatch rank  7  model rank 12  Bohai Strait           pw share   5.8%  model share   2.3%
+2026-10-29 16:09:20 INFO        PortWatch rank  8  model rank  5  Oresund Strait         pw share   3.9%  model share   8.1%
+2026-10-29 16:09:20 INFO        PortWatch rank  9  model rank 25  Suez Canal             pw share   2.9%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 10  model rank 24  Kerch Strait           pw share   2.8%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 11  model rank 25  Bab el-Mandeb Strait   pw share   2.6%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 12  model rank 14  Strait of Hormuz       pw share   2.6%  model share   1.5%
+2026-10-29 16:09:20 INFO        PortWatch rank 13  model rank  9  Tsugaru Strait         pw share   2.5%  model share   5.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 14  model rank 13  Yucatan Channel        pw share   1.8%  model share   1.5%
+2026-10-29 16:09:20 INFO        PortWatch rank 15  model rank 16  Luzon Strait           pw share   1.6%  model share   0.6%
+2026-10-29 16:09:20 INFO        PortWatch rank 16  model rank 15  Windward Passage       pw share   1.4%  model share   1.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 17  model rank  3  Panama Canal           pw share   1.3%  model share  11.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 18  model rank  8  Sunda Strait           pw share   0.9%  model share   5.6%
+2026-10-29 16:09:20 INFO        PortWatch rank 19  model rank 22  Mindoro Strait         pw share   0.6%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 20  model rank  4  Mona Passage           pw share   0.6%  model share   9.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 21  model rank 20  Makassar Strait        pw share   0.6%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.4%  model share   0.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 23  model rank 23  Ombai Strait           pw share   0.3%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 24  model rank 19  Balabac Strait         pw share   0.3%  model share   0.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 25  model rank 21  Lombok Strait          pw share   0.2%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 26  model rank 17  Magellan Strait        pw share   0.1%  model share   0.4%
+2026-10-29 16:09:20 INFO        PortWatch rank 27  model rank 25  Bering Strait          pw share   0.0%  model share   0.0%
+2026-10-29 16:09:20 INFO    Task 4.5 | variant daily2025_panama_open: share-weighted flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.622, p = 0.00053 -> PASS (pass mark 0.50) | for reference, flows with any crossing sub-flow: rho = 0.622, p = 0.00053
+2026-10-29 16:09:20 INFO        PortWatch rank  1  model rank  6  Taiwan Strait          pw share  16.7%  model share   6.1%
+2026-10-29 16:09:20 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.7%  model share   5.6%
+2026-10-29 16:09:20 INFO        PortWatch rank  3  model rank 10  Malacca Strait         pw share  11.4%  model share   3.2%
+2026-10-29 16:09:20 INFO        PortWatch rank  4  model rank  2  Dover Strait           pw share  11.1%  model share  17.2%
+2026-10-29 16:09:20 INFO        PortWatch rank  5  model rank  1  Gibraltar Strait       pw share   8.0%  model share  17.2%
+2026-10-29 16:09:20 INFO        PortWatch rank  6  model rank 11  Bosporus Strait        pw share   6.8%  model share   2.8%
+2026-10-29 16:09:20 INFO        PortWatch rank  7  model rank 12  Bohai Strait           pw share   5.7%  model share   2.3%
+2026-10-29 16:09:20 INFO        PortWatch rank  8  model rank  5  Oresund Strait         pw share   3.7%  model share   8.1%
+2026-10-29 16:09:20 INFO        PortWatch rank  9  model rank 14  Strait of Hormuz       pw share   3.0%  model share   1.5%
+2026-10-29 16:09:20 INFO        PortWatch rank 10  model rank  9  Tsugaru Strait         pw share   2.5%  model share   5.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 11  model rank 13  Yucatan Channel        pw share   2.0%  model share   1.5%
+2026-10-29 16:09:20 INFO        PortWatch rank 12  model rank 25  Suez Canal             pw share   1.9%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 13  model rank 16  Luzon Strait           pw share   1.8%  model share   0.6%
+2026-10-29 16:09:20 INFO        PortWatch rank 14  model rank 25  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 15  model rank 15  Windward Passage       pw share   1.5%  model share   1.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 16  model rank  3  Panama Canal           pw share   1.4%  model share  11.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 17  model rank 24  Kerch Strait           pw share   1.0%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 18  model rank  8  Sunda Strait           pw share   1.0%  model share   5.6%
+2026-10-29 16:09:20 INFO        PortWatch rank 19  model rank  4  Mona Passage           pw share   0.7%  model share   9.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 20  model rank 22  Mindoro Strait         pw share   0.6%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 21  model rank 20  Makassar Strait        pw share   0.6%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 23  model rank 19  Balabac Strait         pw share   0.3%  model share   0.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 24  model rank 23  Ombai Strait           pw share   0.3%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 25  model rank 21  Lombok Strait          pw share   0.2%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 26  model rank 17  Magellan Strait        pw share   0.1%  model share   0.4%
+2026-10-29 16:09:20 INFO        PortWatch rank 27  model rank 25  Bering Strait          pw share   0.1%  model share   0.0%
+2026-10-29 16:09:20 INFO    Task 4.5 | variant daily2025_cape_diversion (main result): share-weighted flow shares vs PortWatch container+general_cargo shares, 27 chokepoints: Spearman rho = 0.646, p = 0.00027 -> PASS (pass mark 0.50) | for reference, flows with any crossing sub-flow: rho = 0.662, p = 0.00017
+2026-10-29 16:09:20 INFO        PortWatch rank  1  model rank  4  Taiwan Strait          pw share  16.7%  model share  10.7%
+2026-10-29 16:09:20 INFO        PortWatch rank  2  model rank  7  Korea Strait           pw share  15.7%  model share   3.9%
+2026-10-29 16:09:20 INFO        PortWatch rank  3  model rank  9  Malacca Strait         pw share  11.4%  model share   3.3%
+2026-10-29 16:09:20 INFO        PortWatch rank  4  model rank  1  Dover Strait           pw share  11.1%  model share  19.7%
+2026-10-29 16:09:20 INFO        PortWatch rank  5  model rank  2  Gibraltar Strait       pw share   8.0%  model share  18.2%
+2026-10-29 16:09:20 INFO        PortWatch rank  6  model rank 10  Bosporus Strait        pw share   6.8%  model share   3.0%
+2026-10-29 16:09:20 INFO        PortWatch rank  7  model rank 12  Bohai Strait           pw share   5.7%  model share   2.5%
+2026-10-29 16:09:20 INFO        PortWatch rank  8  model rank  5  Oresund Strait         pw share   3.7%  model share   8.6%
+2026-10-29 16:09:20 INFO        PortWatch rank  9  model rank 13  Strait of Hormuz       pw share   3.0%  model share   1.6%
+2026-10-29 16:09:20 INFO        PortWatch rank 10  model rank 15  Tsugaru Strait         pw share   2.5%  model share   1.4%
+2026-10-29 16:09:20 INFO        PortWatch rank 11  model rank 14  Yucatan Channel        pw share   2.0%  model share   1.4%
+2026-10-29 16:09:20 INFO        PortWatch rank 12  model rank 25  Suez Canal             pw share   1.9%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 13  model rank 11  Luzon Strait           pw share   1.8%  model share   2.5%
+2026-10-29 16:09:20 INFO        PortWatch rank 14  model rank 25  Bab el-Mandeb Strait   pw share   1.6%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 15  model rank 16  Windward Passage       pw share   1.5%  model share   0.9%
+2026-10-29 16:09:20 INFO        PortWatch rank 16  model rank  6  Panama Canal           pw share   1.4%  model share   5.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 17  model rank 24  Kerch Strait           pw share   1.0%  model share   0.0%
+2026-10-29 16:09:20 INFO        PortWatch rank 18  model rank  3  Sunda Strait           pw share   1.0%  model share  12.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 19  model rank  8  Mona Passage           pw share   0.7%  model share   3.4%
+2026-10-29 16:09:20 INFO        PortWatch rank 20  model rank 21  Mindoro Strait         pw share   0.6%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 21  model rank 19  Makassar Strait        pw share   0.6%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 22  model rank 18  Torres Strait          pw share   0.3%  model share   0.3%
+2026-10-29 16:09:20 INFO        PortWatch rank 23  model rank 22  Balabac Strait         pw share   0.3%  model share   0.1%
+2026-10-29 16:09:20 INFO        PortWatch rank 24  model rank 23  Ombai Strait           pw share   0.3%  model share   0.1%
+2026-10-29 16:09:20 INFO        PortWatch rank 25  model rank 20  Lombok Strait          pw share   0.2%  model share   0.2%
+2026-10-29 16:09:20 INFO        PortWatch rank 26  model rank 17  Magellan Strait        pw share   0.1%  model share   0.5%
+2026-10-29 16:09:20 INFO        PortWatch rank 27  model rank 25  Bering Strait          pw share   0.1%  model share   0.0%
+2026-10-29 16:09:20 INFO    Task 4.5 | for reference only, baseline share-weighted flow shares vs daily 2025 transits: rho = 0.781, p = 1.5e-06
+2026-10-29 16:09:21 INFO    Task 4.2 | routes layer, baseline: 21,619 network-point routes copied to 27,502 port pairs
+2026-10-29 16:09:21 INFO    Task 4.2 | routes layer, red_sea_diversion: 21,477 network-point routes copied to 27,343 port pairs
+2026-10-29 16:09:21 INFO    Comparison | first pass: C:\Users\garre\ree-chokepoints\data\interim\lab8_first_pass.gpkg (ports.assignment nearest_gateway, WPI ports)
+2026-10-29 16:09:21 INFO    Comparison | trade exposure per chokepoint, value USD (rank change: + = moved up):
+2026-10-29 16:09:21 INFO      chokepoint                   base old       base new  old  new  chg      red sea old    red sea new  old  new  chg
+2026-10-29 16:09:21 INFO      Taiwan Strait             506,193,811    817,704,288    1    1   +0      506,193,811    787,440,892    1    1   +0
+2026-10-29 16:09:21 INFO      Malacca Strait            201,911,830    664,685,268    3    2   +1       33,452,711    474,043,999   10    2   +8
+2026-10-29 16:09:21 INFO      Korea Strait              230,442,963    357,486,589    2    3   -1      230,442,963    357,486,589    3    3   +0
+2026-10-29 16:09:21 INFO      Gibraltar Strait          186,705,458    213,807,691    4    4   +0       62,960,554     60,890,626    8   13   -5
+2026-10-29 16:09:21 INFO      Panama Canal                  638,948    211,052,713   16    5  +11          618,774    211,037,728   14    4  +10
+2026-10-29 16:09:21 INFO      Bohai Strait               74,632,095    210,720,848   11    6   +5       74,632,095    210,695,863    7    5   +2
+2026-10-29 16:09:21 INFO      Bab el-Mandeb Strait      183,647,224    209,108,977    5    7   -2                0              0   21   25   -4
+2026-10-29 16:09:21 INFO      Suez Canal                183,627,462    209,055,619    6    8   -2                0              0   21   25   -4
+2026-10-29 16:09:21 INFO      Tsugaru Strait            154,517,515    145,190,467    7    9   -2      154,517,515    145,190,467    4    7   -3
+2026-10-29 16:09:21 INFO      Yucatan Channel               103,570    124,757,223   20   10  +10          103,570    124,853,479   18    8  +10
+2026-10-29 16:09:21 INFO      Dover Strait              110,851,342    122,554,584    8   11   -3      110,850,817    122,340,815    5    9   -4
+2026-10-29 16:09:21 INFO      Luzon Strait               61,739,636     78,772,432   12   12   +0       61,739,636    108,976,115    9   10   -1
+2026-10-29 16:09:21 INFO      Lombok Strait                 506,997     73,123,122   18   13   +5          506,997     73,123,122   16   11   +5
+2026-10-29 16:09:21 INFO      Windward Passage                    0     62,788,462   23   14   +9                0     62,788,462   21   12   +9
+2026-10-29 16:09:21 INFO      Oresund Strait             81,356,496     52,350,892   10   15   -5       81,356,496     52,350,892    6   14   -8
+2026-10-29 16:09:21 INFO      Torres Strait                  20,604     27,247,145   22   16   +6           20,604     27,222,740   20   15   +5
+2026-10-29 16:09:21 INFO      Mona Passage                  536,016     22,312,602   17   17   +0          515,842     25,939,862   15   16   -1
+2026-10-29 16:09:21 INFO      Sunda Strait              107,545,842      6,512,398    9   18   -9      276,004,960    197,078,183    2    6   -4
+2026-10-29 16:09:21 INFO      Strait of Hormuz            5,491,873      5,410,148   13   19   -6        5,491,873      5,410,148   11   17   -6
+2026-10-29 16:09:21 INFO      Balabac Strait                      0      2,980,351   23   20   +3                0      1,711,088   21   19   +2
+2026-10-29 16:09:21 INFO      Bosporus Strait             4,686,610      2,830,285   14   21   -7        4,686,610      2,829,385   12   18   -6
+2026-10-29 16:09:21 INFO      Mindoro Strait                924,444        263,314   15   22   -7          924,444        263,314   13   21   -8
+2026-10-29 16:09:21 INFO      Makassar Strait               506,997        212,843   18   23   -5          506,997      1,482,937   16   20   -4
+2026-10-29 16:09:21 INFO      Magellan Strait                35,665         49,007   21   24   -3           56,042         62,073   19   22   -3
+2026-10-29 16:09:21 INFO      Ombai Strait                        0         33,848   23   25   -2                0          9,442   21   23   -2
+2026-10-29 16:09:21 INFO      Kerch Strait                        0            255   23   26   -3                0            255   21   24   -3
+2026-10-29 16:09:21 INFO      Bering Strait                       0              0   23   27   -4                0              0   21   25   -4
+2026-10-29 16:09:21 INFO    Comparison | trade_value_base: Spearman rho old vs new 0.769
+2026-10-29 16:09:21 INFO    Comparison | trade_value_redsea: Spearman rho old vs new 0.755
+2026-10-29 16:09:21 INFO    Comparison | validation rho (red_sea_diversion, main variant): first pass 0.710 (recomputed; Lab 8 reported 0.641 before the Decision 12 gate lines) | this run 0.646
+2026-10-29 16:09:21 INFO    Comparison | red_sea_diversion port pairs with no sea route, first pass: 5 pairs, 6 sub-flows, 26,066 USD
+2026-10-29 16:09:21 INFO    Comparison | red_sea_diversion port pairs with no sea route, this run: 159 pairs, 267 sub-flows, 134,460 USD
+2026-10-29 16:09:21 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\validation.csv (81 rows, 3 variants)
+2026-10-29 16:09:22 INFO    Context | PortWatch transits per calendar year (all types / container):
+2026-10-29 16:09:22 INFO        Suez Canal             2023  days 365  all  26,895  container  6,977
+2026-10-29 16:09:22 INFO        Suez Canal             2024  days 366  all  14,498  container  3,198
+2026-10-29 16:09:22 INFO        Suez Canal             2025  days 365  all  14,070  container  3,351
+2026-10-29 16:09:22 INFO        Bab el-Mandeb Strait   2023  days 365  all  27,015  container  6,739
+2026-10-29 16:09:22 INFO        Bab el-Mandeb Strait   2024  days 366  all  11,901  container  1,967
+2026-10-29 16:09:22 INFO        Bab el-Mandeb Strait   2025  days 365  all  12,218  container  2,445
+2026-10-29 16:09:22 INFO        Cape of Good Hope      2023  days 365  all  17,926  container  2,249
+2026-10-29 16:09:22 INFO        Cape of Good Hope      2024  days 366  all  31,846  container  6,961
+2026-10-29 16:09:22 INFO        Cape of Good Hope      2025  days 365  all  32,653  container  7,387
+2026-10-29 16:09:22 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\red_sea_context.csv (9 rows)
+2026-10-29 16:09:23 INFO    Wrote layer 'subflows' (52,292 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 16:09:27 INFO    Wrote layer 'routes' (54,845 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 16:09:27 INFO    Wrote layer 'route_crossings' (8,025 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 16:09:27 INFO    chokepoint_scores exists (27 rows); replacing 7 S06 columns, keeping 42 others: ['viol_n_100', 'viol_fw_100', 'viol_n_250', 'viol_fw_250', 'viol_n_500', 'viol_fw_500', 'viol_kde_100', 'viol_kde_250', 'viol_kde_500', 'viol_rank', 'redund_edges_removed', 'redund_nflows_affected', 'redund_value_affected', 'redund_nflows_rerouted', 'redund_nflows_noroute', 'redund_value_noroute', 'redund_nflows_portzone', 'redund_value_portzone', 'redund_median_pct', 'redund_penalty_routed_pct', 'redund_noalt_pct', 'redund_penalty_pct', 'impact_nflows_costed', 'impact_value_costed', 'impact_nflows_nocost', 'impact_value_nocost', 'impact_days', 'impact_days_median', 'impact_days_max', 'impact_days_low', 'impact_days_high', 'impact_toll_change', 'impact_voyage_cost', 'impact_voyage_cost_median', 'impact_voyage_cost_low', 'impact_voyage_cost_high', 'impact_holding_cost', 'impact_holding_cost_low', 'impact_holding_cost_high', 'impact_nflows_canal_added', 'impact_nflows_canal_skipped', 'quad_trade_conflict']
+2026-10-29 16:09:27 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 16:09:27 INFO    Run of s06_trade_exposure finished

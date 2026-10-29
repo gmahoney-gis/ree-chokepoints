@@ -16,6 +16,7 @@ paths:
   raw: data/raw
   interim: data/interim
   database: data/project.gpkg
+  first_pass_database: data/interim/lab8_first_pass.gpkg   # Lab 7/8 WPI first pass; S06 logs old vs new
   logs: logs
   tables: outputs/tables
   figures: outputs/figures
