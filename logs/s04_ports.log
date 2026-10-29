@@ -1,14 +1,14 @@
-2026-10-18 18:48:23 INFO    Run of s04_ports started 2026-10-18T18:48:23
-2026-10-18 18:48:23 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-18 18:48:24 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-18 18:48:24 INFO    Port assignment: nearest_gateway (Lab 7 first pass, WPI ports)
-2026-10-18 18:48:24 INFO    Task 2.10 | trade flows in main run with maritime_share > 0 | kept 1,396 | removed 5,473 | reason: not in main run, or no seaborne share
-2026-10-18 18:48:24 INFO    Task 2.10 | trading countries (origin or destination): 125
-2026-10-18 18:48:24 INFO    Read ne_10m_admin_0_countries.shp (258 features)
-2026-10-18 18:48:24 INFO    Read NGA World Port Index-Pub150.csv: 3,807 ports
-2026-10-18 18:48:24 INFO    Task 2.10 | WPI country names 195 | matched to a Natural Earth name 173 | matched through settings overrides 22
-2026-10-18 18:48:24 INFO    Task 2.10 | WPI ports with an ISO-3 country | kept 3,807 | removed 0 | reason: country name not matched: none
-2026-10-18 18:48:24 INFO    Task 2.10 | check: ports whose UN/LOCODE country differs from the WPI country: 7 (kept under the WPI country)
+2026-10-29 15:19:19 INFO    Run of s04_ports started 2026-10-29T15:19:19
+2026-10-29 15:19:19 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-29 15:19:24 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-29 15:19:24 INFO    Port assignment: principal_ports (ports.assignment; Decision 14)
+2026-10-29 15:19:24 INFO    Task 2.10 | trade flows in main run with maritime_share > 0 | kept 1,396 | removed 5,473 | reason: not in main run, or no seaborne share
+2026-10-29 15:19:24 INFO    Task 2.10 | trading countries (origin or destination): 125 (exporters 65, importers 122)
+2026-10-29 15:19:25 INFO    Read ne_10m_admin_0_countries.shp (258 features)
+2026-10-29 15:19:25 INFO    Read NGA World Port Index-Pub150.csv: 3,807 ports
+2026-10-29 15:19:25 INFO    Task 2.10 | WPI country names 195 | matched to a Natural Earth name 173 | matched through settings overrides 22
+2026-10-29 15:19:25 INFO    Task 2.10 | WPI ports with an ISO-3 country | kept 3,807 | removed 0 | reason: country name not matched: none
+2026-10-29 15:19:25 INFO    Task 2.10 | check: ports whose UN/LOCODE country differs from the WPI country: 7 (kept under the WPI country)
     Amber Cove (Dominican Republic, LOCODE COAMB)
     Gustavia (Guadeloupe, LOCODE BL GUS)
     St Petersburg (United States, LOCODE RULED)
@@ -16,40 +16,116 @@
     Cockburn (Canada, LOCODE BSCBT)
     Tobermory (Canada, LOCODE GBTOB)
     Salina (Caribbean Netherlands, LOCODE BRSAA)
-2026-10-18 18:48:24 INFO    Read landlocked_gateways.csv: 23 rows (auto first pass - review: 21, manual: 2)
-2026-10-18 18:48:24 INFO    Task 2.10 | WPI ports with a harbor size | kept 3,680 | removed 127 | reason: harbor size blank
-2026-10-18 18:48:24 INFO    Task 2.12 | countries with WPI ports treated as landlocked (listed in the gateway file): 1 (PRY)
-2026-10-18 18:48:25 INFO    Task 2.10 | countries using Large harbors: 47
-2026-10-18 18:48:25 INFO    Task 2.10 | countries using Medium harbors: 37 (ALB, BGD, BMU, CHL, COL, CYP, DOM, ECU, GHA, GIN, IRN, IRQ, ISL, ISR, JAM, KEN, KHM, KWT, LKA, LTU, MEX, MLT, MOZ, MRT, OMN, PAK, PAN, PER, QAT, ROU, SAU, SVN, TTO, TUN, TZA, URY, VNM)
-2026-10-18 18:48:25 INFO    Task 2.10 | countries using Small harbors: 12 (AGO, BRB, COD, CPV, CRI, GEO, GTM, MDG, MUS, NAM, PNG, SYC)
-2026-10-18 18:48:25 INFO    Task 2.10 | countries using Very Small harbors: 6 (FRO, JOR, MDV, SLV, STP, WSM)
-2026-10-18 18:48:25 INFO    Task 2.10 | trading countries not in the gateway file with no WPI port: 0 (none)
-2026-10-18 18:48:25 INFO    Task 2.12 | gateway rows kept unchanged from the file 23 | appended (nearest Large/Medium harbor abroad to the country centroid) 0
-2026-10-18 18:48:25 INFO    Task 2.12 | gateways in use: 23
-    ARM -> Samsun (TUR), 731 km [auto first pass - review]
-    AUT -> Monfalcone (ITA), 205 km [auto first pass - review]
-    BLR -> Riga (LVA), 454 km [auto first pass - review]
-    CHE -> Genova (ITA), 271 km [auto first pass - review]
-    CZE -> Szczecin (POL), 413 km [auto first pass - review]
-    ETH -> Djibouti (DJI), 509 km [manual]
-    HUN -> Rijeka Luka (HRV), 432 km [auto first pass - review]
-    KAZ -> Novorossiysk (RUS), 2,278 km [auto first pass - review]
-    KGZ -> Karachi (PAK), 1,982 km [auto first pass - review]
-    LAO -> Fang-Cheng (CHN), 602 km [auto first pass - review]
-    LUX -> Antwerpen (BEL), 200 km [auto first pass - review]
-    MDA -> Odesa (UKR), 190 km [auto first pass - review]
-    MKD -> Thessaloniki (GRC), 150 km [auto first pass - review]
-    MNG -> Tianjin Xin Gang (CHN), 1,484 km [auto first pass - review]
-    MWI -> Beira (MOZ), 738 km [auto first pass - review]
-    PRY -> Buenos Aires (ARG), 1,265 km [manual]
-    RWA -> Mombasa (KEN), 1,107 km [auto first pass - review]
-    SRB -> Porto Romano (ALB), 335 km [auto first pass - review]
-    SVK -> Rijeka Luka (HRV), 535 km [auto first pass - review]
-    UGA -> Mombasa (KEN), 1,005 km [auto first pass - review]
-    UZB -> Bandar Abbas (IRN), 1,743 km [auto first pass - review]
-    ZMB -> Beira (MOZ), 1,033 km [auto first pass - review]
-    ZWE -> Beira (MOZ), 530 km [auto first pass - review]
-2026-10-18 18:48:25 INFO    Task 2.12 | main-run maritime value through each gateway (total 1,943,497,016 USD):
+2026-10-29 15:19:25 INFO    Task 2.10 | WPI ports with a harbor size | kept 3,680 | removed 127 | reason: harbor size blank
+2026-10-29 15:19:25 INFO    Read landlocked_gateways.csv: 23 rows (auto first pass - review: 21, manual: 2)
+2026-10-29 15:19:25 INFO    Task 2.13 | searoute 1.6.0 sea-lane network: 9,708 nodes, 15,970 edges
+2026-10-29 15:19:25 INFO    Read Ports.csv: 2,065 ports in 180 countries
+2026-10-29 15:19:25 INFO    Task 2.11 | PortWatch export shares per country sum to 99.96-100.05% (percent, 0-100)
+2026-10-29 15:19:25 INFO    Task 2.11 | PortWatch import shares per country sum to 99.96-100.04% (percent, 0-100)
+2026-10-29 15:19:26 INFO    Task 2.10 | trading countries: PortWatch 101 | WPI fallback (not in PortWatch) 1 (BMU) | landlocked, gateway file 23 (of them with PortWatch ports, still treated as landlocked: KAZ, MDA)
+2026-10-29 15:19:27 INFO    Task 2.10 | port filter: offshore terminals (portid starts 'fso') removed: yes | mostly tanker (tanker calls >= 50% and container + general cargo calls < 10%) removed: 242 | ports with no vessel calls (kept, test not applied): 87
+2026-10-29 15:19:27 INFO    Task 2.10 | PortWatch ports kept by the filter | kept 1,642 | removed 423 | reason: offshore oil terminal 181, mostly tanker 242
+2026-10-29 15:19:27 INFO    Task 2.10 | in trading countries: ports 1821 | removed 353 (offshore 143, mostly tanker 210)
+2026-10-29 15:19:27 INFO    Task 2.10 | removed ports in trading countries with more than 5% of their country's export or import share: 71 (calls: container / general cargo / tanker of total)
+    AGO fso53 Angola - Offshore Oil Terminal 2: export 18.3%, import 0.0% | offshore oil terminal | calls 0 / 0 / 19 of 19
+    AGO fso57 Angola - Offshore Oil Terminal 6: export 16.7%, import 0.0% | offshore oil terminal | calls 0 / 0 / 27 of 27
+    ARE port22 Al Hamriyah LPG Terminal: export 1.9%, import 5.2% | mostly tanker | calls 10 / 94 / 979 of 1,194
+    ARE port362 Fujairah: export 19.2%, import 17.7% | mostly tanker | calls 8 / 22 / 3,165 of 3,462
+    ARG port257 Comodoro Rivadavia: export 10.0%, import 0.0% | mostly tanker | calls 0 / 1 / 246 of 247
+    BRA port382 Gebig: export 3.2%, import 9.0% | mostly tanker | calls 0 / 0 / 422 of 422
+    BRA port166 Porto do Acu: export 4.9%, import 7.5% | mostly tanker | calls 0 / 17 / 327 of 527
+    BRA port1162 São Sebastião: export 0.0%, import 13.2% | mostly tanker | calls 3 / 25 / 604 of 672
+    CAN port211 Canaport (St. John): export 0.0%, import 13.0% | mostly tanker | calls 0 / 0 / 131 of 131
+    CAN port256 Whiffen Head: export 5.9%, import 9.1% | mostly tanker | calls 0 / 3 / 300 of 303
+    CHL port90 Bahia Quintero (Ventanas): export 6.7%, import 16.6% | mostly tanker | calls 0 / 20 / 558 of 712
+    CIV fso71 Côte d'Ivoire - Offshore Oil Terminal 1: export 6.3%, import 0.0% | offshore oil terminal | calls 0 / 1 / 5 of 6
+    COD fso72 Democratic Republic of the Congo - Offshore Oil Terminal 1: export 51.5%, import 0.0% | offshore oil terminal | calls 0 / 0 / 25 of 25
+    COD fso73 Democratic Republic of the Congo - Offshore Oil Terminal 2: export 8.9%, import 0.0% | offshore oil terminal | calls 0 / 0 / 14 of 14
+    COD fso74 Democratic Republic of the Congo - Offshore Oil Terminal 3: export 13.2%, import 0.0% | offshore oil terminal | calls 0 / 0 / 11 of 11
+    COD fso75 Democratic Republic of the Congo - Offshore Oil Terminal 4: export 22.8%, import 0.0% | offshore oil terminal | calls 0 / 0 / 21 of 21
+    COL port266 Covenas Offshore Term.: export 24.8%, import 0.0% | mostly tanker | calls 0 / 0 / 207 of 207
+    ECU port619 La Libertad: export 6.3%, import 15.4% | mostly tanker | calls 0 / 0 / 423 of 423
+    EGY port2129 Sidi Kerir: export 41.0%, import 0.0% | mostly tanker | calls 0 / 0 / 365 of 365
+    FIN port1015 Skoldvik: export 33.6%, import 46.9% | mostly tanker | calls 10 / 35 / 1,089 of 1,134
+    FRA port990 Port-De-Bouc: export 6.7%, import 3.9% | mostly tanker | calls 3 / 11 / 1,028 of 1,047
+    GBR port2238 Hound Point: export 8.9%, import 0.0% | mostly tanker | calls 0 / 0 / 69 of 69
+    GBR port740 Milford Haven: export 9.2%, import 11.3% | mostly tanker | calls 1 / 10 / 1,110 of 1,123
+    GEO port606 Kulevi Oil Terminal: export 18.1%, import 0.0% | mostly tanker | calls 0 / 0 / 116 of 116
+    GEO port2139 Supsa: export 31.3%, import 0.0% | mostly tanker | calls 0 / 0 / 23 of 23
+    GHA fso79 Ghana - Offshore Oil Terminal 1: export 6.3%, import 2.4% | offshore oil terminal | calls 0 / 0 / 20 of 20
+    GHA fso80 Ghana - Offshore Oil Terminal 2: export 17.2%, import 0.0% | offshore oil terminal | calls 0 / 0 / 11 of 11
+    GHA fso81 Ghana - Offshore Oil Terminal 3: export 20.9%, import 0.0% | offshore oil terminal | calls 0 / 0 / 14 of 14
+    GRC port845 Agioi Oil Terminal: export 18.6%, import 15.6% | mostly tanker | calls 0 / 0 / 1,379 of 1,379
+    GRC port75 Asprópirgos: export 6.3%, import 2.9% | mostly tanker | calls 0 / 105 / 1,441 of 1,551
+    GRC port2141 Pachi: export 0.0%, import 13.8% | mostly tanker | calls 0 / 0 / 88 of 88
+    HRV port99 Bakar: export 19.7%, import 7.0% | mostly tanker | calls 0 / 0 / 155 of 155
+    HRV port849 Omisalj: export 0.0%, import 59.5% | mostly tanker | calls 0 / 0 / 70 of 70
+    IDN port1271 Tanjung Sekong: export 0.9%, import 7.9% | mostly tanker | calls 5 / 77 / 966 of 1,461
+    IND port1199 Sikka: export 7.3%, import 0.0% | mostly tanker | calls 0 / 18 / 462 of 488
+    ISR port74 Ashkelon: export 2.0%, import 9.9% | mostly tanker | calls 0 / 0 / 26 of 50
+    ITA port739 Milazzo: export 6.2%, import 4.3% | mostly tanker | calls 0 / 15 / 582 of 648
+    ITA port1167 Sarroch Oil Terminal: export 10.1%, import 5.0% | mostly tanker | calls 0 / 0 / 649 of 649
+    JAM fso104 Jamaica - Offshore Oil Terminal 1: export 6.7%, import 3.4% | offshore oil terminal | calls 0 / 0 / 85 of 85
+    JPN port566 Kiire: export 5.3%, import 2.2% | mostly tanker | calls 0 / 0 / 335 of 335
+    KOR port270 Daesan: export 8.9%, import 9.5% | mostly tanker | calls 200 / 112 / 3,121 of 3,590
+    KWT port743 Mina Al Ahmadi: export 75.5%, import 0.0% | mostly tanker | calls 0 / 2 / 481 of 509
+    LTU port197 Butinge Oil Terminal: export 0.0%, import 37.6% | mostly tanker | calls 0 / 0 / 52 of 52
+    MEX port252 Coatzacoalcos: export 18.8%, import 9.3% | mostly tanker | calls 48 / 22 / 951 of 1,148
+    MEX port1136 Salina Cruz: export 10.4%, import 0.1% | mostly tanker | calls 6 / 9 / 239 of 262
+    MYS port2189 Pengerang: export 8.5%, import 7.0% | mostly tanker | calls 67 / 38 / 1,963 of 2,094
+    NOR port1208 Slagentangen: export 1.7%, import 13.2% | mostly tanker | calls 0 / 0 / 360 of 360
+    OMN port1068 Qalhat LNG Terminal: export 5.1%, import 0.2% | mostly tanker | calls 0 / 2 / 120 of 162
+    PAN port230 Charco Azul: export 17.2%, import 0.0% | mostly tanker | calls 0 / 0 / 101 of 101
+    PAN port240 Chiriquí Grande: export 0.0%, import 11.7% | mostly tanker | calls 0 / 0 / 109 of 109
+    PAN port2200 Taboguilla: export 11.3%, import 15.9% | mostly tanker | calls 133 / 47 / 1,553 of 2,330
+    PER port259 Conchan Oil Terminal: export 1.0%, import 6.1% | mostly tanker | calls 0 / 2 / 121 of 155
+    QAT port1090 Ras Laffan: export 80.4%, import 0.5% | mostly tanker | calls 8 / 63 / 1,634 of 1,790
+    RUS port1020 Primorsk: export 11.9%, import 0.1% | mostly tanker | calls 0 / 3 / 961 of 965
+    RUS port978 Taman: export 5.1%, import 1.6% | mostly tanker | calls 0 / 20 / 274 of 534
+    SAU port526 Juaymah: export 41.4%, import 0.0% | mostly tanker | calls 0 / 1 / 920 of 921
+    SAU port1081 Rabigh: export 2.2%, import 6.0% | mostly tanker | calls 0 / 8 / 388 of 400
+    SAU port1091 Ras Tanura: export 16.0%, import 0.0% | mostly tanker | calls 0 / 0 / 672 of 672
+    SAU port519 Shoaiba: export 0.0%, import 7.0% | mostly tanker | calls 0 / 0 / 113 of 113
+    SAU port570 Yanbu (King Fahd Port): export 15.6%, import 1.0% | mostly tanker | calls 2 / 17 / 1,323 of 1,424
+    SWE port175 Brofjorden: export 23.1%, import 19.6% | mostly tanker | calls 0 / 0 / 895 of 896
+    THA port701 Map Ta Phut: export 10.1%, import 25.8% | mostly tanker | calls 1 / 136 / 3,714 of 4,039
+    THA port1093 Rayong: export 3.5%, import 8.1% | mostly tanker | calls 1 / 27 / 1,511 of 1,553
+    TTO port916 Point Fortin: export 11.9%, import 0.0% | mostly tanker | calls 0 / 0 / 136 of 136
+    TUN port1206 Skhira: export 26.9%, import 8.3% | mostly tanker | calls 0 / 0 / 91 of 91
+    TUR port33 Aliaga: export 3.7%, import 5.1% | mostly tanker | calls 0 / 5 / 789 of 795
+    TWN port681 Mailiao: export 8.1%, import 10.9% | mostly tanker | calls 0 / 55 / 1,009 of 1,194
+    USA port264 Corpus Christi: export 6.4%, import 0.6% | mostly tanker | calls 3 / 67 / 1,454 of 1,723
+    YEM port2263 Ash Shihr: export 38.4%, import 0.0% | mostly tanker | calls 0 / 0 / 2 of 2
+    YEM port2245 Ras Isa Terminal: export 0.0%, import 5.5% | mostly tanker | calls 0 / 0 / 29 of 29
+    YEM port2264 Rudum Terminal: export 31.2%, import 0.0% | mostly tanker | calls 0 / 0 / 6 of 6
+2026-10-29 15:19:29 INFO    Task 2.11 | principal export ports (80% rule): 244 for 53 countries | per country min 1, median 3, max 22
+2026-10-29 15:19:29 INFO    Task 2.11 | principal import ports (80% rule): 395 for 101 countries | per country min 1, median 2, max 29
+2026-10-29 15:19:29 INFO    Task 2.10 | BMU not in PortWatch: 1 WPI Medium harbor(s), equal shares (Ireland Island)
+2026-10-29 15:19:29 INFO    Task 2.12 | gateways in use: 23 (PortWatch ports; 0 of them would be removed by the port filter, kept because gateways are never filtered)
+    ARM -> Samsun (port1139, TUR), 731 km [auto first pass - review]
+    AUT -> Monfalcone (port758, ITA), 205 km [auto first pass - review]
+    BLR -> Riga (port1100, LVA), 454 km [auto first pass - review]
+    CHE -> Genova (port387, ITA), 271 km [auto first pass - review]
+    CZE -> Szczecin (port1246, POL), 413 km [auto first pass - review]
+    ETH -> Djibouti (port294, DJI), 509 km [manual]
+    HUN -> Rijeka Luka (port1101, HRV), 432 km [auto first pass - review]
+    KAZ -> Novorossiysk (port833, RUS), 2,278 km [auto first pass - review]
+    KGZ -> Karachi (port543, PAK), 1,982 km [auto first pass - review]
+    LAO -> Fang-Cheng (port339, CHN), 602 km [auto first pass - review]
+    LUX -> Antwerpen (port57, BEL), 200 km [auto first pass - review]
+    MDA -> Odesa (port843, UKR), 190 km [auto first pass - review]
+    MKD -> Thessaloniki (port1293, GRC), 150 km [auto first pass - review]
+    MNG -> Tianjin Xin Gang (port1297, CHN), 1,484 km [auto first pass - review]
+    MWI -> Beira (port137, MOZ), 738 km [auto first pass - review]
+    PRY -> Buenos Aires (port184, ARG), 1,265 km [manual]
+    RWA -> Mombasa (port757, KEN), 1,107 km [auto first pass - review]
+    SRB -> Porto Romano (port312, ALB), 335 km [auto first pass - review]
+    SVK -> Rijeka Luka (port1101, HRV), 535 km [auto first pass - review]
+    UGA -> Mombasa (port757, KEN), 1,005 km [auto first pass - review]
+    UZB -> Bandar Abbas (port107, IRN), 1,743 km [auto first pass - review]
+    ZMB -> Beira (port137, MOZ), 1,033 km [auto first pass - review]
+    ZWE -> Beira (port137, MOZ), 530 km [auto first pass - review]
+2026-10-29 15:19:29 INFO    Task 2.12 | main-run maritime value through each gateway (total 1,943,497,016 USD):
     AUT via Monfalcone: 20,953,407 USD (1.078%)
     CZE via Szczecin: 1,194,896 USD (0.061%)
     CHE via Genova: 970,486 USD (0.050%)
@@ -73,35 +149,74 @@
     ZWE via Beira: 539 USD (0.000%)
     ZMB via Beira: 213 USD (0.000%)
     SRB via Porto Romano: 38 USD (0.000%)
-2026-10-18 18:48:25 INFO    Task 2.12 | check: KAZ+UZB+KGZ together carry 0.002% of main-run maritime value (not above 1%)
-2026-10-18 18:48:25 INFO    Wrote C:\Users\garre\ree-chokepoints\config\landlocked_gateways.csv (23 rows)
-2026-10-18 18:48:25 INFO    Task 2.13 | searoute 1.6.0 sea-lane network: 9,708 nodes, 15,970 edges
-2026-10-18 18:48:26 INFO    Task 2.13 | snap distance km: median 12.1 | 95th percentile 86.1 | max 407.0
-2026-10-18 18:48:26 INFO    Task 2.13 | ports farther than 100 km from the network (snap_flag): 10 of 292
-    USA_WPI8890 Tri-City Port (Large): 407.0 km
-    PNG_WPI56760 Kavieng Harbor (Small): 193.8 km
-    LKA_WPI49290 Trincomalee Harbor (Medium): 184.0 km
-    MEX_WPI15770 Manzanillo (Medium): 152.7 km
-    MEX_WPI9370 Tuxpan (Medium): 151.2 km
-    AGO_WPI46610 Namibe (Small): 127.7 km
-    CRI_WPI15480 Golfito (Small): 126.9 km
-    PAK_WPI48590 Gwadar (Medium): 117.0 km
-    PNG_WPI56855 Kieta (Small): 114.7 km
-    MEX_WPI15990 Ensenada (Medium): 111.9 km
-2026-10-18 18:48:26 INFO    Task 2.13 | flagged ports set to use_for_routing = false (country has an unflagged candidate): 9
-    AGO_WPI46610 Namibe
-    LKA_WPI49290 Trincomalee Harbor
-    MEX_WPI15770 Manzanillo
-    MEX_WPI15990 Ensenada
-    MEX_WPI9370 Tuxpan
-    PAK_WPI48590 Gwadar
-    PNG_WPI56760 Kavieng Harbor
-    PNG_WPI56855 Kieta
-    USA_WPI8890 Tri-City Port
-2026-10-18 18:48:26 INFO    Task 2.13 | flagged ports kept for routing (country has no unflagged candidate): 1
-    CRI_WPI15480 Golfito
-2026-10-18 18:48:26 INFO    Summary | ports 292 (own 269, gateway 23) for 125 countries | ports per country: min 1, median 1, max 21
-2026-10-18 18:48:26 INFO    Summary | countries by number of ports: 1 port: 69, 2 ports: 22, 3 ports: 13, 4 ports: 7, 5 ports: 5, 6 ports: 2, 7 ports: 2, 8 ports: 1, 9 ports: 1, 11 ports: 1, 12 ports: 1, 21 ports: 1
-2026-10-18 18:48:26 INFO    Summary | most ports: USA 21, ITA 12, JPN 11, FRO 9, AGO 8, MEX 7, GBR 7, FRA 6, PNG 6, DEU 5
-2026-10-18 18:48:26 INFO    Wrote layer 'ports' (292 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-18 18:48:26 INFO    Run finished
+2026-10-29 15:19:29 INFO    Task 2.12 | check: KAZ+UZB+KGZ together carry 0.002% of main-run maritime value (not above 1%)
+2026-10-29 15:19:30 INFO    Task 2.13 | snap distance km (481 ports): median 12.3 | 95th percentile 89.4 | max 169.2
+2026-10-29 15:19:30 INFO    Task 2.13 | far principal ports (> 100 km), kept for routing and flagged: 16 ports, 20 share rows (filtered share of the country's side)
+    CAN_port615 La Baie (Port Alfred) (CAN import): 6.8%, 109.6 km
+    CHL_port1031 Puerto Caldera (CHL export): 11.1%, 127.6 km
+    CHL_port728 Mejillones (CHL export): 7.7%, 122.0 km
+    CHL_port728 Mejillones (CHL import): 25.9%, 122.0 km
+    DZA_port138 Bejaia (DZA import): 18.6%, 165.2 km
+    IND_port883 Paradip (IND export): 17.7%, 161.8 km
+    IND_port290 Dhamra Port (IND export): 3.7%, 109.8 km
+    IND_port599 Krishnapatnam Port (IND import): 7.6%, 146.2 km
+    IND_port883 Paradip (IND import): 4.9%, 161.8 km
+    MEX_port699 Manzanillo (MEX export): 39.5%, 151.4 km
+    MEX_port637 Lazaro Cardenas (MEX export): 24.3%, 129.0 km
+    MEX_port699 Manzanillo (MEX import): 30.8%, 151.4 km
+    MEX_port637 Lazaro Cardenas (MEX import): 22.4%, 129.0 km
+    MOZ_port784 Nacala (MOZ export): 31.0%, 124.0 km
+    MRT_port830 Nouadhibou (MRT import): 28.6%, 100.5 km
+    NOR_port64 Årdalstangen (NOR import): 2.6%, 146.4 km
+    PER_port1132 Salaverry (PER import): 5.9%, 169.2 km
+    PNG_port624 Lae (PNG import): 33.0%, 125.2 km
+    TUR_port1430 Zonguldak (TUR import): 4.0%, 106.4 km
+    TUR_port327 Eregli (TUR import): 3.5%, 140.2 km
+2026-10-29 15:19:30 INFO    Task 2.13 | ports dropped by snap_exclude (nearest node in another sea; share moved to the country's other principal ports on that side): 1 share rows
+    TUR_port327 Eregli (TUR import): 3.5% moved, 140.2 km | Eregli (Black Sea coast): nearest node is in the Sea of Marmara, beyond the Bosporus
+2026-10-29 15:19:30 INFO    Task 2.13 | ports in use whose network point is inside an included circle zone (Decision 10c; S08 leaves their flows out of Equation 4): 12
+    Panama Canal: PAN_port700 Manzanillo (export 43.3%, import 34.3% of the country, raw)
+    Panama Canal: PAN_port101 Balboa (export 20.1%, import 22.1% of the country, raw)
+    Bosporus Strait: TUR_port504 Istanbul (export 15.5%, import 6.2% of the country, raw)
+    Bosporus Strait: TUR_port2049 Ambarli (export 9.7%, import 8.8% of the country, raw)
+    Gibraltar Strait: ESP_port31 Algeciras (export 23.6%, import 20.1% of the country, raw)
+    Gibraltar Strait: MAR_port1265 Tangier-Mediterranean (export 71.1%, import 54.3% of the country, raw)
+    Oresund Strait: DNK_port582 København (export 4.5%, import 13.1% of the country, raw)
+    Oresund Strait: SWE_port690 Malmö (export 2.3%, import 3.8% of the country, raw)
+    Oresund Strait: SWE_port459 Helsingborg (export 2.2%, import 2.5% of the country, raw)
+    Sunda Strait: IDN_port114 Banten (export 0.7%, import 10.4% of the country, raw)
+    Sunda Strait: IDN_port731 Merak Mas Terminal (export 0.4%, import 1.5% of the country, raw)
+    Kerch Strait: UKR_port559 Kerch (export 12.4%, import 8.5% of the country, raw)
+2026-10-29 15:19:30 INFO    Task 2.11 | CHN export: 12 ports, 82.4% of the filtered share: Ningbo 13.2%, Shanghai 13.0%, Tianjin Xin Gang 10.9%, Qingdao Port 9.9%, Shekou (Shenzhen) 9.6%, Shanghai (Yangshan) 9.4%, Guangzhou (Nansha) 7.9%, Huanghua 7.0%, Shougang Jingtang 5.7%, Qinhuangdao 5.3%, Xiamen 4.3%, Tangshan (Jingtang) 3.8%
+2026-10-29 15:19:30 INFO    Task 2.11 | CHN import: 22 ports, 80.4% of the filtered share: Ningbo 11.1%, Shanghai 9.7%, Tianjin Xin Gang 9.3%, Qingdao Port 8.6%, Guangzhou (Nansha) 6.0%, Lanqiao Port 5.2%, Shanghai (Yangshan) 4.7%, Shougang Jingtang 4.0%, Suzhou (Taicang) 3.7%, Tangshan (Jingtang) 3.5%, Rizhao 3.5%, Xiamen 3.4%, Jiangyin 3.3%, Zhanjiang 3.0%, Qiwei 2.8%, Dongjiakou 2.8%, Nantong 2.7%, Lianyungang 2.6%, Huanghua 2.6%, Guangzhou (Huangpu) 2.5%, Fangcheng 2.5%, Zhoushan 2.4%
+2026-10-29 15:19:30 INFO    Task 2.11 | JPN export: 22 ports, 80.8% of the filtered share: Nagoya 10.8%, Yokohama 10.1%, Tokyo 9.9%, Kobe 7.4%, Chiba 6.7%, Mizushima 6.4%, Osaka 5.7%, Oita 4.7%, Kashima-Ibaraki 4.7%, Fukuyama 3.5%, Kanda 3.2%, Ube 3.1%, Kawasaki 3.1%, Yokkaichi 2.9%, Tokuyama 2.8%, Wakayama-Shimotsu 2.6%, Sakai-Semboku 2.6%, Kisarazu 2.1%, Susaki 2.1%, Kitakyushu (Wakamatsu) 2.0%, Tsukumi 1.8%, Iwakuni 1.5%
+2026-10-29 15:19:30 INFO    Task 2.11 | JPN import: 29 ports, 80.3% of the filtered share: Nagoya 8.3%, Mizushima 8.1%, Yokohama 6.9%, Kashima-Ibaraki 6.8%, Tokyo 6.3%, Oita 6.3%, Chiba 6.0%, Fukuyama 4.5%, Kobe 4.5%, Kisarazu 4.4%, Osaka 3.6%, Sakai-Semboku 2.9%, Higashiharima 2.9%, Tomakomai 2.8%, Kawasaki 2.7%, Tokuyama 2.6%, Wakayama-Shimotsu 2.4%, Sendai-Shiogama 2.0%, Kinuura 2.0%, Yokkaichi 2.0%, Kitakyushu (Wakamatsu) 1.8%, Iwakuni 1.5%, Onahama 1.5%, Tachibana 1.4%, Hachinohe 1.3%, Hitachi 1.2%, Himeji 1.2%, Sakaide 1.1%, Niigata 1.1%
+2026-10-29 15:19:30 INFO    Task 2.11 | USA export: 14 ports, 80.7% of the filtered share: Houston (US-TX) 30.1%, New Orleans 15.7%, South Louisiana 12.5%, Los Angeles-Long Beach 9.6%, Savannah 4.0%, New York-New Jersey 4.0%, Freeport (US-FL) 3.8%, Newport News 3.6%, Baltimore 3.5%, Norfolk 3.3%, Port of Virginia 2.9%, Mobile 2.6%, Oakland 2.2%, Portland, OR 2.1%
+2026-10-29 15:19:30 INFO    Task 2.11 | USA import: 13 ports, 80.5% of the filtered share: Los Angeles-Long Beach 31.8%, New York-New Jersey 17.5%, Houston (US-TX) 11.6%, New Orleans 7.9%, Savannah 7.6%, Charleston 4.1%, Port of Virginia 3.9%, South Louisiana 3.4%, Mobile 2.8%, Port Everglades 2.6%, Tampa Port 2.5%, Oakland 2.4%, Tacoma 2.0%
+2026-10-29 15:19:30 INFO    Task 2.11 | KOR export: 3 ports, 85.0% of the filtered share: Busan 39.7%, Ulsan 32.4%, Gwangyang (Kwangyang) 27.9%
+2026-10-29 15:19:30 INFO    Task 2.11 | KOR import: 5 ports, 86.8% of the filtered share: Ulsan 26.1%, Gwangyang (Kwangyang) 25.1%, Busan 22.1%, Incheon 13.4%, Pyeongtaek 13.3%
+2026-10-29 15:19:30 INFO    Task 2.11 | MYS export: 4 ports, 84.0% of the filtered share: Port Klang 73.5%, Tanjung Pelepas 9.3%, Lumut 8.8%, Johor 8.4%
+2026-10-29 15:19:30 INFO    Task 2.11 | MYS import: 4 ports, 86.4% of the filtered share: Port Klang 64.8%, Lumut 15.7%, Tanjung Pelepas 10.7%, Johor 8.7%
+2026-10-29 15:19:30 INFO    Task 2.11 | DEU export: 2 ports, 81.2% of the filtered share: Hamburg 64.5%, Bremerhaven 35.5%
+2026-10-29 15:19:30 INFO    Task 2.11 | DEU import: 4 ports, 83.3% of the filtered share: Hamburg 55.5%, Bremerhaven 21.3%, Wilhelmshaven 17.3%, Brunsbuettel 6.0%
+2026-10-29 15:19:30 INFO    Task 2.11 | NLD export: 2 ports, 84.8% of the filtered share: Rotterdam 80.3%, Amsterdam 19.7%
+2026-10-29 15:19:30 INFO    Task 2.11 | NLD import: 2 ports, 86.4% of the filtered share: Rotterdam 88.0%, Amsterdam 12.0%
+2026-10-29 15:19:30 INFO    Task 2.11 | principal ports per country (export/import):
+    AGO 0/1, ALB 0/2, ARE 3/2, ARG 0/4, ARM 1/0, AUS 6/7, AUT 1/1, BEL 1/1, BGD 0/1, BGR 2/1, BLR 0/1, BMU 0/1
+    BRA 7/10, BRB 0/1, CAN 5/8, CHE 1/1, CHL 8/4, CHN 12/22, CIV 0/1, COD 0/1, COL 0/3, CPV 0/2, CRI 0/2, CYP 0/3
+    CZE 1/1, DEU 2/4, DNK 8/8, DOM 0/3, DZA 0/5, ECU 0/1, EGY 4/4, ESP 8/9, EST 3/4, ETH 0/1, FIN 8/11, FRA 6/4
+    FRO 0/1, GBR 7/12, GEO 0/2, GHA 0/1, GIN 0/1, GRC 2/2, GTM 2/1, HKG 1/1, HRV 3/3, HUN 1/1, IDN 0/14, IND 8/13
+    IRL 2/3, IRN 0/3, IRQ 0/1, ISL 2/2, ISR 2/2, ITA 7/10, JAM 0/1, JOR 0/1, JPN 22/29, KAZ 0/1, KEN 1/1, KGZ 1/1
+    KHM 0/1, KOR 3/5, KWT 0/1, LAO 1/0, LBN 0/2, LKA 0/1, LTU 1/1, LUX 1/1, LVA 2/2, MAR 0/3, MDA 0/1, MDG 0/1
+    MDV 0/1, MEX 4/4, MKD 1/1, MLT 0/1, MNG 0/1, MOZ 2/2, MRT 0/2, MUS 0/1, MWI 0/1, MYS 4/4, NAM 0/1, NLD 2/2
+    NOR 4/16, NZL 8/6, OMN 0/2, PAK 2/2, PAN 0/2, PER 0/2, PHL 4/5, PNG 0/3, POL 2/2, PRT 3/3, PRY 0/1, QAT 1/2
+    ROU 1/1, RUS 7/8, RWA 0/1, SAU 0/3, SGP 1/1, SLV 0/1, SRB 1/0, STP 0/1, SVK 1/1, SVN 1/1, SWE 9/11, SYC 0/1
+    THA 2/2, TTO 0/3, TUN 0/4, TUR 9/11, TWN 2/2, TZA 0/1, UGA 0/1, UKR 5/4, URY 0/1, USA 14/13, UZB 1/1, VNM 6/5
+    WSM 0/1, YEM 0/3, ZAF 3/3, ZMB 0/1, ZWE 0/1
+2026-10-29 15:19:30 INFO    Wrote C:\Users\garre\ree-chokepoints\config\landlocked_gateways.csv (23 rows)
+2026-10-29 15:19:30 INFO    Check | country_port_shares: 671 rows, 187 country-sides, each sums to 1; every exporter (65) and importer (122) has ports
+2026-10-29 15:19:30 INFO    Summary | ports 481 (in use 480; source portwatch 480, wpi 1; gateway 23) for 125 countries | ports in use per country: min 1, median 2, max 33
+2026-10-29 15:19:30 INFO    Summary | most ports in use: JPN 33, CHN 24, NOR 19, USA 18, IND 15, IDN 14, TUR 13, BRA 13, FIN 12, SWE 12
+2026-10-29 15:19:31 INFO    Wrote layer 'ports' (481 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 15:19:31 INFO    Wrote layer 'country_port_shares' (671 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 15:19:31 INFO    Run finished

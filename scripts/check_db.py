@@ -18,7 +18,8 @@ Groups:
     C unique       IDs unique in every layer
     D fields       required fields present and filled; no "<NA>"/"nan" text or blank strings
     E codes        ISO-3 codes, HS codes, main run (Decision 1), shares and values
-    F ports        a usable port or gateway for every seaborne trading country (task 3.2)
+    F ports        a usable port or gateway for every seaborne trading country (task 3.2);
+                   port shares sum to 1 per country and side (Decision 14)
     G chokepoints  screening file, one zone per included chokepoint, gates (Decision 12),
                    zone radii (Decision 11), true-distance circles
     J events       event window (Decision 7), sources, IMO GISIS fields (Decision 9),
@@ -57,7 +58,8 @@ GEOMETRY_TYPES = {
 # Fields that make each row unique.
 UNIQUE_KEYS = {
     "trade_flows": ["flow_id"], "chokepoints": ["chokepoint_id"], "zones": ["chokepoint_id"],
-    "gates": ["chokepoint_id"], "ports": ["port_id"], "events": ["event_id"],
+    "gates": ["chokepoint_id"], "ports": ["port_id"],
+    "country_port_shares": ["country_iso3", "side", "port_id"], "events": ["event_id"],
     "subflows": ["subflow_id"], "routes": ["route_id"],
     "route_crossings": ["flow_id", "scenario", "chokepoint_id"],
     "detours": ["subflow_id", "chokepoint_id"], "detour_routes": ["route_id"],
@@ -71,8 +73,9 @@ REQUIRED_FIELDS = {
     "chokepoints": ["chokepoint_id", "name", "included", "reason", "zone_radius_km"],
     "zones": ["chokepoint_id", "name", "zone_radius_km", "included", "reason"],
     "gates": ["chokepoint_id", "name", "source"],
-    "ports": ["port_id", "name", "country_iso3", "harbor_size", "is_gateway", "snap_dist_km",
+    "ports": ["port_id", "name", "country_iso3", "source", "is_gateway", "snap_dist_km",
               "snap_flag", "use_for_routing"],
+    "country_port_shares": ["country_iso3", "side", "port_id", "share"],
     "events": ["event_id", "source", "category", "event_type", "event_date"],
     "subflows": ["subflow_id", "flow_id", "origin_iso3", "dest_iso3", "origin_port", "dest_port",
                  "share", "maritime_value_usd", "same_port"],
@@ -316,6 +319,31 @@ def check_ports(layers, settings, report):
     report.add("INFO", "F ports", "ports far from the sea-lane network (logged by S04)",
                f"{flagged} farther than {settings['ports']['snap_warning_km']} km, "
                f"{off} set use_for_routing = false")
+    check_port_shares(layers, sea, ports, report)
+
+
+def check_port_shares(layers, sea, ports, report):
+    """Port shares (Decision 14): sum to 1 per country and side, cover every trading side, ports in use."""
+    if "country_port_shares" not in layers:
+        return
+    shares = layers["country_port_shares"]
+    sides = ["export", "import"]
+    bad = ~shares["side"].isin(sides)
+    report.test("F ports", "country_port_shares.side is export or import", not bad.any(),
+                f"{int(bad.sum())} rows", shares.loc[bad, "country_iso3"])
+    sums = shares.groupby(["country_iso3", "side"])["share"].sum()
+    off = sums[~np.isclose(sums, 1)]
+    report.test("F ports", f"port shares sum to 1 for each country and side ({len(sums)})", off.empty,
+                f"{len(off)} do not", [f"{c} {s}" for c, s in off.index])
+    have = set(zip(shares["country_iso3"], shares["side"]))
+    need = ({(c, "export") for c in sea["origin_iso3"]} | {(c, "import") for c in sea["dest_iso3"]})
+    missing = sorted(need - have)
+    report.test("F ports", f"every seaborne exporter and importer has port shares ({len(need)} sides)",
+                not missing, f"{len(missing)} without", [f"{c} {s}" for c, s in missing])
+    in_use = set(ports.loc[as_bool(ports["use_for_routing"]), "port_id"])
+    bad = ~shares["port_id"].isin(in_use)
+    report.test("F ports", "every port in country_port_shares is in the ports layer with use_for_routing",
+                not bad.any(), f"{int(bad.sum())} rows", shares.loc[bad, "port_id"])
 
 
 # ---------------------------------------------------------------------

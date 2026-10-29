@@ -202,6 +202,35 @@ These were decided after the proposal text was written. Follow them where they d
    and taking the smallest and largest result. REE holding cost is a total for 2025 trade, not a
    per-voyage figure. The Suez check (task 4.17) compares the Cape-only detour from S06's Red Sea
    diversion routes with ITF/OECD (Merk 2024), plus a variant using ITF's own charter rate and toll.
+14. **PortWatch principal ports (details Decisions 2 and 3).** `ports.assignment: principal_ports`
+   in the main run. (a) Principal ports are chosen separately for exports and imports, from
+   PortWatch's `share_country_maritime_export` and `_import` (percent of the country's AIS-derived
+   maritime trade, 2019-25, all goods). (b) Before the 80% rule, S04 removes offshore oil terminals
+   (portid `fso...`) and mostly-tanker ports: tanker calls at least half of all calls and
+   container plus general-cargo calls under 10% (`ports.max_tanker_share`, `min_cargo_share`),
+   because REE oxides and metals ship in containers or as general cargo, never by tanker. A
+   plain tanker-majority test was rejected: it removed Singapore, Rotterdam, Antwerp, Ulsan and
+   Houston. Ports with no vessel calls are kept. The filter uses vessel-call counts, not cargo
+   volumes, so it is approximate; PortWatch shares cover all goods over 2019–25, not REE in 2025,
+   and are used only to split each country's REE trade across its ports (a stated limitation). (c) The remaining shares are rescaled to 100% per
+   country and side; ports are taken largest first until the running total reaches 80%, the
+   crossing port included. (d) S06 splits each flow into sub-flows, one per pair of an origin
+   export port and a destination import port; a sub-flow's share is the origin port's rescaled
+   export share times the destination port's rescaled import share, so a flow's shares sum to 1.
+   S06 routes each pair of network points once. (e) Landlocked countries in
+   `config/landlocked_gateways.csv` use the PortWatch port in `gateway_portid` with share 1;
+   KAZ (Caspian ports only) and MDA (Giurgiulesti, a Danube river port) stay landlocked although
+   PortWatch lists ports for them. Gateways are used even if the filter would remove them.
+   (f) Principal ports farther than `ports.snap_warning_km` from the sea-lane network are kept
+   and flagged (`snap_flag`), because the network is sparse near some coasts (all 16 checked by
+   hand on 29 Oct 2026; 15 snap to a node in the same sea and on the same coast). Only ports in
+   `ports.snap_exclude` (hand-checked: nearest node in another sea; for now Ereğli, whose node
+   is in the Sea of Marmara) are dropped, and their share is moved to the country's other
+   principal ports on that side; S04 logs the share moved.
+   (g) The World Port Index is used only for trading countries PortWatch lacks (BMU in the 2025
+   run: its largest WPI size class, equal shares). (h) S10 alternatives: `port_assignment:
+   nearest_gateway` (the Lab 7/8 WPI first pass, kept as functions in S04 and S06; its database
+   is saved as `data/interim/lab8_first_pass.gpkg`) and `port_filter: all_ports` (no filter).
 
 ## How to work in this repository
 
@@ -215,5 +244,5 @@ These were decided after the proposal text was written. Follow them where they d
 
 ## Current status
 
-Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 27 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM. S05 updated 27 Oct 2026 (task 2.15): 136 IMO GISIS incidents in the events layer (25 crew_harm), 9 merged into ACLED events. S07 applies count_rule through common.countable_events (27 Oct 2026; S07, S09 5.1, S11 rerun): 25 GISIS incidents counted, 111 dropped; viol_n_250 changes only at Malacca 7->30, Sunda 6->7, Mindoro 57->58; main rho 0.094 (p 0.64), quadrants unchanged; S10 alternative imo_count_rule: [all] recorded. Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S09 composite (5.2-5.4), S10, web map. check_db.py built 27 Oct 2026 (task 3.2; checks task 3.1): run by run_all after S05 (--stage inputs, 70 checks) and at the end (--stage all, 144 checks); 0 FAIL, WARN only for the expected gaps in `check_db.expected_missing_layers` and the 5 Red Sea diversion port pairs with no sea route (6 sub-flows, $26K). Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set. Decision 12 recorded (gate lines for four wide straits); S03/S06 updated and rerun. S08 built 27 Oct 2026 (tasks 4.12-4.14): 22 chokepoints scored, 5 null; largest penalty 627.3% (Gibraltar, BEL_DZA_284610_1) applied to Hormuz, Bosporus, Bohai. Decision 13 recorded; S08b built 27 Oct 2026 (tasks 4.16-4.17): 19 chokepoints costed, 8 null (3 no sea route, 5 no affected flows); Suez check Cape-only 9.59 days and $900K one way vs ITF/OECD 10 days and $850K (ratios 0.96, 1.06).
+Lab 7 submitted 20 Oct 2026 (first pass of S01-S07, S09 task 5.1, S11 draft figures); frozen as git tag lab7-gold. Lab 8 submitted 27 Oct 2026; code frozen as git tag lab8-gold. Decision 9 recorded: IMO GISIS replaces ASAM. S05 updated 27 Oct 2026 (task 2.15): 136 IMO GISIS incidents in the events layer (25 crew_harm), 9 merged into ACLED events. S07 applies count_rule through common.countable_events (27 Oct 2026; S07, S09 5.1, S11 rerun): 25 GISIS incidents counted, 111 dropped; viol_n_250 changes only at Malacca 7->30, Sunda 6->7, Mindoro 57->58; main rho 0.094 (p 0.64), quadrants unchanged; S10 alternative imo_count_rule: [all] recorded. Reroute cost parameters P1-P8 recorded in settings (task 4.15); Suez check source recorded (task 4.17; comparison runs in S08b). Not built: S09 composite (5.2-5.4), S10, web map. check_db.py built 27 Oct 2026 (task 3.2; checks task 3.1): run by run_all after S05 (--stage inputs, 70 checks) and at the end (--stage all, 144 checks); 0 FAIL, WARN only for the expected gaps in `check_db.expected_missing_layers` and the 5 Red Sea diversion port pairs with no sea route (6 sub-flows, $26K). Decision 10 recorded (S08 closure rule and outputs). Decision 11 recorded; task 2.8 zone radii set. Decision 12 recorded (gate lines for four wide straits); S03/S06 updated and rerun. S08 built 27 Oct 2026 (tasks 4.12-4.14): 22 chokepoints scored, 5 null; largest penalty 627.3% (Gibraltar, BEL_DZA_284610_1) applied to Hormuz, Bosporus, Bohai. Decision 13 recorded; S08b built 27 Oct 2026 (tasks 4.16-4.17): 19 chokepoints costed, 8 null (3 no sea route, 5 no affected flows); Suez check Cape-only 9.59 days and $900K one way vs ITF/OECD 10 days and $850K (ratios 0.96, 1.06). Decision 14 recorded (PortWatch principal ports); S04 rebuilt 29 Oct 2026 (tasks 2.10-2.13): port filter removed 353 PortWatch ports in trading countries (143 offshore, 210 mostly tanker); 244 principal export ports (53 countries) and 395 import ports (101 countries), plus 23 PortWatch gateways and 1 WPI port (BMU); 16 far ports kept and flagged, 1 dropped by ports.snap_exclude (Ereğli, 3.5% of Turkey's imports moved); ports layer 481 rows (480 in use), country_port_shares 671 rows; S06 preview: 52,292 sub-flows, 21,619 network-point pairs to route (S08 projected about 66 min); check_db --stage inputs passes (78 checks, 0 FAIL). The first pass is saved as data/interim/lab8_first_pass.gpkg. Not yet rerun: S06 task 4.1 (next session), then S08, S08b, S09 5.1, S11. Until then subflows and routes use the old WPI port IDs, so check_db --stage all is expected to fail.
 <!-- Update this section as work progresses. -->

@@ -93,17 +93,37 @@ chokepoints:
 # Step 1: ports (S04)
 # ---------------------------------------------------------------------
 ports:
-  source_main: portwatch             # decision: PortWatch port locations (see CLAUDE.md)
-  source_fallback: world_port_index  # only where PortWatch lacks a country
-  wpi_harbor_sizes: [L, M]           # large and medium harbors (fallback only)
-  principal_port_share: 0.80         # NEW (not yet in proposal): ports that together carry 80% of national trade
+  # Decision 14 in CLAUDE.md. principal_ports (main run): PortWatch principal ports, and each
+  # flow split across them by port shares (S06 task 4.1). nearest_gateway (S10 alternative,
+  # proposal Table 4; the Lab 7/8 first pass): candidate WPI ports, and S06 routes each flow
+  # between the closest origin-destination pair.
+  assignment: principal_ports
+  source_main: portwatch             # decision 2: PortWatch port locations and shares
+  source_fallback: world_port_index  # only where PortWatch lacks a country (BMU in the 2025 run)
+  # Port filter (Decision 14), applied to PortWatch ports before the 80% rule. REE oxides and
+  # metals ship in containers or as general cargo, never by tanker. Counts are Ports.csv's
+  # vessel_count_* fields (vessel calls by type; total = container + dry bulk + general cargo
+  # + RoRo + tanker). A port is removed if either test below is true:
+  exclude_offshore_terminals: true   # 1. its portid starts with offshore_terminal_prefix
+  offshore_terminal_prefix: fso      #    PortWatch IDs of "<country> - Offshore Oil Terminal <n>"
+  max_tanker_share: 0.5              # 2. tanker calls / all calls >= 0.5, AND
+  min_cargo_share: 0.10              #    (container + general cargo calls) / all calls < 0.10
+                                     #    (set min_cargo_share: 1.0 to drop every tanker-majority port)
+                                     # Ports with no vessel calls (total 0) are kept: the test cannot be applied.
+  removed_port_report_pct: 5         # log every removed port with more than 5% of its country's share on either side
+  # 80% rule (Decision 3), separately for exports and imports: after the filter, each country's
+  # shares are rescaled to 100%; ports are taken largest first until the running total reaches
+  # this share (the port that crosses it is included). Ports with a 0% share are never principal.
+  principal_port_share: 0.80
   landlocked_gateways_file: config/landlocked_gateways.csv
-  snap_warning_km: 100               # flag ports farther than this from the sea-lane network (TODO: confirm)
-  # Lab 7 first pass (S04): PortWatch ports are not downloaded yet, so every trading country gets
-  # candidate WPI ports and S06 routes each flow between the closest origin-destination pair
-  # (Table 4 "nearest gateway" alternative). PortWatch ports and the 80% rule replace it in the final run.
-  assignment_first_pass: nearest_gateway
-  wpi_size_fallback_order: [Large, Medium, Small, Very Small]   # first pass: a country's largest WPI size class present
+  snap_warning_km: 100               # flag ports farther than this from the sea-lane network (kept for routing)
+  # Decision 14f: hand-checked ports whose nearest network node is in another sea. They are not
+  # used; their share moves to the country's other principal ports on that side. port_id: reason.
+  snap_exclude:
+    TUR_port327: "Eregli (Black Sea coast): nearest node is in the Sea of Marmara, beyond the Bosporus"
+  # WPI settings: nearest_gateway assignment, the BMU fallback (its largest WPI size class, equal
+  # shares) and gateway distances.
+  wpi_size_fallback_order: [Large, Medium, Small, Very Small]   # a country's largest WPI size class present
   gateway_harbor_sizes: [Large, Medium]                          # landlocked countries: nearest foreign harbor of these sizes
   # WPI "Country Code" holds country names. Most match a Natural Earth name field; these do not.
   # Overseas territories keep their own ISO-3 so their ports are not candidates for the home country.
@@ -386,6 +406,7 @@ sensitivity:
     event_weighting: [fatalities_plus_one]
     imo_count_rule: [all]            # Decision 9: count every IMO GISIS incident, not only crew_harm
     port_assignment: [nearest_gateway]
+    port_filter: [all_ports]         # Decision 14: principal ports without the offshore-terminal/tanker filter
     trade_measure: [net_weight_kg]
     products: [main_plus_magnets]
     combination: [multiplicative]
@@ -430,7 +451,6 @@ check_db:
   # Layers not built yet. A missing layer listed here is a WARN (expected gap) with its
   # reason; any other missing layer is a FAIL. Remove an entry once its script writes it.
   expected_missing_layers:
-    country_port_shares: "waits for PortWatch ports (task 2.11)"
     gdelt_country_context: "waits for GDELT (tasks 2.16-2.17)"
     web_chokepoints: "written by S11 (task 6.9)"
     web_routes: "written by S11 (task 6.9)"
