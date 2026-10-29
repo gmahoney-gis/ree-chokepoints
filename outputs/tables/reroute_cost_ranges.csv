@@ -1,248 +1,287 @@
 chokepoint_id,name,case,parameter,level,extra_days,voyage_cost_usd,holding_cost_usd
-chokepoint1,Suez Canal,main,none,main,7.7597,1579798.08,156934.29
-chokepoint1,Suez Canal,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,10.3463,1605872.09,209245.72
-chokepoint1,Suez Canal,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,5.9122,1901515.87,119568.99
-chokepoint1,Suez Canal,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,7.7597,1471161.75,156934.29
-chokepoint1,Suez Canal,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,7.7597,1695224.17,156934.29
-chokepoint1,Suez Canal,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,7.7597,1577749.51,156934.29
-chokepoint1,Suez Canal,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,7.7597,1581652.65,156934.29
-chokepoint1,Suez Canal,interest_rate_annual low,interest_rate_annual,low,7.7597,1579798.08,145222.78
-chokepoint1,Suez Canal,interest_rate_annual high,interest_rate_annual,high,7.7597,1579798.08,169036.19
-chokepoint1,Suez Canal,toll_suez low,toll_suez,low,7.7597,1634798.08,156934.29
-chokepoint1,Suez Canal,toll_suez high,toll_suez,high,7.7597,1494798.08,156934.29
-chokepoint1,Suez Canal,toll_panama low,toll_panama,low,7.7597,1481430.64,156934.29
-chokepoint1,Suez Canal,toll_panama high,toll_panama,high,7.7597,1655465.34,156934.29
-chokepoint2,Panama Canal,main,none,main,10.3598,386584.16,709.5
-chokepoint2,Panama Canal,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,13.8131,421394.93,946.0
-chokepoint2,Panama Canal,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,7.8932,816101.73,540.57
-chokepoint2,Panama Canal,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,10.3598,241546.45,709.5
-chokepoint2,Panama Canal,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,10.3598,540686.72,709.5
-chokepoint2,Panama Canal,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,10.3598,383849.16,709.5
-chokepoint2,Panama Canal,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,10.3598,389060.16,709.5
-chokepoint2,Panama Canal,interest_rate_annual low,interest_rate_annual,low,10.3598,386584.16,656.56
-chokepoint2,Panama Canal,interest_rate_annual high,interest_rate_annual,high,10.3598,386584.16,764.22
-chokepoint2,Panama Canal,toll_suez low,toll_suez,low,10.3598,385302.44,709.5
-chokepoint2,Panama Canal,toll_suez high,toll_suez,high,10.3598,388564.99,709.5
-chokepoint2,Panama Canal,toll_panama low,toll_panama,low,10.3598,516584.16,709.5
-chokepoint2,Panama Canal,toll_panama high,toll_panama,high,10.3598,286584.16,709.5
-chokepoint4,Bab el-Mandeb Strait,main,none,main,7.7621,1580233.66,156999.45
-chokepoint4,Bab el-Mandeb Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,10.3495,1606315.69,209332.59
-chokepoint4,Bab el-Mandeb Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,5.914,1902050.38,119618.62
-chokepoint4,Bab el-Mandeb Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,7.7621,1471563.92,156999.45
-chokepoint4,Bab el-Mandeb Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,7.7621,1695695.25,156999.45
-chokepoint4,Bab el-Mandeb Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,7.7621,1578184.46,156999.45
-chokepoint4,Bab el-Mandeb Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,7.7621,1582088.8,156999.45
-chokepoint4,Bab el-Mandeb Strait,interest_rate_annual low,interest_rate_annual,low,7.7621,1580233.66,145283.07
-chokepoint4,Bab el-Mandeb Strait,interest_rate_annual high,interest_rate_annual,high,7.7621,1580233.66,169106.37
-chokepoint4,Bab el-Mandeb Strait,toll_suez low,toll_suez,low,7.7621,1635219.93,156999.45
-chokepoint4,Bab el-Mandeb Strait,toll_suez high,toll_suez,high,7.7621,1495254.87,156999.45
-chokepoint4,Bab el-Mandeb Strait,toll_panama low,toll_panama,low,7.7621,1481876.8,156999.45
-chokepoint4,Bab el-Mandeb Strait,toll_panama high,toll_panama,high,7.7621,1655892.78,156999.45
-chokepoint5,Malacca Strait,main,none,main,1.7095,273560.47,38016.53
-chokepoint5,Malacca Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,2.2794,279304.79,50688.7
-chokepoint5,Malacca Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,1.3025,344437.51,28964.97
-chokepoint5,Malacca Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,1.7095,249627.01,38016.53
-chokepoint5,Malacca Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,1.7095,298989.78,38016.53
-chokepoint5,Malacca Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,1.7095,273109.16,38016.53
-chokepoint5,Malacca Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,1.7095,273969.05,38016.53
-chokepoint5,Malacca Strait,interest_rate_annual low,interest_rate_annual,low,1.7095,273560.47,35179.47
-chokepoint5,Malacca Strait,interest_rate_annual high,interest_rate_annual,high,1.7095,273560.47,40948.15
-chokepoint5,Malacca Strait,toll_suez low,toll_suez,low,1.7095,273560.48,38016.53
-chokepoint5,Malacca Strait,toll_suez high,toll_suez,high,1.7095,273560.45,38016.53
-chokepoint5,Malacca Strait,toll_panama low,toll_panama,low,1.7095,273560.44,38016.53
-chokepoint5,Malacca Strait,toll_panama high,toll_panama,high,1.7095,273560.5,38016.53
-chokepoint8,Gibraltar Strait,main,none,main,9.9557,2036766.89,204653.12
-chokepoint8,Gibraltar Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,13.2743,2070219.83,272870.83
-chokepoint8,Gibraltar Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,7.5853,2449530.66,155926.19
-chokepoint8,Gibraltar Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,9.9557,1897386.53,204653.12
-chokepoint8,Gibraltar Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,9.9557,2184858.51,204653.12
-chokepoint8,Gibraltar Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,9.9557,2034138.57,204653.12
-chokepoint8,Gibraltar Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,9.9557,2039146.31,204653.12
-chokepoint8,Gibraltar Strait,interest_rate_annual low,interest_rate_annual,low,9.9557,2036766.89,189380.5
-chokepoint8,Gibraltar Strait,interest_rate_annual high,interest_rate_annual,high,9.9557,2036766.89,220434.83
-chokepoint8,Gibraltar Strait,toll_suez low,toll_suez,low,9.9557,2072334.85,204653.12
-chokepoint8,Gibraltar Strait,toll_suez high,toll_suez,high,9.9557,1981798.22,204653.12
-chokepoint8,Gibraltar Strait,toll_panama low,toll_panama,low,9.9557,1950407.58,204653.12
-chokepoint8,Gibraltar Strait,toll_panama high,toll_panama,high,9.9557,2103197.12,204653.12
-chokepoint9,Dover Strait,main,none,main,1.0349,165599.44,12634.48
-chokepoint9,Dover Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,1.3798,169076.76,16845.97
-chokepoint9,Dover Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.7885,208504.77,9626.27
-chokepoint9,Dover Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,1.0349,151111.35,12634.48
-chokepoint9,Dover Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,1.0349,180993.04,12634.48
-chokepoint9,Dover Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,1.0349,165326.24,12634.48
-chokepoint9,Dover Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,1.0349,165846.77,12634.48
-chokepoint9,Dover Strait,interest_rate_annual low,interest_rate_annual,low,1.0349,165599.44,11691.61
-chokepoint9,Dover Strait,interest_rate_annual high,interest_rate_annual,high,1.0349,165599.44,13608.78
-chokepoint9,Dover Strait,toll_suez low,toll_suez,low,1.0349,165599.44,12634.48
-chokepoint9,Dover Strait,toll_suez high,toll_suez,high,1.0349,165599.44,12634.48
-chokepoint9,Dover Strait,toll_panama low,toll_panama,low,1.0349,165599.44,12634.48
-chokepoint9,Dover Strait,toll_panama high,toll_panama,high,1.0349,165599.44,12634.48
-chokepoint10,Oresund Strait,main,none,main,0.1611,25783.86,1390.68
-chokepoint10,Oresund Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.2148,26325.27,1854.24
-chokepoint10,Oresund Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1228,32464.22,1059.57
-chokepoint10,Oresund Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.1611,23528.06,1390.68
-chokepoint10,Oresund Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.1611,28180.64,1390.68
-chokepoint10,Oresund Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.1611,25741.32,1390.68
-chokepoint10,Oresund Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.1611,25822.37,1390.68
-chokepoint10,Oresund Strait,interest_rate_annual low,interest_rate_annual,low,0.1611,25783.86,1286.9
-chokepoint10,Oresund Strait,interest_rate_annual high,interest_rate_annual,high,0.1611,25783.86,1497.92
-chokepoint10,Oresund Strait,toll_suez low,toll_suez,low,0.1611,25783.86,1390.68
-chokepoint10,Oresund Strait,toll_suez high,toll_suez,high,0.1611,25783.86,1390.68
-chokepoint10,Oresund Strait,toll_panama low,toll_panama,low,0.1611,25783.86,1390.68
-chokepoint10,Oresund Strait,toll_panama high,toll_panama,high,0.1611,25783.86,1390.68
-chokepoint11,Taiwan Strait,main,none,main,0.179,28635.96,9976.68
-chokepoint11,Taiwan Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.2386,29237.27,13302.24
-chokepoint11,Taiwan Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1363,36055.29,7601.28
-chokepoint11,Taiwan Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.179,26130.64,9976.68
-chokepoint11,Taiwan Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.179,31297.87,9976.68
-chokepoint11,Taiwan Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.179,28588.72,9976.68
-chokepoint11,Taiwan Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.179,28678.73,9976.68
-chokepoint11,Taiwan Strait,interest_rate_annual low,interest_rate_annual,low,0.179,28635.96,9232.15
-chokepoint11,Taiwan Strait,interest_rate_annual high,interest_rate_annual,high,0.179,28635.96,10746.03
-chokepoint11,Taiwan Strait,toll_suez low,toll_suez,low,0.179,28635.96,9976.68
-chokepoint11,Taiwan Strait,toll_suez high,toll_suez,high,0.179,28635.96,9976.68
-chokepoint11,Taiwan Strait,toll_panama low,toll_panama,low,0.179,28635.96,9976.68
-chokepoint11,Taiwan Strait,toll_panama high,toll_panama,high,0.179,28635.96,9976.68
-chokepoint12,Korea Strait,main,none,main,0.5336,85388.4,13543.16
-chokepoint12,Korea Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.7115,87181.41,18057.54
-chokepoint12,Korea Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.4066,107511.77,10318.6
-chokepoint12,Korea Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.5336,77917.87,13543.16
-chokepoint12,Korea Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.5336,93325.83,13543.16
-chokepoint12,Korea Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.5336,85247.53,13543.16
-chokepoint12,Korea Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.5336,85515.93,13543.16
-chokepoint12,Korea Strait,interest_rate_annual low,interest_rate_annual,low,0.5336,85388.4,12532.47
-chokepoint12,Korea Strait,interest_rate_annual high,interest_rate_annual,high,0.5336,85388.4,14587.53
-chokepoint12,Korea Strait,toll_suez low,toll_suez,low,0.5336,85388.4,13543.16
-chokepoint12,Korea Strait,toll_suez high,toll_suez,high,0.5336,85388.4,13543.16
-chokepoint12,Korea Strait,toll_panama low,toll_panama,low,0.5336,85388.4,13543.16
-chokepoint12,Korea Strait,toll_panama high,toll_panama,high,0.5336,85388.4,13543.16
-chokepoint13,Tsugaru Strait,main,none,main,0.3375,54006.92,5743.61
-chokepoint13,Tsugaru Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.45,55140.97,7658.14
-chokepoint13,Tsugaru Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.2571,67999.63,4376.08
-chokepoint13,Tsugaru Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.3375,49281.92,5743.61
-chokepoint13,Tsugaru Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.3375,59027.23,5743.61
-chokepoint13,Tsugaru Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.3375,53917.82,5743.61
-chokepoint13,Tsugaru Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.3375,54087.58,5743.61
-chokepoint13,Tsugaru Strait,interest_rate_annual low,interest_rate_annual,low,0.3375,54006.92,5314.98
-chokepoint13,Tsugaru Strait,interest_rate_annual high,interest_rate_annual,high,0.3375,54006.92,6186.52
-chokepoint13,Tsugaru Strait,toll_suez low,toll_suez,low,0.3375,54006.92,5743.61
-chokepoint13,Tsugaru Strait,toll_suez high,toll_suez,high,0.3375,54006.92,5743.61
-chokepoint13,Tsugaru Strait,toll_panama low,toll_panama,low,0.3375,54006.92,5743.61
-chokepoint13,Tsugaru Strait,toll_panama high,toll_panama,high,0.3375,54006.92,5743.61
-chokepoint14,Luzon Strait,main,none,main,0.0965,15444.82,656.3
-chokepoint14,Luzon Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.1287,15769.13,875.07
-chokepoint14,Luzon Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.0735,19446.43,500.04
-chokepoint14,Luzon Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.0965,14093.57,656.3
-chokepoint14,Luzon Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.0965,16880.52,656.3
-chokepoint14,Luzon Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.0965,15419.34,656.3
-chokepoint14,Luzon Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.0965,15467.89,656.3
-chokepoint14,Luzon Strait,interest_rate_annual low,interest_rate_annual,low,0.0965,15444.82,607.33
-chokepoint14,Luzon Strait,interest_rate_annual high,interest_rate_annual,high,0.0965,15444.82,706.91
-chokepoint14,Luzon Strait,toll_suez low,toll_suez,low,0.0965,15444.82,656.3
-chokepoint14,Luzon Strait,toll_suez high,toll_suez,high,0.0965,15444.82,656.3
-chokepoint14,Luzon Strait,toll_panama low,toll_panama,low,0.0965,15444.82,656.3
-chokepoint14,Luzon Strait,toll_panama high,toll_panama,high,0.0965,15444.82,656.3
-chokepoint15,Lombok Strait,main,none,main,0.1401,22419.54,7.82
-chokepoint15,Lombok Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.1868,22890.31,10.43
-chokepoint15,Lombok Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1067,28228.24,5.96
-chokepoint15,Lombok Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.1401,20458.08,7.82
-chokepoint15,Lombok Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.1401,24503.59,7.82
-chokepoint15,Lombok Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.1401,22382.55,7.82
-chokepoint15,Lombok Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.1401,22453.02,7.82
-chokepoint15,Lombok Strait,interest_rate_annual low,interest_rate_annual,low,0.1401,22419.54,7.24
-chokepoint15,Lombok Strait,interest_rate_annual high,interest_rate_annual,high,0.1401,22419.54,8.43
-chokepoint15,Lombok Strait,toll_suez low,toll_suez,low,0.1401,22419.54,7.82
-chokepoint15,Lombok Strait,toll_suez high,toll_suez,high,0.1401,22419.54,7.82
-chokepoint15,Lombok Strait,toll_panama low,toll_panama,low,0.1401,22419.54,7.82
-chokepoint15,Lombok Strait,toll_panama high,toll_panama,high,0.1401,22419.54,7.82
-chokepoint18,Torres Strait,main,none,main,0.2184,34943.57,0.5
-chokepoint18,Torres Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.2912,35677.32,0.66
-chokepoint18,Torres Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1664,43997.13,0.38
-chokepoint18,Torres Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.2184,31886.4,0.5
-chokepoint18,Torres Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.2184,38191.81,0.5
-chokepoint18,Torres Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.2184,34885.92,0.5
-chokepoint18,Torres Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.2184,34995.76,0.5
-chokepoint18,Torres Strait,interest_rate_annual low,interest_rate_annual,low,0.2184,34943.57,0.46
-chokepoint18,Torres Strait,interest_rate_annual high,interest_rate_annual,high,0.2184,34943.57,0.53
-chokepoint18,Torres Strait,toll_suez low,toll_suez,low,0.2184,34943.57,0.5
-chokepoint18,Torres Strait,toll_suez high,toll_suez,high,0.2184,34943.57,0.5
-chokepoint18,Torres Strait,toll_panama low,toll_panama,low,0.2184,34943.57,0.5
-chokepoint18,Torres Strait,toll_panama high,toll_panama,high,0.2184,34943.57,0.5
-chokepoint19,Sunda Strait,main,none,main,0.2844,45509.8,3368.65
-chokepoint19,Sunda Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.3792,46465.43,4491.54
-chokepoint19,Sunda Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.2167,57300.98,2566.59
-chokepoint19,Sunda Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.2844,41528.2,3368.65
-chokepoint19,Sunda Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.2844,49740.24,3368.65
-chokepoint19,Sunda Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.2844,45434.72,3368.65
-chokepoint19,Sunda Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.2844,45577.77,3368.65
-chokepoint19,Sunda Strait,interest_rate_annual low,interest_rate_annual,low,0.2844,45509.8,3117.26
-chokepoint19,Sunda Strait,interest_rate_annual high,interest_rate_annual,high,0.2844,45509.8,3628.42
-chokepoint19,Sunda Strait,toll_suez low,toll_suez,low,0.2844,45509.8,3368.65
-chokepoint19,Sunda Strait,toll_suez high,toll_suez,high,0.2844,45509.8,3368.65
-chokepoint19,Sunda Strait,toll_panama low,toll_panama,low,0.2844,45509.8,3368.65
-chokepoint19,Sunda Strait,toll_panama high,toll_panama,high,0.2844,45509.8,3368.65
-chokepoint20,Makassar Strait,main,none,main,0.5224,83594.04,29.17
-chokepoint20,Makassar Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.6965,85349.38,38.89
-chokepoint20,Makassar Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.398,105252.51,22.22
-chokepoint20,Makassar Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.5224,76280.5,29.17
-chokepoint20,Makassar Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.5224,91364.68,29.17
-chokepoint20,Makassar Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.5224,83456.13,29.17
-chokepoint20,Makassar Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.5224,83718.9,29.17
-chokepoint20,Makassar Strait,interest_rate_annual low,interest_rate_annual,low,0.5224,83594.04,26.99
-chokepoint20,Makassar Strait,interest_rate_annual high,interest_rate_annual,high,0.5224,83594.04,31.42
-chokepoint20,Makassar Strait,toll_suez low,toll_suez,low,0.5224,83594.04,29.17
-chokepoint20,Makassar Strait,toll_suez high,toll_suez,high,0.5224,83594.04,29.17
-chokepoint20,Makassar Strait,toll_panama low,toll_panama,low,0.5224,83594.04,29.17
-chokepoint20,Makassar Strait,toll_panama high,toll_panama,high,0.5224,83594.04,29.17
-chokepoint21,Magellan Strait,main,none,main,0.4243,67891.35,1.67
-chokepoint21,Magellan Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.5657,69316.96,2.22
-chokepoint21,Magellan Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.3233,85481.4,1.27
-chokepoint21,Magellan Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.4243,61951.62,1.67
-chokepoint21,Magellan Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.4243,74202.32,1.67
-chokepoint21,Magellan Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.4243,67779.35,1.67
-chokepoint21,Magellan Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.4243,67992.75,1.67
-chokepoint21,Magellan Strait,interest_rate_annual low,interest_rate_annual,low,0.4243,67891.35,1.54
-chokepoint21,Magellan Strait,interest_rate_annual high,interest_rate_annual,high,0.4243,67891.35,1.8
-chokepoint21,Magellan Strait,toll_suez low,toll_suez,low,0.4243,67891.35,1.67
-chokepoint21,Magellan Strait,toll_suez high,toll_suez,high,0.4243,67891.35,1.67
-chokepoint21,Magellan Strait,toll_panama low,toll_panama,low,0.4243,67891.35,1.67
-chokepoint21,Magellan Strait,toll_panama high,toll_panama,high,0.4243,67891.35,1.67
-chokepoint22,Yucatan Channel,main,none,main,1.2421,198754.82,14.17
-chokepoint22,Yucatan Channel,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,1.6561,202928.34,18.89
-chokepoint22,Yucatan Channel,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.9463,250250.42,10.79
-chokepoint22,Yucatan Channel,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,1.2421,181366.0,14.17
-chokepoint22,Yucatan Channel,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,1.2421,217230.44,14.17
-chokepoint22,Yucatan Channel,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,1.2421,198426.92,14.17
-chokepoint22,Yucatan Channel,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,1.2421,199051.67,14.17
-chokepoint22,Yucatan Channel,interest_rate_annual low,interest_rate_annual,low,1.2421,198754.82,13.11
-chokepoint22,Yucatan Channel,interest_rate_annual high,interest_rate_annual,high,1.2421,198754.82,15.26
-chokepoint22,Yucatan Channel,toll_suez low,toll_suez,low,1.2421,198754.82,14.17
-chokepoint22,Yucatan Channel,toll_suez high,toll_suez,high,1.2421,198754.82,14.17
-chokepoint22,Yucatan Channel,toll_panama low,toll_panama,low,1.2421,198754.82,14.17
-chokepoint22,Yucatan Channel,toll_panama high,toll_panama,high,1.2421,198754.82,14.17
-chokepoint24,Mona Passage,main,none,main,0.2362,37799.93,13.95
-chokepoint24,Mona Passage,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.315,38593.66,18.59
-chokepoint24,Mona Passage,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.18,47593.55,10.62
-chokepoint24,Mona Passage,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.2362,34492.86,13.95
-chokepoint24,Mona Passage,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.2362,41313.69,13.95
-chokepoint24,Mona Passage,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.2362,37737.56,13.95
-chokepoint24,Mona Passage,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.2362,37856.38,13.95
-chokepoint24,Mona Passage,interest_rate_annual low,interest_rate_annual,low,0.2362,37799.93,12.9
-chokepoint24,Mona Passage,interest_rate_annual high,interest_rate_annual,high,0.2362,37799.93,15.02
-chokepoint24,Mona Passage,toll_suez low,toll_suez,low,0.2362,37799.93,13.95
-chokepoint24,Mona Passage,toll_suez high,toll_suez,high,0.2362,37799.93,13.95
-chokepoint24,Mona Passage,toll_panama low,toll_panama,low,0.2362,37799.93,13.95
-chokepoint24,Mona Passage,toll_panama high,toll_panama,high,0.2362,37799.93,13.95
-chokepoint27,Mindoro Strait,main,none,main,0.1324,21188.81,13.48
-chokepoint27,Mindoro Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.1766,21633.74,17.98
-chokepoint27,Mindoro Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1009,26678.64,10.27
-chokepoint27,Mindoro Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.1324,19335.02,13.48
-chokepoint27,Mindoro Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.1324,23158.45,13.48
-chokepoint27,Mindoro Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.1324,21153.85,13.48
-chokepoint27,Mindoro Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.1324,21220.45,13.48
-chokepoint27,Mindoro Strait,interest_rate_annual low,interest_rate_annual,low,0.1324,21188.81,12.48
-chokepoint27,Mindoro Strait,interest_rate_annual high,interest_rate_annual,high,0.1324,21188.81,14.52
-chokepoint27,Mindoro Strait,toll_suez low,toll_suez,low,0.1324,21188.81,13.48
-chokepoint27,Mindoro Strait,toll_suez high,toll_suez,high,0.1324,21188.81,13.48
-chokepoint27,Mindoro Strait,toll_panama low,toll_panama,low,0.1324,21188.81,13.48
-chokepoint27,Mindoro Strait,toll_panama high,toll_panama,high,0.1324,21188.81,13.48
+chokepoint1,Suez Canal,main,none,main,7.057,1375872.05,162486.31
+chokepoint1,Suez Canal,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,9.4094,1399584.84,216648.41
+chokepoint1,Suez Canal,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,5.3768,1668455.53,123799.09
+chokepoint1,Suez Canal,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,7.057,1277073.68,162486.31
+chokepoint1,Suez Canal,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,7.057,1480845.32,162486.31
+chokepoint1,Suez Canal,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,7.057,1374009.0,162486.31
+chokepoint1,Suez Canal,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,7.057,1377558.68,162486.31
+chokepoint1,Suez Canal,interest_rate_annual low,interest_rate_annual,low,7.057,1375872.05,150360.47
+chokepoint1,Suez Canal,interest_rate_annual high,interest_rate_annual,high,7.057,1375872.05,175016.35
+chokepoint1,Suez Canal,toll_suez low,toll_suez,low,7.057,1430872.05,162486.31
+chokepoint1,Suez Canal,toll_suez high,toll_suez,high,7.057,1290872.05,162486.31
+chokepoint1,Suez Canal,toll_panama low,toll_panama,low,7.057,1286751.98,162486.31
+chokepoint1,Suez Canal,toll_panama high,toll_panama,high,7.057,1444425.95,162486.31
+chokepoint2,Panama Canal,main,none,main,6.6534,344980.68,154643.89
+chokepoint2,Panama Canal,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,8.8712,367337.22,206191.86
+chokepoint2,Panama Canal,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,5.0693,620830.0,117823.92
+chokepoint2,Panama Canal,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,6.6534,251833.03,154643.89
+chokepoint2,Panama Canal,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,6.6534,443950.06,154643.89
+chokepoint2,Panama Canal,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,6.6534,343224.18,154643.89
+chokepoint2,Panama Canal,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,6.6534,346570.84,154643.89
+chokepoint2,Panama Canal,interest_rate_annual low,interest_rate_annual,low,6.6534,344980.68,143103.3
+chokepoint2,Panama Canal,interest_rate_annual high,interest_rate_annual,high,6.6534,344980.68,166569.17
+chokepoint2,Panama Canal,toll_suez low,toll_suez,low,6.6534,295931.1,154643.89
+chokepoint2,Panama Canal,toll_suez high,toll_suez,high,6.6534,420784.57,154643.89
+chokepoint2,Panama Canal,toll_panama low,toll_panama,low,6.6534,474980.68,154643.89
+chokepoint2,Panama Canal,toll_panama high,toll_panama,high,6.6534,244980.68,154643.89
+chokepoint4,Bab el-Mandeb Strait,main,none,main,7.0619,1377199.98,162639.15
+chokepoint4,Bab el-Mandeb Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,9.4158,1400929.01,216852.2
+chokepoint4,Bab el-Mandeb Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,5.3805,1669983.94,123915.54
+chokepoint4,Bab el-Mandeb Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,7.0619,1278333.91,162639.15
+chokepoint4,Bab el-Mandeb Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,7.0619,1482245.18,162639.15
+chokepoint4,Bab el-Mandeb Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,7.0619,1375335.65,162639.15
+chokepoint4,Bab el-Mandeb Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,7.0619,1378887.76,162639.15
+chokepoint4,Bab el-Mandeb Strait,interest_rate_annual low,interest_rate_annual,low,7.0619,1377199.98,150501.9
+chokepoint4,Bab el-Mandeb Strait,interest_rate_annual high,interest_rate_annual,high,7.0619,1377199.98,175180.98
+chokepoint4,Bab el-Mandeb Strait,toll_suez low,toll_suez,low,7.0619,1432150.58,162639.15
+chokepoint4,Bab el-Mandeb Strait,toll_suez high,toll_suez,high,7.0619,1292276.32,162639.15
+chokepoint4,Bab el-Mandeb Strait,toll_panama low,toll_panama,low,7.0619,1288081.55,162639.15
+chokepoint4,Bab el-Mandeb Strait,toll_panama high,toll_panama,high,7.0619,1445752.62,162639.15
+chokepoint5,Malacca Strait,main,none,main,3.2259,521309.07,236159.8
+chokepoint5,Malacca Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,4.3013,532148.78,314879.74
+chokepoint5,Malacca Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,2.4579,655056.3,179931.28
+chokepoint5,Malacca Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,3.2259,476145.86,236159.8
+chokepoint5,Malacca Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,3.2259,569294.98,236159.8
+chokepoint5,Malacca Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,3.2259,520457.42,236159.8
+chokepoint5,Malacca Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,3.2259,522080.07,236159.8
+chokepoint5,Malacca Strait,interest_rate_annual low,interest_rate_annual,low,3.2259,521309.07,218535.94
+chokepoint5,Malacca Strait,interest_rate_annual high,interest_rate_annual,high,3.2259,521309.07,254371.13
+chokepoint5,Malacca Strait,toll_suez low,toll_suez,low,3.2259,521739.27,236159.8
+chokepoint5,Malacca Strait,toll_suez high,toll_suez,high,3.2259,520644.22,236159.8
+chokepoint5,Malacca Strait,toll_panama low,toll_panama,low,3.2259,520292.24,236159.8
+chokepoint5,Malacca Strait,toll_panama high,toll_panama,high,3.2259,522091.25,236159.8
+chokepoint8,Gibraltar Strait,main,none,main,8.5789,1685897.61,198825.21
+chokepoint8,Gibraltar Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,11.4385,1714724.06,265100.29
+chokepoint8,Gibraltar Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,6.5363,2041576.77,151485.88
+chokepoint8,Gibraltar Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,8.5789,1565793.35,198825.21
+chokepoint8,Gibraltar Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,8.5789,1813508.38,198825.21
+chokepoint8,Gibraltar Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,8.5789,1683632.78,198825.21
+chokepoint8,Gibraltar Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,8.5789,1687947.96,198825.21
+chokepoint8,Gibraltar Strait,interest_rate_annual low,interest_rate_annual,low,8.5789,1685897.61,183987.51
+chokepoint8,Gibraltar Strait,interest_rate_annual high,interest_rate_annual,high,8.5789,1685897.61,214157.51
+chokepoint8,Gibraltar Strait,toll_suez low,toll_suez,low,8.5789,1725069.02,198825.21
+chokepoint8,Gibraltar Strait,toll_suez high,toll_suez,high,8.5789,1625359.98,198825.21
+chokepoint8,Gibraltar Strait,toll_panama low,toll_panama,low,8.5789,1608529.07,198825.21
+chokepoint8,Gibraltar Strait,toll_panama high,toll_panama,high,8.5789,1745411.87,198825.21
+chokepoint9,Dover Strait,main,none,main,1.305,208831.78,17615.04
+chokepoint9,Dover Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,1.74,213216.9,23486.72
+chokepoint9,Dover Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.9943,262938.22,13420.99
+chokepoint9,Dover Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,1.305,190561.34,17615.04
+chokepoint9,Dover Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,1.305,228244.12,17615.04
+chokepoint9,Dover Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,1.305,208487.25,17615.04
+chokepoint9,Dover Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,1.305,209143.68,17615.04
+chokepoint9,Dover Strait,interest_rate_annual low,interest_rate_annual,low,1.305,208831.78,16300.49
+chokepoint9,Dover Strait,interest_rate_annual high,interest_rate_annual,high,1.305,208831.78,18973.42
+chokepoint9,Dover Strait,toll_suez low,toll_suez,low,1.305,208831.78,17615.04
+chokepoint9,Dover Strait,toll_suez high,toll_suez,high,1.305,208831.78,17615.04
+chokepoint9,Dover Strait,toll_panama low,toll_panama,low,1.305,208831.78,17615.04
+chokepoint9,Dover Strait,toll_panama high,toll_panama,high,1.305,208831.78,17615.04
+chokepoint10,Oresund Strait,main,none,main,0.2479,39672.05,1418.53
+chokepoint10,Oresund Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.3306,40505.1,1891.37
+chokepoint10,Oresund Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1889,49950.72,1080.78
+chokepoint10,Oresund Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.2479,36201.19,1418.53
+chokepoint10,Oresund Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.2479,43359.84,1418.53
+chokepoint10,Oresund Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.2479,39606.6,1418.53
+chokepoint10,Oresund Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.2479,39731.3,1418.53
+chokepoint10,Oresund Strait,interest_rate_annual low,interest_rate_annual,low,0.2479,39672.05,1312.67
+chokepoint10,Oresund Strait,interest_rate_annual high,interest_rate_annual,high,0.2479,39672.05,1527.92
+chokepoint10,Oresund Strait,toll_suez low,toll_suez,low,0.2479,39672.05,1418.53
+chokepoint10,Oresund Strait,toll_suez high,toll_suez,high,0.2479,39672.05,1418.53
+chokepoint10,Oresund Strait,toll_panama low,toll_panama,low,0.2479,39672.05,1418.53
+chokepoint10,Oresund Strait,toll_panama high,toll_panama,high,0.2479,39672.05,1418.53
+chokepoint11,Taiwan Strait,main,none,main,0.2714,43415.82,24440.91
+chokepoint11,Taiwan Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.3618,44327.72,32587.88
+chokepoint11,Taiwan Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.2068,54667.46,18621.64
+chokepoint11,Taiwan Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.2714,39616.41,24440.91
+chokepoint11,Taiwan Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.2714,47452.69,24440.91
+chokepoint11,Taiwan Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.2714,43344.17,24440.91
+chokepoint11,Taiwan Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.2714,43480.68,24440.91
+chokepoint11,Taiwan Strait,interest_rate_annual low,interest_rate_annual,low,0.2714,43415.82,22616.96
+chokepoint11,Taiwan Strait,interest_rate_annual high,interest_rate_annual,high,0.2714,43415.82,26325.65
+chokepoint11,Taiwan Strait,toll_suez low,toll_suez,low,0.2714,43415.81,24440.91
+chokepoint11,Taiwan Strait,toll_suez high,toll_suez,high,0.2714,43415.82,24440.91
+chokepoint11,Taiwan Strait,toll_panama low,toll_panama,low,0.2714,43416.99,24440.91
+chokepoint11,Taiwan Strait,toll_panama high,toll_panama,high,0.2714,43414.92,24440.91
+chokepoint12,Korea Strait,main,none,main,0.4805,76630.07,18919.4
+chokepoint12,Korea Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.6407,78244.71,25225.86
+chokepoint12,Korea Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.3661,96552.51,14414.78
+chokepoint12,Korea Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.4805,69902.75,18919.4
+chokepoint12,Korea Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.4805,83777.86,18919.4
+chokepoint12,Korea Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.4805,76503.22,18919.4
+chokepoint12,Korea Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.4805,76744.92,18919.4
+chokepoint12,Korea Strait,interest_rate_annual low,interest_rate_annual,low,0.4805,76630.07,17507.5
+chokepoint12,Korea Strait,interest_rate_annual high,interest_rate_annual,high,0.4805,76630.07,20378.36
+chokepoint12,Korea Strait,toll_suez low,toll_suez,low,0.4805,76630.08,18919.4
+chokepoint12,Korea Strait,toll_suez high,toll_suez,high,0.4805,76630.06,18919.4
+chokepoint12,Korea Strait,toll_panama low,toll_panama,low,0.4805,76656.7,18919.4
+chokepoint12,Korea Strait,toll_panama high,toll_panama,high,0.4805,76609.59,18919.4
+chokepoint13,Tsugaru Strait,main,none,main,0.3305,52740.76,5285.46
+chokepoint13,Tsugaru Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.4407,53851.4,7047.28
+chokepoint13,Tsugaru Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.2518,66444.51,4027.02
+chokepoint13,Tsugaru Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.3305,48113.34,5285.46
+chokepoint13,Tsugaru Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.3305,57657.4,5285.46
+chokepoint13,Tsugaru Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.3305,52653.5,5285.46
+chokepoint13,Tsugaru Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.3305,52819.76,5285.46
+chokepoint13,Tsugaru Strait,interest_rate_annual low,interest_rate_annual,low,0.3305,52740.76,4891.02
+chokepoint13,Tsugaru Strait,interest_rate_annual high,interest_rate_annual,high,0.3305,52740.76,5693.04
+chokepoint13,Tsugaru Strait,toll_suez low,toll_suez,low,0.3305,52740.79,5285.46
+chokepoint13,Tsugaru Strait,toll_suez high,toll_suez,high,0.3305,52740.73,5285.46
+chokepoint13,Tsugaru Strait,toll_panama low,toll_panama,low,0.3305,52755.99,5285.46
+chokepoint13,Tsugaru Strait,toll_panama high,toll_panama,high,0.3305,52729.05,5285.46
+chokepoint14,Luzon Strait,main,none,main,0.0837,13392.08,726.07
+chokepoint14,Luzon Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.1116,13673.29,968.1
+chokepoint14,Luzon Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.0638,16861.85,553.2
+chokepoint14,Luzon Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.0837,12220.42,726.07
+chokepoint14,Luzon Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.0837,14636.96,726.07
+chokepoint14,Luzon Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.0837,13369.98,726.07
+chokepoint14,Luzon Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.0837,13412.08,726.07
+chokepoint14,Luzon Strait,interest_rate_annual low,interest_rate_annual,low,0.0837,13392.08,671.89
+chokepoint14,Luzon Strait,interest_rate_annual high,interest_rate_annual,high,0.0837,13392.08,782.06
+chokepoint14,Luzon Strait,toll_suez low,toll_suez,low,0.0837,13392.08,726.07
+chokepoint14,Luzon Strait,toll_suez high,toll_suez,high,0.0837,13392.08,726.07
+chokepoint14,Luzon Strait,toll_panama low,toll_panama,low,0.0837,13392.08,726.07
+chokepoint14,Luzon Strait,toll_panama high,toll_panama,high,0.0837,13392.08,726.07
+chokepoint15,Lombok Strait,main,none,main,0.2689,43027.52,2165.5
+chokepoint15,Lombok Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.3585,43931.02,2887.34
+chokepoint15,Lombok Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.2049,54175.56,1649.91
+chokepoint15,Lombok Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.2689,39263.09,2165.5
+chokepoint15,Lombok Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.2689,47027.22,2165.5
+chokepoint15,Lombok Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.2689,42956.53,2165.5
+chokepoint15,Lombok Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.2689,43091.78,2165.5
+chokepoint15,Lombok Strait,interest_rate_annual low,interest_rate_annual,low,0.2689,43027.52,2003.9
+chokepoint15,Lombok Strait,interest_rate_annual high,interest_rate_annual,high,0.2689,43027.52,2332.49
+chokepoint15,Lombok Strait,toll_suez low,toll_suez,low,0.2689,43027.52,2165.5
+chokepoint15,Lombok Strait,toll_suez high,toll_suez,high,0.2689,43027.52,2165.5
+chokepoint15,Lombok Strait,toll_panama low,toll_panama,low,0.2689,43027.52,2165.5
+chokepoint15,Lombok Strait,toll_panama high,toll_panama,high,0.2689,43027.52,2165.5
+chokepoint16,Ombai Strait,main,none,main,0.0389,6222.64,0.14
+chokepoint16,Ombai Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.0518,6353.3,0.19
+chokepoint16,Ombai Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.0296,7834.86,0.11
+chokepoint16,Ombai Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.0389,5678.22,0.14
+chokepoint16,Ombai Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.0389,6801.07,0.14
+chokepoint16,Ombai Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.0389,6212.37,0.14
+chokepoint16,Ombai Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.0389,6231.93,0.14
+chokepoint16,Ombai Strait,interest_rate_annual low,interest_rate_annual,low,0.0389,6222.64,0.13
+chokepoint16,Ombai Strait,interest_rate_annual high,interest_rate_annual,high,0.0389,6222.64,0.16
+chokepoint16,Ombai Strait,toll_suez low,toll_suez,low,0.0389,6222.64,0.14
+chokepoint16,Ombai Strait,toll_suez high,toll_suez,high,0.0389,6222.64,0.14
+chokepoint16,Ombai Strait,toll_panama low,toll_panama,low,0.0389,6222.64,0.14
+chokepoint16,Ombai Strait,toll_panama high,toll_panama,high,0.0389,6222.64,0.14
+chokepoint18,Torres Strait,main,none,main,1.624,259826.56,4873.59
+chokepoint18,Torres Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,2.1654,265283.58,6498.12
+chokepoint18,Torres Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,1.2374,327158.74,3713.21
+chokepoint18,Torres Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,1.624,237090.12,4873.59
+chokepoint18,Torres Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,1.624,283984.04,4873.59
+chokepoint18,Torres Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,1.624,259397.82,4873.59
+chokepoint18,Torres Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,1.624,260214.71,4873.59
+chokepoint18,Torres Strait,interest_rate_annual low,interest_rate_annual,low,1.624,259826.56,4509.89
+chokepoint18,Torres Strait,interest_rate_annual high,interest_rate_annual,high,1.624,259826.56,5249.41
+chokepoint18,Torres Strait,toll_suez low,toll_suez,low,1.624,259822.18,4873.59
+chokepoint18,Torres Strait,toll_suez high,toll_suez,high,1.624,259833.33,4873.59
+chokepoint18,Torres Strait,toll_panama low,toll_panama,low,1.624,259836.92,4873.59
+chokepoint18,Torres Strait,toll_panama high,toll_panama,high,1.624,259818.6,4873.59
+chokepoint19,Sunda Strait,main,none,main,0.4305,73402.85,302.08
+chokepoint19,Sunda Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.5741,74849.56,402.78
+chokepoint19,Sunda Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.328,91253.34,230.16
+chokepoint19,Sunda Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.4305,67375.17,302.08
+chokepoint19,Sunda Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.4305,79807.26,302.08
+chokepoint19,Sunda Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.4305,73289.18,302.08
+chokepoint19,Sunda Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.4305,73505.75,302.08
+chokepoint19,Sunda Strait,interest_rate_annual low,interest_rate_annual,low,0.4305,73402.85,279.54
+chokepoint19,Sunda Strait,interest_rate_annual high,interest_rate_annual,high,0.4305,73402.85,325.38
+chokepoint19,Sunda Strait,toll_suez low,toll_suez,low,0.4305,73402.85,302.08
+chokepoint19,Sunda Strait,toll_suez high,toll_suez,high,0.4305,73402.85,302.08
+chokepoint19,Sunda Strait,toll_panama low,toll_panama,low,0.4305,72947.32,302.08
+chokepoint19,Sunda Strait,toll_panama high,toll_panama,high,0.4305,73753.26,302.08
+chokepoint20,Makassar Strait,main,none,main,0.563,90099.4,13.2
+chokepoint20,Makassar Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.7507,91991.34,17.6
+chokepoint20,Makassar Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.429,113443.35,10.06
+chokepoint20,Makassar Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.563,82216.71,13.2
+chokepoint20,Makassar Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.563,98474.75,13.2
+chokepoint20,Makassar Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.563,89950.75,13.2
+chokepoint20,Makassar Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.563,90233.97,13.2
+chokepoint20,Makassar Strait,interest_rate_annual low,interest_rate_annual,low,0.563,90099.4,12.21
+chokepoint20,Makassar Strait,interest_rate_annual high,interest_rate_annual,high,0.563,90099.4,14.22
+chokepoint20,Makassar Strait,toll_suez low,toll_suez,low,0.563,90099.4,13.2
+chokepoint20,Makassar Strait,toll_suez high,toll_suez,high,0.563,90099.4,13.2
+chokepoint20,Makassar Strait,toll_panama low,toll_panama,low,0.563,90099.4,13.2
+chokepoint20,Makassar Strait,toll_panama high,toll_panama,high,0.563,90099.4,13.2
+chokepoint21,Magellan Strait,main,none,main,0.4343,74408.5,2.34
+chokepoint21,Magellan Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.579,75867.74,3.13
+chokepoint21,Magellan Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.3309,92413.54,1.79
+chokepoint21,Magellan Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.4343,68328.63,2.34
+chokepoint21,Magellan Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.4343,80868.36,2.34
+chokepoint21,Magellan Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.4343,74293.85,2.34
+chokepoint21,Magellan Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.4343,74512.29,2.34
+chokepoint21,Magellan Strait,interest_rate_annual low,interest_rate_annual,low,0.4343,74408.5,2.17
+chokepoint21,Magellan Strait,interest_rate_annual high,interest_rate_annual,high,0.4343,74408.5,2.52
+chokepoint21,Magellan Strait,toll_suez low,toll_suez,low,0.4343,74403.43,2.34
+chokepoint21,Magellan Strait,toll_suez high,toll_suez,high,0.4343,74416.32,2.34
+chokepoint21,Magellan Strait,toll_panama low,toll_panama,low,0.4343,73917.51,2.34
+chokepoint21,Magellan Strait,toll_panama high,toll_panama,high,0.4343,74786.17,2.34
+chokepoint22,Yucatan Channel,main,none,main,1.1648,86456.7,16004.63
+chokepoint22,Yucatan Channel,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,1.5531,90370.58,21339.51
+chokepoint22,Yucatan Channel,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.8875,134748.66,12194.01
+chokepoint22,Yucatan Channel,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,1.1648,70149.67,16004.63
+chokepoint22,Yucatan Channel,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,1.1648,103782.92,16004.63
+chokepoint22,Yucatan Channel,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,1.1648,86149.19,16004.63
+chokepoint22,Yucatan Channel,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,1.1648,86735.08,16004.63
+chokepoint22,Yucatan Channel,interest_rate_annual low,interest_rate_annual,low,1.1648,86456.7,14810.26
+chokepoint22,Yucatan Channel,interest_rate_annual high,interest_rate_annual,high,1.1648,86456.7,17238.82
+chokepoint22,Yucatan Channel,toll_suez low,toll_suez,low,1.1648,78013.8,16004.63
+chokepoint22,Yucatan Channel,toll_suez high,toll_suez,high,1.1648,99504.82,16004.63
+chokepoint22,Yucatan Channel,toll_panama low,toll_panama,low,1.1648,106412.64,16004.63
+chokepoint22,Yucatan Channel,toll_panama high,toll_panama,high,1.1648,71105.97,16004.63
+chokepoint23,Windward Passage,main,none,main,0.4314,30426.9,2983.47
+chokepoint23,Windward Passage,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.5752,31876.57,3977.96
+chokepoint23,Windward Passage,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.3287,48313.87,2273.12
+chokepoint23,Windward Passage,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.4314,24386.9,2983.47
+chokepoint23,Windward Passage,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.4314,36844.4,2983.47
+chokepoint23,Windward Passage,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.4314,30313.0,2983.47
+chokepoint23,Windward Passage,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.4314,30530.01,2983.47
+chokepoint23,Windward Passage,interest_rate_annual low,interest_rate_annual,low,0.4314,30426.9,2760.82
+chokepoint23,Windward Passage,interest_rate_annual high,interest_rate_annual,high,0.4314,30426.9,3213.54
+chokepoint23,Windward Passage,toll_suez low,toll_suez,low,0.4314,27166.0,2983.47
+chokepoint23,Windward Passage,toll_suez high,toll_suez,high,0.4314,35466.47,2983.47
+chokepoint23,Windward Passage,toll_panama low,toll_panama,low,0.4314,38135.82,2983.47
+chokepoint23,Windward Passage,toll_panama high,toll_panama,high,0.4314,24496.96,2983.47
+chokepoint24,Mona Passage,main,none,main,0.1949,31173.76,478.85
+chokepoint24,Mona Passage,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.2598,31828.51,638.46
+chokepoint24,Mona Passage,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1485,39252.46,364.84
+chokepoint24,Mona Passage,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.1949,28445.78,478.85
+chokepoint24,Mona Passage,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.1949,34072.25,478.85
+chokepoint24,Mona Passage,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.1949,31122.32,478.85
+chokepoint24,Mona Passage,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.1949,31220.34,478.85
+chokepoint24,Mona Passage,interest_rate_annual low,interest_rate_annual,low,0.1949,31173.76,443.11
+chokepoint24,Mona Passage,interest_rate_annual high,interest_rate_annual,high,0.1949,31173.76,515.77
+chokepoint24,Mona Passage,toll_suez low,toll_suez,low,0.1949,31173.76,478.85
+chokepoint24,Mona Passage,toll_suez high,toll_suez,high,0.1949,31173.76,478.85
+chokepoint24,Mona Passage,toll_panama low,toll_panama,low,0.1949,31174.49,478.85
+chokepoint24,Mona Passage,toll_panama high,toll_panama,high,0.1949,31173.21,478.85
+chokepoint25,Balabac Strait,main,none,main,0.9437,151009.83,309.76
+chokepoint25,Balabac Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,1.2583,154180.78,413.02
+chokepoint25,Balabac Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.719,190135.12,236.01
+chokepoint25,Balabac Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.9437,137798.16,309.76
+chokepoint25,Balabac Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.9437,165047.22,309.76
+chokepoint25,Balabac Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.9437,150760.69,309.76
+chokepoint25,Balabac Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.9437,151235.37,309.76
+chokepoint25,Balabac Strait,interest_rate_annual low,interest_rate_annual,low,0.9437,151009.83,286.65
+chokepoint25,Balabac Strait,interest_rate_annual high,interest_rate_annual,high,0.9437,151009.83,333.65
+chokepoint25,Balabac Strait,toll_suez low,toll_suez,low,0.9437,151009.83,309.76
+chokepoint25,Balabac Strait,toll_suez high,toll_suez,high,0.9437,151009.83,309.76
+chokepoint25,Balabac Strait,toll_panama low,toll_panama,low,0.9437,151009.83,309.76
+chokepoint25,Balabac Strait,toll_panama high,toll_panama,high,0.9437,151009.83,309.76
+chokepoint27,Mindoro Strait,main,none,main,0.1361,21771.5,3.95
+chokepoint27,Mindoro Strait,speed_knots + fuel_use_t_per_day low,speed_knots + fuel_use_t_per_day,low,0.1814,22228.66,5.26
+chokepoint27,Mindoro Strait,speed_knots + fuel_use_t_per_day high,speed_knots + fuel_use_t_per_day,high,0.1037,27412.3,3.01
+chokepoint27,Mindoro Strait,fuel_price_usd_per_t low,fuel_price_usd_per_t,low,0.1361,19866.73,3.95
+chokepoint27,Mindoro Strait,fuel_price_usd_per_t high,fuel_price_usd_per_t,high,0.1361,23795.31,3.95
+chokepoint27,Mindoro Strait,charter_rate_usd_per_day low,charter_rate_usd_per_day,low,0.1361,21735.58,3.95
+chokepoint27,Mindoro Strait,charter_rate_usd_per_day high,charter_rate_usd_per_day,high,0.1361,21804.01,3.95
+chokepoint27,Mindoro Strait,interest_rate_annual low,interest_rate_annual,low,0.1361,21771.5,3.65
+chokepoint27,Mindoro Strait,interest_rate_annual high,interest_rate_annual,high,0.1361,21771.5,4.25
+chokepoint27,Mindoro Strait,toll_suez low,toll_suez,low,0.1361,21771.5,3.95
+chokepoint27,Mindoro Strait,toll_suez high,toll_suez,high,0.1361,21771.5,3.95
+chokepoint27,Mindoro Strait,toll_panama low,toll_panama,low,0.1361,21771.5,3.95
+chokepoint27,Mindoro Strait,toll_panama high,toll_panama,high,0.1361,21771.5,3.95

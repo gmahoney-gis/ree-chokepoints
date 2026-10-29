@@ -1,26 +1,26 @@
-2026-10-27 19:01:16 INFO    Run of s11_figures started 2026-10-27T19:01:16
-2026-10-27 19:01:16 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-27 19:01:16 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-27 19:01:16 INFO    Read 28 chokepoint points; 27 have scores (included)
-2026-10-27 19:01:16 INFO    Read 1,661 routes and 1,396 sub-flows
-2026-10-27 19:01:17 INFO    Base map | Natural Earth countries | kept 257 | removed 1 | reason: Antarctica left off the world maps
-2026-10-27 19:01:17 INFO    Static maps projected to EPSG:8857
-2026-10-27 19:01:22 INFO    Task 6.2 | labelled trade: Taiwan Strait, Korea Strait, Malacca Strait, Gibraltar Strait, Bab el-Mandeb Strait
-2026-10-27 19:01:22 INFO    Task 6.2 | labelled violence: Suez Canal, Bab el-Mandeb Strait, Windward Passage, Kerch Strait, Mona Passage
-2026-10-27 19:01:22 INFO    Task 6.3 | route values: 1,661 routes, 0 without a matching sub-flow (value 0); 1 same-port sub-flows have no route
-2026-10-27 19:01:22 INFO    Task 6.3 | baseline           833 routes, US$ 1,943,452,523, 48 split at the antimeridian
-2026-10-27 19:01:22 INFO    Task 6.3 | red_sea_diversion  828 routes, US$ 1,943,426,458, 49 split at the antimeridian
-2026-10-27 19:01:29 INFO    Task 6.5 | read C:\Users\garre\ree-chokepoints\outputs\tables\correlation.csv: main rho = 0.094, p = 0.640, n = 27
-2026-10-27 19:01:31 INFO    Context | read C:\Users\garre\ree-chokepoints\outputs\tables\red_sea_context.csv (9 rows)
-2026-10-27 19:01:31 INFO    Context | 2023 container transits: Suez Canal 6,977, Bab el-Mandeb Strait 6,739, Cape of Good Hope 2,249
-2026-10-27 19:01:31 INFO    Context | 2024 container transits: Suez Canal 3,198, Bab el-Mandeb Strait 1,967, Cape of Good Hope 6,961
-2026-10-27 19:01:31 INFO    Context | 2025 container transits: Suez Canal 3,351, Bab el-Mandeb Strait 2,445, Cape of Good Hope 7,387
-2026-10-27 19:01:32 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_6_2_components.png (300 dpi)
-2026-10-27 19:01:32 INFO    Caption fig_6_2_components.png: Figure 6.2 (draft). Component exposure at the 27 included maritime chokepoints (Equal Earth). (a) Value of 2025 maritime rare earth trade (HS 280530, 284610, 284690) whose baseline route crosses each chokepoint zone; circle area is proportional to value. (b) Number of violent events (ACLED) and piracy incidents in which crew were threatened, injured or held (IMO GISIS) within 250 km, 2024-10-01 to 2025-09-30; circle area is proportional to the count. Hollow markers show zero values (5 for trade, 8 for violence). The top 5 on each panel are labelled. Sources: UN Comtrade, ACLED, IMO GISIS, Natural Earth.
-2026-10-27 19:01:32 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_6_3_routes.png (300 dpi)
-2026-10-27 19:01:32 INFO    Caption fig_6_3_routes.png: Figure 6.3 (draft). Modelled sea routes of 2025 maritime rare earth trade between principal ports (first pass: nearest World Port Index ports) under the baseline and the Red Sea diversion (Suez Canal, Bab el-Mandeb Strait closed; displaced flows rerouted round the Cape of Good Hope). Line width is proportional to the summed value of the sub-flows using each route, on the same scale in both panels; dots are the 27 included chokepoints. Routes from searoute, split at the antimeridian. Equal Earth projection. Sources: UN Comtrade, NGA World Port Index, Natural Earth.
-2026-10-27 19:01:32 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_6_5_trade_conflict.png (300 dpi)
-2026-10-27 19:01:32 INFO    Caption fig_6_5_trade_conflict.png: Figure 6.5 (draft). Trade exposure against violence exposure for the 27 included chokepoints, both on log(1 + x) axes. Violence exposure is the number of violent events (ACLED) and piracy incidents in which crew were threatened, injured or held (IMO GISIS) within 250 km. Dashed lines mark the medians (trade US$ 4,686,610; violence 4 events) and divide the four quadrants. The violence median is only 4 events within 250 km, so the "high violence" side includes chokepoints with very few events. 5 chokepoints have zero trade and 8 have zero violent events; coincident points share one label. Spearman rho = 0.09 (p = 0.64): no significant association. Sources: UN Comtrade, ACLED, IMO GISIS.
-2026-10-27 19:01:32 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_red_sea_context.png (300 dpi)
-2026-10-27 19:01:32 INFO    Caption fig_red_sea_context.png: Figure (context, draft). Container ship transits per calendar year through the Suez Canal, Bab el-Mandeb Strait and past the Cape of Good Hope, 2023-2025 (2024 has 366 days). From 2023 to 2025, Suez Canal -52%; Bab el-Mandeb Strait -64%; Cape of Good Hope +228%. This supports the Red Sea diversion scenario as the realistic one for 2025. Source: IMF PortWatch daily chokepoint transits.
-2026-10-27 19:01:32 INFO    Run of s11_figures finished
+2026-10-29 18:30:13 INFO    Run of s11_figures started 2026-10-29T18:30:13
+2026-10-29 18:30:13 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-29 18:30:13 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-29 18:30:13 INFO    Read 28 chokepoint points; 27 have scores (included)
+2026-10-29 18:30:16 INFO    Read 54,845 routes and 52,292 sub-flows
+2026-10-29 18:30:16 INFO    Base map | Natural Earth countries | kept 257 | removed 1 | reason: Antarctica left off the world maps
+2026-10-29 18:30:16 INFO    Static maps projected to EPSG:8857
+2026-10-29 18:30:21 INFO    Task 6.2 | labelled trade: Taiwan Strait, Malacca Strait, Korea Strait, Gibraltar Strait, Panama Canal
+2026-10-29 18:30:21 INFO    Task 6.2 | labelled violence: Suez Canal, Bab el-Mandeb Strait, Windward Passage, Kerch Strait, Mona Passage
+2026-10-29 18:30:22 INFO    Task 6.3 | route values: 54,845 routes, 0 without a matching sub-flow (value 0); 3 same-port sub-flows have no route
+2026-10-29 18:30:22 INFO    Task 6.3 | baseline           27,502 routes, US$ 1,943,450,078, 2935 split at the antimeridian
+2026-10-29 18:30:22 INFO    Task 6.3 | red_sea_diversion  27,343 routes, US$ 1,943,315,618, 2980 split at the antimeridian
+2026-10-29 18:31:00 INFO    Task 6.5 | read C:\Users\garre\ree-chokepoints\outputs\tables\correlation.csv: main rho = 0.090, p = 0.655, n = 27
+2026-10-29 18:31:03 INFO    Context | read C:\Users\garre\ree-chokepoints\outputs\tables\red_sea_context.csv (9 rows)
+2026-10-29 18:31:03 INFO    Context | 2023 container transits: Suez Canal 6,977, Bab el-Mandeb Strait 6,739, Cape of Good Hope 2,249
+2026-10-29 18:31:03 INFO    Context | 2024 container transits: Suez Canal 3,198, Bab el-Mandeb Strait 1,967, Cape of Good Hope 6,961
+2026-10-29 18:31:03 INFO    Context | 2025 container transits: Suez Canal 3,351, Bab el-Mandeb Strait 2,445, Cape of Good Hope 7,387
+2026-10-29 18:31:03 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_6_2_components.png (300 dpi)
+2026-10-29 18:31:03 INFO    Caption fig_6_2_components.png: Figure 6.2 (draft). Component exposure at the 27 included maritime chokepoints (Equal Earth). (a) Value of 2025 maritime rare earth trade (HS 280530, 284610, 284690) whose baseline route crosses each chokepoint zone; circle area is proportional to value. (b) Number of violent events (ACLED) and piracy incidents in which crew were threatened, injured or held (IMO GISIS) within 250 km, 2024-10-01 to 2025-09-30; circle area is proportional to the count. Hollow markers show zero values (1 for trade, 8 for violence). The top 5 on each panel are labelled. Sources: UN Comtrade, ACLED, IMO GISIS, Natural Earth.
+2026-10-29 18:31:03 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_6_3_routes.png (300 dpi)
+2026-10-29 18:31:03 INFO    Caption fig_6_3_routes.png: Figure 6.3 (draft). Modelled sea routes of 2025 maritime rare earth trade between principal ports (first pass: nearest World Port Index ports) under the baseline and the Red Sea diversion (Suez Canal, Bab el-Mandeb Strait closed; displaced flows rerouted round the Cape of Good Hope). Line width is proportional to the summed value of the sub-flows using each route, on the same scale in both panels; dots are the 27 included chokepoints. Routes from searoute, split at the antimeridian. Equal Earth projection. Sources: UN Comtrade, NGA World Port Index, Natural Earth.
+2026-10-29 18:31:03 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_6_5_trade_conflict.png (300 dpi)
+2026-10-29 18:31:03 INFO    Caption fig_6_5_trade_conflict.png: Figure 6.5 (draft). Trade exposure against violence exposure for the 27 included chokepoints, both on log(1 + x) axes. Violence exposure is the number of violent events (ACLED) and piracy incidents in which crew were threatened, injured or held (IMO GISIS) within 250 km. Dashed lines mark the medians (trade US$ 62,788,462; violence 4 events) and divide the four quadrants. The violence median is only 4 events within 250 km, so the "high violence" side includes chokepoints with very few events. 1 chokepoints have zero trade and 8 have zero violent events; coincident points share one label. Spearman rho = 0.09 (p = 0.66): no significant association. Sources: UN Comtrade, ACLED, IMO GISIS.
+2026-10-29 18:31:03 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\fig_red_sea_context.png (300 dpi)
+2026-10-29 18:31:03 INFO    Caption fig_red_sea_context.png: Figure (context, draft). Container ship transits per calendar year through the Suez Canal, Bab el-Mandeb Strait and past the Cape of Good Hope, 2023-2025 (2024 has 366 days). From 2023 to 2025, Suez Canal -52%; Bab el-Mandeb Strait -64%; Cape of Good Hope +228%. This supports the Red Sea diversion scenario as the realistic one for 2025. Source: IMF PortWatch daily chokepoint transits.
+2026-10-29 18:31:03 INFO    Run of s11_figures finished

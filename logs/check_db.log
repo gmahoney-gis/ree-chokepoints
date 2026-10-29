@@ -1,160 +1,160 @@
-2026-10-29 16:11:54 INFO    Run of check_db started 2026-10-29T16:11:54
-2026-10-29 16:11:54 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-29 16:12:01 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-29 16:12:01 INFO    Stage: all (every layer, run at the end)
-2026-10-29 16:12:01 INFO    Database: C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-29 16:12:05 INFO    Read 14 of 17 layers for this stage: trade_flows, chokepoints, zones, gates, ports, country_port_shares, events, subflows, routes, route_crossings, detours, detour_routes, reroute_costs, chokepoint_scores
-2026-10-29 16:12:05 INFO    PASS | A layers | trade_flows present with rows | 6,869 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | chokepoints present with rows | 28 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | zones present with rows | 27 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | gates present with rows | 4 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | ports present with rows | 481 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | country_port_shares present with rows | 671 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | events present with rows | 77,675 rows
-2026-10-29 16:12:05 WARNING WARN | A layers | gdelt_country_context not built yet | expected gap: waits for GDELT (tasks 2.16-2.17)
-2026-10-29 16:12:05 INFO    PASS | A layers | subflows present with rows | 52,292 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | routes present with rows | 54,845 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | route_crossings present with rows | 8,025 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | detours present with rows | 3,035 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | detour_routes present with rows | 1,664 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | reroute_costs present with rows | 3,035 rows
-2026-10-29 16:12:05 INFO    PASS | A layers | chokepoint_scores present with rows | 27 rows
-2026-10-29 16:12:05 WARNING WARN | A layers | web_chokepoints not built yet | expected gap: written by S11 (task 6.9)
-2026-10-29 16:12:05 WARNING WARN | A layers | web_routes not built yet | expected gap: written by S11 (task 6.9)
-2026-10-29 16:12:05 INFO    PASS | A layers | no layers outside layers: in settings
-2026-10-29 16:12:05 INFO    PASS | B crs | trade_flows geometry type none (table) | found none
-2026-10-29 16:12:05 INFO    PASS | B crs | chokepoints geometry type Point | found Point
-2026-10-29 16:12:05 INFO    PASS | B crs | chokepoints CRS EPSG:4326 | found EPSG:4326
-2026-10-29 16:12:05 INFO    PASS | B crs | chokepoints shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
-2026-10-29 16:12:05 INFO    PASS | B crs | zones geometry type Polygon | found Polygon
-2026-10-29 16:12:05 INFO    PASS | B crs | zones CRS EPSG:4326 | found EPSG:4326
-2026-10-29 16:12:05 INFO    PASS | B crs | zones shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
-2026-10-29 16:12:05 INFO    PASS | B crs | gates geometry type LineString | found LineString
-2026-10-29 16:12:05 INFO    PASS | B crs | gates CRS EPSG:4326 | found EPSG:4326
-2026-10-29 16:12:05 INFO    PASS | B crs | gates shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
-2026-10-29 16:12:05 INFO    PASS | B crs | ports geometry type Point | found Point
-2026-10-29 16:12:05 INFO    PASS | B crs | ports CRS EPSG:4326 | found EPSG:4326
-2026-10-29 16:12:05 INFO    PASS | B crs | ports shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
-2026-10-29 16:12:05 INFO    PASS | B crs | country_port_shares geometry type none (table) | found none
-2026-10-29 16:12:05 INFO    PASS | B crs | events geometry type Point | found Point
-2026-10-29 16:12:05 INFO    PASS | B crs | events CRS EPSG:4326 | found EPSG:4326
-2026-10-29 16:12:05 INFO    PASS | B crs | events shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
-2026-10-29 16:12:05 INFO    PASS | B crs | subflows geometry type none (table) | found none
-2026-10-29 16:12:05 INFO    PASS | B crs | routes geometry type MultiLineString | found MultiLineString
-2026-10-29 16:12:05 INFO    PASS | B crs | routes CRS EPSG:4326 | found EPSG:4326
-2026-10-29 16:12:05 INFO    PASS | B crs | routes shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
-2026-10-29 16:12:05 INFO    PASS | B crs | route_crossings geometry type none (table) | found none
-2026-10-29 16:12:05 INFO    PASS | B crs | detours geometry type none (table) | found none
-2026-10-29 16:12:05 INFO    PASS | B crs | detour_routes geometry type MultiLineString | found MultiLineString
-2026-10-29 16:12:05 INFO    PASS | B crs | detour_routes CRS EPSG:4326 | found EPSG:4326
-2026-10-29 16:12:05 INFO    PASS | B crs | detour_routes shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
-2026-10-29 16:12:05 INFO    PASS | B crs | reroute_costs geometry type none (table) | found none
-2026-10-29 16:12:05 INFO    PASS | B crs | chokepoint_scores geometry type none (table) | found none
-2026-10-29 16:12:05 INFO    PASS | C unique | trade_flows unique on flow_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | chokepoints unique on chokepoint_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | zones unique on chokepoint_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | gates unique on chokepoint_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | ports unique on port_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | country_port_shares unique on country_iso3 + side + port_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | events unique on event_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | subflows unique on subflow_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | routes unique on route_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | route_crossings unique on flow_id + scenario + chokepoint_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | detours unique on subflow_id + chokepoint_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | detour_routes unique on route_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | reroute_costs unique on subflow_id + chokepoint_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | C unique | chokepoint_scores unique on chokepoint_id | 0 duplicates
-2026-10-29 16:12:05 INFO    PASS | D fields | trade_flows required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | chokepoints required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | zones required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | gates required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | ports required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | country_port_shares required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | events required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | subflows required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | routes required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | route_crossings required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | detours required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | detour_routes required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | reroute_costs required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | chokepoint_scores required fields present and filled
-2026-10-29 16:12:05 INFO    PASS | D fields | trade_flows no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | chokepoints no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | zones no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | gates no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | ports no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | country_port_shares no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | events no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | subflows no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | routes no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | route_crossings no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | detours no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | detour_routes no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | reroute_costs no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | D fields | chokepoint_scores no '<NA>'/'nan' text or blank strings
-2026-10-29 16:12:05 INFO    PASS | E codes | trade_flows.origin_iso3 is an ISO-3 code | 0 not ISO-3
-2026-10-29 16:12:05 INFO    PASS | E codes | trade_flows.dest_iso3 is an ISO-3 code | 0 not ISO-3
-2026-10-29 16:12:05 INFO    PASS | E codes | ports.country_iso3 is an ISO-3 code | 0 not ISO-3
-2026-10-29 16:12:05 INFO    PASS | E codes | subflows.origin_iso3 is an ISO-3 code | 0 not ISO-3
-2026-10-29 16:12:05 INFO    PASS | E codes | subflows.dest_iso3 is an ISO-3 code | 0 not ISO-3
-2026-10-29 16:12:05 INFO    PASS | E codes | trade_flows.hs_code in the settings HS codes | 0 other codes
-2026-10-29 16:12:05 INFO    PASS | E codes | in_main_run true only for the main HS codes (Decision 1) | 0 wrong
-2026-10-29 16:12:05 INFO    PASS | E codes | no flow from a country to itself | 0 flows
-2026-10-29 16:12:05 INFO    PASS | E codes | maritime_share between 0 and 1, values not negative | 0 flows
-2026-10-29 16:12:05 INFO    PASS | E codes | sub-flows only from main-run flows (Decision 1) | 0 sub-flows
-2026-10-29 16:12:05 INFO    PASS | F ports | every seaborne trading country (125) has a usable port or gateway | 0 without
-2026-10-29 16:12:05 INFO    PASS | F ports | every landlocked trader in the gateways file (23) has its gateway port | 0 without
-2026-10-29 16:12:05 INFO    INFO | F ports | ports far from the sea-lane network (logged by S04) | 16 farther than 100 km, 1 set use_for_routing = false
-2026-10-29 16:12:05 INFO    PASS | F ports | country_port_shares.side is export or import | 0 rows
-2026-10-29 16:12:06 INFO    PASS | F ports | port shares sum to 1 for each country and side (187) | 0 do not
-2026-10-29 16:12:06 INFO    PASS | F ports | every seaborne exporter and importer has port shares (187 sides) | 0 without
-2026-10-29 16:12:06 INFO    PASS | F ports | every port in country_port_shares is in the ports layer with use_for_routing | 0 rows
-2026-10-29 16:12:06 INFO    PASS | G chokepoints | chokepoint IDs match the screening file (28) | 0 differ
-2026-10-29 16:12:06 INFO    PASS | G chokepoints | every included chokepoint (27) has a zone, no zone for an excluded one | without zone 0, extra zones 0
-2026-10-29 16:12:06 INFO    PASS | G chokepoints | gate lines match the gates file (4; Decision 12) | 0 differ
-2026-10-29 16:12:06 INFO    PASS | G chokepoints | gate lines only on included chokepoints
-2026-10-29 16:12:06 INFO    PASS | G chokepoints | zone radius = settings (default or override; Decision 11) | 0 differ
-2026-10-29 16:12:06 INFO    PASS | G chokepoints | each zone contains its chokepoint | 0 do not
-2026-10-29 16:12:06 INFO    PASS | G chokepoints | zones are true-distance circles (within 1.0% of the radius) | largest difference 0.0000%
-2026-10-29 16:12:06 INFO    PASS | J events | event dates inside 2024-10-01 to 2025-09-30 (Decision 7) | 2024-10-01 to 2025-09-30, outside 0
-2026-10-29 16:12:06 INFO    PASS | J events | sources are known | {'ACLED': 77539, 'IMO GISIS': 136}
-2026-10-29 16:12:06 INFO    PASS | J events | categories are violence or tension | {'violence': 77675}
-2026-10-29 16:12:06 INFO    PASS | J events | ACLED rows have imo_match and no crew_harm (Decision 9) | 77,539 rows, imo_match true 28
-2026-10-29 16:12:06 INFO    PASS | J events | IMO GISIS rows have crew_harm and no imo_match (Decision 9) | 136 rows, crew_harm true 25
-2026-10-29 16:12:06 INFO    PASS | J events | ACLED event types as in settings | 0 other
-2026-10-29 16:12:06 INFO    PASS | J events | no ACLED event with an excluded geo precision | 0 found
-2026-10-29 16:12:06 INFO    PASS | J events | ACLED fatalities filled and not negative | 0 rows
-2026-10-29 16:12:06 INFO    INFO | J events | crew_harm overrides found in the layer | 7 of 8 (the rest were dropped by the prefilter or merged into ACLED)
-2026-10-29 16:12:06 INFO    PASS | J events | every event within 500 km of a candidate chokepoint (28) | 0 farther
-2026-10-29 16:12:06 INFO    PASS | H joins | subflows.flow_id in trade_flows | 0 not found
-2026-10-29 16:12:06 INFO    PASS | H joins | subflows ports in the ports layer | 0 not found
-2026-10-29 16:12:06 INFO    PASS | H joins | routes ports in the ports layer | 0 not found
-2026-10-29 16:12:06 INFO    PASS | H joins | routes.scenario in the settings scenarios | other: []
-2026-10-29 16:12:06 INFO    INFO | H joins | sub-flows left unrouted (both ports on one network node; logged by S06) | 3 sub-flows, 46,938 USD
-2026-10-29 16:12:07 INFO    PASS | H joins | every baseline route is used by a sub-flow | 0 unused
-2026-10-29 16:12:07 INFO    PASS | H joins | every routed sub-flow has a baseline route | 0 port pairs, 0 sub-flows, 0 USD
-2026-10-29 16:12:08 INFO    PASS | H joins | every red_sea_diversion route is used by a sub-flow | 0 unused
-2026-10-29 16:12:08 WARNING WARN | H joins | every routed sub-flow has a red_sea_diversion route | 159 port pairs, 267 sub-flows, 134,460 USD with no sea route when the scenario's chokepoints are closed | IDs: AUT_port758__SAU_port518, BEL_port57__EGY_port828, BEL_port57__JOR_port19, BEL_port57__SAU_port518, CHE_port387__SAU_port518, CHN_port1069__EGY_port828, CHN_port1069__SAU_port518, CHN_port1072__EGY_port828, CHN_port1072__SAU_port518, CHN_port1188__EGY_port828 ... and 149 more
-2026-10-29 16:12:09 INFO    PASS | H joins | route_crossings.flow_id in subflows | 0 not found
-2026-10-29 16:12:09 INFO    PASS | H joins | route_crossings.scenario in the settings scenarios | other: []
-2026-10-29 16:12:09 INFO    PASS | H joins | route_crossings.chokepoint_id are included chokepoints | 0 others
-2026-10-29 16:12:09 INFO    PASS | H joins | detours.chokepoint_id are included chokepoints | 0 others
-2026-10-29 16:12:09 INFO    PASS | H joins | detour_routes.chokepoint_id are included chokepoints | 0 others
-2026-10-29 16:12:09 INFO    PASS | H joins | reroute_costs.chokepoint_id are included chokepoints | 0 others
-2026-10-29 16:12:10 INFO    PASS | H joins | detours.subflow_id in subflows | 0 not found
-2026-10-29 16:12:10 INFO    PASS | H joins | detours.flow_id is the flow of its sub-flow | 0 differ
-2026-10-29 16:12:10 ERROR   FAIL | H joins | one detour per baseline crossing (Decision 10) | crossings without detour 1540, detours without crossing 71 | IDs: ARM_JPN_284690 @ chokepoint13, ARM_JPN_284690 @ chokepoint14, ARM_KOR_284690 @ chokepoint12, ARM_USA_284690 @ chokepoint2, ARM_USA_284690 @ chokepoint24, AUS_CHN_284610 @ chokepoint11, AUS_CHN_284610 @ chokepoint14, AUS_CHN_284610 @ chokepoint17, AUS_CHN_284610 @ chokepoint18, AUS_DEU_284610 @ chokepoint10 ... and 1601 more
-2026-10-29 16:12:10 INFO    PASS | H joins | reroute_costs has exactly one row per detour (Decision 13) | 0 differ
-2026-10-29 16:12:10 INFO    PASS | H joins | one detour_routes line per rerouted port pair and chokepoint | detours without line 0, lines without detour 0
-2026-10-29 16:12:10 INFO    PASS | H joins | chokepoint_scores has every included chokepoint (27) and no other | 0 differ
-2026-10-29 16:12:10 INFO    PASS | I prefixes | chokepoint_scores columns all start with an owned prefix | 49 columns
-2026-10-29 16:12:10 INFO    INFO | I prefixes | columns per prefix | trade_ (S06) 7, viol_ (S07) 10, tens_ (S07) 0, redund_ (S08) 12, impact_ (S08b) 19, quad_ (S09) 1, score_ (S09) 0, sens_ (S10) 0
-2026-10-29 16:12:10 INFO    PASS | K values | sub-flow shares add up to 1 for each flow | 0 flows
-2026-10-29 16:12:10 INFO    PASS | K values | route lengths greater than 0 | 0 routes
-2026-10-29 16:12:10 INFO    PASS | K values | no detour shorter than its original route (tolerance 1 nm) | 0 shorter
-2026-10-29 16:12:10 INFO    PASS | K values | no_route detours have no new length (Decision 10d) | 214 no_route rows, 0 with a length
-2026-10-29 16:12:10 INFO    PASS | K values | no port_in_zone detour at a gated chokepoint (Decision 12) | 0 rows
-2026-10-29 16:12:10 INFO    PASS | K values | redund_penalty_pct null exactly where no flow is affected (Decision 10e) | 5 null, 5 without affected flows
-2026-10-29 16:12:10 INFO    INFO | K values | chokepoints without a reroute cost (impact_days null; Decision 13) | 8 of 27
-2026-10-29 16:12:10 INFO    Summary | stage all | 152 checks | PASS 142 | WARN 4 | FAIL 1 | INFO 5
-2026-10-29 16:12:10 ERROR   check_db FAILED: 1 check(s); see the FAIL lines above
+2026-10-29 18:31:19 INFO    Run of check_db started 2026-10-29T18:31:19
+2026-10-29 18:31:19 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-29 18:31:19 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-29 18:31:19 INFO    Stage: all (every layer, run at the end)
+2026-10-29 18:31:19 INFO    Database: C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 18:31:23 INFO    Read 14 of 17 layers for this stage: trade_flows, chokepoints, zones, gates, ports, country_port_shares, events, subflows, routes, route_crossings, detours, detour_routes, reroute_costs, chokepoint_scores
+2026-10-29 18:31:23 INFO    PASS | A layers | trade_flows present with rows | 6,869 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | chokepoints present with rows | 28 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | zones present with rows | 27 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | gates present with rows | 4 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | ports present with rows | 481 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | country_port_shares present with rows | 671 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | events present with rows | 77,675 rows
+2026-10-29 18:31:23 WARNING WARN | A layers | gdelt_country_context not built yet | expected gap: waits for GDELT (tasks 2.16-2.17)
+2026-10-29 18:31:23 INFO    PASS | A layers | subflows present with rows | 52,292 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | routes present with rows | 54,845 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | route_crossings present with rows | 8,025 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | detours present with rows | 136,703 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | detour_routes present with rows | 68,850 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | reroute_costs present with rows | 136,703 rows
+2026-10-29 18:31:23 INFO    PASS | A layers | chokepoint_scores present with rows | 27 rows
+2026-10-29 18:31:23 WARNING WARN | A layers | web_chokepoints not built yet | expected gap: written by S11 (task 6.9)
+2026-10-29 18:31:23 WARNING WARN | A layers | web_routes not built yet | expected gap: written by S11 (task 6.9)
+2026-10-29 18:31:23 INFO    PASS | A layers | no layers outside layers: in settings
+2026-10-29 18:31:23 INFO    PASS | B crs | trade_flows geometry type none (table) | found none
+2026-10-29 18:31:23 INFO    PASS | B crs | chokepoints geometry type Point | found Point
+2026-10-29 18:31:23 INFO    PASS | B crs | chokepoints CRS EPSG:4326 | found EPSG:4326
+2026-10-29 18:31:23 INFO    PASS | B crs | chokepoints shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
+2026-10-29 18:31:23 INFO    PASS | B crs | zones geometry type Polygon | found Polygon
+2026-10-29 18:31:23 INFO    PASS | B crs | zones CRS EPSG:4326 | found EPSG:4326
+2026-10-29 18:31:23 INFO    PASS | B crs | zones shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
+2026-10-29 18:31:23 INFO    PASS | B crs | gates geometry type LineString | found LineString
+2026-10-29 18:31:23 INFO    PASS | B crs | gates CRS EPSG:4326 | found EPSG:4326
+2026-10-29 18:31:23 INFO    PASS | B crs | gates shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
+2026-10-29 18:31:23 INFO    PASS | B crs | ports geometry type Point | found Point
+2026-10-29 18:31:23 INFO    PASS | B crs | ports CRS EPSG:4326 | found EPSG:4326
+2026-10-29 18:31:23 INFO    PASS | B crs | ports shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
+2026-10-29 18:31:23 INFO    PASS | B crs | country_port_shares geometry type none (table) | found none
+2026-10-29 18:31:23 INFO    PASS | B crs | events geometry type Point | found Point
+2026-10-29 18:31:23 INFO    PASS | B crs | events CRS EPSG:4326 | found EPSG:4326
+2026-10-29 18:31:23 INFO    PASS | B crs | events shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
+2026-10-29 18:31:23 INFO    PASS | B crs | subflows geometry type none (table) | found none
+2026-10-29 18:31:23 INFO    PASS | B crs | routes geometry type MultiLineString | found MultiLineString
+2026-10-29 18:31:23 INFO    PASS | B crs | routes CRS EPSG:4326 | found EPSG:4326
+2026-10-29 18:31:23 INFO    PASS | B crs | routes shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
+2026-10-29 18:31:23 INFO    PASS | B crs | route_crossings geometry type none (table) | found none
+2026-10-29 18:31:23 INFO    PASS | B crs | detours geometry type none (table) | found none
+2026-10-29 18:31:23 INFO    PASS | B crs | detour_routes geometry type MultiLineString | found MultiLineString
+2026-10-29 18:31:23 INFO    PASS | B crs | detour_routes CRS EPSG:4326 | found EPSG:4326
+2026-10-29 18:31:23 INFO    PASS | B crs | detour_routes shapes filled, valid, inside +-180 / +-90 | empty 0, invalid 0, out of range 0
+2026-10-29 18:31:23 INFO    PASS | B crs | reroute_costs geometry type none (table) | found none
+2026-10-29 18:31:23 INFO    PASS | B crs | chokepoint_scores geometry type none (table) | found none
+2026-10-29 18:31:23 INFO    PASS | C unique | trade_flows unique on flow_id | 0 duplicates
+2026-10-29 18:31:23 INFO    PASS | C unique | chokepoints unique on chokepoint_id | 0 duplicates
+2026-10-29 18:31:23 INFO    PASS | C unique | zones unique on chokepoint_id | 0 duplicates
+2026-10-29 18:31:23 INFO    PASS | C unique | gates unique on chokepoint_id | 0 duplicates
+2026-10-29 18:31:23 INFO    PASS | C unique | ports unique on port_id | 0 duplicates
+2026-10-29 18:31:23 INFO    PASS | C unique | country_port_shares unique on country_iso3 + side + port_id | 0 duplicates
+2026-10-29 18:31:23 INFO    PASS | C unique | events unique on event_id | 0 duplicates
+2026-10-29 18:31:23 INFO    PASS | C unique | subflows unique on subflow_id | 0 duplicates
+2026-10-29 18:31:24 INFO    PASS | C unique | routes unique on route_id | 0 duplicates
+2026-10-29 18:31:24 INFO    PASS | C unique | route_crossings unique on flow_id + scenario + chokepoint_id | 0 duplicates
+2026-10-29 18:31:24 INFO    PASS | C unique | detours unique on subflow_id + chokepoint_id | 0 duplicates
+2026-10-29 18:31:24 INFO    PASS | C unique | detour_routes unique on route_id | 0 duplicates
+2026-10-29 18:31:24 INFO    PASS | C unique | reroute_costs unique on subflow_id + chokepoint_id | 0 duplicates
+2026-10-29 18:31:24 INFO    PASS | C unique | chokepoint_scores unique on chokepoint_id | 0 duplicates
+2026-10-29 18:31:24 INFO    PASS | D fields | trade_flows required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | chokepoints required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | zones required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | gates required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | ports required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | country_port_shares required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | events required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | subflows required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | routes required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | route_crossings required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | detours required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | detour_routes required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | reroute_costs required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | chokepoint_scores required fields present and filled
+2026-10-29 18:31:24 INFO    PASS | D fields | trade_flows no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | chokepoints no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | zones no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | gates no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | ports no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | country_port_shares no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | events no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | subflows no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | routes no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | route_crossings no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | detours no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | detour_routes no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | reroute_costs no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | D fields | chokepoint_scores no '<NA>'/'nan' text or blank strings
+2026-10-29 18:31:24 INFO    PASS | E codes | trade_flows.origin_iso3 is an ISO-3 code | 0 not ISO-3
+2026-10-29 18:31:24 INFO    PASS | E codes | trade_flows.dest_iso3 is an ISO-3 code | 0 not ISO-3
+2026-10-29 18:31:24 INFO    PASS | E codes | ports.country_iso3 is an ISO-3 code | 0 not ISO-3
+2026-10-29 18:31:24 INFO    PASS | E codes | subflows.origin_iso3 is an ISO-3 code | 0 not ISO-3
+2026-10-29 18:31:24 INFO    PASS | E codes | subflows.dest_iso3 is an ISO-3 code | 0 not ISO-3
+2026-10-29 18:31:24 INFO    PASS | E codes | trade_flows.hs_code in the settings HS codes | 0 other codes
+2026-10-29 18:31:24 INFO    PASS | E codes | in_main_run true only for the main HS codes (Decision 1) | 0 wrong
+2026-10-29 18:31:24 INFO    PASS | E codes | no flow from a country to itself | 0 flows
+2026-10-29 18:31:24 INFO    PASS | E codes | maritime_share between 0 and 1, values not negative | 0 flows
+2026-10-29 18:31:24 INFO    PASS | E codes | sub-flows only from main-run flows (Decision 1) | 0 sub-flows
+2026-10-29 18:31:24 INFO    PASS | F ports | every seaborne trading country (125) has a usable port or gateway | 0 without
+2026-10-29 18:31:24 INFO    PASS | F ports | every landlocked trader in the gateways file (23) has its gateway port | 0 without
+2026-10-29 18:31:24 INFO    INFO | F ports | ports far from the sea-lane network (logged by S04) | 16 farther than 100 km, 1 set use_for_routing = false
+2026-10-29 18:31:24 INFO    PASS | F ports | country_port_shares.side is export or import | 0 rows
+2026-10-29 18:31:24 INFO    PASS | F ports | port shares sum to 1 for each country and side (187) | 0 do not
+2026-10-29 18:31:24 INFO    PASS | F ports | every seaborne exporter and importer has port shares (187 sides) | 0 without
+2026-10-29 18:31:24 INFO    PASS | F ports | every port in country_port_shares is in the ports layer with use_for_routing | 0 rows
+2026-10-29 18:31:24 INFO    PASS | G chokepoints | chokepoint IDs match the screening file (28) | 0 differ
+2026-10-29 18:31:24 INFO    PASS | G chokepoints | every included chokepoint (27) has a zone, no zone for an excluded one | without zone 0, extra zones 0
+2026-10-29 18:31:24 INFO    PASS | G chokepoints | gate lines match the gates file (4; Decision 12) | 0 differ
+2026-10-29 18:31:24 INFO    PASS | G chokepoints | gate lines only on included chokepoints
+2026-10-29 18:31:24 INFO    PASS | G chokepoints | zone radius = settings (default or override; Decision 11) | 0 differ
+2026-10-29 18:31:24 INFO    PASS | G chokepoints | each zone contains its chokepoint | 0 do not
+2026-10-29 18:31:24 INFO    PASS | G chokepoints | zones are true-distance circles (within 1.0% of the radius) | largest difference 0.0000%
+2026-10-29 18:31:24 INFO    PASS | J events | event dates inside 2024-10-01 to 2025-09-30 (Decision 7) | 2024-10-01 to 2025-09-30, outside 0
+2026-10-29 18:31:24 INFO    PASS | J events | sources are known | {'ACLED': 77539, 'IMO GISIS': 136}
+2026-10-29 18:31:24 INFO    PASS | J events | categories are violence or tension | {'violence': 77675}
+2026-10-29 18:31:24 INFO    PASS | J events | ACLED rows have imo_match and no crew_harm (Decision 9) | 77,539 rows, imo_match true 28
+2026-10-29 18:31:24 INFO    PASS | J events | IMO GISIS rows have crew_harm and no imo_match (Decision 9) | 136 rows, crew_harm true 25
+2026-10-29 18:31:24 INFO    PASS | J events | ACLED event types as in settings | 0 other
+2026-10-29 18:31:24 INFO    PASS | J events | no ACLED event with an excluded geo precision | 0 found
+2026-10-29 18:31:24 INFO    PASS | J events | ACLED fatalities filled and not negative | 0 rows
+2026-10-29 18:31:24 INFO    INFO | J events | crew_harm overrides found in the layer | 7 of 8 (the rest were dropped by the prefilter or merged into ACLED)
+2026-10-29 18:31:25 INFO    PASS | J events | every event within 500 km of a candidate chokepoint (28) | 0 farther
+2026-10-29 18:31:25 INFO    PASS | H joins | subflows.flow_id in trade_flows | 0 not found
+2026-10-29 18:31:25 INFO    PASS | H joins | subflows ports in the ports layer | 0 not found
+2026-10-29 18:31:25 INFO    PASS | H joins | routes ports in the ports layer | 0 not found
+2026-10-29 18:31:25 INFO    PASS | H joins | routes.scenario in the settings scenarios | other: []
+2026-10-29 18:31:25 INFO    INFO | H joins | sub-flows left unrouted (both ports on one network node; logged by S06) | 3 sub-flows, 46,938 USD
+2026-10-29 18:31:26 INFO    PASS | H joins | every baseline route is used by a sub-flow | 0 unused
+2026-10-29 18:31:26 INFO    PASS | H joins | every routed sub-flow has a baseline route | 0 port pairs, 0 sub-flows, 0 USD
+2026-10-29 18:31:27 INFO    PASS | H joins | every red_sea_diversion route is used by a sub-flow | 0 unused
+2026-10-29 18:31:27 WARNING WARN | H joins | every routed sub-flow has a red_sea_diversion route | 159 port pairs, 267 sub-flows, 134,460 USD with no sea route when the scenario's chokepoints are closed | IDs: AUT_port758__SAU_port518, BEL_port57__EGY_port828, BEL_port57__JOR_port19, BEL_port57__SAU_port518, CHE_port387__SAU_port518, CHN_port1069__EGY_port828, CHN_port1069__SAU_port518, CHN_port1072__EGY_port828, CHN_port1072__SAU_port518, CHN_port1188__EGY_port828 ... and 149 more
+2026-10-29 18:31:28 INFO    PASS | H joins | route_crossings.flow_id in subflows | 0 not found
+2026-10-29 18:31:28 INFO    PASS | H joins | route_crossings.scenario in the settings scenarios | other: []
+2026-10-29 18:31:28 INFO    PASS | H joins | route_crossings.chokepoint_id are included chokepoints | 0 others
+2026-10-29 18:31:28 INFO    PASS | H joins | detours.chokepoint_id are included chokepoints | 0 others
+2026-10-29 18:31:28 INFO    PASS | H joins | detour_routes.chokepoint_id are included chokepoints | 0 others
+2026-10-29 18:31:28 INFO    PASS | H joins | reroute_costs.chokepoint_id are included chokepoints | 0 others
+2026-10-29 18:31:29 INFO    PASS | H joins | detours.subflow_id in subflows | 0 not found
+2026-10-29 18:31:29 INFO    PASS | H joins | detours.flow_id is the flow of its sub-flow | 0 differ
+2026-10-29 18:31:30 INFO    PASS | H joins | one detour per baseline crossing (Decision 10) | crossings without detour 0, detours without crossing 0
+2026-10-29 18:31:30 INFO    PASS | H joins | reroute_costs has exactly one row per detour (Decision 13) | 0 differ
+2026-10-29 18:31:31 INFO    PASS | H joins | one detour_routes line per rerouted port pair and chokepoint | detours without line 0, lines without detour 0
+2026-10-29 18:31:31 INFO    PASS | H joins | chokepoint_scores has every included chokepoint (27) and no other | 0 differ
+2026-10-29 18:31:31 INFO    PASS | I prefixes | chokepoint_scores columns all start with an owned prefix | 49 columns
+2026-10-29 18:31:31 INFO    INFO | I prefixes | columns per prefix | trade_ (S06) 7, viol_ (S07) 10, tens_ (S07) 0, redund_ (S08) 12, impact_ (S08b) 19, quad_ (S09) 1, score_ (S09) 0, sens_ (S10) 0
+2026-10-29 18:31:31 INFO    PASS | K values | sub-flow shares add up to 1 for each flow | 0 flows
+2026-10-29 18:31:31 INFO    PASS | K values | route lengths greater than 0 | 0 routes
+2026-10-29 18:31:31 INFO    PASS | K values | no detour shorter than its original route (tolerance 1 nm) | 0 shorter
+2026-10-29 18:31:31 INFO    PASS | K values | no_route detours have no new length (Decision 10d) | 6815 no_route rows, 0 with a length
+2026-10-29 18:31:31 INFO    PASS | K values | no port_in_zone detour at a gated chokepoint (Decision 12) | 0 rows
+2026-10-29 18:31:31 INFO    PASS | K values | redund_penalty_pct null exactly where no flow is affected (Decision 10e) | 1 null, 1 without affected flows
+2026-10-29 18:31:31 INFO    INFO | K values | chokepoints without a reroute cost (impact_days null; Decision 13) | 5 of 27
+2026-10-29 18:31:31 INFO    Summary | stage all | 152 checks | PASS 143 | WARN 4 | FAIL 0 | INFO 5
+2026-10-29 18:31:31 INFO    check_db passed (stage all)
