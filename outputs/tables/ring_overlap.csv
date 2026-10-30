@@ -9,3 +9,13 @@ viol,500,chokepoint14,Luzon Strait,chokepoint27,Mindoro Strait,897.6,29,246,3,0.
 viol,500,chokepoint20,Makassar Strait,chokepoint25,Balabac Strait,820.3,7,10,0,0.0,0.0,0.0
 viol,500,chokepoint23,Windward Passage,chokepoint24,Mona Passage,651.3,2107,1677,1465,0.6317,0.6953,0.8736
 viol,500,chokepoint25,Balabac Strait,chokepoint27,Mindoro Strait,667.5,10,246,1,0.0039,0.1,0.0041
+tens,250,chokepoint11,Taiwan Strait,chokepoint14,Luzon Strait,496.1,3906,52,6,0.0015,0.0015,0.1154
+tens,500,chokepoint3,Bosporus Strait,chokepoint28,Kerch Strait,756.0,20945,14212,344,0.0099,0.0164,0.0242
+tens,500,chokepoint5,Malacca Strait,chokepoint19,Sunda Strait,901.0,2615,6943,0,0.0,0.0,0.0
+tens,500,chokepoint9,Dover Strait,chokepoint10,Oresund Strait,902.2,69358,14976,83,0.001,0.0012,0.0055
+tens,500,chokepoint11,Taiwan Strait,chokepoint14,Luzon Strait,496.1,5685,2850,860,0.1121,0.1513,0.3018
+tens,500,chokepoint12,Korea Strait,chokepoint17,Bohai Strait,881.3,15147,25167,38,0.0009,0.0025,0.0015
+tens,500,chokepoint14,Luzon Strait,chokepoint27,Mindoro Strait,897.6,2850,4844,1949,0.3393,0.6839,0.4024
+tens,500,chokepoint20,Makassar Strait,chokepoint25,Balabac Strait,820.3,157,198,30,0.0923,0.1911,0.1515
+tens,500,chokepoint23,Windward Passage,chokepoint24,Mona Passage,651.3,1693,1566,1283,0.6493,0.7578,0.8193
+tens,500,chokepoint25,Balabac Strait,chokepoint27,Mindoro Strait,667.5,198,4844,9,0.0018,0.0455,0.0019

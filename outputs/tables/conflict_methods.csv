@@ -2,3 +2,6 @@ category,distance_km,ring_field,density_field,n_chokepoints,spearman_rho,p_value
 viol,100,viol_n_100,viol_kde_100,27,0.8026,4.746458821103406e-07,10
 viol,250,viol_n_250,viol_kde_250,27,0.9017,1.3693965891235133e-10,8
 viol,500,viol_n_500,viol_kde_500,27,0.9355,8.452481052571379e-13,8
+tens,100,tens_n_100,tens_kde_100,27,0.7826,1.4125291517482475e-06,11
+tens,250,tens_n_250,tens_kde_250,27,0.8706,3.579131826765576e-09,13
+tens,500,tens_n_500,tens_kde_500,27,0.9841,2.7096733306430345e-20,3

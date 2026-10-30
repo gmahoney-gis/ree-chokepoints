@@ -201,9 +201,24 @@ def test_countable_events():
         raise AssertionError("an unknown count_rule must raise ValueError")
 
 
+def test_countable_tension():
+    labels = SETTINGS["events"]["gdelt"]["root_labels"]
+    events = pd.DataFrame({"event_id": ["A1", "D1", "D2", "D3", "D4"],
+                           "source": ["ACLED", "GDELT", "GDELT", "GDELT", "GDELT"],
+                           "event_type": ["Battles", labels[10], labels[13], labels[13], labels[17]],
+                           "gdelt_sources": [np.nan, 2, 1, 3, 2]})
+    # Main filter (roots 10-17, 2+ outlets): ACLED rows and D2 (one outlet) are left out.
+    kept = common.countable_tension(events, SETTINGS)
+    assert kept["event_id"].tolist() == ["D1", "D3", "D4"], kept["event_id"].tolist()
+    assert common.countable_tension(events, SETTINGS, min_sources=1)["event_id"].tolist() == ["D1", "D2", "D3", "D4"]
+    assert common.countable_tension(events, SETTINGS, min_sources=3)["event_id"].tolist() == ["D3"]
+    kept = common.countable_tension(events, SETTINGS, root_codes=[13, 15, 16, 17])
+    assert kept["event_id"].tolist() == ["D3", "D4"], kept["event_id"].tolist()
+
+
 def main():
     tests = [test_settings, test_log, test_distance, test_iso3_simple, test_iso3_on_comtrade, test_geopackage,
-             test_countable_events]
+             test_countable_events, test_countable_tension]
     failed = 0
     for test in tests:
         print(f"{test.__name__}")

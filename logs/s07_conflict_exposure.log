@@ -1,71 +1,173 @@
-2026-10-27 19:00:58 INFO    Run of s07_conflict_exposure started 2026-10-27T19:00:58
-2026-10-27 19:00:58 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-27 19:00:58 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-27 19:00:58 INFO    Task 4.7 | included chokepoints | kept 27 | removed 1 | reason: included is not 'yes' in the screening file
-2026-10-27 19:00:59 INFO    Task 4.7 | events read: 77,675; by source and category: ACLED/violence 77,539, IMO GISIS/violence 136
-2026-10-27 19:00:59 INFO    Decision 9 | IMO GISIS count_rule crew_harm | kept 25 | removed 111 | reason: crew not threatened, injured or held (crew_harm)
-2026-10-27 19:00:59 INFO    Task 4.8 | category tension: skipped (no events of this category; events.sources = ['acled', 'imo_gisis'])
-2026-10-27 19:00:59 INFO    Task 4.8 | GDELT source thresholds [1, 2, 3]: skipped (no GDELT tension events)
-2026-10-27 19:00:59 INFO    Task 4.7 | category violence: 77,564 events
-2026-10-27 19:01:00 INFO    Task 4.7 | distance matrix: 77,564 events x 27 chokepoints; nearest-chokepoint distance median 330 km, max 5839 km
-2026-10-27 19:01:00 INFO    Task 4.8 | IMO GISIS incidents within 250 km, chokepoints with at least one: 3
-2026-10-27 19:01:00 INFO    Task 4.8 |   Malacca Strait        23
-2026-10-27 19:01:00 INFO    Task 4.8 |   Sunda Strait           1
-2026-10-27 19:01:00 INFO    Task 4.8 |   Mindoro Strait         1
-2026-10-27 19:01:00 INFO    Task 4.8 | viol rings 100 km: 12 of 27 chokepoints have no events; events counted toward at least one chokepoint: 149
-2026-10-27 19:01:00 INFO    Task 4.8 | viol rings 250 km: 8 of 27 chokepoints have no events; events counted toward at least one chokepoint: 14,404
-2026-10-27 19:01:00 INFO    Task 4.8 | viol rings 500 km: 3 of 27 chokepoints have no events; events counted toward at least one chokepoint: 77,538
-2026-10-27 19:01:00 INFO    Task 4.9 | viol density h = 100 km: share of a kernel beyond the 500 km prefilter radius = 0.0000
-2026-10-27 19:01:00 INFO    Task 4.9 | viol density h = 250 km: share of a kernel beyond the 500 km prefilter radius = 0.1353  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
-2026-10-27 19:01:00 INFO    Task 4.9 | viol density h = 500 km: share of a kernel beyond the 500 km prefilter radius = 0.6065  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
-2026-10-27 19:01:00 INFO    Main ranking field: viol_n_250 -> viol_rank (1 = most exposed; ties share the higher rank)
-2026-10-27 19:01:00 INFO    Task 4.10 | viol 100 km: Spearman rho = 0.803, p = 4.7e-07, largest rank shift = 10
-2026-10-27 19:01:00 INFO    Task 4.10 | viol 250 km: Spearman rho = 0.902, p = 1.4e-10, largest rank shift = 8
-2026-10-27 19:01:00 INFO    Task 4.10 | viol 500 km: Spearman rho = 0.936, p = 8.5e-13, largest rank shift = 8
-2026-10-27 19:01:00 INFO    Task 4.11 | viol rings 100 km: 0 overlapping pairs
-2026-10-27 19:01:00 INFO    Task 4.11 | viol rings 250 km: 1 overlapping pairs
-2026-10-27 19:01:00 INFO    Task 4.11 | viol rings 500 km: 9 overlapping pairs
-2026-10-27 19:01:00 INFO    Task 4.11 |    250 km  Taiwan Strait        / Luzon Strait            496 km apart  shared      0 events (0% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Bosporus Strait      / Kerch Strait            756 km apart  shared      2 events (0% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Malacca Strait       / Sunda Strait            901 km apart  shared      0 events (0% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Dover Strait         / Oresund Strait          902 km apart  shared      1 events (3% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Taiwan Strait        / Luzon Strait            496 km apart  shared      0 events (0% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Korea Strait         / Bohai Strait            881 km apart  shared      0 events (0% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Luzon Strait         / Mindoro Strait          898 km apart  shared      3 events (1% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Makassar Strait      / Balabac Strait          820 km apart  shared      0 events (0% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Windward Passage     / Mona Passage            651 km apart  shared  1,465 events (63% of union)
-2026-10-27 19:01:00 INFO    Task 4.11 |    500 km  Balabac Strait       / Mindoro Strait          668 km apart  shared      1 events (0% of union)
-2026-10-27 19:01:00 INFO    Per-chokepoint summary, ranked by viol_n_250:
-2026-10-27 19:01:00 INFO       1  Suez Canal           viol_n_100=2  viol_fw_100=5  viol_n_250=9531  viol_fw_250=31806  viol_n_500=20897  viol_fw_500=48118  viol_kde_100=0.018  viol_kde_250=0.0257  viol_kde_500=0.0109
-2026-10-27 19:01:00 INFO       2  Bab el-Mandeb Strait viol_n_100=80  viol_fw_100=140  viol_n_250=2090  viol_fw_250=3704  viol_n_500=4204  viol_fw_500=8249  viol_kde_100=0.0116  viol_kde_250=0.00638  viol_kde_500=0.0023
-2026-10-27 19:01:00 INFO       3  Windward Passage     viol_n_100=8  viol_fw_100=24  viol_n_250=1805  viol_fw_250=7251  viol_n_500=2107  viol_fw_500=7857  viol_kde_100=0.00384  viol_kde_250=0.00347  viol_kde_500=0.00124
-2026-10-27 19:01:00 INFO       4  Kerch Strait         viol_n_100=23  viol_fw_100=23  viol_n_250=567  viol_fw_250=757  viol_n_500=49296  viol_fw_500=98581  viol_kde_100=0.00691  viol_kde_250=0.05  viol_kde_500=0.0249
-2026-10-27 19:01:00 INFO       5  Mona Passage         viol_n_100=16  viol_fw_100=32  viol_n_250=219  viol_fw_250=394  viol_n_500=1677  viol_fw_500=5803  viol_kde_100=0.00108  viol_kde_250=0.00113  viol_kde_500=0.00087
-2026-10-27 19:01:00 INFO       6  Mindoro Strait       viol_n_100=2  viol_fw_100=4  viol_n_250=58  viol_fw_250=106  viol_n_500=246  viol_fw_500=488  viol_kde_100=0.000245  viol_kde_250=0.000283  viol_kde_500=0.000135
-2026-10-27 19:01:00 INFO       7  Yucatan Channel      viol_n_100=0  viol_fw_100=0  viol_n_250=51  viol_fw_250=113  viol_n_500=102  viol_fw_500=184  viol_kde_100=0.000269  viol_kde_250=0.000147  viol_kde_500=0.000102
-2026-10-27 19:01:00 INFO       8  Malacca Strait       viol_n_100=1  viol_fw_100=1  viol_n_250=30  viol_fw_250=30  viol_n_500=39  viol_fw_500=42  viol_kde_100=0.000198  viol_kde_250=7.16e-05  viol_kde_500=2.37e-05
-2026-10-27 19:01:00 INFO       9  Strait of Hormuz     viol_n_100=1  viol_fw_100=1  viol_n_250=9  viol_fw_250=18  viol_n_500=59  viol_fw_500=167  viol_kde_100=3.96e-05  viol_kde_250=4.81e-05  viol_kde_500=3.14e-05
-2026-10-27 19:01:00 INFO      10  Bosporus Strait      viol_n_100=4  viol_fw_100=5  viol_n_250=8  viol_fw_250=9  viol_n_500=49  viol_fw_500=76  viol_kde_100=8.01e-05  viol_kde_250=0.000808  viol_kde_500=0.00727
-2026-10-27 19:01:00 INFO      11  Dover Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=7  viol_fw_250=8  viol_n_500=12  viol_fw_500=18  viol_kde_100=2.62e-05  viol_kde_250=1.89e-05  viol_kde_500=9.82e-06
-2026-10-27 19:01:00 INFO      11  Sunda Strait         viol_n_100=1  viol_fw_100=1  viol_n_250=7  viol_fw_250=7  viol_n_500=9  viol_fw_500=11  viol_kde_100=4.89e-05  viol_kde_250=1.74e-05  viol_kde_500=1.1e-05
-2026-10-27 19:01:00 INFO      13  Panama Canal         viol_n_100=4  viol_fw_100=7  viol_n_250=6  viol_fw_250=9  viol_n_500=162  viol_fw_500=290  viol_kde_100=6.14e-05  viol_kde_250=9.51e-05  viol_kde_500=0.000126
-2026-10-27 19:01:00 INFO      14  Ombai Strait         viol_n_100=3  viol_fw_100=3  viol_n_250=4  viol_fw_250=4  viol_n_500=5  viol_fw_500=6  viol_kde_100=4.65e-05  viol_kde_250=1.03e-05  viol_kde_500=3.85e-06
-2026-10-27 19:01:00 INFO      14  Taiwan Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=4  viol_fw_250=4  viol_n_500=6  viol_fw_500=6  viol_kde_100=2.12e-05  viol_kde_250=1.06e-05  viol_kde_500=1.39e-05
-2026-10-27 19:01:00 INFO      16  Bohai Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=3  viol_fw_250=3  viol_n_500=55  viol_fw_500=55  viol_kde_100=1.1e-05  viol_kde_250=3.68e-05  viol_kde_500=2.52e-05
-2026-10-27 19:01:00 INFO      16  Oresund Strait       viol_n_100=2  viol_fw_100=2  viol_n_250=3  viol_fw_250=3  viol_n_500=19  viol_fw_500=36  viol_kde_100=3.26e-05  viol_kde_250=1.99e-05  viol_kde_500=6.66e-05
-2026-10-27 19:01:00 INFO      18  Gibraltar Strait     viol_n_100=1  viol_fw_100=1  viol_n_250=1  viol_fw_250=1  viol_n_500=10  viol_fw_500=16  viol_kde_100=1.53e-05  viol_kde_250=8.66e-06  viol_kde_500=4.74e-06
-2026-10-27 19:01:00 INFO      18  Lombok Strait        viol_n_100=1  viol_fw_100=1  viol_n_250=1  viol_fw_250=1  viol_n_500=4  viol_fw_500=4  viol_kde_100=1.52e-05  viol_kde_250=6.22e-06  viol_kde_500=4.57e-06
-2026-10-27 19:01:00 INFO      20  Balabac Strait       viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=10  viol_fw_500=24  viol_kde_100=1.24e-07  viol_kde_250=9.59e-06  viol_kde_500=4.47e-05
-2026-10-27 19:01:00 INFO      20  Bering Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=0  viol_kde_250=5.13e-92  viol_kde_500=4.02e-28
-2026-10-27 19:01:00 INFO      20  Korea Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=1  viol_fw_500=1  viol_kde_100=3.73e-10  viol_kde_250=5.04e-07  viol_kde_500=2.53e-06
-2026-10-27 19:01:00 INFO      20  Luzon Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=29  viol_fw_500=52  viol_kde_100=2.58e-06  viol_kde_250=3.88e-05  viol_kde_500=5.04e-05
-2026-10-27 19:01:00 INFO      20  Magellan Strait      viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=0  viol_kde_250=1.9e-156  viol_kde_500=9.09e-44
-2026-10-27 19:01:00 INFO      20  Makassar Strait      viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=7  viol_fw_500=9  viol_kde_100=5.75e-07  viol_kde_250=6.49e-06  viol_kde_500=1.09e-05
-2026-10-27 19:01:00 INFO      20  Torres Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=5  viol_fw_500=7  viol_kde_100=6.59e-07  viol_kde_250=3.29e-06  viol_kde_500=2.19e-06
-2026-10-27 19:01:00 INFO      20  Tsugaru Strait       viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=8.28e-36  viol_kde_250=3.84e-11  viol_kde_500=9.07e-08
-2026-10-27 19:01:00 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\conflict_methods.csv (3 rows)
-2026-10-27 19:01:00 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\ring_overlap.csv (10 rows)
-2026-10-27 19:01:00 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\conflict_exposure.csv (27 rows)
-2026-10-27 19:01:00 INFO    chokepoint_scores exists (27 rows); replacing 10 S07 columns, keeping 39 others: ['trade_value_base', 'trade_wt_base', 'trade_nflows_base', 'trade_value_redsea', 'trade_wt_redsea', 'trade_nflows_redsea', 'trade_rank_base', 'quad_trade_conflict', 'redund_edges_removed', 'redund_nflows_affected', 'redund_value_affected', 'redund_nflows_rerouted', 'redund_nflows_noroute', 'redund_value_noroute', 'redund_nflows_portzone', 'redund_value_portzone', 'redund_median_pct', 'redund_penalty_routed_pct', 'redund_noalt_pct', 'redund_penalty_pct', 'impact_nflows_costed', 'impact_value_costed', 'impact_nflows_nocost', 'impact_value_nocost', 'impact_days', 'impact_days_median', 'impact_days_max', 'impact_days_low', 'impact_days_high', 'impact_toll_change', 'impact_voyage_cost', 'impact_voyage_cost_median', 'impact_voyage_cost_low', 'impact_voyage_cost_high', 'impact_holding_cost', 'impact_holding_cost_low', 'impact_holding_cost_high', 'impact_nflows_canal_added', 'impact_nflows_canal_skipped']
-2026-10-27 19:01:00 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-27 19:01:00 INFO    Run of s07_conflict_exposure finished
+2026-10-29 22:08:24 INFO    Run of s07_conflict_exposure started 2026-10-29T22:08:24
+2026-10-29 22:08:24 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-29 22:08:24 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-29 22:08:24 INFO    Task 4.7 | included chokepoints | kept 27 | removed 1 | reason: included is not 'yes' in the screening file
+2026-10-29 22:08:36 INFO    Task 4.7 | events read: 847,906; by source and category: ACLED/violence 77,539, GDELT/tension 770,231, IMO GISIS/violence 136
+2026-10-29 22:08:36 INFO    Decision 9 | IMO GISIS count_rule crew_harm | kept 25 | removed 111 | reason: crew not threatened, injured or held (crew_harm)
+2026-10-29 22:08:36 INFO    Task 4.7 | category violence: 77,564 events
+2026-10-29 22:08:37 INFO    Task 4.7 | distance matrix: 77,564 events x 27 chokepoints; nearest-chokepoint distance median 330 km, max 5839 km
+2026-10-29 22:08:37 INFO    Task 4.8 | IMO GISIS incidents within 250 km, chokepoints with at least one: 3
+2026-10-29 22:08:37 INFO    Task 4.8 |   Malacca Strait        23
+2026-10-29 22:08:37 INFO    Task 4.8 |   Sunda Strait           1
+2026-10-29 22:08:37 INFO    Task 4.8 |   Mindoro Strait         1
+2026-10-29 22:08:37 INFO    Task 4.8 | viol rings 100 km: 12 of 27 chokepoints have no events; events counted toward at least one chokepoint: 149
+2026-10-29 22:08:37 INFO    Task 4.8 | viol rings 250 km: 8 of 27 chokepoints have no events; events counted toward at least one chokepoint: 14,404
+2026-10-29 22:08:37 INFO    Task 4.8 | viol rings 500 km: 3 of 27 chokepoints have no events; events counted toward at least one chokepoint: 77,538
+2026-10-29 22:08:37 INFO    Task 4.9 | viol density h = 100 km: share of a kernel beyond the 500 km prefilter radius = 0.0000
+2026-10-29 22:08:37 INFO    Task 4.9 | viol density h = 250 km: share of a kernel beyond the 500 km prefilter radius = 0.1353  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
+2026-10-29 22:08:37 INFO    Task 4.9 | viol density h = 500 km: share of a kernel beyond the 500 km prefilter radius = 0.6065  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
+2026-10-29 22:08:37 INFO    Main ranking field: viol_n_250 -> viol_rank (1 = most exposed; ties share the higher rank)
+2026-10-29 22:08:37 INFO    Task 4.10 | viol 100 km: Spearman rho = 0.803, p = 4.7e-07, largest rank shift = 10
+2026-10-29 22:08:37 INFO    Task 4.10 | viol 250 km: Spearman rho = 0.902, p = 1.4e-10, largest rank shift = 8
+2026-10-29 22:08:37 INFO    Task 4.10 | viol 500 km: Spearman rho = 0.936, p = 8.5e-13, largest rank shift = 8
+2026-10-29 22:08:37 INFO    Task 4.11 | viol rings 100 km: 0 overlapping pairs
+2026-10-29 22:08:37 INFO    Task 4.11 | viol rings 250 km: 1 overlapping pairs
+2026-10-29 22:08:37 INFO    Task 4.11 | viol rings 500 km: 9 overlapping pairs
+2026-10-29 22:08:37 INFO    Task 4.11 |    250 km  Taiwan Strait        / Luzon Strait            496 km apart  shared      0 events (0% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Bosporus Strait      / Kerch Strait            756 km apart  shared      2 events (0% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Malacca Strait       / Sunda Strait            901 km apart  shared      0 events (0% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Dover Strait         / Oresund Strait          902 km apart  shared      1 events (3% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Taiwan Strait        / Luzon Strait            496 km apart  shared      0 events (0% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Korea Strait         / Bohai Strait            881 km apart  shared      0 events (0% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Luzon Strait         / Mindoro Strait          898 km apart  shared      3 events (1% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Makassar Strait      / Balabac Strait          820 km apart  shared      0 events (0% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Windward Passage     / Mona Passage            651 km apart  shared  1,465 events (63% of union)
+2026-10-29 22:08:37 INFO    Task 4.11 |    500 km  Balabac Strait       / Mindoro Strait          668 km apart  shared      1 events (0% of union)
+2026-10-29 22:08:37 INFO    Per-chokepoint summary, ranked by viol_n_250:
+2026-10-29 22:08:37 INFO       1  Suez Canal           viol_n_100=2  viol_fw_100=5  viol_n_250=9531  viol_fw_250=31806  viol_n_500=20897  viol_fw_500=48118  viol_kde_100=0.018  viol_kde_250=0.0257  viol_kde_500=0.0109
+2026-10-29 22:08:37 INFO       2  Bab el-Mandeb Strait viol_n_100=80  viol_fw_100=140  viol_n_250=2090  viol_fw_250=3704  viol_n_500=4204  viol_fw_500=8249  viol_kde_100=0.0116  viol_kde_250=0.00638  viol_kde_500=0.0023
+2026-10-29 22:08:37 INFO       3  Windward Passage     viol_n_100=8  viol_fw_100=24  viol_n_250=1805  viol_fw_250=7251  viol_n_500=2107  viol_fw_500=7857  viol_kde_100=0.00384  viol_kde_250=0.00347  viol_kde_500=0.00124
+2026-10-29 22:08:37 INFO       4  Kerch Strait         viol_n_100=23  viol_fw_100=23  viol_n_250=567  viol_fw_250=757  viol_n_500=49296  viol_fw_500=98581  viol_kde_100=0.00691  viol_kde_250=0.05  viol_kde_500=0.0249
+2026-10-29 22:08:37 INFO       5  Mona Passage         viol_n_100=16  viol_fw_100=32  viol_n_250=219  viol_fw_250=394  viol_n_500=1677  viol_fw_500=5803  viol_kde_100=0.00108  viol_kde_250=0.00113  viol_kde_500=0.00087
+2026-10-29 22:08:37 INFO       6  Mindoro Strait       viol_n_100=2  viol_fw_100=4  viol_n_250=58  viol_fw_250=106  viol_n_500=246  viol_fw_500=488  viol_kde_100=0.000245  viol_kde_250=0.000283  viol_kde_500=0.000135
+2026-10-29 22:08:37 INFO       7  Yucatan Channel      viol_n_100=0  viol_fw_100=0  viol_n_250=51  viol_fw_250=113  viol_n_500=102  viol_fw_500=184  viol_kde_100=0.000269  viol_kde_250=0.000147  viol_kde_500=0.000102
+2026-10-29 22:08:37 INFO       8  Malacca Strait       viol_n_100=1  viol_fw_100=1  viol_n_250=30  viol_fw_250=30  viol_n_500=39  viol_fw_500=42  viol_kde_100=0.000198  viol_kde_250=7.16e-05  viol_kde_500=2.37e-05
+2026-10-29 22:08:37 INFO       9  Strait of Hormuz     viol_n_100=1  viol_fw_100=1  viol_n_250=9  viol_fw_250=18  viol_n_500=59  viol_fw_500=167  viol_kde_100=3.96e-05  viol_kde_250=4.81e-05  viol_kde_500=3.14e-05
+2026-10-29 22:08:37 INFO      10  Bosporus Strait      viol_n_100=4  viol_fw_100=5  viol_n_250=8  viol_fw_250=9  viol_n_500=49  viol_fw_500=76  viol_kde_100=8.01e-05  viol_kde_250=0.000808  viol_kde_500=0.00727
+2026-10-29 22:08:37 INFO      11  Dover Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=7  viol_fw_250=8  viol_n_500=12  viol_fw_500=18  viol_kde_100=2.62e-05  viol_kde_250=1.89e-05  viol_kde_500=9.82e-06
+2026-10-29 22:08:37 INFO      11  Sunda Strait         viol_n_100=1  viol_fw_100=1  viol_n_250=7  viol_fw_250=7  viol_n_500=9  viol_fw_500=11  viol_kde_100=4.89e-05  viol_kde_250=1.74e-05  viol_kde_500=1.1e-05
+2026-10-29 22:08:37 INFO      13  Panama Canal         viol_n_100=4  viol_fw_100=7  viol_n_250=6  viol_fw_250=9  viol_n_500=162  viol_fw_500=290  viol_kde_100=6.14e-05  viol_kde_250=9.51e-05  viol_kde_500=0.000126
+2026-10-29 22:08:37 INFO      14  Ombai Strait         viol_n_100=3  viol_fw_100=3  viol_n_250=4  viol_fw_250=4  viol_n_500=5  viol_fw_500=6  viol_kde_100=4.65e-05  viol_kde_250=1.03e-05  viol_kde_500=3.85e-06
+2026-10-29 22:08:37 INFO      14  Taiwan Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=4  viol_fw_250=4  viol_n_500=6  viol_fw_500=6  viol_kde_100=2.12e-05  viol_kde_250=1.06e-05  viol_kde_500=1.39e-05
+2026-10-29 22:08:37 INFO      16  Bohai Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=3  viol_fw_250=3  viol_n_500=55  viol_fw_500=55  viol_kde_100=1.1e-05  viol_kde_250=3.68e-05  viol_kde_500=2.52e-05
+2026-10-29 22:08:37 INFO      16  Oresund Strait       viol_n_100=2  viol_fw_100=2  viol_n_250=3  viol_fw_250=3  viol_n_500=19  viol_fw_500=36  viol_kde_100=3.26e-05  viol_kde_250=1.99e-05  viol_kde_500=6.66e-05
+2026-10-29 22:08:37 INFO      18  Gibraltar Strait     viol_n_100=1  viol_fw_100=1  viol_n_250=1  viol_fw_250=1  viol_n_500=10  viol_fw_500=16  viol_kde_100=1.53e-05  viol_kde_250=8.66e-06  viol_kde_500=4.74e-06
+2026-10-29 22:08:37 INFO      18  Lombok Strait        viol_n_100=1  viol_fw_100=1  viol_n_250=1  viol_fw_250=1  viol_n_500=4  viol_fw_500=4  viol_kde_100=1.52e-05  viol_kde_250=6.22e-06  viol_kde_500=4.57e-06
+2026-10-29 22:08:37 INFO      20  Balabac Strait       viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=10  viol_fw_500=24  viol_kde_100=1.24e-07  viol_kde_250=9.59e-06  viol_kde_500=4.47e-05
+2026-10-29 22:08:37 INFO      20  Bering Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=0  viol_kde_250=5.13e-92  viol_kde_500=4.02e-28
+2026-10-29 22:08:37 INFO      20  Korea Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=1  viol_fw_500=1  viol_kde_100=3.73e-10  viol_kde_250=5.04e-07  viol_kde_500=2.53e-06
+2026-10-29 22:08:37 INFO      20  Luzon Strait         viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=29  viol_fw_500=52  viol_kde_100=2.58e-06  viol_kde_250=3.88e-05  viol_kde_500=5.04e-05
+2026-10-29 22:08:37 INFO      20  Magellan Strait      viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=0  viol_kde_250=1.9e-156  viol_kde_500=9.09e-44
+2026-10-29 22:08:37 INFO      20  Makassar Strait      viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=7  viol_fw_500=9  viol_kde_100=5.75e-07  viol_kde_250=6.49e-06  viol_kde_500=1.09e-05
+2026-10-29 22:08:37 INFO      20  Torres Strait        viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=5  viol_fw_500=7  viol_kde_100=6.59e-07  viol_kde_250=3.29e-06  viol_kde_500=2.19e-06
+2026-10-29 22:08:37 INFO      20  Tsugaru Strait       viol_n_100=0  viol_fw_100=0  viol_n_250=0  viol_fw_250=0  viol_n_500=0  viol_fw_500=0  viol_kde_100=8.28e-36  viol_kde_250=3.84e-11  viol_kde_500=9.07e-08
+2026-10-29 22:08:37 INFO    Task 4.8 | tension: no fatality-weighted variant (GDELT records no fatalities); every count, density and overlap is weighted by event_count
+2026-10-29 22:08:38 INFO    Decision 15 | GDELT gdelt_sources >= 2, roots [10, 11, 12, 13, 14, 15, 16, 17] | kept 248,390 | removed 521,841 | reason: fewer than 2 outlets or root code outside [10, 11, 12, 13, 14, 15, 16, 17]
+2026-10-29 22:08:38 INFO    Decision 15 | GDELT gdelt_sources >= 1, roots [10, 11, 12, 13, 14, 15, 16, 17] | kept 763,193 | removed 7,038 | reason: fewer than 1 outlets or root code outside [10, 11, 12, 13, 14, 15, 16, 17]
+2026-10-29 22:08:39 INFO    Decision 15 | GDELT gdelt_sources >= 3, roots [10, 11, 12, 13, 14, 15, 16, 17] | kept 134,040 | removed 636,191 | reason: fewer than 3 outlets or root code outside [10, 11, 12, 13, 14, 15, 16, 17]
+2026-10-29 22:08:40 INFO    Decision 15 | GDELT gdelt_sources >= 2, roots [13, 15, 16, 17] | kept 103,655 | removed 666,576 | reason: fewer than 2 outlets or root code outside [13, 15, 16, 17]
+2026-10-29 22:08:40 INFO    Task 4.7 | category tension, tens: 248,390 rows standing for 363,510 events (sum of event_count)
+2026-10-29 22:08:40 INFO    Task 4.7 | category tension, tens_s1: 763,193 rows standing for 1,392,592 events (sum of event_count)
+2026-10-29 22:08:40 INFO    Task 4.7 | category tension, tens_s3: 134,040 rows standing for 205,368 events (sum of event_count)
+2026-10-29 22:08:40 INFO    Task 4.7 | category tension, tens_r1317: 103,655 rows standing for 146,684 events (sum of event_count)
+2026-10-29 22:08:41 INFO    Task 4.7 | distance matrix: 248,390 events x 27 chokepoints; nearest-chokepoint distance median 249 km, max 5863 km
+2026-10-29 22:08:41 INFO    Task 4.8 | tens rings 100 km: 4 of 27 chokepoints have no events; events counted toward at least one chokepoint: 14,811
+2026-10-29 22:08:41 INFO    Task 4.8 | tens rings 250 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 207,364
+2026-10-29 22:08:41 INFO    Task 4.8 | tens rings 500 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 362,316
+2026-10-29 22:08:41 INFO    Task 4.9 | tens density h = 100 km: share of a kernel beyond the 500 km prefilter radius = 0.0000
+2026-10-29 22:08:42 INFO    Task 4.9 | tens density h = 250 km: share of a kernel beyond the 500 km prefilter radius = 0.1353  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
+2026-10-29 22:08:42 INFO    Task 4.9 | tens density h = 500 km: share of a kernel beyond the 500 km prefilter radius = 0.6065  (WARNING: events beyond the prefilter radius are missing, so this bandwidth is truncated)
+2026-10-29 22:08:42 INFO    Main ranking field: tens_n_250 -> tens_rank (1 = most exposed; ties share the higher rank)
+2026-10-29 22:08:42 INFO    Task 4.10 | tens 100 km: Spearman rho = 0.783, p = 1.4e-06, largest rank shift = 11
+2026-10-29 22:08:42 INFO    Task 4.10 | tens 250 km: Spearman rho = 0.871, p = 3.6e-09, largest rank shift = 13
+2026-10-29 22:08:42 INFO    Task 4.10 | tens 500 km: Spearman rho = 0.984, p = 2.7e-20, largest rank shift = 3
+2026-10-29 22:08:42 INFO    Task 4.11 | tens rings 100 km: 0 overlapping pairs
+2026-10-29 22:08:42 INFO    Task 4.11 | tens rings 250 km: 1 overlapping pairs
+2026-10-29 22:08:42 INFO    Task 4.11 | tens rings 500 km: 9 overlapping pairs
+2026-10-29 22:08:42 INFO    Task 4.11 |    250 km  Taiwan Strait        / Luzon Strait            496 km apart  shared      6 events (0% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Bosporus Strait      / Kerch Strait            756 km apart  shared    344 events (1% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Malacca Strait       / Sunda Strait            901 km apart  shared      0 events (0% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Dover Strait         / Oresund Strait          902 km apart  shared     83 events (0% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Taiwan Strait        / Luzon Strait            496 km apart  shared    860 events (11% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Korea Strait         / Bohai Strait            881 km apart  shared     38 events (0% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Luzon Strait         / Mindoro Strait          898 km apart  shared  1,949 events (34% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Makassar Strait      / Balabac Strait          820 km apart  shared     30 events (9% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Windward Passage     / Mona Passage            651 km apart  shared  1,283 events (65% of union)
+2026-10-29 22:08:42 INFO    Task 4.11 |    500 km  Balabac Strait       / Mindoro Strait          668 km apart  shared      9 events (0% of union)
+2026-10-29 22:08:42 INFO    Decision 15 | tension within 250 km (main filter, weighted by event_count): international and state_actor shares; top location = the place with the most events, its country and share
+2026-10-29 22:08:42 INFO    Decision 15 |   chokepoint              events   intl  state  top location
+2026-10-29 22:08:42 INFO    Decision 15 |   Suez Canal             110,053    32%    32%  ISR 89%
+2026-10-29 22:08:43 INFO    Decision 15 |   Panama Canal               954    21%    45%  PAN 68%
+2026-10-29 22:08:43 INFO    Decision 15 |   Bosporus Strait         10,173    11%    40%  TUR 84%
+2026-10-29 22:08:43 INFO    Decision 15 |   Bab el-Mandeb Strait       245    32%    24%  YEM 42%
+2026-10-29 22:08:43 INFO    Decision 15 |   Malacca Strait           2,279    11%    31%  MYS 53%
+2026-10-29 22:08:43 INFO    Decision 15 |   Strait of Hormuz         2,849    16%    23%  ARE 93%
+2026-10-29 22:08:43 INFO    Decision 15 |   Gibraltar Strait         2,368     9%    35%  ESP 52%
+2026-10-29 22:08:43 INFO    Decision 15 |   Dover Strait            56,932    17%    32%  GBR 45%
+2026-10-29 22:08:43 INFO    Decision 15 |   Oresund Strait           2,748    17%    33%  DNK 77%
+2026-10-29 22:08:43 INFO    Decision 15 |   Taiwan Strait            3,906    33%    35%  TWN 71%
+2026-10-29 22:08:43 INFO    Decision 15 |   Korea Strait               916     8%    42%  KOR 24%
+2026-10-29 22:08:43 INFO    Decision 15 |   Tsugaru Strait              47    23%    21%  JPN 40%
+2026-10-29 22:08:43 INFO    Decision 15 |   Luzon Strait                52    23%    42%  TWN 25%
+2026-10-29 22:08:43 INFO    Decision 15 |   Lombok Strait              188    29%    31%  IDN 50%
+2026-10-29 22:08:43 INFO    Decision 15 |   Ombai Strait                21    33%    29%  IDN 43%
+2026-10-29 22:08:43 INFO    Decision 15 |   Bohai Strait               126    16%    28%  CHN 48%
+2026-10-29 22:08:43 INFO    Decision 15 |   Torres Strait               62    13%    40%  AUS 48%
+2026-10-29 22:08:43 INFO    Decision 15 |   Sunda Strait             6,652     5%    40%  IDN 89%
+2026-10-29 22:08:43 INFO    Decision 15 |   Makassar Strait             10    20%    10%  IDN 40%
+2026-10-29 22:08:43 INFO    Decision 15 |   Magellan Strait             49     2%    45%  ARG 57%
+2026-10-29 22:08:43 INFO    Decision 15 |   Yucatan Channel             48    12%    35%  MEX 35%
+2026-10-29 22:08:43 INFO    Decision 15 |   Windward Passage         1,371    13%    33%  HTI 66%
+2026-10-29 22:08:43 INFO    Decision 15 |   Mona Passage               306    20%    26%  DOM 65%
+2026-10-29 22:08:43 INFO    Decision 15 |   Balabac Strait             116    22%    28%  MYS 34%
+2026-10-29 22:08:43 INFO    Decision 15 |   Bering Strait               17    12%    29%  USA 41%
+2026-10-29 22:08:43 INFO    Decision 15 |   Mindoro Strait           2,354    18%    31%  PHL 94%
+2026-10-29 22:08:43 INFO    Decision 15 |   Kerch Strait             2,528    29%    30%  UKR 70%
+2026-10-29 22:08:43 INFO    Decision 15 | Limitation, reported not corrected: GDELT places many events at a few cities (Gaza for Suez, as GDELT codes Gaza as Israel; London, Istanbul, Taipei, Dubai, Manila elsewhere), so tension near a chokepoint partly measures news about a nearby city or capital.
+2026-10-29 22:08:46 INFO    Task 4.7 | distance matrix: 763,193 events x 27 chokepoints; nearest-chokepoint distance median 284 km, max 5864 km
+2026-10-29 22:08:46 INFO    Task 4.8 | tens_s1 rings 100 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 58,042
+2026-10-29 22:08:46 INFO    Task 4.8 | tens_s1 rings 250 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 711,403
+2026-10-29 22:08:47 INFO    Task 4.8 | tens_s1 rings 500 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 1,383,068
+2026-10-29 22:08:47 INFO    Task 4.7 | distance matrix: 134,040 events x 27 chokepoints; nearest-chokepoint distance median 248 km, max 5863 km
+2026-10-29 22:08:47 INFO    Task 4.8 | tens_s3 rings 100 km: 6 of 27 chokepoints have no events; events counted toward at least one chokepoint: 8,419
+2026-10-29 22:08:47 INFO    Task 4.8 | tens_s3 rings 250 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 121,549
+2026-10-29 22:08:47 INFO    Task 4.8 | tens_s3 rings 500 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 204,870
+2026-10-29 22:08:48 INFO    Task 4.7 | distance matrix: 103,655 events x 27 chokepoints; nearest-chokepoint distance median 249 km, max 5853 km
+2026-10-29 22:08:48 INFO    Task 4.8 | tens_r1317 rings 100 km: 5 of 27 chokepoints have no events; events counted toward at least one chokepoint: 6,448
+2026-10-29 22:08:48 INFO    Task 4.8 | tens_r1317 rings 250 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 82,232
+2026-10-29 22:08:48 INFO    Task 4.8 | tens_r1317 rings 500 km: 0 of 27 chokepoints have no events; events counted toward at least one chokepoint: 146,223
+2026-10-29 22:08:48 INFO    Per-chokepoint summary, ranked by tens_n_250:
+2026-10-29 22:08:48 INFO       1  Suez Canal           tens_n_100=209  tens_n_250=110053  tens_n_500=164654  tens_kde_100=0.261  tens_kde_250=0.256  tens_kde_500=0.0923  tens_s1_n_100=1627  tens_s1_n_250=305370  tens_s1_n_500=513437  tens_s3_n_100=83  tens_s3_n_250=69729  tens_s3_n_500=100138  tens_r1317_n_100=67  tens_r1317_n_250=42343  tens_r1317_n_500=65660
+2026-10-29 22:08:48 INFO       2  Dover Strait         tens_n_100=1020  tens_n_250=56932  tens_n_500=69358  tens_kde_100=0.282  tens_kde_250=0.127  tens_kde_500=0.0426  tens_s1_n_100=6755  tens_s1_n_250=213811  tens_s1_n_500=292700  tens_s3_n_100=518  tens_s3_n_250=31792  tens_s3_n_500=37589  tens_r1317_n_100=472  tens_r1317_n_250=23125  tens_r1317_n_500=28699
+2026-10-29 22:08:48 INFO       3  Bosporus Strait      tens_n_100=9267  tens_n_250=10173  tens_n_500=20945  tens_kde_100=0.147  tens_kde_250=0.0345  tens_kde_500=0.0213  tens_s1_n_100=28353  tens_s1_n_250=32510  tens_s1_n_500=79058  tens_s3_n_100=5496  tens_s3_n_250=5948  tens_s3_n_500=11404  tens_r1317_n_100=4168  tens_r1317_n_250=4562  tens_r1317_n_500=8697
+2026-10-29 22:08:48 INFO       4  Sunda Strait         tens_n_100=265  tens_n_250=6652  tens_n_500=6943  tens_kde_100=0.0509  tens_kde_250=0.0152  tens_kde_500=0.00464  tens_s1_n_100=2196  tens_s1_n_250=30948  tens_s1_n_500=34539  tens_s3_n_100=81  tens_s3_n_250=3019  tens_s3_n_500=3141  tens_r1317_n_100=119  tens_r1317_n_250=2461  tens_r1317_n_500=2611
+2026-10-29 22:08:48 INFO       5  Taiwan Strait        tens_n_100=12  tens_n_250=3906  tens_n_500=5685  tens_kde_100=0.0163  tens_kde_250=0.00899  tens_kde_500=0.00362  tens_s1_n_100=95  tens_s1_n_250=15410  tens_s1_n_500=23399  tens_s3_n_100=3  tens_s3_n_250=1716  tens_s3_n_500=2665  tens_r1317_n_100=8  tens_r1317_n_250=1735  tens_r1317_n_500=2367
+2026-10-29 22:08:48 INFO       6  Strait of Hormuz     tens_n_100=10  tens_n_250=2849  tens_n_500=3563  tens_kde_100=0.00743  tens_kde_250=0.006  tens_kde_500=0.00203  tens_s1_n_100=80  tens_s1_n_250=13719  tens_s1_n_500=18600  tens_s3_n_100=1  tens_s3_n_250=1313  tens_s3_n_500=1702  tens_r1317_n_100=1  tens_r1317_n_250=1470  tens_r1317_n_500=1814
+2026-10-29 22:08:48 INFO       7  Oresund Strait       tens_n_100=2254  tens_n_250=2748  tens_n_500=14976  tens_kde_100=0.0363  tens_kde_250=0.0187  tens_kde_500=0.0152  tens_s1_n_100=8840  tens_s1_n_250=12743  tens_s1_n_500=68177  tens_s3_n_100=1269  tens_s3_n_250=1523  tens_s3_n_500=7994  tens_r1317_n_100=843  tens_r1317_n_250=1041  tens_r1317_n_500=5826
+2026-10-29 22:08:48 INFO       8  Kerch Strait         tens_n_100=140  tens_n_250=2528  tens_n_500=14212  tens_kde_100=0.00826  tens_kde_250=0.015  tens_kde_500=0.0121  tens_s1_n_100=991  tens_s1_n_250=12130  tens_s1_n_500=70404  tens_s3_n_100=55  tens_s3_n_250=1169  tens_s3_n_500=6407  tens_r1317_n_100=67  tens_r1317_n_250=788  tens_r1317_n_500=4498
+2026-10-29 22:08:48 INFO       9  Gibraltar Strait     tens_n_100=158  tens_n_250=2368  tens_n_500=5832  tens_kde_100=0.00589  tens_kde_250=0.00668  tens_kde_500=0.00308  tens_s1_n_100=1705  tens_s1_n_250=14051  tens_s1_n_500=32347  tens_s3_n_100=66  tens_s3_n_250=1138  tens_s3_n_500=2692  tens_r1317_n_100=77  tens_r1317_n_250=806  tens_r1317_n_500=2167
+2026-10-29 22:08:48 INFO      10  Mindoro Strait       tens_n_100=4  tens_n_250=2354  tens_n_500=4844  tens_kde_100=0.00202  tens_kde_250=0.00521  tens_kde_500=0.00254  tens_s1_n_100=33  tens_s1_n_250=17534  tens_s1_n_500=38498  tens_s3_n_100=2  tens_s3_n_250=1093  tens_s3_n_500=2270  tens_r1317_n_100=2  tens_r1317_n_250=848  tens_r1317_n_500=1825
+2026-10-29 22:08:48 INFO      11  Malacca Strait       tens_n_100=36  tens_n_250=2279  tens_n_500=2615  tens_kde_100=0.00805  tens_kde_250=0.00474  tens_kde_500=0.0022  tens_s1_n_100=533  tens_s1_n_250=16311  tens_s1_n_500=22040  tens_s3_n_100=11  tens_s3_n_250=701  tens_s3_n_500=781  tens_r1317_n_100=21  tens_r1317_n_250=968  tens_r1317_n_500=1143
+2026-10-29 22:08:48 INFO      12  Windward Passage     tens_n_100=28  tens_n_250=1371  tens_n_500=1693  tens_kde_100=0.00277  tens_kde_250=0.00279  tens_kde_500=0.00119  tens_s1_n_100=150  tens_s1_n_250=6353  tens_s1_n_500=12153  tens_s3_n_100=14  tens_s3_n_250=779  tens_s3_n_500=903  tens_r1317_n_100=10  tens_r1317_n_250=725  tens_r1317_n_500=860
+2026-10-29 22:08:48 INFO      13  Panama Canal         tens_n_100=889  tens_n_250=954  tens_n_500=1171  tens_kde_100=0.0138  tens_kde_250=0.00252  tens_kde_500=0.000745  tens_s1_n_100=3846  tens_s1_n_250=4428  tens_s1_n_500=7465  tens_s3_n_100=512  tens_s3_n_250=531  tens_s3_n_500=601  tens_r1317_n_100=277  tens_r1317_n_250=300  tens_r1317_n_500=379
+2026-10-29 22:08:48 INFO      14  Korea Strait         tens_n_100=10  tens_n_250=916  tens_n_500=15147  tens_kde_100=0.00457  tens_kde_250=0.011  tens_kde_500=0.00855  tens_s1_n_100=124  tens_s1_n_250=7155  tens_s1_n_500=54913  tens_s3_n_100=5  tens_s3_n_250=420  tens_s3_n_500=8811  tens_r1317_n_100=5  tens_r1317_n_250=401  tens_r1317_n_500=6262
+2026-10-29 22:08:48 INFO      15  Mona Passage         tens_n_100=215  tens_n_250=306  tens_n_500=1566  tens_kde_100=0.00303  tens_kde_250=0.00126  tens_kde_500=0.000782  tens_s1_n_100=585  tens_s1_n_250=1084  tens_s1_n_500=6257  tens_s3_n_100=148  tens_s3_n_250=195  tens_s3_n_500=911  tens_r1317_n_100=147  tens_r1317_n_250=196  tens_r1317_n_500=882
+2026-10-29 22:08:48 INFO      16  Bab el-Mandeb Strait tens_n_100=14  tens_n_250=245  tens_n_500=2191  tens_kde_100=0.000973  tens_kde_250=0.00257  tens_kde_500=0.00114  tens_s1_n_100=167  tens_s1_n_250=1822  tens_s1_n_500=12177  tens_s3_n_100=4  tens_s3_n_250=111  tens_s3_n_500=1028  tens_r1317_n_100=7  tens_r1317_n_250=112  tens_r1317_n_500=1118
+2026-10-29 22:08:48 INFO      17  Lombok Strait        tens_n_100=156  tens_n_250=188  tens_n_500=1009  tens_kde_100=0.00199  tens_kde_250=0.00108  tens_kde_500=0.00111  tens_s1_n_100=1164  tens_s1_n_250=1544  tens_s1_n_500=8410  tens_s3_n_100=92  tens_s3_n_250=103  tens_s3_n_500=469  tens_r1317_n_100=115  tens_r1317_n_250=129  tens_r1317_n_500=591
+2026-10-29 22:08:48 INFO      18  Bohai Strait         tens_n_100=11  tens_n_250=126  tens_n_500=25167  tens_kde_100=0.000574  tens_kde_250=0.0187  tens_kde_500=0.0163  tens_s1_n_100=178  tens_s1_n_250=674  tens_s1_n_500=76760  tens_s3_n_100=2  tens_s3_n_250=77  tens_s3_n_500=15101  tens_r1317_n_100=5  tens_r1317_n_250=40  tens_r1317_n_500=10764
+2026-10-29 22:08:48 INFO      19  Balabac Strait       tens_n_100=35  tens_n_250=116  tens_n_500=198  tens_kde_100=0.000592  tens_kde_250=0.00033  tens_kde_500=0.000621  tens_s1_n_100=134  tens_s1_n_250=1550  tens_s1_n_500=2912  tens_s3_n_100=17  tens_s3_n_250=42  tens_s3_n_500=65  tens_r1317_n_100=9  tens_r1317_n_250=47  tens_r1317_n_500=88
+2026-10-29 22:08:48 INFO      20  Torres Strait        tens_n_100=57  tens_n_250=62  tens_n_500=98  tens_kde_100=0.000739  tens_kde_250=0.000183  tens_kde_500=5.62e-05  tens_s1_n_100=243  tens_s1_n_250=276  tens_s1_n_500=617  tens_s3_n_100=32  tens_s3_n_250=37  tens_s3_n_500=55  tens_r1317_n_100=14  tens_r1317_n_250=15  tens_r1317_n_500=31
+2026-10-29 22:08:48 INFO      21  Luzon Strait         tens_n_100=1  tens_n_250=52  tens_n_500=2850  tens_kde_100=0.000251  tens_kde_250=0.00282  tens_kde_500=0.0034  tens_s1_n_100=21  tens_s1_n_250=240  tens_s1_n_500=17158  tens_s3_n_100=0  tens_s3_n_250=25  tens_s3_n_500=1303  tens_r1317_n_100=0  tens_r1317_n_250=29  tens_r1317_n_500=1194
+2026-10-29 22:08:48 INFO      22  Magellan Strait      tens_n_100=0  tens_n_250=49  tens_n_500=114  tens_kde_100=0.000317  tens_kde_250=0.000196  tens_kde_500=6.54e-05  tens_s1_n_100=8  tens_s1_n_250=296  tens_s1_n_500=793  tens_s3_n_100=0  tens_s3_n_250=29  tens_s3_n_500=59  tens_r1317_n_100=0  tens_r1317_n_250=16  tens_r1317_n_500=29
+2026-10-29 22:08:48 INFO      23  Yucatan Channel      tens_n_100=0  tens_n_250=48  tens_n_500=1499  tens_kde_100=0.000222  tens_kde_250=0.00131  tens_kde_500=0.000773  tens_s1_n_100=6  tens_s1_n_250=517  tens_s1_n_500=10710  tens_s3_n_100=0  tens_s3_n_250=26  tens_s3_n_500=782  tens_r1317_n_100=0  tens_r1317_n_250=25  tens_r1317_n_500=555
+2026-10-29 22:08:48 INFO      24  Tsugaru Strait       tens_n_100=0  tens_n_250=47  tens_n_500=318  tens_kde_100=0.000144  tens_kde_250=0.00032  tens_kde_500=0.000756  tens_s1_n_100=46  tens_s1_n_250=432  tens_s1_n_500=2300  tens_s3_n_100=0  tens_s3_n_250=19  tens_s3_n_500=152  tens_r1317_n_100=0  tens_r1317_n_250=21  tens_r1317_n_500=141
+2026-10-29 22:08:48 INFO      25  Ombai Strait         tens_n_100=16  tens_n_250=21  tens_n_500=69  tens_kde_100=0.000219  tens_kde_250=9.98e-05  tens_kde_500=9.37e-05  tens_s1_n_100=118  tens_s1_n_250=200  tens_s1_n_500=571  tens_s3_n_100=8  tens_s3_n_250=9  tens_s3_n_500=38  tens_r1317_n_100=10  tens_r1317_n_250=14  tens_r1317_n_500=43
+2026-10-29 22:08:48 INFO      26  Bering Strait        tens_n_100=0  tens_n_250=17  tens_n_500=38  tens_kde_100=7.02e-05  tens_kde_250=4.96e-05  tens_kde_500=1.99e-05  tens_s1_n_100=6  tens_s1_n_250=103  tens_s1_n_500=229  tens_s3_n_100=0  tens_s3_n_250=7  tens_s3_n_500=10  tens_r1317_n_100=0  tens_r1317_n_250=9  tens_r1317_n_500=13
+2026-10-29 22:08:48 INFO      27  Makassar Strait      tens_n_100=4  tens_n_250=10  tens_n_500=157  tens_kde_100=6.48e-05  tens_kde_250=0.000118  tens_kde_500=0.000225  tens_s1_n_100=38  tens_s1_n_250=209  tens_s1_n_500=1528  tens_s3_n_100=0  tens_s3_n_250=2  tens_s3_n_500=63  tens_r1317_n_100=4  tens_r1317_n_250=7  tens_r1317_n_500=79
+2026-10-29 22:08:48 INFO    Tension-violence rank agreement: Spearman rho (viol_n_250, tens_n_250) = 0.563, p = 0.0023, n = 27
+2026-10-29 22:08:48 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\conflict_methods.csv (6 rows)
+2026-10-29 22:08:48 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\ring_overlap.csv (20 rows)
+2026-10-29 22:08:48 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\conflict_exposure.csv (27 rows)
+2026-10-29 22:08:48 INFO    chokepoint_scores exists (27 rows); replacing 10 S07 columns, keeping 39 others: ['trade_value_base', 'trade_wt_base', 'trade_nflows_base', 'trade_value_redsea', 'trade_wt_redsea', 'trade_nflows_redsea', 'trade_rank_base', 'redund_edges_removed', 'redund_nflows_affected', 'redund_value_affected', 'redund_nflows_rerouted', 'redund_nflows_noroute', 'redund_value_noroute', 'redund_nflows_portzone', 'redund_value_portzone', 'redund_median_pct', 'redund_penalty_routed_pct', 'redund_noalt_pct', 'redund_penalty_pct', 'impact_nflows_costed', 'impact_value_costed', 'impact_nflows_nocost', 'impact_value_nocost', 'impact_days', 'impact_days_median', 'impact_days_max', 'impact_days_low', 'impact_days_high', 'impact_toll_change', 'impact_voyage_cost', 'impact_voyage_cost_median', 'impact_voyage_cost_low', 'impact_voyage_cost_high', 'impact_holding_cost', 'impact_holding_cost_low', 'impact_holding_cost_high', 'impact_nflows_canal_added', 'impact_nflows_canal_skipped', 'quad_trade_conflict']
+2026-10-29 22:08:48 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 22:08:48 INFO    Run of s07_conflict_exposure finished

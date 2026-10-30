@@ -1,9 +1,9 @@
-2026-10-29 18:31:17 INFO    Run of run_all started 2026-10-29T18:31:17
-2026-10-29 18:31:17 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-29 18:31:17 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-29 18:31:17 INFO    Requested: check_db_all
-2026-10-29 18:31:17 INFO    Will run, in order: check_db_all
-2026-10-29 18:31:17 INFO    ---- check_db.py --stage all started
-2026-10-29 18:31:31 INFO    ---- check_db.py --stage all finished OK in 13.9 s
-2026-10-29 18:31:31 INFO    Summary | passed: check_db.py --stage all
-2026-10-29 18:31:31 INFO    Summary | all 1 script(s) finished OK
+2026-10-29 22:09:56 INFO    Run of run_all started 2026-10-29T22:09:56
+2026-10-29 22:09:56 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-29 22:09:56 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-29 22:09:56 INFO    Requested: s11
+2026-10-29 22:09:56 INFO    Will run, in order: s11
+2026-10-29 22:09:56 INFO    ---- s11_figures.py started
+2026-10-29 22:11:03 INFO    ---- s11_figures.py finished OK in 67.6 s
+2026-10-29 22:11:03 INFO    Summary | passed: s11_figures.py
+2026-10-29 22:11:03 INFO    Summary | all 1 script(s) finished OK

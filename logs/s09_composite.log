@@ -1,45 +1,45 @@
-2026-10-29 18:29:56 INFO    Run of s09_composite started 2026-10-29T18:29:56
-2026-10-29 18:29:56 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-29 18:29:56 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-29 18:29:57 INFO    Task 5.1 | chokepoint_scores read: 27 chokepoints, 51 columns
-2026-10-29 18:29:57 INFO    Task 5.1 | main         trade_value_base vs viol_n_250: rho = 0.090, p = 0.655, n = 27 (zero trade 1, zero conflict 8)
-2026-10-29 18:29:57 INFO    Task 5.1 | redsea_trade trade_value_redsea vs viol_n_250: rho = -0.170, p = 0.398, n = 27 (zero trade 3, zero conflict 8)
-2026-10-29 18:29:57 INFO    Task 5.1 | ring_100     trade_value_base vs viol_n_100: rho = -0.123, p = 0.540, n = 27 (zero trade 1, zero conflict 12)
-2026-10-29 18:29:57 INFO    Task 5.1 | ring_500     trade_value_base vs viol_n_500: rho = 0.101, p = 0.616, n = 27 (zero trade 1, zero conflict 3)
-2026-10-29 18:29:57 INFO    Task 5.1 | ties: 1 of 27 chokepoints have zero trade (trade_value_base) and 8 have zero violent events (viol_n_250). Ties share an average rank, which weakens a rank correlation on this few points; scipy's p-value is the t-approximation.
-2026-10-29 18:29:57 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\correlation.csv (4 rows)
-2026-10-29 18:29:57 INFO    Task 6.5 | trade_value_base median = 6.27885e+07; above (high) 13, at or below (low) 14, exactly at the median 1
-2026-10-29 18:29:57 INFO    Task 6.5 | viol_n_250 median = 4; above (high) 13, at or below (low) 14, exactly at the median 2
-2026-10-29 18:29:57 INFO    Quadrant high_trade_high_violence (6):
-2026-10-29 18:29:57 INFO        Malacca Strait       trade_value_base = 664,685,268  viol_n_250 = 30
-2026-10-29 18:29:57 INFO        Panama Canal         trade_value_base = 211,052,713  viol_n_250 = 6
-2026-10-29 18:29:57 INFO        Bab el-Mandeb Strait trade_value_base = 209,108,977  viol_n_250 = 2,090
-2026-10-29 18:29:57 INFO        Suez Canal           trade_value_base = 209,055,619  viol_n_250 = 9,531
-2026-10-29 18:29:57 INFO        Yucatan Channel      trade_value_base = 124,757,223  viol_n_250 = 51
-2026-10-29 18:29:57 INFO        Dover Strait         trade_value_base = 122,554,584  viol_n_250 = 7
-2026-10-29 18:29:57 INFO    Quadrant high_trade_low_violence (7):
-2026-10-29 18:29:57 INFO        Taiwan Strait        trade_value_base = 817,704,288  viol_n_250 = 4
-2026-10-29 18:29:57 INFO        Korea Strait         trade_value_base = 357,486,589  viol_n_250 = 0
-2026-10-29 18:29:57 INFO        Gibraltar Strait     trade_value_base = 213,807,691  viol_n_250 = 1
-2026-10-29 18:29:57 INFO        Bohai Strait         trade_value_base = 210,720,848  viol_n_250 = 3
-2026-10-29 18:29:57 INFO        Tsugaru Strait       trade_value_base = 145,190,467  viol_n_250 = 0
-2026-10-29 18:29:57 INFO        Luzon Strait         trade_value_base = 78,772,432  viol_n_250 = 0
-2026-10-29 18:29:57 INFO        Lombok Strait        trade_value_base = 73,123,122  viol_n_250 = 1
-2026-10-29 18:29:57 INFO    Quadrant low_trade_high_violence (7):
-2026-10-29 18:29:57 INFO        Windward Passage     trade_value_base = 62,788,462  viol_n_250 = 1,805
-2026-10-29 18:29:57 INFO        Mona Passage         trade_value_base = 22,312,602  viol_n_250 = 219
-2026-10-29 18:29:57 INFO        Sunda Strait         trade_value_base = 6,512,398  viol_n_250 = 7
-2026-10-29 18:29:57 INFO        Strait of Hormuz     trade_value_base = 5,410,148  viol_n_250 = 9
-2026-10-29 18:29:57 INFO        Bosporus Strait      trade_value_base = 2,830,285  viol_n_250 = 8
-2026-10-29 18:29:57 INFO        Mindoro Strait       trade_value_base = 263,314  viol_n_250 = 58
-2026-10-29 18:29:57 INFO        Kerch Strait         trade_value_base = 255  viol_n_250 = 567
-2026-10-29 18:29:57 INFO    Quadrant low_trade_low_violence (7):
-2026-10-29 18:29:57 INFO        Oresund Strait       trade_value_base = 52,350,892  viol_n_250 = 3
-2026-10-29 18:29:57 INFO        Torres Strait        trade_value_base = 27,247,145  viol_n_250 = 0
-2026-10-29 18:29:57 INFO        Balabac Strait       trade_value_base = 2,980,351  viol_n_250 = 0
-2026-10-29 18:29:57 INFO        Makassar Strait      trade_value_base = 212,843  viol_n_250 = 0
-2026-10-29 18:29:57 INFO        Magellan Strait      trade_value_base = 49,007  viol_n_250 = 0
-2026-10-29 18:29:57 INFO        Ombai Strait         trade_value_base = 33,848  viol_n_250 = 4
-2026-10-29 18:29:57 INFO        Bering Strait        trade_value_base = 0  viol_n_250 = 0
-2026-10-29 18:29:57 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-10-29 18:29:57 INFO    Run of s09_composite finished
+2026-10-29 22:09:51 INFO    Run of s09_composite started 2026-10-29T22:09:51
+2026-10-29 22:09:51 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-29 22:09:51 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-29 22:09:52 INFO    Task 5.1 | chokepoint_scores read: 27 chokepoints, 67 columns
+2026-10-29 22:09:52 INFO    Task 5.1 | main         trade_value_base vs viol_n_250: rho = 0.090, p = 0.655, n = 27 (zero trade 1, zero conflict 8)
+2026-10-29 22:09:52 INFO    Task 5.1 | redsea_trade trade_value_redsea vs viol_n_250: rho = -0.170, p = 0.398, n = 27 (zero trade 3, zero conflict 8)
+2026-10-29 22:09:52 INFO    Task 5.1 | ring_100     trade_value_base vs viol_n_100: rho = -0.123, p = 0.540, n = 27 (zero trade 1, zero conflict 12)
+2026-10-29 22:09:52 INFO    Task 5.1 | ring_500     trade_value_base vs viol_n_500: rho = 0.101, p = 0.616, n = 27 (zero trade 1, zero conflict 3)
+2026-10-29 22:09:52 INFO    Task 5.1 | ties: 1 of 27 chokepoints have zero trade (trade_value_base) and 8 have zero violent events (viol_n_250). Ties share an average rank, which weakens a rank correlation on this few points; scipy's p-value is the t-approximation.
+2026-10-29 22:09:52 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\tables\correlation.csv (4 rows)
+2026-10-29 22:09:52 INFO    Task 6.5 | trade_value_base median = 6.27885e+07; above (high) 13, at or below (low) 14, exactly at the median 1
+2026-10-29 22:09:52 INFO    Task 6.5 | viol_n_250 median = 4; above (high) 13, at or below (low) 14, exactly at the median 2
+2026-10-29 22:09:52 INFO    Quadrant high_trade_high_violence (6):
+2026-10-29 22:09:52 INFO        Malacca Strait       trade_value_base = 664,685,268  viol_n_250 = 30
+2026-10-29 22:09:52 INFO        Panama Canal         trade_value_base = 211,052,713  viol_n_250 = 6
+2026-10-29 22:09:52 INFO        Bab el-Mandeb Strait trade_value_base = 209,108,977  viol_n_250 = 2,090
+2026-10-29 22:09:52 INFO        Suez Canal           trade_value_base = 209,055,619  viol_n_250 = 9,531
+2026-10-29 22:09:52 INFO        Yucatan Channel      trade_value_base = 124,757,223  viol_n_250 = 51
+2026-10-29 22:09:52 INFO        Dover Strait         trade_value_base = 122,554,584  viol_n_250 = 7
+2026-10-29 22:09:52 INFO    Quadrant high_trade_low_violence (7):
+2026-10-29 22:09:52 INFO        Taiwan Strait        trade_value_base = 817,704,288  viol_n_250 = 4
+2026-10-29 22:09:52 INFO        Korea Strait         trade_value_base = 357,486,589  viol_n_250 = 0
+2026-10-29 22:09:52 INFO        Gibraltar Strait     trade_value_base = 213,807,691  viol_n_250 = 1
+2026-10-29 22:09:52 INFO        Bohai Strait         trade_value_base = 210,720,848  viol_n_250 = 3
+2026-10-29 22:09:52 INFO        Tsugaru Strait       trade_value_base = 145,190,467  viol_n_250 = 0
+2026-10-29 22:09:52 INFO        Luzon Strait         trade_value_base = 78,772,432  viol_n_250 = 0
+2026-10-29 22:09:52 INFO        Lombok Strait        trade_value_base = 73,123,122  viol_n_250 = 1
+2026-10-29 22:09:52 INFO    Quadrant low_trade_high_violence (7):
+2026-10-29 22:09:52 INFO        Windward Passage     trade_value_base = 62,788,462  viol_n_250 = 1,805
+2026-10-29 22:09:52 INFO        Mona Passage         trade_value_base = 22,312,602  viol_n_250 = 219
+2026-10-29 22:09:52 INFO        Sunda Strait         trade_value_base = 6,512,398  viol_n_250 = 7
+2026-10-29 22:09:52 INFO        Strait of Hormuz     trade_value_base = 5,410,148  viol_n_250 = 9
+2026-10-29 22:09:52 INFO        Bosporus Strait      trade_value_base = 2,830,285  viol_n_250 = 8
+2026-10-29 22:09:52 INFO        Mindoro Strait       trade_value_base = 263,314  viol_n_250 = 58
+2026-10-29 22:09:52 INFO        Kerch Strait         trade_value_base = 255  viol_n_250 = 567
+2026-10-29 22:09:52 INFO    Quadrant low_trade_low_violence (7):
+2026-10-29 22:09:52 INFO        Oresund Strait       trade_value_base = 52,350,892  viol_n_250 = 3
+2026-10-29 22:09:52 INFO        Torres Strait        trade_value_base = 27,247,145  viol_n_250 = 0
+2026-10-29 22:09:52 INFO        Balabac Strait       trade_value_base = 2,980,351  viol_n_250 = 0
+2026-10-29 22:09:52 INFO        Makassar Strait      trade_value_base = 212,843  viol_n_250 = 0
+2026-10-29 22:09:52 INFO        Magellan Strait      trade_value_base = 49,007  viol_n_250 = 0
+2026-10-29 22:09:52 INFO        Ombai Strait         trade_value_base = 33,848  viol_n_250 = 4
+2026-10-29 22:09:52 INFO        Bering Strait        trade_value_base = 0  viol_n_250 = 0
+2026-10-29 22:09:52 INFO    Wrote layer 'chokepoint_scores' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-10-29 22:09:52 INFO    Run of s09_composite finished
