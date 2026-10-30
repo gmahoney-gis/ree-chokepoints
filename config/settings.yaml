@@ -33,7 +33,11 @@ paths:
     acled: data/raw/ACLED/acled_output/raw          # one CSV per chokepoint, 2024-10-01 to 2025-09-30
     asam: "data/raw/ASAM/ASAM_shp/Asam_data_download/All ASAM Events.shp"   # export ends 2024-06-25; superseded by Decision 9: no records in event window
     imo_gisis: data/raw/GISIS/ListOfIncidents.xls   # Decision 9 in CLAUDE.md: replaces ASAM; 2024-10-02 to 2025-09-30, 200 incidents
-    gdelt: data/raw/GDELT                           # one parquet per day, 2025-05-01 to 2025-05-11 only
+    gdelt: data/raw/GDELT                           # 11-day parquet sample, 2025-05-01 to 2025-05-11; superseded by the BigQuery files below, not read
+    # GDELT BigQuery pull, 28 Oct 2026 (Decision 15; queries in scripts/sql/, job IDs in MANIFEST.csv)
+    gdelt_points: data/raw/GDELT/BIGQUERY/gdelt_tension_points_20241001_20250930.csv          # Query A (tasks 2.16, 2.18)
+    gdelt_country: data/raw/GDELT/BIGQUERY/gdelt_country_month_20241001_20250930.csv          # Query B (task 2.17)
+    gdelt_filter_counts: data/raw/GDELT/BIGQUERY/gdelt_filter_counts_20241001_20250930.csv    # Query C (filter counts for the log)
     natural_earth_countries: data/raw/NATURAL_EARTH/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp
     natural_earth_land: TODO
 
@@ -163,7 +167,7 @@ events:
   # another window later only means changing these two dates.
   window_start: "2024-10-01"
   window_end: "2025-09-30"
-  sources: [acled, imo_gisis]        # IMO GISIS replaces ASAM (Decision 9); add gdelt later (tasks 2.16-2.17)
+  sources: [acled, imo_gisis, gdelt] # IMO GISIS replaces ASAM (Decision 9); GDELT from BigQuery (Decision 15)
   prefilter_radius_km: 500           # keep only events within this distance of any candidate chokepoint
   acled:
     event_types:
@@ -204,11 +208,51 @@ events:
       IMO-20250918-1: {crew_harm: true, reason: "attempted attack"}
       IMO-20250502-1: {crew_harm: false, reason: "injury not caused by perpetrators"}
       IMO-20250530-3: {crew_harm: false, reason: "unconfirmed"}
+  # GDELT tension events (Decision 15). The filters, duplicate merging and outlet counts run in
+  # BigQuery (scripts/sql/); S05 re-checks the window, root codes, location types and distance.
+  # The .sql comments name the older keys cameo_root_codes and min_sources_main, now main_filter.
   gdelt:
-    cameo_root_codes: [10, 11, 12, 13, 14, 15, 16, 17]   # conflict short of physical violence
-    keep_location_types: [3, 4]      # city-level (US city, world city); country/state centroids removed
-    min_sources_main: 2              # stored as a field so S07 can vary the threshold
-    dedupe_on: [date, event_root_code, actor1, actor2, location]
+    main_filter:
+      root_codes: [10, 11, 12, 13, 14, 15, 16, 17]   # conflict short of physical violence; S10 alternative: sensitivity.alternatives.gdelt_root_codes
+      source_field: gdelt_sources    # distinct news outlets (main); numsources_bucket and numsources_sum_bucket are stored for comparison
+      min_sources: 2                 # S07 applies it (Decision 5); conflict.gdelt_min_sources_tested and
+                                     # sensitivity.alternatives.gdelt_min_sources vary it
+    keep_location_types: [3, 4]      # city-level (3 US city, 4 world city); country/state centroids removed
+    dedupe_on: [date, event_root_code, actor1, actor2, location]   # SQLDATE, EventRootCode, Actor1Code, Actor2Code, ActionGeo_FeatureID; the report with the most sources is kept
+    # Applied in the SQL; recorded here so the settings describe the run (S05 cannot re-check them).
+    mention_window_days: 30          # outlets counted from mentions within 30 days of each report's DATEADDED
+    state_actor_types: [GOV, MIL, COP, SPY]   # state_actor = either actor typed as one of these
+    expected_rows: {points: 770231, country: 102788, filter_counts: 6}   # BigQuery job rows (bigquery_jobs.txt); S05 stops on a mismatch
+    # CAMEO root code -> event_type label in the events layer
+    root_labels:
+      10: "10 Demand"
+      11: "11 Disapprove"
+      12: "12 Reject"
+      13: "13 Threaten"
+      14: "14 Protest"
+      15: "15 Exhibit force posture"
+      16: "16 Reduce relations"
+      17: "17 Coerce"
+    # GDELT location codes are FIPS 10-4. S05 converts them with Natural Earth FIPS_10 -> ISO_A3_EH;
+    # these codes are missing or different there. Codes with no ISO-3 (left empty, logged):
+    # KV Kosovo, PG Spratly Is., PF Paracel Is., OS/OC oceans, NT (two countries in Natural Earth).
+    fips_iso3_fixes:
+      IS: ISR      # Israel (FIPS_10 -99 in Natural Earth)
+      WE: PSE      # West Bank
+      GZ: PSE      # Gaza Strip
+      "NO": NOR    # Norway (FIPS_10 -99); quoted: YAML reads a bare NO as false
+      RB: SRB      # Serbia (Natural Earth has the old code RI)
+      OD: SSD      # South Sudan
+      MF: MYT      # Mayotte
+      MB: MTQ      # Martinique
+      GP: GLP      # Guadeloupe
+      RE: REU      # Reunion
+      FG: GUF      # French Guiana
+      SV: SJM      # Svalbard
+      JN: SJM      # Jan Mayen
+      KT: CXR      # Christmas Island
+      TL: TKL      # Tokelau
+    fips_no_iso3: [KV, PG, PF, OS, OC, NT]
 
 # ---------------------------------------------------------------------
 # Step 3: trade exposure (S06)
@@ -264,7 +308,7 @@ conflict:
   density_main_km: 250
   method_main: rings                 # alternative: density
   event_weighting_main: count        # alternative: fatalities_plus_one
-  gdelt_min_sources_tested: [1, 2, 3]
+  gdelt_min_sources_tested: [1, 2, 3]   # thresholds on events.gdelt.main_filter.source_field (main: min_sources)
 
 # ---------------------------------------------------------------------
 # Step 5: route redundancy (S08)
@@ -403,7 +447,8 @@ sensitivity:
     conflict_mix:
       - {violence: 1.0, tension: 0.0}      # violence only (no GDELT)
       - {violence: 0.75, tension: 0.25}
-    gdelt_min_sources: [1, 3]
+    gdelt_min_sources: [1, 3]        # on events.gdelt.main_filter.source_field (distinct outlets)
+    gdelt_root_codes: [[13, 15, 16, 17]]   # Decision 15: threats, force posture, reduced relations, coercion only
     event_weighting: [fatalities_plus_one]
     imo_count_rule: [all]            # Decision 9: count every IMO GISIS incident, not only crew_harm
     port_assignment: [nearest_gateway]
@@ -452,7 +497,6 @@ check_db:
   # Layers not built yet. A missing layer listed here is a WARN (expected gap) with its
   # reason; any other missing layer is a FAIL. Remove an entry once its script writes it.
   expected_missing_layers:
-    gdelt_country_context: "waits for GDELT (tasks 2.16-2.17)"
     web_chokepoints: "written by S11 (task 6.9)"
     web_routes: "written by S11 (task 6.9)"
   # chokepoint_scores columns (besides chokepoint_id and name) must start with one of

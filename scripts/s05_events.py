@@ -26,9 +26,21 @@ G5. Keep incidents within the prefilter radius (as step 4).
 G6. An incident within 50 km and 1 day of a kept ACLED event is the same event: the
     ACLED record is kept and flagged imo_match, and the incident is removed.
 
-Only the sources listed in events.sources are processed; GDELT (tasks 2.16-2.17) is
-added later. The log holds counts only, never individual event or incident rows, and
-no ship name, IMO number or narrative text is stored.
+GDELT steps (tasks 2.16-2.18, Decision 15). The filters, duplicate merging and outlet
+counts ran in BigQuery (scripts/sql/); S05 reads the results and checks them:
+
+T1. Read Query A (tension points) with fixed types and an exact column check.
+T2. Re-check the window, root codes and location types; stop on any error.
+T3. Re-check the prefilter distance (as step 4; nothing should be removed).
+T4. Log the Query C filter counts (reports kept and removed by each filter).
+T5. Convert FIPS country codes to ISO-3 (Natural Earth FIPS_10 plus the fixes in settings).
+T6. Log the source-count checks and the rows per chokepoint within the main ring.
+T7. Build the GDELT rows of the events layer: one row per Query A row, which holds
+    event_count merged events at one place, day, root code, flags and source buckets.
+T8. Write Query B as the gdelt_country_context table (task 2.17; context only).
+
+Only the sources listed in events.sources are processed. The log holds counts only, never
+individual event or incident rows, and no ship name, IMO number or narrative text is stored.
 """
 
 import re
@@ -72,11 +84,42 @@ GISIS_EVENT_TYPE = "Piracy and armed robbery"
 # Degrees and decimal minutes, for example "1° 04.73' N".
 DEGREES_MINUTES = re.compile(r"^\s*(\d+)\s*°\s*(\d+(?:\.\d+)?)\s*'\s*([NSEW])\s*$")
 
-# imo_match: ACLED events also reported to IMO (null for GISIS rows).
-# crew_harm: GISIS incidents where crew were threatened, injured or held (null for ACLED rows).
+# GDELT BigQuery exports (checked against the raw files): exact columns and their types.
+# The flags are written as TRUE/FALSE and are read as text, then converted.
+GDELT_POINT_COLUMNS = {
+    "lat": "float64", "lon": "float64", "feature_id": "string", "country_fips": "string",
+    "location_type": "int64", "event_date": "string", "root_code": "int64",
+    "international": "string", "state_actor": "string", "outlet_bucket": "int64",
+    "numsources_bucket": "int64", "numsources_sum_bucket": "int64", "event_count": "int64",
+    "total_outlets": "int64", "total_numsources": "int64",
+}
+GDELT_COUNTRY_COLUMNS = {
+    "country_fips": "string", "root_code": "int64", "month": "int64", "outlet_bucket": "int64",
+    "numsources_bucket": "int64", "numsources_sum_bucket": "int64", "event_count": "int64",
+    "total_outlets": "int64", "total_numsources": "int64",
+}
+GDELT_FILTER_COLUMNS = {
+    "location_type": "int64", "rows_in_window": "int64", "rows_root_10_17": "int64",
+    "rows_root_10_17_within_500km": "int64",
+}
+GDELT_FLAGS = {"TRUE": True, "FALSE": False}
+BUCKET_FIELDS = ["outlet_bucket", "numsources_bucket", "numsources_sum_bucket"]
+# Query A's grouping key: sorting on it gives the event IDs a fixed order.
+GDELT_SORT = ["event_date", "root_code", "country_fips", "feature_id", "latitude", "longitude",
+              "international", "state_actor"] + BUCKET_FIELDS
+
+# imo_match: ACLED events also reported to IMO (null for other rows).
+# crew_harm: GISIS incidents where crew were threatened, injured or held (null for other rows).
+# event_count: events a row stands for (1 for ACLED and GISIS; GDELT rows merge several).
+# gdelt_sources: distinct news outlets, bucket 0/1/2/3 (3 = 3 or more); the main source count.
+# numsources_bucket, numsources_sum_bucket: GDELT's NumSources (largest, and summed over
+# merged reports), same buckets, kept for comparison. international, state_actor: GDELT flags.
+GDELT_FIELDS = ["gdelt_sources", "numsources_bucket", "numsources_sum_bucket",
+                "international", "state_actor"]
 OUTPUT_FIELDS = ["event_id", "source", "category", "event_type", "sub_event_type",
                  "event_date", "fatalities", "geo_precision", "country_iso3",
-                 "imo_match", "crew_harm"]
+                 "imo_match", "crew_harm", "event_count"] + GDELT_FIELDS
+NO_GDELT_FIELDS = dict.fromkeys(GDELT_FIELDS, pd.NA)
 
 
 # ---------------------------------------------------------------------
@@ -236,7 +279,8 @@ def add_iso3(events, settings, log):
 
 def build_layer(events, settings):
     """Build the events layer with the fixed output fields and point geometry."""
-    events = events.assign(source="ACLED", category="violence", imo_match=False, crew_harm=pd.NA)
+    events = events.assign(source="ACLED", category="violence", imo_match=False, crew_harm=pd.NA,
+                           event_count=1, **NO_GDELT_FIELDS)
     events["event_date"] = events["event_date"].dt.date
     events["fatalities"] = events["fatalities"].astype("int32")
     events["geo_precision"] = events["geo_precision"].astype("int32")
@@ -422,7 +466,8 @@ def build_gisis_layer(incidents, settings):
     """Build the GISIS part of the events layer with the same fields as ACLED."""
     incidents = incidents.assign(source="IMO GISIS", category="violence",
                                  event_type=GISIS_EVENT_TYPE, sub_event_type=incidents["area"],
-                                 fatalities=0, geo_precision=1, country_iso3=pd.NA, imo_match=pd.NA)
+                                 fatalities=0, geo_precision=1, country_iso3=pd.NA, imo_match=pd.NA,
+                                 event_count=1, **NO_GDELT_FIELDS)
     incidents["event_date"] = incidents["event_date"].dt.date
     incidents["fatalities"] = incidents["fatalities"].astype("int32")
     incidents["geo_precision"] = incidents["geo_precision"].astype("int32")
@@ -448,6 +493,253 @@ def process_imo_gisis(settings, log, acled):
     return build_gisis_layer(incidents, settings), acled
 
 
+# ---------------------------------------------------------------------
+# GDELT tension events (tasks 2.16-2.18, Decision 15)
+# ---------------------------------------------------------------------
+
+def read_gdelt_csv(settings, key, columns, log, nrows=None):
+    """Read one GDELT BigQuery export with fixed types; stop unless the columns match exactly.
+
+    nrows reads only the first rows (for a sample test); the row-count check is then skipped.
+    """
+    path = common.get_path(settings, f"raw_files.{key}")
+    header = list(pd.read_csv(path, nrows=0).columns)
+    if header != list(columns):
+        raise ValueError(f"{path.name}: columns {header} differ from the expected {list(columns)}")
+    table = pd.read_csv(path, dtype=columns, keep_default_na=False, na_values=[""], nrows=nrows)
+    expected = settings["events"]["gdelt"]["expected_rows"][key.removeprefix("gdelt_")]
+    if nrows is None and len(table) != expected:
+        raise ValueError(f"{path.name}: {len(table):,} rows, but the BigQuery job returned {expected:,}")
+    blank = table.isna().any(axis=1)
+    if blank.any():
+        raise ValueError(f"{path.name}: {int(blank.sum())} rows with an empty cell")
+    log.info("Task 2.16 | read %s: %s rows (%s)%s", path.name, f"{len(table):,}",
+             f"expected {expected:,}" if nrows is None else f"sample of the first {nrows:,}",
+             "" if nrows is not None else ", matches the BigQuery job")
+    return table
+
+
+def check_gdelt_rule(table, ok, task, check, log):
+    """Stop with an error if any row breaks a rule; otherwise log that every row passed."""
+    bad = int((~ok).sum())
+    if bad:
+        raise ValueError(f"{task} | {check}: {bad:,} rows break the rule")
+    common.log_filter(log, f"{task} | re-check {check}", len(table), 0, "none (every row passes)")
+
+
+def check_gdelt_points(points, settings, log):
+    """Step T2: every row inside the window, a main root code, a city location, valid buckets."""
+    cfg = settings["events"]["gdelt"]
+    for flag in ["international", "state_actor"]:
+        if not points[flag].isin(list(GDELT_FLAGS)).all():
+            raise ValueError(f"GDELT {flag} holds values other than TRUE/FALSE")
+        points[flag] = points[flag].map(GDELT_FLAGS).astype(bool)
+    points["event_date"] = pd.to_datetime(points["event_date"], format="%Y%m%d")
+    start = pd.Timestamp(settings["events"]["window_start"])
+    end = pd.Timestamp(settings["events"]["window_end"])
+    log.info("Task 2.16 | event dates in data: %s to %s", points["event_date"].min().date(),
+             points["event_date"].max().date())
+    check_gdelt_rule(points, points["event_date"].between(start, end), "Task 2.16",
+                     f"event window {start.date()} to {end.date()}", log)
+    roots = cfg["main_filter"]["root_codes"]
+    check_gdelt_rule(points, points["root_code"].isin(roots), "Task 2.16", f"root codes {roots}", log)
+    types = cfg["keep_location_types"]
+    check_gdelt_rule(points, points["location_type"].isin(types), "Task 2.16",
+                     f"location types {types}", log)
+    ok = (points["outlet_bucket"].between(0, 3) & points["numsources_bucket"].between(1, 3)
+          & points["numsources_sum_bucket"].between(1, 3) & (points["event_count"] >= 1))
+    check_gdelt_rule(points, ok, "Task 2.16", "source buckets (outlets 0-3, NumSources 1-3) and "
+                     "event_count >= 1", log)
+    return points.rename(columns={"lat": "latitude", "lon": "longitude"})
+
+
+def log_gdelt_filter_counts(counts, points, settings, log):
+    """Step T4: the reports each BigQuery filter kept and removed (Query C), then the merge."""
+    types = settings["events"]["gdelt"]["keep_location_types"]
+    roots = settings["events"]["gdelt"]["main_filter"]["root_codes"]
+    radius = settings["events"]["prefilter_radius_km"]
+    city = counts["location_type"].isin(types)
+    in_window = int(counts["rows_in_window"].sum())
+    in_roots = int(counts["rows_root_10_17"].sum())
+    in_city = int(counts.loc[city, "rows_root_10_17"].sum())
+    near = int(counts.loc[city, "rows_root_10_17_within_500km"].sum())
+    merged = int(points["event_count"].sum())
+    log.info("Task 2.16 | Query C (reports before duplicates are merged): %s reports in the "
+             "event window", f"{in_window:,}")
+    common.log_filter(log, f"Task 2.16 | root codes {roots}", in_roots, in_window - in_roots,
+                      "CAMEO root code outside the main filter")
+    common.log_filter(log, f"Task 2.16 | location types {types}", in_city, in_roots - in_city,
+                      "located only to a country or state centroid (types 1, 2, 5) or not located (0)")
+    log.info("Task 2.16 |   location types among root-code reports: %s", ", ".join(
+        f"{t}: {n:,}" for t, n in zip(counts["location_type"], counts["rows_root_10_17"])))
+    common.log_filter(log, f"Task 2.18 | within {radius} km of a chokepoint (BigQuery)", near,
+                      in_city - near, f"farther than {radius} km from every candidate chokepoint")
+    common.log_filter(log, "Task 2.16 | duplicate reports merged (Query A event_count)", merged,
+                      near - merged, "same date, root code, actors and location as a report "
+                      "with more sources")
+
+
+def fips_iso3_lookup(settings):
+    """FIPS 10-4 code -> ISO-3, from Natural Earth FIPS_10 and ISO_A3_EH, then the settings fixes.
+
+    Natural Earth rows with -99 in either field are skipped. A FIPS code that Natural Earth
+    gives to two countries must be listed in events.gdelt.fips_no_iso3, where it stays empty.
+    """
+    cfg = settings["events"]["gdelt"]
+    path = common.get_path(settings, "raw_files.natural_earth_countries")
+    ne = pyogrio.read_dataframe(path, columns=["FIPS_10", "ISO_A3_EH"], read_geometry=False)
+    ne = ne[(ne["FIPS_10"] != "-99") & (ne["ISO_A3_EH"] != "-99")].drop_duplicates()
+    shared = set(ne.loc[ne["FIPS_10"].duplicated(), "FIPS_10"])
+    unlisted = shared - set(cfg["fips_no_iso3"])
+    if unlisted:
+        raise ValueError(f"FIPS codes with more than one ISO-3 in Natural Earth: {sorted(unlisted)}; "
+                         "add them to fips_iso3_fixes or fips_no_iso3")
+    lookup = ne[~ne["FIPS_10"].isin(shared)].set_index("FIPS_10")["ISO_A3_EH"].to_dict()
+    lookup.update(cfg["fips_iso3_fixes"])
+    for code in cfg["fips_no_iso3"]:
+        lookup.pop(code, None)
+    return lookup
+
+
+def add_gdelt_iso3(table, lookup, settings, task, label, log):
+    """Step T5: ISO-3 from the FIPS code; log the rows and events left empty, by code."""
+    table["country_iso3"] = table["country_fips"].map(lookup).astype("string")
+    missing = table["country_iso3"].isna()
+    fixed = table["country_fips"].isin(list(settings["events"]["gdelt"]["fips_iso3_fixes"]))
+    log.info("%s | %s: ISO-3 assigned to %s rows (%s through the fix list); %s rows "
+             "(%s events) left empty", task, label, f"{int((~missing).sum()):,}", f"{int(fixed.sum()):,}",
+             f"{int(missing.sum()):,}", f"{int(table.loc[missing, 'event_count'].sum()):,}")
+    expected = set(settings["events"]["gdelt"]["fips_no_iso3"])
+    by_code = table[missing].groupby("country_fips")["event_count"].agg(["size", "sum"])
+    for code, row in by_code.sort_values("sum", ascending=False).iterrows():
+        note = "" if code in expected else "  [not in fips_no_iso3: add it to the fixes or the list]"
+        (log.info if not note else log.warning)(
+            "%s |   no ISO-3 for FIPS %s: %s rows, %s events%s", task, code, f"{row['size']:,}",
+            f"{row['sum']:,}", note)
+    return table
+
+
+def log_source_checks(points, log):
+    """Step T6: outlet bucket 0, and how often the outlet count agrees with NumSources."""
+    total_rows, total_events = len(points), int(points["event_count"].sum())
+    zero = points["outlet_bucket"] == 0
+    log.info("Task 2.16 | events in Query A rows: %s (sum of event_count over %s rows)",
+             f"{total_events:,}", f"{total_rows:,}")
+    log.info("Task 2.16 | outlet bucket 0 (no mention found within the mention window): %s rows, "
+             "%s events", f"{int(zero.sum()):,}", f"{int(points.loc[zero, 'event_count'].sum()):,}")
+    for field in BUCKET_FIELDS:
+        rows = points.groupby(field).size()
+        events = points.groupby(field)["event_count"].sum()
+        log.info("Task 2.16 | %-21s rows / events by bucket: %s", field, ", ".join(
+            f"{b}: {rows[b]:,} / {events[b]:,}" for b in rows.index))
+    for field in BUCKET_FIELDS[1:]:
+        same = points["outlet_bucket"] == points[field]
+        at_two = (points["outlet_bucket"] >= 2) == (points[field] >= 2)
+        log.info("Task 2.16 | outlet bucket vs %s: same bucket %.1f%% of rows (%.1f%% of events); "
+                 "same side of 2+ sources %.1f%% of rows (%.1f%% of events)", field,
+                 100 * same.mean(), 100 * points.loc[same, "event_count"].sum() / total_events,
+                 100 * at_two.mean(), 100 * points.loc[at_two, "event_count"].sum() / total_events)
+    table = pd.crosstab(points["outlet_bucket"], points["numsources_bucket"],
+                        values=points["event_count"], aggfunc="sum").fillna(0).astype(int)
+    log.info("Task 2.16 | events by outlet bucket (rows) and numsources_bucket (columns %s):",
+             ", ".join(map(str, table.columns)))
+    for bucket, row in table.iterrows():
+        log.info("Task 2.16 |   outlets %d: %s", bucket, "  ".join(f"{n:>9,}" for n in row))
+
+
+def log_gdelt_rings(points, settings, log):
+    """Step T6: per chokepoint, GDELT rows and events within the main ring at the main source
+    threshold, and the share of those events at the single most common location (feature ID)."""
+    ring = settings["conflict"]["ring_main_km"]
+    cfg = settings["events"]["gdelt"]["main_filter"]
+    chokepoints = common.read_layer(settings, "chokepoints")
+    kept = points[points["outlet_bucket"] >= cfg["min_sources"]].reset_index(drop=True)
+    km = common.distance_matrix_km(kept["longitude"], kept["latitude"],
+                                   chokepoints.geometry.x, chokepoints.geometry.y, settings)
+    log.info("Task 2.18 | GDELT rows at %d+ outlets (any distance): %s rows, %s events", cfg["min_sources"],
+             f"{len(kept):,}", f"{int(kept['event_count'].sum()):,}")
+    log.info("Task 2.18 | GDELT within %d km of each chokepoint at %d+ outlets; top location = the "
+             "feature ID with the most events, its share of the events and its country:",
+             ring, cfg["min_sources"])
+    log.info("Task 2.18 |   %-21s %-8s %8s %9s  %s", "chokepoint", "included", "rows", "events",
+             "top location")
+    for i, row in chokepoints.iterrows():
+        near = kept[km[:, i] <= ring]
+        events = int(near["event_count"].sum())
+        top = ""
+        if events:
+            by_place = near.groupby(["feature_id", "country_iso3"], dropna=False)["event_count"].sum()
+            (feature, iso3), n = by_place.idxmax(), by_place.max()
+            top = f"{feature} ({iso3 if pd.notna(iso3) else 'no ISO-3'}) {100 * n / events:.0f}%"
+        log.info("Task 2.18 |   %-21s %-8s %8s %9s  %s", row["name"], row["included"],
+                 f"{len(near):,}", f"{events:,}", top)
+
+
+def build_gdelt_layer(points, settings):
+    """Step T7: GDELT rows of the events layer, with IDs GDELT-<yyyymmdd>-<n> in a fixed order."""
+    labels = settings["events"]["gdelt"]["root_labels"]
+    points = points.sort_values(GDELT_SORT, kind="stable").reset_index(drop=True)
+    day = points["event_date"].dt.strftime("%Y%m%d")
+    points["event_id"] = "GDELT-" + day + "-" + (points.groupby(day).cumcount() + 1).astype(str)
+    points = points.assign(source="GDELT", category="tension",
+                           event_type=points["root_code"].map(labels), sub_event_type=pd.NA,
+                           fatalities=0, geo_precision=points["location_type"],
+                           imo_match=pd.NA, crew_harm=pd.NA, gdelt_sources=points["outlet_bucket"])
+    if points["event_type"].isna().any():
+        raise ValueError("GDELT root codes without a label in events.gdelt.root_labels")
+    points["event_date"] = points["event_date"].dt.date
+    for field in ["fatalities", "geo_precision", "event_count"]:
+        points[field] = points[field].astype("int32")
+    geometry = gpd.points_from_xy(points["longitude"], points["latitude"])
+    return gpd.GeoDataFrame(points[OUTPUT_FIELDS], geometry=geometry,
+                            crs=settings["project"]["storage_crs"])
+
+
+def build_country_context(settings, lookup, log):
+    """Step T8 (task 2.17): GDELT tension totals per country, root code and month (Query B),
+    before the distance filter. Context only; never part of the score."""
+    table = read_gdelt_csv(settings, "gdelt_country", GDELT_COUNTRY_COLUMNS, log)
+    cfg = settings["events"]["gdelt"]
+    start = pd.Timestamp(settings["events"]["window_start"])
+    end = pd.Timestamp(settings["events"]["window_end"])
+    months = pd.to_datetime(table["month"].astype(str), format="%Y%m")
+    check_gdelt_rule(table, months.between(start.replace(day=1), end), "Task 2.17",
+                     f"months {start:%Y-%m} to {end:%Y-%m}", log)
+    check_gdelt_rule(table, table["root_code"].isin(cfg["main_filter"]["root_codes"]), "Task 2.17",
+                     "root codes", log)
+    table = add_gdelt_iso3(table, lookup, settings, "Task 2.17", "country context", log)
+    table.insert(2, "event_type", table["root_code"].map(cfg["root_labels"]))
+    log.info("Task 2.17 | country context: %s events in %s countries (FIPS codes); %s at %d+ outlets",
+             f"{int(table['event_count'].sum()):,}", table["country_fips"].nunique(),
+             f"{int(table.loc[table['outlet_bucket'] >= cfg['main_filter']['min_sources'], 'event_count'].sum()):,}",
+             cfg["main_filter"]["min_sources"])
+    order = ["country_fips", "country_iso3"] + [c for c in table.columns
+                                                if c not in ("country_fips", "country_iso3")]
+    return table[order]
+
+
+def process_gdelt(settings, log, nrows=None):
+    """Run steps T1-T8 for GDELT; return the events rows and the country context table."""
+    points = read_gdelt_csv(settings, "gdelt_points", GDELT_POINT_COLUMNS, log, nrows)
+    points = check_gdelt_points(points, settings, log)
+    before = len(points)
+    points = filter_distance(points, settings, log, source="GDELT")                  # step T3
+    if len(points) != before:
+        log.warning("Task 2.18 | GDELT: %d rows beyond the radius here although BigQuery kept them",
+                    before - len(points))
+    counts = read_gdelt_csv(settings, "gdelt_filter_counts", GDELT_FILTER_COLUMNS, log)
+    log_gdelt_filter_counts(counts, points, settings, log)
+    lookup = fips_iso3_lookup(settings)
+    points = add_gdelt_iso3(points, lookup, settings, "Task 2.16", "tension points", log)
+    log_source_checks(points, log)
+    log_gdelt_rings(points, settings, log)
+    log.info("Task 2.16 | GDELT rows kept: %s (%s events; international %s rows, state_actor %s rows)",
+             f"{len(points):,}", f"{int(points['event_count'].sum()):,}",
+             f"{int(points['international'].sum()):,}", f"{int(points['state_actor'].sum()):,}")
+    context = build_country_context(settings, lookup, log)
+    return build_gdelt_layer(points, settings), context
+
+
 def main():
     settings = common.load_settings()
     log = common.start_log(Path(__file__).stem, settings)
@@ -469,6 +761,10 @@ def main():
         layers.insert(0, acled)
     elif "imo_gisis" in sources:
         raise ValueError("imo_gisis needs acled in events.sources (incidents are matched to ACLED)")
+    context = None
+    if "gdelt" in sources:
+        gdelt, context = process_gdelt(settings, log)
+        layers.append(gdelt)
     if not layers:
         raise ValueError("events.sources lists no source that S05 can process")
 
@@ -476,14 +772,21 @@ def main():
                               crs=settings["project"]["storage_crs"])
     # Joining the sources mixes column types; set them again so empty values are written
     # as nulls (an object column would write the text "<NA>").
-    events["country_iso3"] = events["country_iso3"].astype("string")
-    for flag in ["imo_match", "crew_harm"]:
+    for field in ["country_iso3", "sub_event_type"]:
+        events[field] = events[field].astype("string")
+    for flag in ["imo_match", "crew_harm", "international", "state_actor"]:
         events[flag] = events[flag].astype("boolean")   # true/false, empty where not applicable
+    for field in BUCKET_FIELDS[1:] + ["gdelt_sources"]:
+        events[field] = events[field].astype("Int32")   # empty for ACLED and IMO GISIS
+    events["event_count"] = events["event_count"].astype("int32")
     if events["event_id"].duplicated().any():
         raise ValueError("Duplicate event IDs in the events layer")
-    log.info("Task 2.18 | events layer: %s events; by source: %s", f"{len(events):,}",
-             ", ".join(f"{s} {n:,}" for s, n in events["source"].value_counts().items()))
+    log.info("Task 2.18 | events layer: %s rows; by source (rows / events = sum of event_count): %s",
+             f"{len(events):,}", ", ".join(f"{s} {n:,} / {e:,}" for s, (n, e) in events.groupby(
+                 "source")["event_count"].agg(["size", "sum"]).iterrows()))
     common.write_layer(events, settings, "events", log)
+    if context is not None:
+        common.write_layer(context, settings, "gdelt_country_context", log)
     log.info("Run of s05_events finished")
 
 

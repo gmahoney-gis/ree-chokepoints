@@ -23,7 +23,8 @@ Groups:
     G chokepoints  screening file, one zone per included chokepoint, gates (Decision 12),
                    zone radii (Decision 11), true-distance circles
     J events       event window (Decision 7), sources, IMO GISIS fields (Decision 9),
-                   ACLED filters, prefilter distance
+                   ACLED filters, GDELT fields and country context (Decision 15),
+                   prefilter distance
     H joins        (all) sub-flows, routes, crossings, detours and costs link up
     I prefixes     (all) chokepoint_scores columns follow the prefix rule
     K values       (all) shares, route and detour lengths, null rules (Decision 10)
@@ -60,6 +61,8 @@ UNIQUE_KEYS = {
     "trade_flows": ["flow_id"], "chokepoints": ["chokepoint_id"], "zones": ["chokepoint_id"],
     "gates": ["chokepoint_id"], "ports": ["port_id"],
     "country_port_shares": ["country_iso3", "side", "port_id"], "events": ["event_id"],
+    "gdelt_country_context": ["country_fips", "root_code", "month", "outlet_bucket",
+                              "numsources_bucket", "numsources_sum_bucket"],
     "subflows": ["subflow_id"], "routes": ["route_id"],
     "route_crossings": ["flow_id", "scenario", "chokepoint_id"],
     "detours": ["subflow_id", "chokepoint_id"], "detour_routes": ["route_id"],
@@ -76,7 +79,9 @@ REQUIRED_FIELDS = {
     "ports": ["port_id", "name", "country_iso3", "source", "is_gateway", "snap_dist_km",
               "snap_flag", "use_for_routing"],
     "country_port_shares": ["country_iso3", "side", "port_id", "share"],
-    "events": ["event_id", "source", "category", "event_type", "event_date"],
+    "events": ["event_id", "source", "category", "event_type", "event_date", "event_count"],
+    "gdelt_country_context": ["country_fips", "root_code", "event_type", "month", "outlet_bucket",
+                              "numsources_bucket", "numsources_sum_bucket", "event_count"],
     "subflows": ["subflow_id", "flow_id", "origin_iso3", "dest_iso3", "origin_port", "dest_port",
                  "share", "maritime_value_usd", "same_port"],
     "routes": ["route_id", "origin_port", "dest_port", "scenario", "length_nm"],
@@ -93,8 +98,12 @@ REQUIRED_FIELDS = {
 NA_TEXT = ["<NA>", "nan", "NaN", "None", "NaT"]
 
 ACLED_SOURCE = "ACLED"                     # the source label S05 gives ACLED events
-KNOWN_SOURCES = [ACLED_SOURCE, common.GISIS_SOURCE, "GDELT"]
+GDELT_SOURCE = "GDELT"                     # the source label S05 gives GDELT rows
+KNOWN_SOURCES = [ACLED_SOURCE, common.GISIS_SOURCE, GDELT_SOURCE]
 CATEGORIES = ["violence", "tension"]
+# GDELT-only fields in the events layer (Decision 15): filled for GDELT rows, null for others.
+GDELT_FIELDS = ["gdelt_sources", "numsources_bucket", "numsources_sum_bucket",
+                "international", "state_actor"]
 
 
 # ---------------------------------------------------------------------
@@ -446,6 +455,8 @@ def check_events(layers, settings, report):
     bad = acled["fatalities"].isna() | (acled["fatalities"] < 0)
     report.test("J events", "ACLED fatalities filled and not negative", not bad.any(), f"{int(bad.sum())} rows")
 
+    check_gdelt_events(events, settings, report)
+
     # The overrides are applied before the prefilter and the ACLED merge, so some may be gone.
     overrides = set(events_cfg["imo_gisis"]["crew_harm_overrides"] or {})
     found = len(overrides & set(gisis["event_id"]))
@@ -462,6 +473,73 @@ def check_events(layers, settings, report):
         far = int((km > radius).sum())
         report.test("J events", f"every event within {radius} km of a candidate chokepoint ({len(points)})",
                     far == 0, f"{far} farther")
+
+
+def check_gdelt_events(events, settings, report):
+    """GDELT rows (Decision 15): tension, labels, location types, source buckets and flags;
+    every other row stands for one event and has no GDELT fields."""
+    cfg = settings["events"]["gdelt"]
+    gdelt = events[events["source"] == GDELT_SOURCE]
+    other = events[events["source"] != GDELT_SOURCE]
+    report.add("INFO", "J events", "GDELT rows and events (sum of event_count)",
+               f"{len(gdelt):,} rows, {int(gdelt['event_count'].sum()):,} events")
+    bad = other["category"] != "violence"
+    report.test("J events", "ACLED and IMO GISIS rows are violence", not bad.any(), f"{int(bad.sum())} other")
+    bad = (other["event_count"] != 1) | other[GDELT_FIELDS].notna().any(axis=1)
+    report.test("J events", "ACLED and IMO GISIS rows: event_count 1 and no GDELT fields (Decision 15)",
+                not bad.any(), f"{int(bad.sum())} rows")
+    if gdelt.empty:
+        report.test("J events", "GDELT rows present (gdelt in events.sources)",
+                    "gdelt" not in settings["events"]["sources"], "none found")
+        return
+    bad = gdelt["category"] != "tension"
+    report.test("J events", "GDELT rows are tension", not bad.any(), f"{int(bad.sum())} other")
+    labels = set(cfg["root_labels"][code] for code in cfg["main_filter"]["root_codes"])
+    bad = ~gdelt["event_type"].isin(labels)
+    report.test("J events", "GDELT event types are the labels of the main root codes", not bad.any(),
+                f"{int(bad.sum())} other")
+    bad = ~gdelt["geo_precision"].isin(cfg["keep_location_types"])
+    report.test("J events", f"GDELT location types {cfg['keep_location_types']} only", not bad.any(),
+                f"{int(bad.sum())} other")
+    bad = (gdelt[GDELT_FIELDS].isna().any(axis=1) | (gdelt["event_count"] < 1)
+           | ~gdelt["gdelt_sources"].between(0, 3) | ~gdelt["numsources_bucket"].between(1, 3)
+           | ~gdelt["numsources_sum_bucket"].between(1, 3))
+    report.test("J events", "GDELT fields filled; event_count >= 1; buckets 0-3 (outlets) and 1-3 (NumSources)",
+                not bad.any(), f"{int(bad.sum())} rows")
+    bad = (gdelt["fatalities"] != 0) | gdelt["imo_match"].notna() | gdelt["crew_harm"].notna()
+    report.test("J events", "GDELT rows: fatalities 0, no imo_match or crew_harm", not bad.any(),
+                f"{int(bad.sum())} rows")
+    zero = gdelt["gdelt_sources"] == 0
+    report.add("INFO", "J events", "GDELT rows with outlet bucket 0 (no mention found; logged by S05)",
+               f"{int(zero.sum()):,} rows, {int(gdelt.loc[zero, 'event_count'].sum()):,} events")
+
+
+def check_country_context(layers, settings, report):
+    """gdelt_country_context (task 2.17): months in the window, main root codes, valid buckets."""
+    if "gdelt_country_context" not in layers:
+        return
+    context = layers["gdelt_country_context"]
+    cfg = settings["events"]["gdelt"]
+    events_cfg = settings["events"]
+    months = pd.to_datetime(context["month"].astype(str), format="%Y%m")
+    start, end = pd.Timestamp(events_cfg["window_start"]), pd.Timestamp(events_cfg["window_end"])
+    bad = ~months.between(start.replace(day=1), end)
+    report.test("J events", "gdelt_country_context months inside the event window", not bad.any(),
+                f"{int(bad.sum())} rows outside")
+    bad = (~context["root_code"].isin(cfg["main_filter"]["root_codes"]) | (context["event_count"] < 1)
+           | ~context["outlet_bucket"].between(0, 3) | ~context["numsources_bucket"].between(1, 3)
+           | ~context["numsources_sum_bucket"].between(1, 3))
+    report.test("J events", "gdelt_country_context root codes, buckets and event counts valid",
+                not bad.any(), f"{int(bad.sum())} rows")
+    iso3 = re.compile(settings["trade"]["iso3_pattern"])
+    filled = context["country_iso3"].dropna()
+    bad = ~filled.astype(str).str.match(iso3)
+    report.test("J events", "gdelt_country_context.country_iso3 is an ISO-3 code where filled", not bad.any(),
+                f"{int(bad.sum())} not ISO-3")
+    empty = context["country_iso3"].isna()
+    report.add("INFO", "J events", "gdelt_country_context rows without ISO-3 (FIPS codes in fips_no_iso3)",
+               f"{int(empty.sum()):,} rows, {int(context.loc[empty, 'event_count'].sum()):,} events; "
+               f"{int(context['event_count'].sum()):,} events in all")
 
 
 # ---------------------------------------------------------------------
@@ -662,6 +740,7 @@ def main():
     check_ports(layers, settings, report)
     check_chokepoints(layers, settings, report)
     check_events(layers, settings, report)
+    check_country_context(layers, settings, report)
     if args.stage == "all":
         check_routes(layers, settings, report)
         check_crossings(layers, settings, report)
