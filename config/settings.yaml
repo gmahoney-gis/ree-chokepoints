@@ -315,7 +315,8 @@ conflict:
 # ---------------------------------------------------------------------
 redundancy:
   routes_from: baseline
-  no_alternative_penalty: max_observed   # flows with no sea route get the largest observed penalty
+  no_alternative_penalty: max_observed   # flows with no sea route get the largest observed penalty (S08);
+                                         # the composite caps it lower (scoring.no_route_cap, Decision 16)
 
 # ---------------------------------------------------------------------
 # Step 5b: reroute time and cost impact layer (S08b; decision 8 in CLAUDE.md)
@@ -436,6 +437,19 @@ scoring:
     ring_100: {trade: trade_value_base, conflict: viol_n_100}
     ring_500: {trade: trade_value_base, conflict: viol_n_500}
   quadrant_split: median             # task 6.5 chart: "high" = above the median of the main fields
+  quadrant_tie: low                  # Decision 16: a value exactly at the median counts as low (alternative: high)
+  # Decision 16 (amends Decision 10(d)): sub-flows with no sea route get the largest Equation 4
+  # penalty among chokepoints whose affected trade still has a sea route (redund_penalty_routed_pct;
+  # Malacca 68.8% in the 2025 run). S09 recomputes Equation 4 from S08's columns; S08 is unchanged.
+  # Alternative (S10): max_observed = S08's redund_penalty_pct (largest single sub-flow penalty).
+  no_route_cap: max_routed_chokepoint
+  null_redundancy: zero              # Decision 16: no affected flows (Bering) -> redundancy 0, flagged score_redund_filled
+  # Task 5.4: the trade field of each routing scenario (routing.scenarios). Conflict and redundancy
+  # stay on the baseline in every scenario; each scenario is rescaled on its own. suffix names the
+  # score_ columns of a non-main scenario; chokepoints closed in it are flagged, not dropped.
+  scenarios:
+    baseline: {trade: trade_value_base}
+    red_sea_diversion: {trade: trade_value_redsea, suffix: redsea}
 
 sensitivity:
   approach: one_at_a_time            # change one choice at a time from the main run
@@ -457,6 +471,9 @@ sensitivity:
     products: [main_plus_magnets]
     combination: [multiplicative]
     redundancy_measure: [extra_cost_per_voyage]   # decision 8: cost-based redundancy from S08b
+    no_route_cap: [max_observed]     # Decision 16: S08's Decision 10(d) penalty (2528.2% in the 2025 run)
+    tension_ring_km: [100]           # Decision 16: tension ring only; violence stays at conflict.ring_main_km
+    tension_top_place: [removed]     # Decision 16: each chokepoint's largest single GDELT place left out (Decision 15(i))
 
 # ---------------------------------------------------------------------
 # Step 7: outputs (S11)

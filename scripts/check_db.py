@@ -27,7 +27,8 @@ Groups:
                    prefilter distance
     H joins        (all) sub-flows, routes, crossings, detours and costs link up
     I prefixes     (all) chokepoint_scores columns follow the prefix rule
-    K values       (all) shares, route and detour lengths, null rules (Decision 10)
+    K values       (all) shares, route and detour lengths, null rules (Decision 10),
+                   S09 score_ columns (Decision 16)
 
 Licensed data: events are reported as counts only. IDs are listed (at most
 check_db.max_ids_listed) only for project-made keys: flows, sub-flows, ports,
@@ -701,6 +702,44 @@ def check_values(layers, settings, report):
                    f"{int(scores['impact_days'].isna().sum())} of {len(scores)}")
 
 
+def check_scores(layers, settings, report):
+    """S09 score_ columns: components and scores in 0-1 and filled, complete ranks,
+    and the Bering and closed-chokepoint flags (tasks 5.2-5.4, Decision 16)."""
+    if "chokepoint_scores" not in layers:
+        return
+    scores = layers["chokepoint_scores"]
+    if "score_composite" not in scores:
+        report.add("WARN", "K values", "score_ columns present (S09 tasks 5.2-5.4)", "none; run S09")
+        return
+    suffixes = [cfg["suffix"] for cfg in settings["scoring"]["scenarios"].values() if "suffix" in cfg]
+    unit = [c for c in scores.columns if c.startswith("score_")
+            and not c.startswith(("score_rank", "score_mult_rank", "score_redund_pct",
+                                  "score_redund_filled", "score_closed_"))]
+    values = scores[unit].astype(float)
+    bad = values.isna() | (values < 0) | (values > 1 + 1e-9)
+    report.test("K values", f"score_ components and scores filled and within 0-1 ({len(unit)} columns)",
+                not bad.any().any(), f"{int(bad.sum().sum())} values outside 0-1 or null",
+                scores.loc[bad.any(axis=1), "chokepoint_id"])
+    n = len(scores)
+    for field in ["score_rank", "score_mult_rank"] + [f"score_rank_{s}" for s in suffixes]:
+        ranks = scores[field]
+        ok = ranks.notna().all() and ranks.min() == 1 and ranks.max() <= n
+        report.test("K values", f"{field} runs from 1 with no nulls", bool(ok),
+                    f"min {ranks.min()}, max {ranks.max()}, null {int(ranks.isna().sum())}")
+    filled = as_bool(scores["score_redund_filled"])
+    report.test("K values", "score_redund_filled exactly where redund_penalty_pct is null (Decision 16)",
+                (filled == scores["redund_penalty_pct"].isna()).all(), f"{int(filled.sum())} filled",
+                scores.loc[filled != scores["redund_penalty_pct"].isna(), "chokepoint_id"])
+    for name, cfg in settings["scoring"]["scenarios"].items():
+        if "suffix" not in cfg:
+            continue
+        closed = as_bool(scores[f"score_closed_{cfg['suffix']}"])
+        expected = scores["name"].isin(settings["routing"]["scenarios"][name]["closed"])
+        report.test("K values", f"score_closed_{cfg['suffix']} flags exactly the chokepoints closed in {name}",
+                    (closed == expected).all(), f"{int(closed.sum())} flagged",
+                    scores.loc[closed != expected, "chokepoint_id"])
+
+
 # ---------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------
@@ -746,6 +785,7 @@ def main():
         check_crossings(layers, settings, report)
         check_prefixes(layers, settings, report)
         check_values(layers, settings, report)
+        check_scores(layers, settings, report)
 
     c = report.counts
     log.info("Summary | stage %s | %d checks | PASS %d | WARN %d | FAIL %d | INFO %d",
