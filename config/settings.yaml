@@ -19,7 +19,8 @@ paths:
   first_pass_database: data/interim/lab8_first_pass.gpkg   # Lab 7/8 WPI first pass; S06 logs old vs new
   logs: logs
   tables: outputs/tables
-  figures: outputs/figures
+  figures: outputs/figures            # screen copies (outputs.screen_dpi)
+  figures_print: outputs/figures/print   # print and poster copies (outputs.print_dpi)
   qgis_project: qgis/project.qgz
   web_export: docs                   # qgis2web export folder published by GitHub Pages
   # Raw file names from data/raw/MANIFEST.csv (task 1.1). TODO = not downloaded yet.
@@ -488,7 +489,14 @@ outputs:
   web_map_crs: "EPSG:3857"           # Web Mercator (web map only, never printed figures)
   score_class_breaks: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]   # fixed breaks so styling survives reruns
   top_n_labels: 5
-  closeups_top_n: 5                  # TODO: confirm how many chokepoint close-ups to draw
+  always_label: [chokepoint5]        # task 6.2: labelled on every component map besides the top n (Malacca, composite rank 1)
+  closeups_top_n: 6                  # task 6.4: top 6 by composite rank (5th and 6th differ by 0.007; 7th is 0.06 lower)
+  closeup_half_width_km: 600         # task 6.4: each close-up shows this distance either side of the chokepoint
+  closeup_cell_km: 15                # task 6.4: grid cell for the density surfaces
+  closeup_bandwidth_km: 100          # task 6.4: kernel bandwidth for the close-up surfaces (display only;
+                                     # one of conflict.density_bandwidths_km; 250 km smooths a panel into one blob)
+  screen_dpi: 150                    # PNG for screen review (paths.figures)
+  print_dpi: 300                     # PNG for the paper and poster (paths.figures_print)
   web_layers: [web_chokepoints, web_routes]
   # House style for every S11 figure: the dark theme of Lab 6 Figure 1
   # (scripts/prototypes/searoute_visual.py, THEMES["dark"]).
@@ -499,6 +507,10 @@ outputs:
     borders: "#5b7385"               # country borders, coastlines, map edge, axis lines
     route: "#4fb3d9"                 # cyan: routes and trade
     highlight: "#ffb000"             # amber: chokepoints and violence
+    redundancy: "#ff6b9d"            # rose: redundancy (S11 final pass; colour-blind separation from cyan and amber
+                                     # checked: smallest OKLab difference 10.8 under protan/deutan/tritan simulation)
+    score_scale: ["#4a3a17", "#7a5c12", "#ad800a", "#dd9c03", "#ffc94d"]   # amber, dark (low) to light (high);
+                                     # one colour per class of score_class_breaks (task 6.1)
     text: "#f2f2f2"
     title: "#ffffff"
     note: "#9fb3c2"                  # source notes, tick labels, leader lines

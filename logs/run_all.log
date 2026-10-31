@@ -1,9 +1,9 @@
-2026-10-31 12:37:02 INFO    Run of run_all started 2026-10-31T12:37:02
-2026-10-31 12:37:02 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-10-31 12:37:02 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-10-31 12:37:02 INFO    Requested: s10
-2026-10-31 12:37:02 INFO    Will run, in order: s10
-2026-10-31 12:37:02 INFO    ---- s10_sensitivity.py started
-2026-10-31 12:37:24 INFO    ---- s10_sensitivity.py finished OK in 22.3 s
-2026-10-31 12:37:24 INFO    Summary | passed: s10_sensitivity.py
-2026-10-31 12:37:24 INFO    Summary | all 1 script(s) finished OK
+2026-10-31 14:11:33 INFO    Run of run_all started 2026-10-31T14:11:33
+2026-10-31 14:11:33 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-10-31 14:11:33 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-10-31 14:11:33 INFO    Requested: s11
+2026-10-31 14:11:33 INFO    Will run, in order: s11
+2026-10-31 14:11:33 INFO    ---- s11_figures.py started
+2026-10-31 14:15:06 INFO    ---- s11_figures.py finished OK in 213.5 s
+2026-10-31 14:15:06 INFO    Summary | passed: s11_figures.py
+2026-10-31 14:15:06 INFO    Summary | all 1 script(s) finished OK
