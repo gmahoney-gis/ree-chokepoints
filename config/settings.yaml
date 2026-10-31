@@ -454,6 +454,11 @@ scoring:
 sensitivity:
   approach: one_at_a_time            # change one choice at a time from the main run
   weight_grid: {step: 0.1, minimum: 0.1}    # 36 combinations, tested in full
+  top_n: [5, 10]                     # S10 summary: overlap of each run's top n with the main run's
+  # Alternatives below that S10 lists as untested, with the reason (logged and in sensitivity.csv).
+  not_run:
+    port_filter: "needs a full reroute; not run for the deadline"
+    products: "needs a full reroute; not run for the deadline"
   alternatives:                      # proposal Table 4
     skew_transform: [none]
     ring_main_km: [100, 500]

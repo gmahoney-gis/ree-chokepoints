@@ -28,7 +28,7 @@ Groups:
     H joins        (all) sub-flows, routes, crossings, detours and costs link up
     I prefixes     (all) chokepoint_scores columns follow the prefix rule
     K values       (all) shares, route and detour lengths, null rules (Decision 10),
-                   S09 score_ columns (Decision 16)
+                   S09 score_ columns (Decision 16), S10 sens_ columns (task 5.7)
 
 Licensed data: events are reported as counts only. IDs are listed (at most
 check_db.max_ids_listed) only for project-made keys: flows, sub-flows, ports,
@@ -740,6 +740,39 @@ def check_scores(layers, settings, report):
                     scores.loc[closed != expected, "chokepoint_id"])
 
 
+def check_sensitivity(layers, settings, report):
+    """S10 sens_ columns: filled whole ranks within 1..n, min <= median <= max,
+    shares within 0-1, and the main rank inside the one-at-a-time range (task 5.7)."""
+    if "chokepoint_scores" not in layers:
+        return
+    scores = layers["chokepoint_scores"]
+    if "sens_rank_min" not in scores:
+        report.add("WARN", "K values", "sens_ columns present (S10 task 5.7)", "none; run S10")
+        return
+    n = len(scores)
+    top = min(settings["sensitivity"]["top_n"])
+    for prefix in ("sens", "sens_grid"):
+        fields = [f"{prefix}_rank_{s}" for s in ("min", "median", "max", "range")] + [f"{prefix}_top{top}_share"]
+        missing = [f for f in fields if f not in scores]
+        report.test("K values", f"{prefix}_ columns present ({len(fields)})", not missing,
+                    f"missing: {', '.join(missing)}" if missing else "")
+        if missing:
+            continue
+        values = scores[fields].astype(float)
+        low, mid, high = (values[f"{prefix}_rank_{s}"] for s in ("min", "median", "max"))
+        share = values[f"{prefix}_top{top}_share"]
+        bad = (values.isna().any(axis=1) | (low < 1) | (high > n) | (low % 1 != 0) | (high % 1 != 0)
+               | (low > mid) | (mid > high) | (values[f"{prefix}_rank_range"] != high - low)
+               | (share < 0) | (share > 1))
+        report.test("K values", f"{prefix}_ ranks filled, within 1-{n}, min <= median <= max, "
+                    f"range = max - min, top-{top} share within 0-1", not bad.any(),
+                    f"{int(bad.sum())} chokepoints", scores.loc[bad, "chokepoint_id"])
+    if "score_rank" in scores:
+        outside = (scores["score_rank"] < scores["sens_rank_min"]) | (scores["score_rank"] > scores["sens_rank_max"])
+        report.test("K values", "score_rank within sens_rank_min-sens_rank_max (the range includes the main run)",
+                    not outside.any(), f"{int(outside.sum())} chokepoints", scores.loc[outside, "chokepoint_id"])
+
+
 # ---------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------
@@ -786,6 +819,7 @@ def main():
         check_prefixes(layers, settings, report)
         check_values(layers, settings, report)
         check_scores(layers, settings, report)
+        check_sensitivity(layers, settings, report)
 
     c = report.counts
     log.info("Summary | stage %s | %d checks | PASS %d | WARN %d | FAIL %d | INFO %d",
