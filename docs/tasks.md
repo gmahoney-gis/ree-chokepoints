@@ -24,6 +24,7 @@ Each script builds the tasks listed for it. "L7" marks tasks needed for the Lab 
 | S09 | 5.1, 5.2, 5.3, 5.4 |
 | S10 | 5.5, 5.6, 5.7 |
 | S11 | 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9 |
+| S11b | 6.14 |
 
 Tasks with script "—" are done by hand (downloads, checks, QGIS work, writing).
 
@@ -131,6 +132,7 @@ Tasks with script "—" are done by hand (downloads, checks, QGIS work, writing)
 | 6.11 | Finish the final report maps as QGIS print layouts. | — | Manual (QGIS) | P38 QGIS project and final report maps | 6.10 |  |
 | 6.12 | Export the web map with qgis2web, push to GitHub Pages, check it online, and add the “as of” date. | — | Manual (QGIS) | P39 Interactive web map | 6.10 |  |
 | 6.13 | Write the web-map update checklist in the README. | — | Manual | P39 Interactive web map | 6.12 |  |
+| 6.14 | Draw poster versions of five figures at their poster width (composite map, trade vs. conflict chart, score breakdown, reroute impact, study-area map), all text at least 18 pt, plain-language labels, no data line. | S11b | Script | Poster figures | 5.1, 5.3, 4.17 |  |
 
 ## Phase 7: Report
 

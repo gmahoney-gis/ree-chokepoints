@@ -25,7 +25,7 @@ import common
 # Task 0.5: the standard run order. check_db (task 3.2) checks the layers that
 # S01-S05 build straight after S05, and check_db_all checks every layer at the end.
 RUN_ORDER = ["s01", "s02", "s03", "s04", "s05", "check_db",
-             "s06", "s07", "s08", "s08b", "s09", "s10", "s11", "check_db_all"]
+             "s06", "s07", "s08", "s08b", "s09", "s10", "s11", "s11b", "check_db_all"]
 
 # Steps that run a script under another name or with options: step -> (script, arguments).
 # Every other step runs the script of the same name with no arguments.
