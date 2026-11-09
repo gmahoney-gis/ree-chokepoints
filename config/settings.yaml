@@ -524,6 +524,8 @@ outputs:
   # 100% size all text is at least font_pt.minimum. Colours come from outputs.style above.
   poster:
     dpi: 300
+    clean_map: true                  # also write fig_6_1_composite_map_clean.png: the composite map with no
+                                     # labels, leaders or legend (title slide); label checks skipped for it
     font_pt:
       minimum: 18                    # S11b stops if any text is smaller
       tick: 18
@@ -685,8 +687,8 @@ outputs:
         chokepoint6: [7, 18, left]
         chokepoint7: [-2, 13, center]
         chokepoint8: [-2, 13, center]
-        chokepoint9: [-5, 4, right]
         chokepoint11: [-7, 2, right]
+        chokepoint17: [-2, 13, center]
 
 # ---------------------------------------------------------------------
 # Integrity check of the project database (check_db.py, task 3.2)

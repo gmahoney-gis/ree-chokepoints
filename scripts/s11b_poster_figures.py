@@ -6,7 +6,9 @@ its helpers; s11_figures.py and the paper figures are not changed. Labels are pl
 use the short names in outputs.poster.short_names, and carry no data line (the poster footer
 credits the data). Written to paths.figures_poster at outputs.poster.dpi:
 
-1. fig_6_1_composite_map.png: ranked composite map (top outputs.top_n_labels labelled).
+1. fig_6_1_composite_map.png: ranked composite map (top outputs.top_n_labels labelled), and,
+   if outputs.poster.clean_map, fig_6_1_composite_map_clean.png: the same map with no labels,
+   leaders or legend, for the title slide.
 2. fig_6_5_trade_conflict.png: trade vs. violence; every point drawn, those in
    outputs.poster.trade_conflict.labels named.
 3. fig_6_6_score_breakdown.png: stacked score parts, all chokepoints, by rank.
@@ -136,7 +138,7 @@ def save_poster(fig, name, settings, log):
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
     texts = drawn_texts(fig)
-    smallest = min(t.get_fontsize() for t in texts)
+    smallest = min((t.get_fontsize() for t in texts), default=np.inf)
     if smallest < poster["font_pt"]["minimum"]:
         raise ValueError(f"{name}: text at {smallest} pt is below the poster minimum")
     boxes = [Text.get_window_extent(t, renderer) for t in texts]
@@ -152,7 +154,10 @@ def save_poster(fig, name, settings, log):
     folder.mkdir(parents=True, exist_ok=True)
     fig.savefig(folder / name, dpi=poster["dpi"])
     width, height = fig.get_size_inches()
-    log.info("%s | %d drawn texts, smallest %.1f pt, no text overlaps", name, len(texts), smallest)
+    if texts:
+        log.info("%s | %d drawn texts, smallest %.1f pt, no text overlaps", name, len(texts), smallest)
+    else:
+        log.info("%s | no drawn text", name)
     log.info("Wrote %s (%.2f x %.2f in, %d dpi)", folder / name, width, height, poster["dpi"])
     plt.close(fig)
 
@@ -161,8 +166,12 @@ def save_poster(fig, name, settings, log):
 # Composite map
 # ---------------------------------------------------------------------
 
-def poster_composite(points, routes, basemap, outline, settings, log):
-    """Composite map at poster size: S11 fig_composite with larger circles, text and routes."""
+def poster_composite(points, routes, basemap, outline, settings, log, clean=False):
+    """Composite map at poster size: S11 fig_composite with larger circles, text and routes.
+
+    With clean=True (outputs.poster.clean_map) it draws the title-slide copy: the same map with
+    no labels, leaders or legend, cropped to the map with map_margin_in on every side.
+    """
     out = settings["outputs"]
     style, poster = out["style"], out["poster"]
     spec, font = poster["composite"], poster["font_pt"]
@@ -173,6 +182,8 @@ def poster_composite(points, routes, basemap, outline, settings, log):
     width, margin, band = spec["width_in"], spec["map_margin_in"], spec["legend_band_in"]
     map_width = width - 2 * margin
     map_height = map_width * (ymax - ymin) / (xmax - xmin)
+    if clean:
+        band = margin   # no legend: the bottom margin matches the others
     height = margin + map_height + band
     fig = plt.figure(figsize=(width, height))
     ax = fig.add_axes([margin / width, band / height, map_width / width, map_height / height])
@@ -186,6 +197,10 @@ def poster_composite(points, routes, basemap, outline, settings, log):
     classes = np.digitize(order["score_composite"], breaks[1:-1])
     ax.scatter(order.geometry.x, order.geometry.y, s=areas[classes], facecolor=cmap(classes),
                edgecolor=style["zero_marker"], linewidth=spec["marker_edge_width"], zorder=3)
+    if clean:
+        # Title-slide copy: no text, so the label checks do not apply.
+        save_poster(fig, "fig_6_1_composite_map_clean.png", settings, log)
+        return
 
     # Legend: one entry per class, at its circle size.
     handles = [Line2D([], [], linestyle="none")]
@@ -487,8 +502,10 @@ def main():
     routes = s11.route_values(routes, subflows, log)
     basemap = s11.read_basemap(settings, log)
 
-    poster_composite(chokepoints.to_crs(crs), routes.to_crs(crs), basemap.to_crs(crs),
-                     s11.world_outline(crs), settings, log)
+    map_layers = (chokepoints.to_crs(crs), routes.to_crs(crs), basemap.to_crs(crs), s11.world_outline(crs))
+    poster_composite(*map_layers, settings, log)
+    if settings["outputs"]["poster"]["clean_map"]:
+        poster_composite(*map_layers, settings, log, clean=True)
     poster_trade_conflict(chokepoints, settings, log)
     poster_breakdown(chokepoints, settings, log)
     poster_impact(chokepoints, settings, log)

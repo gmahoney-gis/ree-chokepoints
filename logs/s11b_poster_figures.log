@@ -1,30 +1,32 @@
-2026-11-05 21:30:16 INFO    Run of s11b_poster_figures started 2026-11-05T21:30:16
-2026-11-05 21:30:16 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-11-05 21:30:16 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-11-05 21:30:16 INFO    Read 28 chokepoint points; 27 have scores (included)
-2026-11-05 21:30:18 INFO    Read 54,845 routes and 52,292 sub-flows
-2026-11-05 21:30:18 INFO    Task 6.3 | route values: 54,845 routes, 0 without a matching sub-flow (value 0); 3 same-port sub-flows have no route
-2026-11-05 21:30:18 INFO    Task 6.3 | baseline           27,502 routes, US$ 1,943,450,078, 2935 split at the antimeridian
-2026-11-05 21:30:18 INFO    Task 6.3 | red_sea_diversion  27,343 routes, US$ 1,943,315,618, 2980 split at the antimeridian
-2026-11-05 21:30:19 INFO    Base map | Natural Earth countries | kept 257 | removed 1 | reason: Antarctica left off the world maps
-2026-11-05 21:30:32 INFO    fig_6_1_composite_map.png | exception: '3  Bosporus' is nearer chokepoint28 than its own circle (outputs.poster.nearest_circle_exceptions)
-2026-11-05 21:30:32 INFO    fig_6_1_composite_map.png | 5 labels pass the nearest-circle test: 0 overlap another label, 0 touch another circle, 0 leave the figure
-2026-11-05 21:30:46 INFO    fig_6_1_composite_map.png | 11 drawn texts, smallest 18.0 pt, no text overlaps
-2026-11-05 21:30:46 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_6_1_composite_map.png (13.00 x 6.48 in, 300 dpi)
-2026-11-05 21:30:46 INFO    Task 6.5 | read C:\Users\garre\ree-chokepoints\outputs\tables\correlation.csv: main rho = 0.090, p = 0.655, n = 27
-2026-11-05 21:30:47 INFO    fig_6_5_trade_conflict.png | 12 labels pass the nearest-circle test: 0 overlap another label, 0 touch another circle, 0 leave the figure
-2026-11-05 21:30:48 INFO    fig_6_5_trade_conflict.png | 29 drawn texts, smallest 18.0 pt, no text overlaps
-2026-11-05 21:30:48 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_6_5_trade_conflict.png (7.40 x 7.00 in, 300 dpi)
-2026-11-05 21:30:48 INFO    fig_6_6_score_breakdown.png | 27 rows at 0.283 in each
-2026-11-05 21:30:49 INFO    fig_6_6_score_breakdown.png | 61 drawn texts, smallest 18.0 pt, no text overlaps
-2026-11-05 21:30:49 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_6_6_score_breakdown.png (6.30 x 8.95 in, 300 dpi)
-2026-11-05 21:30:49 INFO    fig_reroute_impact.png | rows: Gibraltar, Bab el-Mandeb, Suez, Panama, Malacca, Torres, Dover, Yucatan, Balabac, Makassar, Korea, Magellan
-2026-11-05 21:30:50 INFO    fig_reroute_impact.png | 23 drawn texts, smallest 18.0 pt, no text overlaps
-2026-11-05 21:30:50 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_reroute_impact.png (6.80 x 5.50 in, 300 dpi)
-2026-11-05 21:30:50 INFO    fig_study_area.png | network: 3,028 pieces drawn, 1,083 lattice lines left out
-2026-11-05 21:30:51 INFO    fig_study_area.png | 28 chokepoints drawn; 27 with a zone or gate (Cape of Good Hope has none); 153 highlighted pieces within 500 km
-2026-11-05 21:31:03 INFO    fig_study_area.png | exception: 'Bosporus' is nearer chokepoint28 than its own circle (outputs.poster.nearest_circle_exceptions)
-2026-11-05 21:31:03 INFO    fig_study_area.png | 10 labels pass the nearest-circle test: 0 overlap another label, 0 touch another circle, 0 leave the figure
-2026-11-05 21:31:04 INFO    fig_study_area.png | 13 drawn texts, smallest 18.0 pt, no text overlaps
-2026-11-05 21:31:04 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_study_area.png (9.60 x 4.08 in, 300 dpi)
-2026-11-05 21:31:04 INFO    Run of s11b_poster_figures finished
+2026-11-08 20:36:08 INFO    Run of s11b_poster_figures started 2026-11-08T20:36:08
+2026-11-08 20:36:08 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-11-08 20:36:10 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-11-08 20:36:10 INFO    Read 28 chokepoint points; 27 have scores (included)
+2026-11-08 20:36:13 INFO    Read 54,845 routes and 52,292 sub-flows
+2026-11-08 20:36:13 INFO    Task 6.3 | route values: 54,845 routes, 0 without a matching sub-flow (value 0); 3 same-port sub-flows have no route
+2026-11-08 20:36:13 INFO    Task 6.3 | baseline           27,502 routes, US$ 1,943,450,078, 2935 split at the antimeridian
+2026-11-08 20:36:13 INFO    Task 6.3 | red_sea_diversion  27,343 routes, US$ 1,943,315,618, 2980 split at the antimeridian
+2026-11-08 20:36:13 INFO    Base map | Natural Earth countries | kept 257 | removed 1 | reason: Antarctica left off the world maps
+2026-11-08 20:36:29 INFO    fig_6_1_composite_map.png | exception: '3  Bosporus' is nearer chokepoint28 than its own circle (outputs.poster.nearest_circle_exceptions)
+2026-11-08 20:36:29 INFO    fig_6_1_composite_map.png | 5 labels pass the nearest-circle test: 0 overlap another label, 0 touch another circle, 0 leave the figure
+2026-11-08 20:36:47 INFO    fig_6_1_composite_map.png | 11 drawn texts, smallest 18.0 pt, no text overlaps
+2026-11-08 20:36:47 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_6_1_composite_map.png (13.00 x 6.48 in, 300 dpi)
+2026-11-08 20:37:11 INFO    fig_6_1_composite_map_clean.png | no drawn text
+2026-11-08 20:37:11 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_6_1_composite_map_clean.png (13.00 x 5.88 in, 300 dpi)
+2026-11-08 20:37:11 INFO    Task 6.5 | read C:\Users\garre\ree-chokepoints\outputs\tables\correlation.csv: main rho = 0.090, p = 0.655, n = 27
+2026-11-08 20:37:12 INFO    fig_6_5_trade_conflict.png | 12 labels pass the nearest-circle test: 0 overlap another label, 0 touch another circle, 0 leave the figure
+2026-11-08 20:37:13 INFO    fig_6_5_trade_conflict.png | 29 drawn texts, smallest 18.0 pt, no text overlaps
+2026-11-08 20:37:13 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_6_5_trade_conflict.png (7.40 x 7.00 in, 300 dpi)
+2026-11-08 20:37:13 INFO    fig_6_6_score_breakdown.png | 27 rows at 0.283 in each
+2026-11-08 20:37:15 INFO    fig_6_6_score_breakdown.png | 61 drawn texts, smallest 18.0 pt, no text overlaps
+2026-11-08 20:37:15 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_6_6_score_breakdown.png (6.30 x 8.95 in, 300 dpi)
+2026-11-08 20:37:15 INFO    fig_reroute_impact.png | rows: Gibraltar, Bab el-Mandeb, Suez, Panama, Malacca, Torres, Dover, Yucatan, Balabac, Makassar, Korea, Magellan
+2026-11-08 20:37:15 INFO    fig_reroute_impact.png | 23 drawn texts, smallest 18.0 pt, no text overlaps
+2026-11-08 20:37:15 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_reroute_impact.png (6.80 x 5.50 in, 300 dpi)
+2026-11-08 20:37:16 INFO    fig_study_area.png | network: 3,028 pieces drawn, 1,083 lattice lines left out
+2026-11-08 20:37:16 INFO    fig_study_area.png | 28 chokepoints drawn; 27 with a zone or gate (Cape of Good Hope has none); 153 highlighted pieces within 500 km
+2026-11-08 20:37:30 INFO    fig_study_area.png | exception: 'Bosporus' is nearer chokepoint28 than its own circle (outputs.poster.nearest_circle_exceptions)
+2026-11-08 20:37:30 INFO    fig_study_area.png | 10 labels pass the nearest-circle test: 0 overlap another label, 0 touch another circle, 0 leave the figure
+2026-11-08 20:37:32 INFO    fig_study_area.png | 13 drawn texts, smallest 18.0 pt, no text overlaps
+2026-11-08 20:37:32 INFO    Wrote C:\Users\garre\ree-chokepoints\outputs\figures\poster\fig_study_area.png (9.60 x 4.08 in, 300 dpi)
+2026-11-08 20:37:32 INFO    Run of s11b_poster_figures finished
