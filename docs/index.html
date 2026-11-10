@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<!-- Template for docs/index.html (S11c, Decision 17). S11c fills each placeholder (a name in double braces) from
+     config/settings.yaml; edit this file, not docs/index.html, which every run overwrites. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rare earth trade at maritime chokepoints</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+  :root { --bg: #0b1d2e; }
+  html, body { height: 100%; margin: 0; background: var(--bg); }
+  body { font: 14px/1.4 "DejaVu Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text); }
+  #map { position: absolute; inset: 0; background: var(--bg); }
+  a { color: var(--route); }
+
+  /* Side panel: open on wide screens, a title bar that expands on narrow ones. */
+  #panel { position: absolute; z-index: 1000; top: 10px; left: 10px; width: 340px;
+           max-height: calc(100% - 20px); display: flex; flex-direction: column;
+           background: var(--bg); background: color-mix(in srgb, var(--bg) 94%, transparent); border: 1px solid var(--grid);
+           border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.5); }
+  #panel header { display: flex; align-items: flex-start; gap: 8px; padding: 12px 14px 10px; }
+  #panel h1 { flex: 1; margin: 0; font-size: 17px; line-height: 1.25; color: var(--title); }
+  #toggle { flex: none; background: none; border: 1px solid var(--borders); border-radius: 6px;
+            color: var(--text); font: inherit; font-size: 13px; padding: 4px 10px; cursor: pointer; }
+  #panel .body { overflow-y: auto; padding: 0 14px 14px; }
+  #panel.collapsed .body { display: none; }
+  .subtitle { margin: 0 0 6px; color: var(--text); }
+  .meta { margin: 0; color: var(--note); font-size: 12px; }
+  #panel h2 { margin: 14px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--note); }
+  #panel ul.read { margin: 0; padding-left: 18px; }
+  #panel ul.read li { margin-bottom: 3px; }
+  .kinds { margin: 0; }
+  .kinds div { margin-bottom: 4px; }
+  .kinds b { display: inline-block; min-width: 0; }
+  .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+  ol.ranks { list-style: none; margin: 0; padding: 0; }
+  ol.ranks button { display: flex; width: 100%; align-items: center; gap: 8px; padding: 5px 4px;
+                    background: none; border: 0; border-bottom: 1px solid var(--grid); color: var(--text);
+                    font: inherit; text-align: left; cursor: pointer; }
+  ol.ranks button:hover, ol.ranks button:focus-visible { background: var(--grid); }
+  ol.ranks .r { width: 22px; text-align: right; color: var(--note); }
+  ol.ranks .n { flex: 1; }
+  ol.ranks .s { color: var(--note); font-variant-numeric: tabular-nums; }
+  ol.ranks .closed { color: var(--highlight); font-size: 12px; }
+  .note { color: var(--note); font-size: 12px; margin: 8px 0 0; }
+
+  /* Map controls in the house style. */
+  .leaflet-container { font: inherit; }
+  .leaflet-bar a, .box { background: var(--bg); color: var(--text); border-color: var(--grid); }
+  .leaflet-bar a:hover { background: var(--grid); color: var(--title); }
+  .box { border: 1px solid var(--grid); border-radius: 6px; padding: 6px 8px; box-shadow: 0 1px 6px rgba(0,0,0,.5); }
+  .scenario button { display: block; width: 100%; margin: 2px 0; padding: 6px 10px; border-radius: 5px;
+                     border: 1px solid var(--borders); background: none; color: var(--text); font: inherit;
+                     font-size: 13px; cursor: pointer; text-align: left; }
+  .scenario button[aria-pressed="true"] { background: var(--highlight); border-color: var(--highlight); color: var(--bg); font-weight: bold; }
+  .legend { font-size: 12px; }
+  .legend .t { color: var(--note); margin-bottom: 3px; }
+  .legend .row { display: flex; align-items: center; gap: 6px; height: 18px; }
+  .legend i { display: inline-block; border-radius: 50%; flex: none; box-sizing: border-box; }
+  .leaflet-control-attribution { background: var(--bg) !important; background: color-mix(in srgb, var(--bg) 80%, transparent) !important; color: var(--note); }
+  .leaflet-control-attribution a { color: var(--note); }
+
+  /* Chokepoint circles: the icon is the tap target, the inner span the visible circle. */
+  .cp { display: flex; align-items: center; justify-content: center; }
+  .cp span { display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+             border-radius: 50%; font-weight: bold; font-size: 12px; line-height: 1; }
+
+  /* Pop-ups. */
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--bg); color: var(--text);
+                                                        border: 1px solid var(--grid); }
+  .leaflet-popup-content { margin: 12px 14px; font-size: 13px; }
+  .leaflet-container a.leaflet-popup-close-button { color: var(--note); }
+  .pp h3 { margin: 0 22px 2px 0; font-size: 15px; color: var(--title); }
+  .pp .sub { color: var(--note); margin-bottom: 8px; }
+  .pp .closed { color: var(--highlight); font-weight: bold; }
+  .pp .bars { margin: 6px 0 8px; }
+  .pp .bar { display: grid; grid-template-columns: 96px 1fr 38px; align-items: center; gap: 6px; height: 18px; }
+  .pp .bar .track { height: 8px; background: var(--grid); border-radius: 4px; overflow: hidden; }
+  .pp .bar .fill { height: 100%; }
+  .pp .bar .v { text-align: right; font-variant-numeric: tabular-nums; }
+  .pp dl { margin: 0; }
+  .pp dt { color: var(--note); font-size: 12px; margin-top: 6px; }
+  .pp dd { margin: 0; }
+
+  /* Narrow screens: the script sets body.narrow below outputs.web.narrow_screen_px and updates it on resize. */
+  body.narrow #panel { left: 8px; right: 8px; top: 8px; width: auto; max-height: 75%; }
+  body.narrow #panel h1 { font-size: 15px; }
+  body.narrow .scenario { display: flex; gap: 4px; }
+  body.narrow .scenario button { width: auto; margin: 0; padding: 6px 8px; font-size: 12px; }
+  body.narrow .legend { font-size: 11px; }
+  body.narrow .legend .row { height: 16px; }
+
+  /* Bottom sheet for chokepoint details on narrow screens, above every other control. */
+  #sheet { position: fixed; z-index: 2000; left: 0; right: 0; bottom: 0; display: none; flex-direction: column;
+           max-height: 55vh; max-height: 55dvh; background: var(--bg); border-top: 1px solid var(--borders);
+           border-radius: 12px 12px 0 0; box-shadow: 0 -4px 16px rgba(0,0,0,.6); }
+  #sheet.open { display: flex; }
+  #sheet-head { flex: none; padding: 12px 56px 6px 16px; border-bottom: 1px solid var(--grid); font-size: 14px; }
+  #sheet-head .sub { margin-bottom: 0; }
+  #sheet-body { overflow-y: auto; overscroll-behavior: contain; padding: 2px 16px 16px; font-size: 14px; }
+  #sheet-close { position: absolute; top: 6px; right: 8px; width: 36px; height: 36px; padding: 0;
+                 background: none; border: 1px solid var(--borders); border-radius: 50%; color: var(--title);
+                 font: inherit; font-size: 22px; line-height: 1; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="map" role="application" aria-label="Map of chokepoint vulnerability scores"></div>
+<aside id="panel">
+  <header>
+    <h1 id="title"></h1>
+    <button id="toggle" type="button" aria-controls="panel-body" aria-expanded="true">Hide</button>
+  </header>
+  <div class="body" id="panel-body">
+    <p class="subtitle" id="subtitle"></p>
+    <p class="meta" id="author"></p>
+    <p class="meta" id="asof"></p>
+    <h2>How to read</h2>
+    <ul class="read" id="read"></ul>
+    <h2>Three kinds of exposure</h2>
+    <div class="kinds" id="kinds"></div>
+    <h2 id="ranks-title">Ranking</h2>
+    <ol class="ranks" id="ranks"></ol>
+    <p class="note" id="caveat"></p>
+    <p class="note" id="datanote"></p>
+    <p class="note" id="credits"></p>
+    <p class="note"><a id="repo" target="_blank" rel="noopener">Code and method on GitHub</a></p>
+  </div>
+</aside>
+<section id="sheet" role="dialog" aria-label="Chokepoint details">
+  <button id="sheet-close" type="button" aria-label="Close details">×</button>
+  <div id="sheet-head" class="pp"></div>
+  <div id="sheet-body" class="pp"></div>
+</section>
+<script>
+const CONFIG = {
+ "title": "Rare earth trade at maritime chokepoints",
+ "subtitle": "Where 2025 REE shipping meets conflict and has no easy detour",
+ "author": "Garrett Mahoney · GEOG797 · University of Maryland",
+ "as_of": "2026-10-31",
+ "as_of_text": "Results as of 31 Oct 2026 · trade 2025 · events Oct 2024–Sep 2025",
+ "repo_url": "https://github.com/gmahoney-gis/ree-chokepoints",
+ "how_to_read": [
+  "Each circle is a maritime chokepoint; colour and size show its composite vulnerability score.",
+  "The ten most exposed carry their rank. Tap a circle, or a name in the list, for details.",
+  "Switch scenario to see the ranking if ships avoid the Red Sea (Suez and Bab el-Mandeb closed)."
+ ],
+ "exposure_kinds": [
+  [
+   "Volume",
+   "how much 2025 seaborne REE trade passes through"
+  ],
+  [
+   "Conflict",
+   "violent events and political tension within 250 km"
+  ],
+  [
+   "No alternative",
+   "how much longer routes get, or whether any sea route is left, if it closes"
+  ]
+ ],
+ "caveat": "GDELT places many events at a few cities (e.g. Gaza near Suez; one Crimea point near Kerch).",
+ "data_note": "Only derived counts are published; no event locations.",
+ "credits": [
+  "UN Comtrade",
+  "IMF PortWatch",
+  "ACLED",
+  "GDELT",
+  "IMO GISIS",
+  "Natural Earth",
+  "searoute / Eurostat MARNET"
+ ],
+ "ring_km": 250,
+ "basemap": {
+  "kind": "natural_earth",
+  "land_simplify_deg": 0.05,
+  "land_attribution": "Made with Natural Earth",
+  "tiles_url": "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+  "tiles_attribution": "Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors",
+  "max_zoom": {
+   "natural_earth": 6,
+   "tiles": 8
+  }
+ },
+ "max_zoom": 6,
+ "start_view": {
+  "lat": 20,
+  "lon": 60,
+  "zoom": 2,
+  "zoom_narrow": 1.5
+ },
+ "narrow_screen_px": 600,
+ "top_n_labels": 10,
+ "marker_radius_px": [
+  7,
+  9,
+  11,
+  13,
+  15
+ ],
+ "rank_min_radius_px": 11,
+ "hit_radius_px": 18,
+ "class_breaks": [
+  0.0,
+  0.2,
+  0.4,
+  0.6,
+  0.8,
+  1.0
+ ],
+ "style": {
+  "font": "DejaVu Sans",
+  "background": "#0b1d2e",
+  "land": "#243443",
+  "borders": "#5b7385",
+  "route": "#4fb3d9",
+  "highlight": "#ffb000",
+  "redundancy": "#ff6b9d",
+  "score_scale": [
+   "#4a3a17",
+   "#7a5c12",
+   "#ad800a",
+   "#dd9c03",
+   "#ffc94d"
+  ],
+  "text": "#f2f2f2",
+  "title": "#ffffff",
+  "note": "#9fb3c2",
+  "label_halo": "#0b1d2e",
+  "label_halo_width": 2.5,
+  "zero_marker": "#c8c8c8",
+  "grid": "#1d3448",
+  "year_scale": [
+   "#b3e6f7",
+   "#4fb3d9",
+   "#1f7aa3"
+  ]
+ },
+ "scenarios": [
+  {
+   "key": "baseline",
+   "label": "Baseline 2025",
+   "score": "score_composite",
+   "rank": "score_rank",
+   "trade": "score_trade",
+   "trade_value": "trade_value_base",
+   "trade_share": "trade_share_pct",
+   "closed": null
+  },
+  {
+   "key": "red_sea_diversion",
+   "label": "Red Sea diversion",
+   "score": "score_composite_redsea",
+   "rank": "score_rank_redsea",
+   "trade": "score_trade_redsea",
+   "trade_value": "trade_value_redsea",
+   "trade_share": "trade_share_redsea_pct",
+   "closed": "score_closed_redsea"
+  }
+ ],
+ "data": {
+  "chokepoints": "map/data/chokepoints.geojson?v=2026-10-31",
+  "land": "map/data/land.geojson?v=2026-10-31"
+ }
+};
+
+(function () {
+  "use strict";
+  const C = CONFIG, S = C.style;
+  const root = document.documentElement.style;
+  for (const k of ["text", "title", "note", "grid", "borders", "route", "highlight", "redundancy"]) {
+    root.setProperty("--" + k, S[k]);
+  }
+
+  // ---------- Formatting ----------
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+  const has = v => v !== null && v !== undefined && !Number.isNaN(v);
+  const int = v => Math.round(v).toLocaleString("en-US");
+  function usdBare(v) {             // under $1 M in $K, under $1 K in $
+    const a = Math.abs(v);
+    if (a >= 1e9) return (v / 1e9).toFixed(2) + " B";
+    if (a >= 1e6) return (v / 1e6).toFixed(a < 1e7 ? 2 : 1) + " M";
+    if (a >= 1e3) return (v / 1e3).toFixed(a < 1e5 ? 1 : 0) + " K";
+    return int(v);
+  }
+  const usd = v => "US$ " + usdBare(v);
+  const pct = (v, some = v > 0) => !some ? "0%" : v < 0.1 ? "&lt;0.1%" : v.toFixed(1) + "%";
+  const range = (lo, hi, f) => has(lo) && has(hi) ? ` (${f(lo)}–${f(hi)})` : "";
+
+  // ---------- Score classes (fixed breaks, as on the poster) ----------
+  const breaks = C.class_breaks, colours = S.score_scale;
+  function scoreClass(v) {
+    let i = 0;
+    while (i < colours.length - 1 && v >= breaks[i + 1]) i++;
+    return i;
+  }
+  function luminance(hex) {
+    const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map(x => x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  const contrast = (a, b) => (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  function numberColour(fill) {      // dark or light rank number, whichever reads better
+    const f = luminance(fill);
+    return contrast(f, luminance(S.background)) >= contrast(f, luminance(S.title)) ? S.background : S.title;
+  }
+
+  // ---------- Map ----------
+  const narrowQuery = window.matchMedia(`(max-width: ${C.narrow_screen_px}px)`);
+  let narrow = narrowQuery.matches;
+  document.body.classList.toggle("narrow", narrow);
+  const map = L.map("map", {zoomControl: false, worldCopyJump: true, minZoom: 1,
+                            maxZoom: C.max_zoom, zoomSnap: 0.5})
+    .setView([C.start_view.lat, C.start_view.lon], narrow ? C.start_view.zoom_narrow : C.start_view.zoom);
+  if (C.basemap.kind === "tiles") {
+    L.tileLayer(C.basemap.tiles_url, {attribution: C.basemap.tiles_attribution, maxZoom: C.max_zoom}).addTo(map);
+  } else {                           // Natural Earth land and borders in the house colours
+    map.attributionControl.addAttribution(C.basemap.land_attribution);
+    map.createPane("land").style.zIndex = 200;
+    fetch(C.data.land).then(r => r.json()).then(g => L.geoJSON(g, {
+      pane: "land", interactive: false, renderer: L.canvas({pane: "land"}),
+      style: {color: S.borders, weight: 0.5, fillColor: S.land, fillOpacity: 1}}).addTo(map));
+  }
+
+  // ---------- Panel ----------
+  const $ = id => document.getElementById(id);
+  $("title").textContent = C.title;
+  $("subtitle").textContent = C.subtitle;
+  $("author").textContent = C.author;
+  $("asof").textContent = C.as_of_text;
+  $("read").innerHTML = C.how_to_read.map(t => `<li>${esc(t)}</li>`).join("");
+  const kindColours = [S.route, S.highlight, S.redundancy];
+  $("kinds").innerHTML = C.exposure_kinds.map(([name, text], i) =>
+    `<div><span class="swatch" style="background:${kindColours[i]}"></span><b>${esc(name)}</b>: ${esc(text)}</div>`).join("");
+  $("caveat").textContent = C.caveat;
+  $("datanote").textContent = C.data_note;
+  $("credits").textContent = "Data: " + C.credits.join(", ") + ".";
+  $("repo").href = C.repo_url;
+  const panel = $("panel"), toggle = $("toggle");
+  function setPanel(open) {
+    panel.classList.toggle("collapsed", !open);
+    toggle.textContent = open ? "Hide" : "About & ranking";
+    toggle.setAttribute("aria-expanded", String(open));
+  }
+  toggle.addEventListener("click", () => setPanel(panel.classList.contains("collapsed")));
+  setPanel(!narrow);
+  L.DomEvent.disableClickPropagation(panel);
+  L.DomEvent.disableScrollPropagation(panel);
+
+  // ---------- Controls: scenario switch, zoom, legend ----------
+  let scenario = C.scenarios[0];
+  const scenarioBox = L.control({position: narrow ? "bottomleft" : "topright"});
+  scenarioBox.onAdd = function () {
+    const div = L.DomUtil.create("div", "box scenario");
+    div.innerHTML = C.scenarios.map((s, i) =>
+      `<button type="button" data-i="${i}" aria-pressed="${i === 0}">${esc(s.label)}</button>`).join("");
+    L.DomEvent.disableClickPropagation(div);
+    div.addEventListener("click", e => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      div.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+      scenario = C.scenarios[+b.dataset.i];
+      draw();
+    });
+    return div;
+  };
+  scenarioBox.addTo(map);
+  const zoom = L.control.zoom({position: "topright"});
+  if (!narrow) zoom.addTo(map);
+
+  const legend = L.control({position: "bottomright"});
+  legend.onAdd = () => L.DomUtil.create("div", "box legend");
+  legend.addTo(map);
+  function drawLegend() {
+    const rows = colours.map((c, i) => {
+      const d = 2 * C.marker_radius_px[i];
+      return `<div class="row"><i style="width:${d}px;height:${d}px;background:${c};border:1px solid ${S.zero_marker}"></i>` +
+             `${breaks[i].toFixed(1)}–${breaks[i + 1].toFixed(1)}</div>`;
+    }).reverse();
+    if (scenario.closed) {
+      const d = 2 * C.marker_radius_px[1];
+      rows.push(`<div class="row"><i style="width:${d}px;height:${d}px;border:2px solid ${S.highlight}"></i>closed</div>`);
+    }
+    legend.getContainer().innerHTML = `<div class="t">Composite score</div>` + rows.join("");
+  }
+
+  // ---------- Chokepoints ----------
+  let features = [];
+  const layer = L.layerGroup().addTo(map);
+  const markers = new Map();
+
+  function bar(label, value, colour) {
+    return `<div class="bar"><span>${esc(label)}</span><span class="track"><span class="fill" ` +
+           `style="display:block;width:${(100 * value).toFixed(1)}%;background:${colour}"></span></span>` +
+           `<span class="v">${value.toFixed(2)}</span></div>`;
+  }
+
+  // Details as [heading, body]: the sheet keeps the heading fixed above the scrolling body.
+  function details(p) {
+    const sc = scenario, n = features.length;
+    const closed = sc.closed && p[sc.closed];
+    const others = C.scenarios.filter(s => s !== sc);
+    let head = `<h3>${closed ? "" : "#" + p[sc.rank] + " · "}${esc(p.name)}</h3>`;
+    head += closed
+      ? `<div class="sub"><span class="closed">Closed in this scenario</span> · ranked ${p[sc.rank]} of ${n} with no trade</div>`
+      : `<div class="sub">Composite score ${p[sc.score].toFixed(3)} · rank ${p[sc.rank]} of ${n} (${esc(sc.label)})</div>`;
+    const names = C.exposure_kinds.map(k => k[0]);
+    let h = `<div class="bars">${bar(names[0], p[sc.trade], S.route)}${bar(names[1], p.score_conflict, S.highlight)}` +
+         `${bar(names[2], p.score_redund, S.redundancy)}</div><dl>`;
+
+    h += `<dt>Seaborne REE trade through it, 2025</dt><dd>${usd(p[sc.trade_value])} (${pct(p[sc.trade_share], p[sc.trade_value] > 0)} of all)</dd>`;
+    h += `<dt>Within ${C.ring_km} km</dt><dd>${int(p.viol_n_250)} violent events · ${int(p.tens_n_250)} tension events</dd>`;
+
+    let detour;
+    if (p.score_redund_filled) detour = "No trade affected";
+    else {
+      const parts = [];
+      if (has(p.redund_penalty_routed_pct) && p.redund_noalt_pct < 100)
+        parts.push(`routes ${p.redund_penalty_routed_pct.toFixed(1)}% longer on average`);
+      if (p.redund_noalt_pct > 0) parts.push(`no sea alternative for ${pct(p.redund_noalt_pct)} of affected trade`);
+      detour = parts.join("; ");
+      detour = detour.charAt(0).toUpperCase() + detour.slice(1);
+    }
+    h += `<dt>If it closes</dt><dd>${detour}</dd>`;
+    if (has(p.impact_days)) {
+      const days = v => v.toFixed(1);
+      h += `<dt>Extra days at sea</dt><dd>${days(p.impact_days)}${range(p.impact_days_low, p.impact_days_high, days)}</dd>`;
+      h += `<dt>Extra cost per voyage</dt><dd>${usd(p.impact_voyage_cost)}${range(p.impact_voyage_cost_low, p.impact_voyage_cost_high, usdBare)}</dd>`;
+      h += `<dt>REE cargo holding cost, 2025 total</dt><dd>${usd(p.impact_holding_cost)}${range(p.impact_holding_cost_low, p.impact_holding_cost_high, usdBare)}</dd>`;
+    } else {
+      h += `<dt>Reroute time and cost</dt><dd>None: ${esc(p.impact_note || "not costed")}</dd>`;
+    }
+    for (const o of others) {
+      const oc = o.closed && p[o.closed];
+      h += `<dt>${esc(o.label)}</dt><dd>${oc ? "closed; " : ""}rank ${p[o.rank]} of ${n}</dd>`;
+    }
+    h += `<dt>Rank range in sensitivity tests</dt><dd>${p.sens_rank_min}–${p.sens_rank_max} (one change at a time), ` +
+         `${p.sens_grid_rank_min}–${p.sens_grid_rank_max} (weights)</dd>`;
+    return [head, h + "</dl>"];
+  }
+
+  function icon(p) {
+    const sc = scenario, closed = sc.closed && p[sc.closed];
+    const k = scoreClass(p[sc.score]), fill = colours[k];
+    const numbered = !closed && p[sc.rank] <= C.top_n_labels;
+    const r = numbered ? Math.max(C.marker_radius_px[k], C.rank_min_radius_px) : C.marker_radius_px[k];
+    const box = 2 * Math.max(r, C.hit_radius_px);
+    const style = closed
+      ? `width:${2 * r}px;height:${2 * r}px;border:2px solid ${S.highlight};background:transparent`
+      : `width:${2 * r}px;height:${2 * r}px;background:${fill};border:1px solid ${S.zero_marker};color:${numberColour(fill)}`;
+    return L.divIcon({className: "cp", iconSize: [box, box], popupAnchor: [0, -r],
+                      html: `<span style="${style}">${numbered ? p[sc.rank] : ""}</span>`});
+  }
+
+  // ---------- Details: a pop-up on wide screens, a bottom sheet on narrow ones ----------
+  const sheet = $("sheet"), sheetHead = $("sheet-head"), sheetBody = $("sheet-body");
+  let openId = null;                 // chokepoint whose details are showing
+
+  function closeDetails() {
+    openId = null;
+    sheet.classList.remove("open");
+    map.closePopup();
+  }
+
+  // The parts of the map not covered by the panel and controls (container pixels).
+  function freeArea() {
+    const box = map.getContainer().getBoundingClientRect();
+    const r = el => el.getBoundingClientRect();
+    const panelBox = r(panel);
+    let top = 10, left = 10, bottom = 10, right = 10;
+    if (narrow || panel.classList.contains("collapsed")) top = Math.max(top, panelBox.bottom - box.top + 10);
+    else left = panelBox.right - box.left + 10;
+    const corner = map.getContainer().querySelector(".leaflet-top.leaflet-right");
+    for (const el of corner.children) top = Math.max(top, r(el).bottom - box.top + 10);
+    if (narrow && sheet.classList.contains("open")) bottom = box.bottom - r(sheet).top + 10;
+    return {top, left, bottom, right, width: box.width, height: box.height};
+  }
+
+  function showDetails(id) {
+    const m = markers.get(id), p = m.feature;
+    if (narrow) {
+      map.closePopup();
+      [sheetHead.innerHTML, sheetBody.innerHTML] = details(p);
+      sheet.classList.add("open");
+      sheetBody.scrollTop = 0;
+      // Pan so the tapped circle sits in the middle of the map left visible above the sheet.
+      const a = freeArea(), pt = map.latLngToContainerPoint(m.getLatLng());
+      map.panBy([pt.x - a.width / 2, pt.y - (a.top + (a.height - a.bottom)) / 2]);
+    } else {
+      sheet.classList.remove("open");
+      const a = freeArea(), anchorY = m.options.icon.options.popupAnchor[1];   // the circle's top edge
+      L.popup({maxWidth: 320, maxHeight: Math.max(200, a.height - a.top - a.bottom - 60), offset: [0, 7 + anchorY],
+               autoPanPaddingTopLeft: [a.left, a.top], autoPanPaddingBottomRight: [a.right, a.bottom]})
+        .setLatLng(m.getLatLng()).setContent(`<div class="pp">${details(p).join("")}</div>`).openOn(map);
+    }
+    openId = id;                     // after openOn, whose closing of the old pop-up clears it
+  }
+
+  $("sheet-close").addEventListener("click", closeDetails);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetails(); });
+  map.on("click", closeDetails);
+  map.on("popupclose", () => { if (!narrow) openId = null; });
+  L.DomEvent.disableClickPropagation(sheet);
+  L.DomEvent.disableScrollPropagation(sheet);
+
+  function draw() {
+    layer.clearLayers();
+    markers.clear();
+    for (const f of features) {
+      const p = f.properties, [lon, lat] = f.geometry.coordinates;
+      const m = L.marker([lat, lon], {icon: icon(p), title: p.name, alt: p.name, riseOnHover: true,
+                                      zIndexOffset: 1000 - 10 * p[scenario.rank]})
+        .on("click", () => showDetails(p.chokepoint_id));
+      m.feature = p;
+      m.addTo(layer);
+      markers.set(p.chokepoint_id, m);
+    }
+    drawLegend();
+    drawRanks();
+    if (openId) showDetails(openId);  // the scenario changed: refresh the open details
+  }
+
+  function drawRanks() {
+    const sc = scenario;
+    const rows = features.map(f => f.properties).sort((a, b) => a[sc.rank] - b[sc.rank]);
+    $("ranks-title").textContent = "Ranking · " + sc.label;
+    $("ranks").innerHTML = rows.map(p => {
+      const closed = sc.closed && p[sc.closed];
+      return `<li><button type="button" data-id="${esc(p.chokepoint_id)}"><span class="r">${p[sc.rank]}</span>` +
+             `<span class="n">${esc(p.name)}</span>` +
+             (closed ? `<span class="closed">closed</span>` : `<span class="s">${p[sc.score].toFixed(3)}</span>`) +
+             `</button></li>`;
+    }).join("");
+  }
+
+  $("ranks").addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    const m = markers.get(b.dataset.id);
+    if (narrow) setPanel(false);
+    map.setView(m.getLatLng(), Math.max(map.getZoom(), 4), {animate: false});
+    showDetails(b.dataset.id);
+  });
+
+  // ---------- Follow width changes while the page is open ----------
+  function applyLayout() {
+    const now = narrowQuery.matches;
+    if (now === narrow) return;
+    narrow = now;
+    map.invalidateSize({pan: false});  // this event can come before Leaflet sees the new size
+    document.body.classList.toggle("narrow", narrow);
+    scenarioBox.setPosition(narrow ? "bottomleft" : "topright");
+    if (narrow) zoom.remove(); else zoom.addTo(map);   // zoom after the scenario switch, as at load
+    setPanel(!narrow);
+    const id = openId;
+    closeDetails();
+    if (id) showDetails(id);
+  }
+  if (narrowQuery.addEventListener) narrowQuery.addEventListener("change", applyLayout);
+  else narrowQuery.addListener(applyLayout);        // older Safari
+
+  fetch(C.data.chokepoints)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(gj => { features = gj.features; draw(); })
+    .catch(err => { $("ranks").innerHTML = `<li class="note">Could not load the chokepoint data (${esc(err.message)}).</li>`; });
+})();
+</script>
+</body>
+</html>

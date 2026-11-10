@@ -29,6 +29,8 @@ Groups:
     I prefixes     (all) chokepoint_scores columns follow the prefix rule
     K values       (all) shares, route and detour lengths, null rules (Decision 10),
                    S09 score_ columns (Decision 16), S10 sens_ columns (task 5.7)
+    L web          (all) web_chokepoints matches chokepoint_scores and the chokepoint
+                   points (task 6.9, Decision 17)
 
 Licensed data: events are reported as counts only. IDs are listed (at most
 check_db.max_ids_listed) only for project-made keys: flows, sub-flows, ports,
@@ -54,7 +56,7 @@ GEOMETRY_TYPES = {
     "ports": "Point", "country_port_shares": None, "events": "Point",
     "gdelt_country_context": None, "subflows": None, "routes": "MultiLineString",
     "route_crossings": None, "detours": None, "detour_routes": "MultiLineString",
-    "reroute_costs": None, "chokepoint_scores": None,
+    "reroute_costs": None, "chokepoint_scores": None, "web_chokepoints": "Point",
 }
 
 # Fields that make each row unique.
@@ -68,6 +70,7 @@ UNIQUE_KEYS = {
     "route_crossings": ["flow_id", "scenario", "chokepoint_id"],
     "detours": ["subflow_id", "chokepoint_id"], "detour_routes": ["route_id"],
     "reroute_costs": ["subflow_id", "chokepoint_id"], "chokepoint_scores": ["chokepoint_id"],
+    "web_chokepoints": ["chokepoint_id"],
 }
 
 # Table 3 key fields as stored: they must exist and be filled in every row.
@@ -93,6 +96,8 @@ REQUIRED_FIELDS = {
                       "new_length_nm"],
     "reroute_costs": ["subflow_id", "flow_id", "chokepoint_id", "no_route", "port_in_zone"],
     "chokepoint_scores": ["chokepoint_id", "name"],
+    "web_chokepoints": ["chokepoint_id", "name", "short_name", "score_rank", "score_composite",
+                        "trade_share_pct"],
 }
 
 # Text that means "missing" written as a value (for example by astype(str) on a null).
@@ -774,6 +779,51 @@ def check_sensitivity(layers, settings, report):
 
 
 # ---------------------------------------------------------------------
+# L. Web layers (stage all)
+# ---------------------------------------------------------------------
+
+def check_web(layers, settings, report):
+    """web_chokepoints (S11c, task 6.9): one row per scored chokepoint at its point, every
+    column it shares with chokepoint_scores unchanged, and trade shares within 0-100%."""
+    if "web_chokepoints" not in layers or "chokepoint_scores" not in layers:
+        return
+    web = layers["web_chokepoints"]
+    scores = layers["chokepoint_scores"].set_index("chokepoint_id")
+    ids = set(web["chokepoint_id"])
+    report.test("L web", "web_chokepoints has one row per chokepoint_scores row",
+                ids == set(scores.index) and len(web) == len(scores),
+                f"{len(web)} rows, {len(scores)} scored", ids ^ set(scores.index))
+
+    shared = [c for c in web.columns if c in scores.columns and c not in ("chokepoint_id", "geometry")]
+    left = web.set_index("chokepoint_id")[shared].sort_index()
+    right = scores.loc[left.index, shared]
+    changed = []
+    for col in shared:
+        a, b = left[col], right[col]
+        if pd.api.types.is_numeric_dtype(a) and pd.api.types.is_numeric_dtype(b):
+            same = np.isclose(a.astype(float), b.astype(float), rtol=0, atol=1e-9, equal_nan=True)
+        else:
+            same = (a == b) | (a.isna() & b.isna())
+        if not np.all(same):
+            changed.append(col)
+    report.test("L web", f"web_chokepoints columns equal to chokepoint_scores ({len(shared)} columns)",
+                not changed, f"changed: {', '.join(changed)}" if changed else "")
+
+    if "chokepoints" in layers:
+        points = layers["chokepoints"].set_index("chokepoint_id").geometry
+        here = web.set_index("chokepoint_id").geometry
+        moved = [i for i in here.index if i not in points.index or not here[i].equals_exact(points[i], 1e-9)]
+        report.test("L web", "web_chokepoints points at the chokepoints layer positions", not moved,
+                    f"{len(moved)} moved", moved)
+
+    share_cols = [c for c in web.columns if c.startswith("trade_share")]
+    shares = web[share_cols].astype(float)
+    bad = shares.isna().any(axis=1) | (shares < 0).any(axis=1) | (shares > 100 + 1e-9).any(axis=1)
+    report.test("L web", f"web_chokepoints trade shares filled and within 0-100% ({', '.join(share_cols)})",
+                not bad.any(), f"{int(bad.sum())} chokepoints", web.loc[bad, "chokepoint_id"])
+
+
+# ---------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------
 
@@ -820,6 +870,7 @@ def main():
         check_values(layers, settings, report)
         check_scores(layers, settings, report)
         check_sensitivity(layers, settings, report)
+        check_web(layers, settings, report)
 
     c = report.counts
     log.info("Summary | stage %s | %d checks | PASS %d | WARN %d | FAIL %d | INFO %d",

@@ -1,9 +1,9 @@
-2026-11-08 20:36:03 INFO    Run of run_all started 2026-11-08T20:36:03
-2026-11-08 20:36:03 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-11-08 20:36:04 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-11-08 20:36:04 INFO    Requested: s11b
-2026-11-08 20:36:04 INFO    Will run, in order: s11b
-2026-11-08 20:36:04 INFO    ---- s11b_poster_figures.py started
-2026-11-08 20:37:32 INFO    ---- s11b_poster_figures.py finished OK in 88.9 s
-2026-11-08 20:37:32 INFO    Summary | passed: s11b_poster_figures.py
-2026-11-08 20:37:32 INFO    Summary | all 1 script(s) finished OK
+2026-11-09 21:09:34 INFO    Run of run_all started 2026-11-09T21:09:34
+2026-11-09 21:09:34 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-11-09 21:09:34 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-11-09 21:09:34 INFO    Requested: s11c
+2026-11-09 21:09:34 INFO    Will run, in order: s11c
+2026-11-09 21:09:34 INFO    ---- s11c_web_map.py started
+2026-11-09 21:09:42 INFO    ---- s11c_web_map.py finished OK in 7.9 s
+2026-11-09 21:09:42 INFO    Summary | passed: s11c_web_map.py
+2026-11-09 21:09:42 INFO    Summary | all 1 script(s) finished OK

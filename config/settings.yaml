@@ -23,7 +23,9 @@ paths:
   figures_print: outputs/figures/print   # print and poster copies (outputs.print_dpi)
   figures_poster: outputs/figures/poster   # poster versions drawn at poster size (S11b, outputs.poster)
   qgis_project: qgis/project.qgz
-  web_export: docs                   # qgis2web export folder published by GitHub Pages
+  web_export: docs                   # folder GitHub Pages publishes; S11c writes index.html here (Decision 17)
+  web_data: docs/map/data            # GeoJSON layers the web map reads (S11c)
+  web_template: scripts/web/index_template.html   # page template S11c fills from outputs.web
   # Raw file names from data/raw/MANIFEST.csv (task 1.1). TODO = not downloaded yet.
   raw_files:
     comtrade_dir: data/raw/COMTRADE                 # manual Comtrade Plus exports (all superseded by S01)
@@ -690,6 +692,53 @@ outputs:
         chokepoint11: [-7, 2, right]
         chokepoint17: [-2, 13, center]
 
+  # Interactive web map (S11c, tasks 6.9 and 6.12; Decision 17). Colours come from outputs.style and
+  # the score classes from score_class_breaks, as on the poster; short names from outputs.poster.short_names.
+  web:
+    as_of: "2026-10-31"              # date the results last changed (S09/S10); shown on the page
+    as_of_note: "trade 2025 · events Oct 2024–Sep 2025"   # shown after the date
+    title: "Rare earth trade at maritime chokepoints"
+    subtitle: "Where 2025 REE shipping meets conflict and has no easy detour"
+    author: "Garrett Mahoney · GEOG797 · University of Maryland"
+    repo_url: "https://github.com/gmahoney-gis/ree-chokepoints"
+    how_to_read:
+      - "Each circle is a maritime chokepoint; colour and size show its composite vulnerability score."
+      - "The ten most exposed carry their rank. Tap a circle, or a name in the list, for details."
+      - "Switch scenario to see the ranking if ships avoid the Red Sea (Suez and Bab el-Mandeb closed)."
+    exposure_kinds:                  # the three score components, in the order trade, conflict, redundancy
+      - ["Volume", "how much 2025 seaborne REE trade passes through"]
+      - ["Conflict", "violent events and political tension within {ring_km} km"]   # {ring_km} = conflict.ring_main_km
+      - ["No alternative", "how much longer routes get, or whether any sea route is left, if it closes"]
+    caveat: "GDELT places many events at a few cities (e.g. Gaza near Suez; one Crimea point near Kerch)."
+    data_note: "Only derived counts are published; no event locations."
+    credits: ["UN Comtrade", "IMF PortWatch", "ACLED", "GDELT", "IMO GISIS", "Natural Earth",
+              "searoute / Eurostat MARNET"]
+    scenario_labels: {baseline: "Baseline 2025", red_sea_diversion: "Red Sea diversion"}
+    leaflet:                         # loaded from the CDN with integrity hashes (checked 8 Nov 2026)
+      base: "https://unpkg.com/leaflet@1.9.4/dist/"
+      js_sri: "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      css_sri: "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    # CARTO Dark Matter (the plan) now answers every keyless request with an "API key required"
+    # tile (checked 8 Nov 2026), so the base map is one of these two kinds:
+    basemap:
+      kind: natural_earth            # natural_earth: land and borders drawn from paths.raw_files.natural_earth_countries
+                                     # in the house colours (no key, no tile service); tiles: the tile service below
+      land_simplify_deg: 0.05        # natural_earth: simplification (about 5 km)
+      land_attribution: "Made with Natural Earth"
+      tiles_url: "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+      tiles_attribution: "Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"
+      max_zoom: {natural_earth: 6, tiles: 8}
+    start_view: {lat: 20, lon: 60, zoom: 2, zoom_narrow: 1.5}   # zoom_narrow below narrow_screen_px
+    narrow_screen_px: 600            # below this width the panel starts collapsed
+    top_n_labels: 10                 # circles that carry their rank number
+    marker_radius_px: [7, 9, 11, 13, 15]   # one per score class, low to high
+    rank_min_radius_px: 11           # a numbered circle is at least this big (two digits)
+    hit_radius_px: 18                # tap target round every circle
+    coord_decimals: 3                # GeoJSON coordinates (about 100 m)
+    value_decimals: 4                # GeoJSON numbers (the database keeps full precision)
+    max_page_mb: 3                   # S11c warns if the published files pass this (CDN files not counted)
+    # Stage 2 (routes): route_width_px, route_opacity, simplify_deg, zone_simplify_deg
+
 # ---------------------------------------------------------------------
 # Integrity check of the project database (check_db.py, task 3.2)
 # ---------------------------------------------------------------------
@@ -701,8 +750,7 @@ check_db:
   # Layers not built yet. A missing layer listed here is a WARN (expected gap) with its
   # reason; any other missing layer is a FAIL. Remove an entry once its script writes it.
   expected_missing_layers:
-    web_chokepoints: "written by S11 (task 6.9)"
-    web_routes: "written by S11 (task 6.9)"
+    web_routes: "written by S11c (task 6.9, web map Stage 2)"
   # chokepoint_scores columns (besides chokepoint_id and name) must start with one of
   # these prefixes; the script named owns the prefix (CLAUDE.md prefix rule).
   score_prefixes:

@@ -37,7 +37,7 @@ logs/                   one log per script run
 outputs/tables/         derived tables (safe to publish)
 outputs/figures/        draft figures
 qgis/                   project.qgz
-docs/                   methodology.md, tasks.md, and the qgis2web export for GitHub Pages
+docs/                   methodology.md, tasks.md, and the web map for GitHub Pages (S11c, Decision 17)
 ```
 
 ## Scripts
@@ -58,8 +58,9 @@ docs/                   methodology.md, tasks.md, and the qgis2web export for Gi
 | `s08b_reroute_cost.py` | Extra days at sea and extra cost of each chokepoint's detour (impact layer) | 4.15–4.17 |
 | `s09_composite.py` | Trade–conflict correlation, Equations 5–7, ranks, scenario comparison | 5.1–5.4 |
 | `s10_sensitivity.py` | One-at-a-time alternatives and the weight grid | 5.5–5.7 |
-| `s11_figures.py` | Draft maps, charts, results table, web layers | 6.1–6.9 |
+| `s11_figures.py` | Draft maps, charts, results table | 6.1–6.8 |
 | `s11b_poster_figures.py` | Poster versions of five figures, drawn at poster size | 6.14 |
+| `s11c_web_map.py` | Web layers and the Leaflet web map page in docs/ (Decision 17) | 6.9, 6.12 |
 
 Run with `python scripts/run_all.py` (everything) or `python scripts/run_all.py s02` (one script).
 
@@ -291,6 +292,30 @@ These were decided after the proposal text was written. Follow them where they d
    rescaled on its own; Suez and Bab el-Mandeb are ranked with trade 0 and flagged
    `score_closed_redsea`. (g) Kerch ranks 8th on $255 of trade (all of it with no sea route or
    from a port in the zone); reported as a finding, no rule added.
+
+17. **Web map from a script with Leaflet (replaces qgis2web; tasks 6.9, 6.12, 6.13).** S11c
+   (`s11c_web_map.py`) writes the web layers `web_chokepoints` and `web_routes` to the project
+   database and exports them as GeoJSON to `paths.web_data` (`docs/map/data/`), then fills a static
+   Leaflet 1.9.4 page `docs/index.html` (from a CDN with integrity hashes)
+   from the template `scripts/web/index_template.html`, with every parameter and every line of panel
+   text in `outputs.web`. GitHub Pages publishes `docs/` (`docs/.nojekyll`). Task 6.10 (QGIS project)
+   is not needed for the web map, and qgis2web is not used. Base map: CARTO Dark Matter now needs
+   an API key (checked 8 Nov 2026), so `outputs.web.basemap.kind` chooses between `natural_earth`
+   (the paper maps' Natural Earth countries, simplified, written to `land.geojson` and drawn in the
+   house colours; no key or tile service) and `tiles` (Esri World Dark Gray Base). (a) `web_chokepoints`: the 27 scored
+   chokepoints with the popup columns of `chokepoint_scores` unchanged, plus `short_name`,
+   `trade_share_pct` and `trade_share_redsea_pct` (share of all maritime REE sub-flow value; shares
+   add up to more than 100% because routes cross several chokepoints) and `impact_note`. Circles are
+   coloured and sized by the fixed score classes of the poster; the top `outputs.web.top_n_labels`
+   carry their rank number, with names in the panel's ranked list (no permanent name labels). A
+   scenario switch recolours the chokepoints by `score_composite_redsea` and its ranks, with Suez and
+   Bab el-Mandeb drawn hollow and marked "closed in this scenario". (b) `web_routes`: routes split into
+   sea-lane segments, value summed per segment, segments with equal value chained, one set per
+   scenario, simplified and with rounded coordinates (Stage 2). (c) Zones (23 circles) and gate lines
+   (4) are an optional layer, off by default (Stage 2). (d) No event points of any kind are published,
+   only derived counts. The density raster in task 6.9 is not built. (e) S11c changes no paper or
+   poster output (checked with file hashes). Build in two stages: Stage 1 the chokepoints-only map,
+   Stage 2 routes, zones and gates.
 
 ## How to work in this repository
 
