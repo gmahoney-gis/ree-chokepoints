@@ -172,6 +172,7 @@ def page_config(settings, data_files):
         "repo_url": web["repo_url"],
         "how_to_read": web["how_to_read"],
         "exposure_kinds": [[name, text.format(ring_km=ring)] for name, text in web["exposure_kinds"]],
+        "red_sea": web["red_sea"],
         "caveat": web["caveat"],
         "data_note": web["data_note"],
         "credits": web["credits"],

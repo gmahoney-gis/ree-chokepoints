@@ -697,22 +697,33 @@ outputs:
   web:
     as_of: "2026-10-31"              # date the results last changed (S09/S10); shown on the page
     as_of_note: "trade 2025 · events Oct 2024–Sep 2025"   # shown after the date
-    title: "Rare earth trade at maritime chokepoints"
-    subtitle: "Where 2025 REE shipping meets conflict and has no easy detour"
+    title: "Rare Earth Trade Vulnerability at Maritime Chokepoints"
+    subtitle: "Where 2025 shipping of rare earth elements (REEs) meets conflict and has no easy detour"
     author: "Garrett Mahoney · GEOG797 · University of Maryland"
     repo_url: "https://github.com/gmahoney-gis/ree-chokepoints"
     how_to_read:
       - "Each circle is a maritime chokepoint; colour and size show its composite vulnerability score."
-      - "The ten most exposed carry their rank. Tap a circle, or a name in the list, for details."
+      - "Every circle carries its rank (1 = most exposed). Tap a circle, or a name in the list, for details. Zoom in to separate overlapping circles."
       - "Switch scenario to see the ranking if ships avoid the Red Sea (Suez and Bab el-Mandeb closed)."
     exposure_kinds:                  # the three score components, in the order trade, conflict, redundancy
-      - ["Volume", "how much 2025 seaborne REE trade passes through"]
+      - ["Volume", "how much 2025 seaborne rare earth trade passes through"]
       - ["Conflict", "violent events and political tension within {ring_km} km"]   # {ring_km} = conflict.ring_main_km
       - ["No alternative", "how much longer routes get, or whether any sea route is left, if it closes"]
+    # "Why the Red Sea?" paragraph. Figures copied from: PortWatch container transits in
+    # outputs/tables/red_sea_context.csv (Suez 6,977 in 2023, 3,351 in 2025; Cape 2,249 -> 7,387);
+    # the S08b log, task 4.17 Cape-only (8.98 days, US$ 801,750 one way); reroute_impact.suez_check
+    # (10 days, US$ 850,000 one way); outputs/tables/scenarios.csv (Suez 2 -> 13); impact_days of
+    # Suez in chokepoint_scores (7.1). Update them by hand if those outputs change.
+    red_sea:
+      title: "Why the Red Sea?"
+      text:
+        - "Since late 2023, attacks on merchant ships by Yemen's Houthi movement have led many container ships to avoid the Red Sea and sail around Africa's Cape of Good Hope instead of using the Suez Canal. Container-ship transits of Suez fell by half, from 6,977 in 2023 to 3,351 in 2025, while those rounding the Cape more than tripled (IMF PortWatch). It is the one large real-world diversion away from a chokepoint in the study period."
+        - "Going around the Cape adds about 9 days at sea and US$ 0.8 million per one-way container-ship voyage in this study (ITF/OECD estimate: 10 days, US$ 0.85 million). The Suez pop-up shows a different figure (7.1 days) because there every other passage stays open and some detours go via Panama."
+        - "The Red Sea diversion button shows the ranking if all rare earth trade took that route, with Suez and Bab el-Mandeb closed: only trade changes, and Suez falls from 2nd to 13th."
     caveat: "GDELT places many events at a few cities (e.g. Gaza near Suez; one Crimea point near Kerch)."
     data_note: "Only derived counts are published; no event locations."
     credits: ["UN Comtrade", "IMF PortWatch", "ACLED", "GDELT", "IMO GISIS", "Natural Earth",
-              "searoute / Eurostat MARNET"]
+              "searoute / Eurostat MARNET", "ITF/OECD (Merk 2024)"]
     scenario_labels: {baseline: "Baseline 2025", red_sea_diversion: "Red Sea diversion"}
     leaflet:                         # loaded from the CDN with integrity hashes (checked 8 Nov 2026)
       base: "https://unpkg.com/leaflet@1.9.4/dist/"
@@ -730,8 +741,8 @@ outputs:
       max_zoom: {natural_earth: 6, tiles: 8}
     start_view: {lat: 20, lon: 60, zoom: 2, zoom_narrow: 1.5}   # zoom_narrow below narrow_screen_px
     narrow_screen_px: 600            # below this width the panel starts collapsed
-    top_n_labels: 10                 # circles that carry their rank number
-    marker_radius_px: [7, 9, 11, 13, 15]   # one per score class, low to high
+    top_n_labels: 27                 # circles that carry their rank number (Stage 1b: all 27)
+    marker_radius_px: [11, 12, 13, 15, 17] # one per score class, low to high; the smallest fits two digits
     rank_min_radius_px: 11           # a numbered circle is at least this big (two digits)
     hit_radius_px: 18                # tap target round every circle
     coord_decimals: 3                # GeoJSON coordinates (about 100 m)

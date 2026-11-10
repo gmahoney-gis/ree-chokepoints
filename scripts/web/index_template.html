@@ -57,7 +57,8 @@
   .scenario button[aria-pressed="true"] { background: var(--highlight); border-color: var(--highlight); color: var(--bg); font-weight: bold; }
   .legend { font-size: 12px; }
   .legend .t { color: var(--note); margin-bottom: 3px; }
-  .legend .row { display: flex; align-items: center; gap: 6px; height: 18px; }
+  .legend .row { display: flex; align-items: center; gap: 6px; margin: 1px 0; }
+  .legend .row .c { display: flex; justify-content: center; flex: none; }
   .legend i { display: inline-block; border-radius: 50%; flex: none; box-sizing: border-box; }
   .leaflet-control-attribution { background: var(--bg) !important; background: color-mix(in srgb, var(--bg) 80%, transparent) !important; color: var(--note); }
   .leaflet-control-attribution a { color: var(--note); }
@@ -87,10 +88,15 @@
   /* Narrow screens: the script sets body.narrow below outputs.web.narrow_screen_px and updates it on resize. */
   body.narrow #panel { left: 8px; right: 8px; top: 8px; width: auto; max-height: 75%; }
   body.narrow #panel h1 { font-size: 15px; }
+  @media (max-width: 380px) {        /* the smallest phones: keep the title to two lines */
+    body.narrow #panel header { padding: 10px 10px 8px 12px; }
+    body.narrow #panel h1 { font-size: 14px; }
+    body.narrow #toggle { font-size: 12px; padding: 4px 7px; }
+  }
   body.narrow .scenario { display: flex; gap: 4px; }
   body.narrow .scenario button { width: auto; margin: 0; padding: 6px 8px; font-size: 12px; }
   body.narrow .legend { font-size: 11px; }
-  body.narrow .legend .row { height: 16px; }
+  .redsea p { margin: 0 0 6px; }
 
   /* Bottom sheet for chokepoint details on narrow screens, above every other control. */
   #sheet { position: fixed; z-index: 2000; left: 0; right: 0; bottom: 0; display: none; flex-direction: column;
@@ -120,6 +126,8 @@
     <ul class="read" id="read"></ul>
     <h2>Three kinds of exposure</h2>
     <div class="kinds" id="kinds"></div>
+    <h2 id="redsea-title"></h2>
+    <div class="redsea" id="redsea"></div>
     <h2 id="ranks-title">Ranking</h2>
     <ol class="ranks" id="ranks"></ol>
     <p class="note" id="caveat"></p>
@@ -204,6 +212,8 @@ const CONFIG = {{CONFIG}};
   const kindColours = [S.route, S.highlight, S.redundancy];
   $("kinds").innerHTML = C.exposure_kinds.map(([name, text], i) =>
     `<div><span class="swatch" style="background:${kindColours[i]}"></span><b>${esc(name)}</b>: ${esc(text)}</div>`).join("");
+  $("redsea-title").textContent = C.red_sea.title;
+  $("redsea").innerHTML = C.red_sea.text.map(t => `<p>${esc(t)}</p>`).join("");
   $("caveat").textContent = C.caveat;
   $("datanote").textContent = C.data_note;
   $("credits").textContent = "Data: " + C.credits.join(", ") + ".";
@@ -244,14 +254,17 @@ const CONFIG = {{CONFIG}};
   legend.onAdd = () => L.DomUtil.create("div", "box legend");
   legend.addTo(map);
   function drawLegend() {
+    // Circles at their map size, centred in a column as wide as the largest.
+    const col = 2 * Math.max(...C.marker_radius_px);
+    const cell = (style, d) => `<span class="c" style="width:${col}px"><i style="width:${d}px;height:${d}px;${style}"></i></span>`;
     const rows = colours.map((c, i) => {
       const d = 2 * C.marker_radius_px[i];
-      return `<div class="row"><i style="width:${d}px;height:${d}px;background:${c};border:1px solid ${S.zero_marker}"></i>` +
+      return `<div class="row">${cell(`background:${c};border:1px solid ${S.zero_marker}`, d)}` +
              `${breaks[i].toFixed(1)}–${breaks[i + 1].toFixed(1)}</div>`;
     }).reverse();
     if (scenario.closed) {
       const d = 2 * C.marker_radius_px[1];
-      rows.push(`<div class="row"><i style="width:${d}px;height:${d}px;border:2px solid ${S.highlight}"></i>closed</div>`);
+      rows.push(`<div class="row">${cell(`border:2px solid ${S.highlight}`, d)}closed</div>`);
     }
     legend.getContainer().innerHTML = `<div class="t">Composite score</div>` + rows.join("");
   }
@@ -280,7 +293,7 @@ const CONFIG = {{CONFIG}};
     let h = `<div class="bars">${bar(names[0], p[sc.trade], S.route)}${bar(names[1], p.score_conflict, S.highlight)}` +
          `${bar(names[2], p.score_redund, S.redundancy)}</div><dl>`;
 
-    h += `<dt>Seaborne REE trade through it, 2025</dt><dd>${usd(p[sc.trade_value])} (${pct(p[sc.trade_share], p[sc.trade_value] > 0)} of all)</dd>`;
+    h += `<dt>Seaborne rare earth trade through it, 2025</dt><dd>${usd(p[sc.trade_value])} (${pct(p[sc.trade_share], p[sc.trade_value] > 0)} of all)</dd>`;
     h += `<dt>Within ${C.ring_km} km</dt><dd>${int(p.viol_n_250)} violent events · ${int(p.tens_n_250)} tension events</dd>`;
 
     let detour;
@@ -298,7 +311,7 @@ const CONFIG = {{CONFIG}};
       const days = v => v.toFixed(1);
       h += `<dt>Extra days at sea</dt><dd>${days(p.impact_days)}${range(p.impact_days_low, p.impact_days_high, days)}</dd>`;
       h += `<dt>Extra cost per voyage</dt><dd>${usd(p.impact_voyage_cost)}${range(p.impact_voyage_cost_low, p.impact_voyage_cost_high, usdBare)}</dd>`;
-      h += `<dt>REE cargo holding cost, 2025 total</dt><dd>${usd(p.impact_holding_cost)}${range(p.impact_holding_cost_low, p.impact_holding_cost_high, usdBare)}</dd>`;
+      h += `<dt>Rare earth cargo holding cost, 2025 total</dt><dd>${usd(p.impact_holding_cost)}${range(p.impact_holding_cost_low, p.impact_holding_cost_high, usdBare)}</dd>`;
     } else {
       h += `<dt>Reroute time and cost</dt><dd>None: ${esc(p.impact_note || "not costed")}</dd>`;
     }
@@ -314,11 +327,11 @@ const CONFIG = {{CONFIG}};
   function icon(p) {
     const sc = scenario, closed = sc.closed && p[sc.closed];
     const k = scoreClass(p[sc.score]), fill = colours[k];
-    const numbered = !closed && p[sc.rank] <= C.top_n_labels;
+    const numbered = p[sc.rank] <= C.top_n_labels;
     const r = numbered ? Math.max(C.marker_radius_px[k], C.rank_min_radius_px) : C.marker_radius_px[k];
     const box = 2 * Math.max(r, C.hit_radius_px);
     const style = closed
-      ? `width:${2 * r}px;height:${2 * r}px;border:2px solid ${S.highlight};background:transparent`
+      ? `width:${2 * r}px;height:${2 * r}px;border:2px solid ${S.highlight};background:transparent;color:${S.highlight}`
       : `width:${2 * r}px;height:${2 * r}px;background:${fill};border:1px solid ${S.zero_marker};color:${numberColour(fill)}`;
     return L.divIcon({className: "cp", iconSize: [box, box], popupAnchor: [0, -r],
                       html: `<span style="${style}">${numbered ? p[sc.rank] : ""}</span>`});
@@ -381,7 +394,7 @@ const CONFIG = {{CONFIG}};
     for (const f of features) {
       const p = f.properties, [lon, lat] = f.geometry.coordinates;
       const m = L.marker([lat, lon], {icon: icon(p), title: p.name, alt: p.name, riseOnHover: true,
-                                      zIndexOffset: 1000 - 10 * p[scenario.rank]})
+                                      zIndexOffset: 100000 * (features.length + 1 - p[scenario.rank])})
         .on("click", () => showDetails(p.chokepoint_id));
       m.feature = p;
       m.addTo(layer);
