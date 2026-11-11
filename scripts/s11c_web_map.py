@@ -418,6 +418,9 @@ def page_config(settings, data_files, no_route):
         "basemap": web["basemap"],
         "max_zoom": web["basemap"]["max_zoom"][web["basemap"]["kind"]],
         "start_view": web["start_view"],
+        "max_bounds": max_bounds(web),
+        "max_bounds_viscosity": web["max_bounds_viscosity"],
+        "min_zoom": web["min_zoom"],
         "narrow_screen_px": web["narrow_screen_px"],
         "top_n_labels": web["top_n_labels"],
         "marker_radius_px": web["marker_radius_px"],
@@ -447,6 +450,20 @@ def page_config(settings, data_files, no_route):
             for key, cfg in scenarios.items()],
         "data": data_files,
     }
+
+
+def max_bounds(web):
+    """Pan limits for the page: lat [south, north], the east-west band [west, east] and the free range
+    used when the band is not applied. The south edge mirrors the north edge about start_view.lat in
+    Web Mercator, so where the screen is taller than the area Leaflet centres it on the opening
+    latitude and the opening view does not move."""
+    start, b = web["start_view"], web["max_bounds"]
+    if not b["west"] < start["lon"] < b["east"]:
+        raise ValueError("outputs.web.max_bounds west..east must contain start_view.lon")
+    mercator = lambda lat: np.log(np.tan(np.pi / 4 + np.radians(lat) / 2))
+    south = np.degrees(2 * np.arctan(np.exp(2 * mercator(start["lat"]) - mercator(b["north"]))) - np.pi / 2)
+    return {"lat": [round(float(south), 6), b["north"]], "band": [b["west"], b["east"]],
+            "free": [start["lon"] - b["lon_half_width"], start["lon"] + b["lon_half_width"]]}
 
 
 def fill_template(settings, config, log):
@@ -534,6 +551,10 @@ def main():
     data_files = {f.stem: f"{f.relative_to(export).as_posix()}?v={hashlib.sha256(f.read_bytes()).hexdigest()[:10]}"
                   for f in published}
     page = fill_template(settings, page_config(settings, data_files, no_route), log)
+    bounds = max_bounds(settings["outputs"]["web"])
+    log.info("Task 6.12 | pan limit: latitude %.2f to %.2f (centred on the opening view in Web Mercator); "
+             "longitude %g to %g while the window is narrower than that band, else %g to %g; min zoom %s",
+             *bounds["lat"], *bounds["band"], *bounds["free"], settings["outputs"]["web"]["min_zoom"])
     nojekyll = export / ".nojekyll"
     nojekyll.write_text("", encoding="utf-8")
     log.info("Task 6.12 | wrote %s (GitHub Pages serves files as they are)", nojekyll.relative_to(common.ROOT).as_posix())

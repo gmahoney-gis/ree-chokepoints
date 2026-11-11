@@ -226,6 +226,25 @@ const CONFIG = {
   "zoom": 2,
   "zoom_narrow": 1.5
  },
+ "max_bounds": {
+  "lat": [
+   -69.764978,
+   80
+  ],
+  "band": [
+   -200,
+   200
+  ],
+  "free": [
+   -3540,
+   3660
+  ]
+ },
+ "max_bounds_viscosity": 1.0,
+ "min_zoom": {
+  "wide": 2,
+  "narrow": 1.5
+ },
  "narrow_screen_px": 600,
  "top_n_labels": 27,
  "marker_radius_px": [
@@ -384,9 +403,39 @@ const CONFIG = {
   const narrowQuery = window.matchMedia(`(max-width: ${C.narrow_screen_px}px)`);
   let narrow = narrowQuery.matches;
   document.body.classList.toggle("narrow", narrow);
-  const map = L.map("map", {zoomControl: false, worldCopyJump: true, minZoom: 1,
-                            maxZoom: C.max_zoom, zoomSnap: 0.5})
+  // Pan limits (S11c): north-south centred on the opening view; east-west limited to the band only
+  // while the map window is narrower than it, so the limits never move the opening view.
+  const minZoom = () => narrow ? C.min_zoom.narrow : C.min_zoom.wide;
+  const B = C.max_bounds;
+  const bandBounds = L.latLngBounds([[B.lat[0], B.band[0]], [B.lat[1], B.band[1]]]);
+  const freeBounds = L.latLngBounds([[B.lat[0], B.free[0]], [B.lat[1], B.free[1]]]);
+  const map = L.map("map", {zoomControl: false, worldCopyJump: true, minZoom: minZoom(),
+                            maxZoom: C.max_zoom, zoomSnap: 0.5,
+                            maxBounds: freeBounds, maxBoundsViscosity: C.max_bounds_viscosity})
     .setView([C.start_view.lat, C.start_view.lon], narrow ? C.start_view.zoom_narrow : C.start_view.zoom);
+
+  let viewChanged = false;             // false until the first zoom or change of window width
+  function setEastWest() {
+    let limit;
+    if (viewChanged) {                 // the band is wider (in pixels at this zoom) than the window
+      const z = map.getZoom();
+      limit = map.project([0, B.band[1]], z).x - map.project([0, B.band[0]], z).x > map.getSize().x;
+    } else {                           // start-up: only if the opening view already lies inside the band
+      const v = map.getBounds();
+      limit = v.getWest() >= B.band[0] && v.getEast() <= B.band[1];
+    }
+    const want = limit ? bandBounds : freeBounds;
+    if (map.options.maxBounds !== want) map.setMaxBounds(want);
+  }
+  setEastWest();
+  map.on("zoomend", () => { viewChanged = true; setEastWest(); });
+  let mapWidth = map.getSize().x;
+  map.on("resize", () => {             // a height-only change (a phone's address bar) does not count
+    if (map.getSize().x === mapWidth) return;
+    mapWidth = map.getSize().x;
+    viewChanged = true;
+    setEastWest();
+  });
   if (C.basemap.kind === "tiles") {
     L.tileLayer(C.basemap.tiles_url, {attribution: C.basemap.tiles_attribution, maxZoom: C.max_zoom}).addTo(map);
   } else {                           // Natural Earth land and borders in the house colours
@@ -737,6 +786,7 @@ const CONFIG = {
     map.invalidateSize({pan: false});  // this event can come before Leaflet sees the new size
     document.body.classList.toggle("narrow", narrow);
     scenarioBox.setPosition(narrow ? "bottomleft" : "topright");
+    map.setMinZoom(minZoom());
     if (narrow) zoom.remove(); else zoom.addTo(map);   // zoom after the scenario switch, as at load
     setPanel(!narrow);
     legendOpen = !narrow;

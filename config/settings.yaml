@@ -740,6 +740,17 @@ outputs:
       tiles_attribution: "Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"
       max_zoom: {natural_earth: 6, tiles: 8}
     start_view: {lat: 20, lon: 60, zoom: 2, zoom_narrow: 1.5}   # zoom_narrow below narrow_screen_px
+    # Pan and zoom limits. Where the screen is taller or wider than the allowed area, Leaflet centres the
+    # map on that area; the limits are set so the opening view never moves:
+    # - north-south: S11c sets the south edge so that start_view.lat is the middle of the area in Web
+    #   Mercator (about -69.7 for north 80);
+    # - east-west: limited to west..east only while the map window is narrower than that band at the
+    #   current zoom (re-checked on zoom and on a change of window width); otherwise free (the map wraps
+    #   the world), within lon_half_width degrees either side of start_view.lon. At start-up the limit
+    #   applies only if the whole opening view already lies inside the band.
+    max_bounds: {north: 80, west: -200, east: 200, lon_half_width: 3600}
+    max_bounds_viscosity: 1.0        # 1 = the view springs back fully at the edges
+    min_zoom: {wide: 2, narrow: 1.5} # equal to the opening zooms, so the opening view is always allowed
     narrow_screen_px: 600            # below this width the panel starts collapsed
     top_n_labels: 27                 # circles that carry their rank number (Stage 1b: all 27)
     marker_radius_px: [11, 12, 13, 15, 17] # one per score class, low to high; the smallest fits two digits
