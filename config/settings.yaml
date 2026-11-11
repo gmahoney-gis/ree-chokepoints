@@ -764,7 +764,16 @@ outputs:
     # Shown in the panel when a scenario leaves port pairs with no sea route. {pairs}, {value} and {ports}
     # (the ports cut off, each of which every one of those pairs starts or ends at) are filled by S11c.
     no_route_note: "{pairs} port pairs ({value} of trade, all to or from {ports}) have no sea route in this scenario and are not drawn."
-    # Stage 2b (zones): zone_simplify_deg
+    # Stage 2b: chokepoint zones and gate lines (from the zones and gates layers), one file loaded the
+    # first time the box is ticked. Gated straits show only their gate line, not their map-only circle.
+    zone_simplify_deg: 0.01          # about 1 km
+    zone_style: {weight: 1, opacity: 0.9, fill_opacity: 0.08, gate_weight: 2.5}   # colour: outputs.style.highlight
+    zones_label: "Show chokepoint zones"
+    zones_note: "Circles show where a route counts as passing through. Four wide straits use a line drawn across the passage instead."
+    # Ranked list in the panel (short names from outputs.poster.short_names).
+    closed_label: "closed"           # list and legend: a chokepoint closed in the scenario
+    closed_heading: "Closed in this scenario"   # pop-up / bottom sheet of a closed chokepoint
+    list_zoom: 4                     # tapping a name zooms in at least this far
 
 # ---------------------------------------------------------------------
 # Integrity check of the project database (check_db.py, task 3.2)

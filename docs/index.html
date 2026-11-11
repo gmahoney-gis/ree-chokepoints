@@ -71,6 +71,10 @@
   .legend.closed .lb { display: none; }
   body.narrow .legend.closed { padding: 2px; }
   .rp { max-width: 230px; }
+  /* Zones and gate lines are never tap targets: taps go through to the routes and circles. */
+  .leaflet-zones-pane, .leaflet-zones-pane * { pointer-events: none !important; }
+  .chk { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .chk input { width: 18px; height: 18px; margin: 0; accent-color: var(--highlight); cursor: pointer; }
   .rp b { color: var(--title); }
   .leaflet-control-attribution { background: var(--bg) !important; background: color-mix(in srgb, var(--bg) 80%, transparent) !important; color: var(--note); }
   .leaflet-control-attribution a { color: var(--note); }
@@ -136,6 +140,8 @@
     <p class="meta" id="asof"></p>
     <h2>How to read</h2>
     <ul class="read" id="read"></ul>
+    <label class="chk" style="margin-top:10px"><input type="checkbox" id="zones-box"><span id="zones-label"></span></label>
+    <p class="note" id="zones-note"></p>
     <h2>Three kinds of exposure</h2>
     <div class="kinds" id="kinds"></div>
     <h2 id="redsea-title"></h2>
@@ -285,6 +291,19 @@ const CONFIG = {
   "Legend",
   "Hide legend"
  ],
+ "zones": {
+  "zone_style": {
+   "weight": 1,
+   "opacity": 0.9,
+   "fill_opacity": 0.08,
+   "gate_weight": 2.5
+  },
+  "zones_label": "Show chokepoint zones",
+  "zones_note": "Circles show where a route counts as passing through. Four wide straits use a line drawn across the passage instead."
+ },
+ "closed_label": "closed",
+ "closed_heading": "Closed in this scenario",
+ "list_zoom": 4,
  "scenarios": [
   {
    "key": "baseline",
@@ -315,6 +334,7 @@ const CONFIG = {
   "chokepoints": "map/data/chokepoints.geojson?v=cd9386c331",
   "routes_baseline": "map/data/routes_baseline.geojson?v=9544d1a1e2",
   "routes_red_sea_diversion": "map/data/routes_red_sea_diversion.geojson?v=e77d39adb2",
+  "zones": "map/data/zones.geojson?v=1c7709d231",
   "land": "map/data/land.geojson?v=032ad15f12"
  }
 };
@@ -463,7 +483,7 @@ const CONFIG = {
     }).reverse();
     if (scenario.closed) {
       const d = 2 * C.marker_radius_px[1];
-      rows.push(`<div class="row">${cell(`border:2px solid ${S.highlight}`, d)}closed</div>`);
+      rows.push(`<div class="row">${cell(`border:2px solid ${S.highlight}`, d)}${esc(C.closed_label)}</div>`);
     }
     const h = Math.max(3, C.route.route_width_px[1] / 2);   // a mid-width line
     const line = `<div class="row routes"><span class="c" style="width:${col}px"><i class="line" ` +
@@ -522,6 +542,32 @@ const CONFIG = {
       .catch(err => { $("noroute").hidden = false; $("noroute").textContent = `Could not load the routes (${err.message}).`; });
   }
 
+  // ---------- Zones and gate lines: one file, fetched the first time the box is ticked ----------
+  // Own pane: above the routes, below the circles; not interactive.
+  map.createPane("zones").style.zIndex = 450;
+  let zonesLayer = null;
+  const zonesBox = $("zones-box");
+  $("zones-label").textContent = C.zones.zones_label;
+  $("zones-note").textContent = C.zones.zones_note;
+  zonesBox.checked = false;            // off at start, also after a reload that keeps form state
+  zonesBox.addEventListener("change", () => {
+    if (!zonesBox.checked) { if (zonesLayer) map.removeLayer(zonesLayer); return; }
+    if (zonesLayer) { zonesLayer.addTo(map); return; }
+    const z = C.zones.zone_style;
+    fetch(C.data.zones)
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(gj => {
+        zonesLayer = L.geoJSON(gj, {
+          pane: "zones", interactive: false,
+          style: f => f.properties.kind === "gate"
+            ? {color: S.highlight, weight: z.gate_weight, opacity: z.opacity, lineCap: "round"}
+            : {color: S.highlight, weight: z.weight, opacity: z.opacity, fillColor: S.highlight, fillOpacity: z.fill_opacity}
+        });
+        if (zonesBox.checked) zonesLayer.addTo(map);   // still ticked when the file arrives
+      })
+      .catch(err => { $("zones-note").textContent = `Could not load the zones (${err.message}).`; });
+  });
+
   // ---------- Chokepoints ----------
   let features = [];
   const layer = L.layerGroup().addTo(map);
@@ -540,7 +586,7 @@ const CONFIG = {
     const others = C.scenarios.filter(s => s !== sc);
     let head = `<h3>${closed ? "" : "#" + p[sc.rank] + " · "}${esc(p.name)}</h3>`;
     head += closed
-      ? `<div class="sub"><span class="closed">Closed in this scenario</span> · ranked ${p[sc.rank]} of ${n} with no trade</div>`
+      ? `<div class="sub"><span class="closed">${esc(C.closed_heading)}</span> · ranked ${p[sc.rank]} of ${n} with no trade</div>`
       : `<div class="sub">Composite score ${p[sc.score].toFixed(3)} · rank ${p[sc.rank]} of ${n} (${esc(sc.label)})</div>`;
     const names = C.exposure_kinds.map(k => k[0]);
     let h = `<div class="bars">${bar(names[0], p[sc.trade], S.route)}${bar(names[1], p.score_conflict, S.highlight)}` +
@@ -668,8 +714,8 @@ const CONFIG = {
     $("ranks").innerHTML = rows.map(p => {
       const closed = sc.closed && p[sc.closed];
       return `<li><button type="button" data-id="${esc(p.chokepoint_id)}"><span class="r">${p[sc.rank]}</span>` +
-             `<span class="n">${esc(p.name)}</span>` +
-             (closed ? `<span class="closed">closed</span>` : `<span class="s">${p[sc.score].toFixed(3)}</span>`) +
+             `<span class="n">${esc(p.short_name)}</span>` +
+             (closed ? `<span class="closed">${esc(C.closed_label)}</span>` : `<span class="s">${p[sc.score].toFixed(3)}</span>`) +
              `</button></li>`;
     }).join("");
   }
@@ -679,7 +725,7 @@ const CONFIG = {
     if (!b) return;
     const m = markers.get(b.dataset.id);
     if (narrow) setPanel(false);
-    map.setView(m.getLatLng(), Math.max(map.getZoom(), 4), {animate: false});
+    map.setView(m.getLatLng(), Math.max(map.getZoom(), C.list_zoom), {animate: false});
     showDetails(b.dataset.id);
   });
 

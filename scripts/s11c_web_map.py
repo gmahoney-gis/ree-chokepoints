@@ -1,6 +1,7 @@
 """S11c: web layers and the Leaflet web map (tasks 6.9 and 6.12; Decision 17).
 
-Stage 1: the chokepoints. Stage 2a: the trade routes and the scenario switch.
+Stage 1: the chokepoints. Stage 2a: the trade routes and the scenario switch. Stage 2b: the zones
+and gate lines (docs/map/data/zones.geojson only; no database layer) and the tidied ranked list.
 
 1. web_chokepoints (task 6.9): the scored chokepoints with the chokepoint_scores columns the
    pop-ups show, unchanged, plus short_name, the trade shares and impact_note. Written to the
@@ -348,6 +349,37 @@ def web_routes(settings, data_dir, log):
     return gpd.GeoDataFrame(layer, geometry="geometry", crs=routes.crs), files, no_route
 
 
+# ---------------------------------------------------------------------
+# Stage 2b: chokepoint zones and gate lines (Decisions 11 and 12)
+# ---------------------------------------------------------------------
+
+def write_zones(settings, chokepoint_ids, path, log):
+    """zones.geojson: the zone circles of the scored chokepoints, simplified, and the gate lines.
+    A gated strait is drawn by its gate line only; its circle is for the paper maps."""
+    zones = common.read_layer(settings, "zones")
+    gates = common.read_layer(settings, "gates")
+    zones = zones[zones["chokepoint_id"].isin(chokepoint_ids)]
+    gated = zones["chokepoint_id"].isin(gates["chokepoint_id"])
+    common.log_filter(log, "Stage 2b | zone circles drawn", int((~gated).sum()), int(gated.sum()),
+                      "gated strait: drawn by its gate line (Decision 12)")
+    missing = set(gates["chokepoint_id"]) - set(chokepoint_ids)
+    if missing:
+        raise ValueError(f"gates layer has chokepoints that are not scored: {sorted(missing)}")
+    tol = settings["outputs"]["web"]["zone_simplify_deg"]
+    circles = zones.loc[~gated, ["chokepoint_id", "geometry"]].assign(kind="zone")
+    circles["geometry"] = circles.geometry.simplify(tol, preserve_topology=True)
+    lines = gates[["chokepoint_id", "geometry"]].assign(kind="gate")
+    out = gpd.GeoDataFrame(pd.concat([circles, lines], ignore_index=True), geometry="geometry", crs=zones.crs)
+    out = out[["kind", "geometry"]]
+    pyogrio.write_dataframe(out, path, driver="GeoJSON", geometry_type="Unknown",
+                            layer_options={"COORDINATE_PRECISION": settings["outputs"]["web"]["coord_decimals"],
+                                           "RFC7946": "YES"})
+    vertices = int(shapely.get_num_coordinates(out.geometry.values).sum())
+    log.info("Stage 2b | wrote %s (%d circles simplified to %s deg, %d gate lines, %s vertices, %.1f KB, "
+             "%.1f KB gzipped)", path.relative_to(common.ROOT).as_posix(), len(circles), tol, len(lines),
+             f"{vertices:,}", path.stat().st_size / 1024, len(gzip.compress(path.read_bytes())) / 1024)
+
+
 def no_route_text(settings, summary):
     """The panel note for a scenario with port pairs that have no sea route (None if there are none)."""
     if not summary["pairs"]:
@@ -396,6 +428,10 @@ def page_config(settings, data_files, no_route):
         "route": {k: web[k] for k in ("route_width_px", "route_opacity", "route_tap_tolerance_px",
                                       "route_legend", "route_popup", "route_popup_note")},
         "legend_button": web["legend_button"],
+        "zones": {k: web[k] for k in ("zone_style", "zones_label", "zones_note")},
+        "closed_label": web["closed_label"],
+        "closed_heading": web["closed_heading"],
+        "list_zoom": web["list_zoom"],
         # Each scenario's fields (scoring.scenarios suffix); the main one has no suffix.
         "scenarios": [
             {"key": key, "label": web["scenario_labels"][key],
@@ -479,6 +515,11 @@ def main():
     # Task 6.12: the page. Data URLs carry a hash of the file's content, so browsers fetch a file
     # again whenever it changes and keep using their copy while it does not.
     published = [chokepoint_file] + list(route_files.values())
+
+    # Stage 2b: zone circles and gate lines, one file loaded when the box is first ticked.
+    zones_file = data_dir / "zones.geojson"
+    write_zones(settings, set(points["chokepoint_id"]), zones_file, log)
+    published.append(zones_file)
     land_file = data_dir / "land.geojson"
     kind = settings["outputs"]["web"]["basemap"]["kind"]
     if kind == "natural_earth":
@@ -496,11 +537,13 @@ def main():
     nojekyll = export / ".nojekyll"
     nojekyll.write_text("", encoding="utf-8")
     log.info("Task 6.12 | wrote %s (GitHub Pages serves files as they are)", nojekyll.relative_to(common.ROOT).as_posix())
-    # At start the page loads every file but the routes of the other scenarios (fetched on first switch).
+    # At start the page loads every file but the routes of the other scenarios (fetched on first
+    # switch) and the zones (fetched when the box is first ticked).
     first = settings["scoring"]["scenarios"]
     later = [route_files[k] for k in list(first)[1:]]
-    page_weight(settings, [page] + [f for f in published if f not in later], log, "at start")
-    page_weight(settings, [page] + published, log, "after every scenario is shown")
+    page_weight(settings, [page] + [f for f in published if f not in later + [zones_file]], log, "at start")
+    page_weight(settings, [page] + [f for f in published if f != zones_file], log, "after every scenario is shown")
+    page_weight(settings, [page] + published, log, "with every scenario and the zones")
     log.info("Run of s11c_web_map finished")
 
 

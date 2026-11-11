@@ -1,38 +1,41 @@
-2026-11-11 15:11:11 INFO    Run of s11c_web_map started 2026-11-11T15:11:11
-2026-11-11 15:11:11 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
-2026-11-11 15:11:11 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
-2026-11-11 15:11:11 INFO    Task 6.9 | chokepoints with scores | kept 27 | removed 1 | reason: not included in the study (no chokepoint_scores row)
-2026-11-11 15:11:12 INFO    Task 6.9 | trade share denominator: 52,292 sub-flows, US$ 1,943,497,016 maritime REE trade
-2026-11-11 15:11:12 INFO    Task 6.9 | top 27 (numbered): 1 Malacca 0.822, 2 Suez 0.783, 3 Bosporus 0.738, 4 Hormuz 0.728, 5 Bohai 0.714, 6 Gibraltar 0.707, 7 Bab el-Mandeb 0.645, 8 Kerch 0.637, 9 Panama 0.555, 10 Dover 0.546, 11 Windward 0.523, 12 Taiwan 0.492, 13 Korea 0.477, 14 Mona 0.438, 15 Oresund 0.433, 16 Yucatan 0.422, 17 Sunda 0.418, 18 Torres 0.389, 19 Lombok 0.384, 20 Mindoro 0.382, 21 Tsugaru 0.344, 22 Luzon 0.331, 23 Balabac 0.303, 24 Makassar 0.235, 25 Ombai 0.215, 26 Magellan 0.211, 27 Bering 0.009
-2026-11-11 15:11:12 INFO    Task 6.9 | Red Sea diversion closed (hollow): Suez, Bab el-Mandeb
-2026-11-11 15:11:12 INFO    Task 6.9 | no reroute cost: Bosporus (no sea route), Hormuz (no sea route), Bohai (no sea route), Kerch (no sea route), Bering (no affected flows)
-2026-11-11 15:11:12 INFO    Task 6.9 | trade shares: largest Taiwan 42.1%; sum over chokepoints 186.3% (over 100% because routes cross several chokepoints)
-2026-11-11 15:11:12 INFO    Wrote layer 'web_chokepoints' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-11-11 15:11:12 INFO    Wrote docs/map/data/chokepoints.geojson (27 features, 36 fields, 27.3 KB)
-2026-11-11 15:11:14 INFO    Task 6.9 | routes: 54,845 rows; sub-flows 52,292 (US$ 1,943,497,016), of which 3 same-port sub-flows (US$ 46,938) have no route in any scenario and are not drawn
-2026-11-11 15:11:14 INFO    Task 6.9 | baseline | routes used by sub-flows | kept 27,502 | removed 0 | reason: no sub-flow uses the route
-2026-11-11 15:11:14 INFO    Task 6.9 | baseline | no sea route: 0 port pairs, 0 sub-flows, US$ 0 (not drawn); every one starts or ends at one of 0 cut-off ports: none
-2026-11-11 15:11:14 INFO    Task 6.9 | baseline | routed sub-flow value US$ 1,943,450,078.04; routed + no route + same port - all sub-flows = US$ 0.000000
-2026-11-11 15:11:16 INFO    Task 6.9 | baseline | 2,406,896 route segments -> 7,906 distinct sea-lane segments -> 2,289 lines after joining equal values; lines cut at a jump over 180 deg: 0
-2026-11-11 15:11:16 INFO    Task 6.9 | baseline | sum of value x length, lines / unmerged routes = 1.000000
-2026-11-11 15:11:16 INFO    Task 6.9 | baseline | busiest segment: US$ 783,971,178 at 1.30, 104.31 (185 km from Malacca Strait)
-2026-11-11 15:11:16 INFO    Wrote docs/map/data/routes_baseline.geojson (2289 features, 1 fields, 338.0 KB)
-2026-11-11 15:11:16 INFO    Task 6.9 | baseline | web file simplified to 0.01 deg: value x length ratio 0.999953 (simplifying shortens lines); 0 further cuts; jumps over 180 deg left in the file: 0; 338.0 KB, 50.7 KB gzipped
-2026-11-11 15:11:16 INFO    Task 6.9 | red_sea_diversion | routes used by sub-flows | kept 27,343 | removed 0 | reason: no sub-flow uses the route
-2026-11-11 15:11:16 INFO    Task 6.9 | red_sea_diversion | no sea route: 159 port pairs, 267 sub-flows, US$ 134,460 (not drawn); every one starts or ends at one of 5 cut-off ports: El Sokhna, Aqaba, Jeddah, Hudaydah (Hodeidah), Salif
-2026-11-11 15:11:16 INFO    Task 6.9 | red_sea_diversion | routed sub-flow value US$ 1,943,315,618.31; routed + no route + same port - all sub-flows = US$ 0.000000
-2026-11-11 15:11:18 INFO    Task 6.9 | red_sea_diversion | 2,426,020 route segments -> 7,901 distinct sea-lane segments -> 2,285 lines after joining equal values; lines cut at a jump over 180 deg: 0
-2026-11-11 15:11:18 INFO    Task 6.9 | red_sea_diversion | sum of value x length, lines / unmerged routes = 1.000000
-2026-11-11 15:11:18 INFO    Task 6.9 | red_sea_diversion | busiest segment: US$ 598,032,226 at 1.30, 104.31 (185 km from Malacca Strait)
-2026-11-11 15:11:18 INFO    Wrote docs/map/data/routes_red_sea_diversion.geojson (2285 features, 1 fields, 337.4 KB)
-2026-11-11 15:11:19 INFO    Task 6.9 | red_sea_diversion | web file simplified to 0.01 deg: value x length ratio 0.999807 (simplifying shortens lines); 0 further cuts; jumps over 180 deg left in the file: 0; 337.4 KB, 50.6 KB gzipped
-2026-11-11 15:11:19 INFO    Wrote layer 'web_routes' (4,574 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
-2026-11-11 15:11:19 INFO    Base map | Natural Earth countries | kept 257 | removed 1 | reason: Antarctica left off the world maps
-2026-11-11 15:11:21 INFO    Task 6.12 | base map countries simplified to 0.05 deg | kept 257 | removed 0 | reason: no polygon left after simplifying
-2026-11-11 15:11:22 INFO    Wrote docs/map/data/land.geojson (257 countries, 999.3 KB)
-2026-11-11 15:11:22 INFO    Task 6.12 | base map: natural_earth
-2026-11-11 15:11:22 INFO    Task 6.12 | wrote docs/index.html (34.4 KB)
-2026-11-11 15:11:22 INFO    Task 6.12 | wrote docs/.nojekyll (GitHub Pages serves files as they are)
-2026-11-11 15:11:23 INFO    Task 6.12 | files the page loads at start: 4, 1399.0 KB (395.1 KB gzipped as served; limit 3 MB; Leaflet and basemap tiles come from CDNs and are not counted)
-2026-11-11 15:11:23 INFO    Task 6.12 | files the page loads after every scenario is shown: 5, 1736.5 KB (445.7 KB gzipped as served; limit 3 MB; Leaflet and basemap tiles come from CDNs and are not counted)
-2026-11-11 15:11:23 INFO    Run of s11c_web_map finished
+2026-11-11 15:28:20 INFO    Run of s11c_web_map started 2026-11-11T15:28:20
+2026-11-11 15:28:20 INFO    Settings file: C:\Users\garre\ree-chokepoints\config\settings.yaml
+2026-11-11 15:28:20 INFO    Python 3.11.17 on Windows-10-10.0.26200-SP0
+2026-11-11 15:28:20 INFO    Task 6.9 | chokepoints with scores | kept 27 | removed 1 | reason: not included in the study (no chokepoint_scores row)
+2026-11-11 15:28:21 INFO    Task 6.9 | trade share denominator: 52,292 sub-flows, US$ 1,943,497,016 maritime REE trade
+2026-11-11 15:28:21 INFO    Task 6.9 | top 27 (numbered): 1 Malacca 0.822, 2 Suez 0.783, 3 Bosporus 0.738, 4 Hormuz 0.728, 5 Bohai 0.714, 6 Gibraltar 0.707, 7 Bab el-Mandeb 0.645, 8 Kerch 0.637, 9 Panama 0.555, 10 Dover 0.546, 11 Windward 0.523, 12 Taiwan 0.492, 13 Korea 0.477, 14 Mona 0.438, 15 Oresund 0.433, 16 Yucatan 0.422, 17 Sunda 0.418, 18 Torres 0.389, 19 Lombok 0.384, 20 Mindoro 0.382, 21 Tsugaru 0.344, 22 Luzon 0.331, 23 Balabac 0.303, 24 Makassar 0.235, 25 Ombai 0.215, 26 Magellan 0.211, 27 Bering 0.009
+2026-11-11 15:28:21 INFO    Task 6.9 | Red Sea diversion closed (hollow): Suez, Bab el-Mandeb
+2026-11-11 15:28:21 INFO    Task 6.9 | no reroute cost: Bosporus (no sea route), Hormuz (no sea route), Bohai (no sea route), Kerch (no sea route), Bering (no affected flows)
+2026-11-11 15:28:21 INFO    Task 6.9 | trade shares: largest Taiwan 42.1%; sum over chokepoints 186.3% (over 100% because routes cross several chokepoints)
+2026-11-11 15:28:21 INFO    Wrote layer 'web_chokepoints' (27 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-11-11 15:28:21 INFO    Wrote docs/map/data/chokepoints.geojson (27 features, 36 fields, 27.3 KB)
+2026-11-11 15:28:23 INFO    Task 6.9 | routes: 54,845 rows; sub-flows 52,292 (US$ 1,943,497,016), of which 3 same-port sub-flows (US$ 46,938) have no route in any scenario and are not drawn
+2026-11-11 15:28:23 INFO    Task 6.9 | baseline | routes used by sub-flows | kept 27,502 | removed 0 | reason: no sub-flow uses the route
+2026-11-11 15:28:23 INFO    Task 6.9 | baseline | no sea route: 0 port pairs, 0 sub-flows, US$ 0 (not drawn); every one starts or ends at one of 0 cut-off ports: none
+2026-11-11 15:28:23 INFO    Task 6.9 | baseline | routed sub-flow value US$ 1,943,450,078.04; routed + no route + same port - all sub-flows = US$ 0.000000
+2026-11-11 15:28:25 INFO    Task 6.9 | baseline | 2,406,896 route segments -> 7,906 distinct sea-lane segments -> 2,289 lines after joining equal values; lines cut at a jump over 180 deg: 0
+2026-11-11 15:28:25 INFO    Task 6.9 | baseline | sum of value x length, lines / unmerged routes = 1.000000
+2026-11-11 15:28:25 INFO    Task 6.9 | baseline | busiest segment: US$ 783,971,178 at 1.30, 104.31 (185 km from Malacca Strait)
+2026-11-11 15:28:25 INFO    Wrote docs/map/data/routes_baseline.geojson (2289 features, 1 fields, 338.0 KB)
+2026-11-11 15:28:25 INFO    Task 6.9 | baseline | web file simplified to 0.01 deg: value x length ratio 0.999953 (simplifying shortens lines); 0 further cuts; jumps over 180 deg left in the file: 0; 338.0 KB, 50.7 KB gzipped
+2026-11-11 15:28:25 INFO    Task 6.9 | red_sea_diversion | routes used by sub-flows | kept 27,343 | removed 0 | reason: no sub-flow uses the route
+2026-11-11 15:28:26 INFO    Task 6.9 | red_sea_diversion | no sea route: 159 port pairs, 267 sub-flows, US$ 134,460 (not drawn); every one starts or ends at one of 5 cut-off ports: El Sokhna, Aqaba, Jeddah, Hudaydah (Hodeidah), Salif
+2026-11-11 15:28:26 INFO    Task 6.9 | red_sea_diversion | routed sub-flow value US$ 1,943,315,618.31; routed + no route + same port - all sub-flows = US$ 0.000000
+2026-11-11 15:28:27 INFO    Task 6.9 | red_sea_diversion | 2,426,020 route segments -> 7,901 distinct sea-lane segments -> 2,285 lines after joining equal values; lines cut at a jump over 180 deg: 0
+2026-11-11 15:28:27 INFO    Task 6.9 | red_sea_diversion | sum of value x length, lines / unmerged routes = 1.000000
+2026-11-11 15:28:27 INFO    Task 6.9 | red_sea_diversion | busiest segment: US$ 598,032,226 at 1.30, 104.31 (185 km from Malacca Strait)
+2026-11-11 15:28:28 INFO    Wrote docs/map/data/routes_red_sea_diversion.geojson (2285 features, 1 fields, 337.4 KB)
+2026-11-11 15:28:28 INFO    Task 6.9 | red_sea_diversion | web file simplified to 0.01 deg: value x length ratio 0.999807 (simplifying shortens lines); 0 further cuts; jumps over 180 deg left in the file: 0; 337.4 KB, 50.6 KB gzipped
+2026-11-11 15:28:28 INFO    Wrote layer 'web_routes' (4,574 rows) to C:\Users\garre\ree-chokepoints\data\project.gpkg
+2026-11-11 15:28:28 INFO    Stage 2b | zone circles drawn | kept 23 | removed 4 | reason: gated strait: drawn by its gate line (Decision 12)
+2026-11-11 15:28:28 INFO    Stage 2b | wrote docs/map/data/zones.geojson (23 circles simplified to 0.01 deg, 4 gate lines, 531 vertices, 11.2 KB, 3.1 KB gzipped)
+2026-11-11 15:28:28 INFO    Base map | Natural Earth countries | kept 257 | removed 1 | reason: Antarctica left off the world maps
+2026-11-11 15:28:30 INFO    Task 6.12 | base map countries simplified to 0.05 deg | kept 257 | removed 0 | reason: no polygon left after simplifying
+2026-11-11 15:28:31 INFO    Wrote docs/map/data/land.geojson (257 countries, 999.3 KB)
+2026-11-11 15:28:31 INFO    Task 6.12 | base map: natural_earth
+2026-11-11 15:28:31 INFO    Task 6.12 | wrote docs/index.html (36.8 KB)
+2026-11-11 15:28:31 INFO    Task 6.12 | wrote docs/.nojekyll (GitHub Pages serves files as they are)
+2026-11-11 15:28:32 INFO    Task 6.12 | files the page loads at start: 4, 1401.4 KB (395.7 KB gzipped as served; limit 3 MB; Leaflet and basemap tiles come from CDNs and are not counted)
+2026-11-11 15:28:33 INFO    Task 6.12 | files the page loads after every scenario is shown: 5, 1738.8 KB (446.3 KB gzipped as served; limit 3 MB; Leaflet and basemap tiles come from CDNs and are not counted)
+2026-11-11 15:28:33 INFO    Task 6.12 | files the page loads with every scenario and the zones: 6, 1750.0 KB (449.4 KB gzipped as served; limit 3 MB; Leaflet and basemap tiles come from CDNs and are not counted)
+2026-11-11 15:28:33 INFO    Run of s11c_web_map finished
