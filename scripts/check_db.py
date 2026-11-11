@@ -30,7 +30,8 @@ Groups:
     K values       (all) shares, route and detour lengths, null rules (Decision 10),
                    S09 score_ columns (Decision 16), S10 sens_ columns (task 5.7)
     L web          (all) web_chokepoints matches chokepoint_scores and the chokepoint
-                   points (task 6.9, Decision 17)
+                   points; web_routes keeps each scenario's routed trade (task 6.9,
+                   Decision 17)
 
 Licensed data: events are reported as counts only. IDs are listed (at most
 check_db.max_ids_listed) only for project-made keys: flows, sub-flows, ports,
@@ -57,6 +58,7 @@ GEOMETRY_TYPES = {
     "gdelt_country_context": None, "subflows": None, "routes": "MultiLineString",
     "route_crossings": None, "detours": None, "detour_routes": "MultiLineString",
     "reroute_costs": None, "chokepoint_scores": None, "web_chokepoints": "Point",
+    "web_routes": "LineString",
 }
 
 # Fields that make each row unique.
@@ -98,6 +100,7 @@ REQUIRED_FIELDS = {
     "chokepoint_scores": ["chokepoint_id", "name"],
     "web_chokepoints": ["chokepoint_id", "name", "short_name", "score_rank", "score_composite",
                         "trade_share_pct"],
+    "web_routes": ["scenario", "value_usd", "length_nm"],
 }
 
 # Text that means "missing" written as a value (for example by astype(str) on a null).
@@ -823,6 +826,63 @@ def check_web(layers, settings, report):
                 not bad.any(), f"{int(bad.sum())} chokepoints", web.loc[bad, "chokepoint_id"])
 
 
+def check_web_routes(layers, settings, report):
+    """web_routes (S11c, task 6.9): per scenario, the lines keep the routed trade. A line's value is
+    the trade on that stretch of sea, so line values do not add up to the trade total (a shipment
+    counts on every stretch it uses). What must hold exactly is value x length: summed over the
+    lines it equals the sum over routes of (sub-flow value of the route x route length). The
+    routed, no-route and same-port sub-flow values together must equal all sub-flows."""
+    if not {"web_routes", "routes", "subflows"} <= set(layers):
+        return
+    web, routes, subflows = layers["web_routes"], layers["routes"], layers["subflows"]
+    scenarios = list(settings["routing"]["scenarios"])
+    tolerance = settings["check_db"]["web_routes_tolerance"]
+    report.test("L web", "web_routes scenarios equal routing.scenarios", set(web["scenario"]) == set(scenarios),
+                f"found {sorted(set(web['scenario']))}")
+
+    same = as_bool(subflows["same_port"])
+    pairs = (subflows[~same].groupby(["origin_port", "dest_port"], as_index=False)["maritime_value_usd"].sum())
+    total = subflows["maritime_value_usd"].sum()
+    for scenario in scenarios:
+        lines = web[web["scenario"] == scenario]
+        here = routes[routes["scenario"] == scenario].merge(pairs, on=["origin_port", "dest_port"], how="inner")
+        routed = here["maritime_value_usd"].sum()
+        no_route = pairs.merge(here[["origin_port", "dest_port"]], how="left", indicator=True)
+        no_route = no_route.loc[no_route["_merge"] == "left_only", "maritime_value_usd"].sum()
+        gap = routed + no_route + subflows.loc[same, "maritime_value_usd"].sum() - total
+        report.test("L web", f"{scenario}: routed + no-route + same-port sub-flows = all sub-flows",
+                    abs(gap) <= 1, f"routed {usd(routed)}, no route {usd(no_route)}, gap {gap:.2f} USD")
+
+        ref = (here["maritime_value_usd"] * per_row_length_nm(here.geometry, settings)).sum()
+        got = (lines["value_usd"] * per_row_length_nm(lines.geometry, settings)).sum()
+        ratio = got / ref if ref else float("nan")
+        report.test("L web", f"{scenario}: web_routes value x length / routed sub-flows' value x route length = 1",
+                    abs(ratio - 1) <= tolerance, f"ratio {ratio:.6f}, {len(lines):,} lines")
+        top = lines["value_usd"].max()
+        report.test("L web", f"{scenario}: busiest web_routes line at most the routed sub-flow total",
+                    top <= routed + 1, f"busiest {usd(top)} of {usd(routed)}")
+
+        xy = lines.geometry.get_coordinates()
+        jump = (xy.index[:-1] == xy.index[1:]) & (np.abs(np.diff(xy["x"].values)) > 180)
+        report.test("L web", f"{scenario}: no web_routes line jumps over 180 degrees of longitude",
+                    not jump.any(), f"{int(jump.sum())} jumps")
+
+
+def per_row_length_nm(geometry, settings):
+    """Great-circle length (nm) of each row's (multi)line, summed over consecutive vertices of each part."""
+    parts = geometry.reset_index(drop=True).explode(index_parts=True)
+    row = parts.index.get_level_values(0).to_numpy()
+    part = np.arange(len(parts))
+    xy = parts.get_coordinates(index_parts=False)
+    owner = np.repeat(part, parts.count_coordinates().to_numpy())
+    same = owner[:-1] == owner[1:]
+    x, y = xy["x"].to_numpy(), xy["y"].to_numpy()
+    km = common.great_circle_km(x[:-1], y[:-1], x[1:], y[1:], settings)
+    per_part = np.bincount(owner[:-1][same], weights=km[same], minlength=len(parts))
+    return pd.Series(np.bincount(row, weights=per_part, minlength=len(geometry)) / common.KM_PER_NM,
+                     index=geometry.index)
+
+
 # ---------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------
@@ -871,6 +931,7 @@ def main():
         check_scores(layers, settings, report)
         check_sensitivity(layers, settings, report)
         check_web(layers, settings, report)
+        check_web_routes(layers, settings, report)
 
     c = report.counts
     log.info("Summary | stage %s | %d checks | PASS %d | WARN %d | FAIL %d | INFO %d",

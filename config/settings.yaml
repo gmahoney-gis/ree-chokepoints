@@ -748,7 +748,23 @@ outputs:
     coord_decimals: 3                # GeoJSON coordinates (about 100 m)
     value_decimals: 4                # GeoJSON numbers (the database keeps full precision)
     max_page_mb: 3                   # S11c warns if the published files pass this (CDN files not counted)
-    # Stage 2 (routes): route_width_px, route_opacity, simplify_deg, zone_simplify_deg
+    # Stage 2a: trade routes (web_routes). Routes are cut into sea-lane segments, trade value summed per
+    # segment and scenario (both directions together), and runs of segments with equal value joined.
+    # Colour is outputs.style.route; both width and opacity grow with the square root of the segment value.
+    route_width_px: [0.7, 7]         # [thinnest, the busiest segment]
+    route_opacity: [0.35, 0.85]      # [thinnest, the busiest segment], on the same square-root scale as the width
+    route_tap_tolerance_px: 8        # extra pixels round a line that still count as a tap on it
+    route_simplify_deg: 0.01         # web files only (about 1 km); the database keeps full detail
+    route_join_decimals: 2           # segment values rounded to the cent; segments of equal rounded value are joined
+    route_value_decimals: 0          # value_usd in the web files (whole dollars)
+    route_legend: "Trade route (wider = more trade)"
+    legend_button: ["Legend", "Hide legend"]   # below narrow_screen_px the legend starts closed behind this button
+    route_popup: "Trade on this segment: {value} (both directions)"
+    route_popup_note: "A segment can carry more than a chokepoint's total, because routes that do not pass through the chokepoint also use it."
+    # Shown in the panel when a scenario leaves port pairs with no sea route. {pairs}, {value} and {ports}
+    # (the ports cut off, each of which every one of those pairs starts or ends at) are filled by S11c.
+    no_route_note: "{pairs} port pairs ({value} of trade, all to or from {ports}) have no sea route in this scenario and are not drawn."
+    # Stage 2b (zones): zone_simplify_deg
 
 # ---------------------------------------------------------------------
 # Integrity check of the project database (check_db.py, task 3.2)
@@ -760,8 +776,8 @@ check_db:
                   events, gdelt_country_context]
   # Layers not built yet. A missing layer listed here is a WARN (expected gap) with its
   # reason; any other missing layer is a FAIL. Remove an entry once its script writes it.
-  expected_missing_layers:
-    web_routes: "written by S11c (task 6.9, web map Stage 2)"
+  expected_missing_layers: {}
+  web_routes_tolerance: 0.000001     # web_routes: sum of value x length may differ from the routes by this share
   # chokepoint_scores columns (besides chokepoint_id and name) must start with one of
   # these prefixes; the script named owns the prefix (CLAUDE.md prefix rule).
   score_prefixes:

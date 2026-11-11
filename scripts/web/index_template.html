@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{TITLE}}</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="{{LEAFLET_BASE}}leaflet.css" integrity="{{LEAFLET_CSS_SRI}}" crossorigin="">
 <script src="{{LEAFLET_BASE}}leaflet.js" integrity="{{LEAFLET_JS_SRI}}" crossorigin=""></script>
 <style>
@@ -60,6 +61,17 @@
   .legend .row { display: flex; align-items: center; gap: 6px; margin: 1px 0; }
   .legend .row .c { display: flex; justify-content: center; flex: none; }
   .legend i { display: inline-block; border-radius: 50%; flex: none; box-sizing: border-box; }
+  .legend i.line { border-radius: 2px; }
+  .legend .routes { margin-top: 5px; padding-top: 4px; border-top: 1px solid var(--grid); }
+  /* Narrow screens: the legend starts closed behind a small button (the script lifts it clear of the scenario switch). */
+  .legend .lt { display: none; width: 100%; padding: 4px 6px; background: none; border: 0; color: var(--text);
+                font: inherit; font-size: 12px; text-align: left; cursor: pointer; }
+  body.narrow .legend .lt { display: block; }
+  body.narrow .legend:not(.closed) .lt { margin-bottom: 4px; border-bottom: 1px solid var(--grid); }
+  .legend.closed .lb { display: none; }
+  body.narrow .legend.closed { padding: 2px; }
+  .rp { max-width: 230px; }
+  .rp b { color: var(--title); }
   .leaflet-control-attribution { background: var(--bg) !important; background: color-mix(in srgb, var(--bg) 80%, transparent) !important; color: var(--note); }
   .leaflet-control-attribution a { color: var(--note); }
 
@@ -128,6 +140,7 @@
     <div class="kinds" id="kinds"></div>
     <h2 id="redsea-title"></h2>
     <div class="redsea" id="redsea"></div>
+    <p class="note" id="noroute" hidden></p>
     <h2 id="ranks-title">Ranking</h2>
     <ol class="ranks" id="ranks"></ol>
     <p class="note" id="caveat"></p>
@@ -242,6 +255,7 @@ const CONFIG = {{CONFIG}};
       if (!b) return;
       div.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
       scenario = C.scenarios[+b.dataset.i];
+      showRoutes();
       draw();
     });
     return div;
@@ -250,9 +264,32 @@ const CONFIG = {{CONFIG}};
   const zoom = L.control.zoom({position: "topright"});
   if (!narrow) zoom.addTo(map);
 
+  // Legend: open on wide screens; on narrow ones a small button that opens it above the scenario switch.
   const legend = L.control({position: "bottomright"});
-  legend.onAdd = () => L.DomUtil.create("div", "box legend");
+  let legendOpen = !narrow;
+  legend.onAdd = () => {
+    const div = L.DomUtil.create("div", "box legend");
+    div.innerHTML = `<button type="button" class="lt" aria-controls="legend-body"></button><div class="lb" id="legend-body"></div>`;
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.disableScrollPropagation(div);
+    div.querySelector(".lt").addEventListener("click", () => { legendOpen = !legendOpen; placeLegend(); });
+    return div;
+  };
   legend.addTo(map);
+
+  function placeLegend() {
+    const div = legend.getContainer(), btn = div.querySelector(".lt");
+    const open = legendOpen || !narrow;
+    div.classList.toggle("closed", !open);
+    btn.textContent = C.legend_button[open ? 1 : 0];
+    btn.setAttribute("aria-expanded", String(open));
+    // Lift the legend until it no longer overlaps the scenario switch (same bottom band on a phone).
+    div.style.marginBottom = "";
+    if (!narrow) return;
+    const a = div.getBoundingClientRect(), b = scenarioBox.getContainer().getBoundingClientRect();
+    const overlapX = a.left < b.right && b.left < a.right, overlapY = a.top < b.bottom && b.top < a.bottom;
+    if (overlapX && overlapY) div.style.marginBottom = `${10 + a.bottom - b.top + 8}px`;
+  }
   function drawLegend() {
     // Circles at their map size, centred in a column as wide as the largest.
     const col = 2 * Math.max(...C.marker_radius_px);
@@ -266,7 +303,61 @@ const CONFIG = {{CONFIG}};
       const d = 2 * C.marker_radius_px[1];
       rows.push(`<div class="row">${cell(`border:2px solid ${S.highlight}`, d)}closed</div>`);
     }
-    legend.getContainer().innerHTML = `<div class="t">Composite score</div>` + rows.join("");
+    const h = Math.max(3, C.route.route_width_px[1] / 2);   // a mid-width line
+    const line = `<div class="row routes"><span class="c" style="width:${col}px"><i class="line" ` +
+                 `style="width:${col}px;height:${h}px;background:${S.route};opacity:${C.route.route_opacity[1]}"></i></span>` +
+                 `${esc(C.route.route_legend)}</div>`;
+    legend.getContainer().querySelector(".lb").innerHTML = `<div class="t">Composite score</div>` + rows.join("") + line;
+    placeLegend();
+  }
+
+  // ---------- Trade routes: one file per scenario, fetched the first time it is shown ----------
+  // Canvas lines in their own pane: above the land, below the circles. The file lists thin lines
+  // first, so busier lines are drawn on top.
+  map.createPane("routes").style.zIndex = 350;
+  const routeRenderer = L.canvas({pane: "routes", tolerance: C.route.route_tap_tolerance_px});
+  const routeLayers = {};              // scenario key -> L.geoJSON once loaded
+  let routeMax = null;                 // set once from the baseline file, so both scenarios share one scale:
+                                       // a line looks thicker in the Red Sea view only if it carries more trade
+  let routePopup = null;
+
+  // Width and opacity grow on one square-root value scale, so main corridors stand out and
+  // thin open-ocean lines recede.
+  const routeScale = (v, [lo, hi]) => lo + (hi - lo) * Math.min(1, Math.sqrt(Math.max(0, v) / routeMax));
+
+  function routeLayer(gj) {
+    return L.geoJSON(gj, {
+      pane: "routes", renderer: routeRenderer,
+      style: f => ({color: S.route, weight: routeScale(f.properties.value_usd, C.route.route_width_px),
+                    opacity: routeScale(f.properties.value_usd, C.route.route_opacity),
+                    lineCap: "round", lineJoin: "round"}),
+      onEachFeature: (f, l) => l.on("click", e => {
+        L.DomEvent.stop(e);              // as Leaflet's own bindPopup: the map's click must not close it
+        e.originalEvent._routeClick = true;
+        closeDetails();
+        const text = esc(C.route.route_popup).replace("{value}", `<b>${usd(f.properties.value_usd)}</b>`);
+        routePopup = L.popup({maxWidth: 260, autoPanPadding: [20, 20]})
+          .setLatLng(e.latlng)
+          .setContent(`<div class="rp">${text}<p class="note">${esc(C.route.route_popup_note)}</p></div>`)
+          .openOn(map);
+      })
+    });
+  }
+
+  function showRoutes() {
+    const key = scenario.key;
+    for (const k in routeLayers) if (k !== key) map.removeLayer(routeLayers[k]);
+    if (routePopup) { map.closePopup(routePopup); routePopup = null; }
+    if (routeLayers[key]) { routeLayers[key].addTo(map); return; }
+    fetch(C.data[scenario.routes])
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(gj => {
+        // One width scale for every scenario: fixed by the first file (the baseline, loaded at start).
+        if (routeMax === null) routeMax = Math.max(...gj.features.map(f => f.properties.value_usd));
+        routeLayers[key] = routeLayer(gj);
+        if (scenario.key === key) routeLayers[key].addTo(map);   // the user may have switched again
+      })
+      .catch(err => { $("noroute").hidden = false; $("noroute").textContent = `Could not load the routes (${err.message}).`; });
   }
 
   // ---------- Chokepoints ----------
@@ -383,7 +474,7 @@ const CONFIG = {{CONFIG}};
 
   $("sheet-close").addEventListener("click", closeDetails);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetails(); });
-  map.on("click", closeDetails);
+  map.on("click", e => { if (!(e.originalEvent && e.originalEvent._routeClick)) closeDetails(); });
   map.on("popupclose", () => { if (!narrow) openId = null; });
   L.DomEvent.disableClickPropagation(sheet);
   L.DomEvent.disableScrollPropagation(sheet);
@@ -402,6 +493,9 @@ const CONFIG = {{CONFIG}};
     }
     drawLegend();
     drawRanks();
+    const note = $("noroute");          // port pairs with no sea route in this scenario (filled by S11c)
+    note.hidden = !scenario.no_route_note;
+    note.textContent = scenario.no_route_note || "";
     if (openId) showDetails(openId);  // the scenario changed: refresh the open details
   }
 
@@ -437,6 +531,8 @@ const CONFIG = {{CONFIG}};
     scenarioBox.setPosition(narrow ? "bottomleft" : "topright");
     if (narrow) zoom.remove(); else zoom.addTo(map);   // zoom after the scenario switch, as at load
     setPanel(!narrow);
+    legendOpen = !narrow;
+    placeLegend();
     const id = openId;
     closeDetails();
     if (id) showDetails(id);
@@ -444,6 +540,7 @@ const CONFIG = {{CONFIG}};
   if (narrowQuery.addEventListener) narrowQuery.addEventListener("change", applyLayout);
   else narrowQuery.addListener(applyLayout);        // older Safari
 
+  showRoutes();                        // the first scenario's routes; the others on first switch
   fetch(C.data.chokepoints)
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(gj => { features = gj.features; draw(); })
