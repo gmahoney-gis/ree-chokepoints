@@ -51,6 +51,8 @@
   .leaflet-container { font: inherit; }
   .leaflet-bar a, .box { background: var(--bg); color: var(--text); border-color: var(--grid); }
   .leaflet-bar a:hover { background: var(--grid); color: var(--title); }
+  .fullscreen a { display: flex; align-items: center; justify-content: center; }
+  .fullscreen svg { width: 16px; height: 16px; display: block; }
   .box { border: 1px solid var(--grid); border-radius: 6px; padding: 6px 8px; box-shadow: 0 1px 6px rgba(0,0,0,.5); }
   .scenario button { display: block; width: 100%; margin: 2px 0; padding: 6px 10px; border-radius: 5px;
                      border: 1px solid var(--borders); background: none; color: var(--text); font: inherit;
@@ -268,10 +270,23 @@ const CONFIG = {{CONFIG}};
   $("credits").textContent = "Data: " + C.credits.join(", ") + ".";
   $("repo").href = C.repo_url;
   const panel = $("panel"), toggle = $("toggle");
+  const panelHeader = panel.querySelector("header");
+  // Narrow screens: the title bar spans the width and would cover the top-right controls (the
+  // full-screen button), so that corner starts just below the title bar (its header only: an open
+  // panel covers the button until "Hide"). Wide screens: Leaflet's own position.
+  const topRight = map.getContainer().querySelector(".leaflet-top.leaflet-right");
+  function placeTopRight() {
+    if (!narrow) { topRight.style.top = ""; return; }
+    const below = panelHeader.getBoundingClientRect().bottom - map.getContainer().getBoundingClientRect().top;
+    topRight.style.top = `${Math.round(below + C.narrow_control_gap_px - 10)}px`;   // 10: Leaflet's control margin
+  }
+  if (window.ResizeObserver) new ResizeObserver(placeTopRight).observe(panelHeader);
+  else window.addEventListener("resize", placeTopRight);
   function setPanel(open) {
     panel.classList.toggle("collapsed", !open);
     toggle.textContent = open ? "Hide" : "About & ranking";
     toggle.setAttribute("aria-expanded", String(open));
+    placeTopRight();
   }
   toggle.addEventListener("click", () => setPanel(panel.classList.contains("collapsed")));
   setPanel(!narrow);
@@ -299,6 +314,55 @@ const CONFIG = {{CONFIG}};
   scenarioBox.addTo(map);
   const zoom = L.control.zoom({position: "topright"});
   if (!narrow) zoom.addTo(map);
+
+  // Full-screen button for the whole page, under the zoom buttons (alone on narrow screens, which
+  // have no zoom buttons). Left out where the browser has no full screen (e.g. iPhone Safari);
+  // webkit names for iPad Safari. The change events also catch Esc and system gestures.
+  const docEl = document.documentElement;
+  const fsEnabled = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement || null;
+  const fsIcons = {               // 16 x 16 outline icons in the text colour
+    expand: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">' +
+            '<path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg>',
+    collapse: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">' +
+              '<path d="M6 2v4H2M14 6h-4V2M10 14v-4h4M2 10h4v4"/></svg>'
+  };
+  const fullscreen = L.control({position: "topright"});
+  let fsButton = null;
+  function setFsButton() {
+    if (!fsButton) return;
+    const on = fsElement() !== null;
+    const label = on ? C.fullscreen.fullscreen_exit_label : C.fullscreen.fullscreen_label;
+    fsButton.innerHTML = on ? fsIcons.collapse : fsIcons.expand;
+    fsButton.title = label;
+    fsButton.setAttribute("aria-label", label);
+    fsButton.setAttribute("aria-pressed", String(on));
+  }
+  fullscreen.onAdd = () => {
+    const div = L.DomUtil.create("div", "leaflet-bar fullscreen");
+    fsButton = L.DomUtil.create("a", "", div);
+    fsButton.href = "#";
+    fsButton.setAttribute("role", "button");
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.on(fsButton, "click", e => {
+      L.DomEvent.preventDefault(e);
+      let p;
+      if (fsElement()) p = document.exitFullscreen ? document.exitFullscreen() : document.webkitExitFullscreen();
+      else p = docEl.requestFullscreen ? docEl.requestFullscreen() : docEl.webkitRequestFullscreen();
+      if (p && p.catch) p.catch(() => {});   // refused (e.g. inside a frame): stay as is, quietly
+    });
+    setFsButton();
+    return div;
+  };
+  function onFsChange() {
+    setFsButton();
+    map.invalidateSize();
+  }
+  if (fsEnabled) {
+    fullscreen.addTo(map);
+    document.addEventListener("fullscreenchange", onFsChange);
+    document.addEventListener("webkitfullscreenchange", onFsChange);
+  }
 
   // Legend: open on wide screens; on narrow ones a small button that opens it above the scenario switch.
   const legend = L.control({position: "bottomright"});
@@ -593,6 +657,7 @@ const CONFIG = {{CONFIG}};
     scenarioBox.setPosition(narrow ? "bottomleft" : "topright");
     map.setMinZoom(minZoom());
     if (narrow) zoom.remove(); else zoom.addTo(map);   // zoom after the scenario switch, as at load
+    if (fsEnabled) { fullscreen.remove(); fullscreen.addTo(map); }   // full screen under the zoom
     setPanel(!narrow);
     legendOpen = !narrow;
     placeLegend();

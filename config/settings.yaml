@@ -770,6 +770,10 @@ outputs:
     route_value_decimals: 0          # value_usd in the web files (whole dollars)
     route_legend: "Trade route (wider = more trade)"
     legend_button: ["Legend", "Hide legend"]   # below narrow_screen_px the legend starts closed behind this button
+    # Full-screen button (map control, top right): tooltip and aria-label; hidden where the browser has no full screen.
+    fullscreen_label: "Full screen"
+    fullscreen_exit_label: "Exit full screen"
+    narrow_control_gap_px: 8         # below narrow_screen_px: gap between the title bar and the top-right controls
     route_popup: "Trade on this segment: {value} (both directions)"
     route_popup_note: "A segment can carry more than a chokepoint's total, because routes that do not pass through the chokepoint also use it."
     # Shown in the panel when a scenario leaves port pairs with no sea route. {pairs}, {value} and {ports}

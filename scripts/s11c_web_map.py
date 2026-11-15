@@ -18,6 +18,8 @@ and gate lines (docs/map/data/zones.geojson only; no database layer) and the tid
 3. The base map (outputs.web.basemap.kind): natural_earth writes land.geojson, Natural Earth
    countries without Antarctica (as on the paper maps), simplified, to paths.web_data; tiles
    uses the tile service in the settings and writes no file.
+4. A full-screen button (map control, top right; labels outputs.web.fullscreen_label and
+   fullscreen_exit_label), left out where the browser has no full screen. Page only; no data change.
 
 Only derived counts are published; no event locations (ACLED terms). Paper and poster outputs
 are not read or changed. The log gives the rows and fields written, each file's size and the
@@ -422,6 +424,7 @@ def page_config(settings, data_files, no_route):
         "max_bounds_viscosity": web["max_bounds_viscosity"],
         "min_zoom": web["min_zoom"],
         "narrow_screen_px": web["narrow_screen_px"],
+        "narrow_control_gap_px": web["narrow_control_gap_px"],
         "top_n_labels": web["top_n_labels"],
         "marker_radius_px": web["marker_radius_px"],
         "rank_min_radius_px": web["rank_min_radius_px"],
@@ -431,6 +434,7 @@ def page_config(settings, data_files, no_route):
         "route": {k: web[k] for k in ("route_width_px", "route_opacity", "route_tap_tolerance_px",
                                       "route_legend", "route_popup", "route_popup_note")},
         "legend_button": web["legend_button"],
+        "fullscreen": {k: web[k] for k in ("fullscreen_label", "fullscreen_exit_label")},
         "zones": {k: web[k] for k in ("zone_style", "zones_label", "zones_note")},
         "closed_label": web["closed_label"],
         "closed_heading": web["closed_heading"],
