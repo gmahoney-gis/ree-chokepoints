@@ -20,6 +20,9 @@ and gate lines (docs/map/data/zones.geojson only; no database layer) and the tid
    uses the tile service in the settings and writes no file.
 4. A full-screen button (map control, top right; labels outputs.web.fullscreen_label and
    fullscreen_exit_label), left out where the browser has no full screen. Page only; no data change.
+5. Pan limits on wide screens: the east-west band always applies and the lowest zoom fits the band to
+   the map window, re-set on every change of width, so the map never jumps a world (settings comment
+   at outputs.web.max_bounds). Page only; no data change.
 
 Only derived counts are published; no event locations (ACLED terms). Paper and poster outputs
 are not read or changed. The log gives the rows and fields written, each file's size and the
@@ -557,7 +560,8 @@ def main():
     page = fill_template(settings, page_config(settings, data_files, no_route), log)
     bounds = max_bounds(settings["outputs"]["web"])
     log.info("Task 6.12 | pan limit: latitude %.2f to %.2f (centred on the opening view in Web Mercator); "
-             "longitude %g to %g while the window is narrower than that band, else %g to %g; min zoom %s",
+             "longitude %g to %g (wide screens: always, lowest zoom fitted to the window; narrow screens: while "
+             "the window is narrower than that band, else %g to %g); min zoom %s",
              *bounds["lat"], *bounds["band"], *bounds["free"], settings["outputs"]["web"]["min_zoom"])
     nojekyll = export / ".nojekyll"
     nojekyll.write_text("", encoding="utf-8")

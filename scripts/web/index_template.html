@@ -210,21 +210,36 @@ const CONFIG = {{CONFIG}};
   const narrowQuery = window.matchMedia(`(max-width: ${C.narrow_screen_px}px)`);
   let narrow = narrowQuery.matches;
   document.body.classList.toggle("narrow", narrow);
-  // Pan limits (S11c): north-south centred on the opening view; east-west limited to the band only
-  // while the map window is narrower than it, so the limits never move the opening view.
-  const minZoom = () => narrow ? C.min_zoom.narrow : C.min_zoom.wide;
+  // Pan limits (S11c): north-south centred on the opening view. East-west on wide screens: always the
+  // band; the lowest zoom is the one at which the band is exactly as wide as the map window (never
+  // below min_zoom.wide), re-set on every change of window width, so the map never wraps and never
+  // jumps a world. Narrow screens: limited to the band only while the window is narrower than it.
   const B = C.max_bounds;
+  const mapDiv = document.getElementById("map");
+  function fitZoom(width) {            // Leaflet's world is 256 px wide at zoom 0
+    const z = Math.log2(width * 360 / (256 * (B.band[1] - B.band[0])));
+    return Math.max(C.min_zoom.wide, Math.ceil(z * 1000) / 1000);   // rounded up: band >= window
+  }
+  const minZoom = () => narrow ? C.min_zoom.narrow : fitZoom(map ? map.getSize().x : mapDiv.clientWidth);
   const bandBounds = L.latLngBounds([[B.lat[0], B.band[0]], [B.lat[1], B.band[1]]]);
   const freeBounds = L.latLngBounds([[B.lat[0], B.free[0]], [B.lat[1], B.free[1]]]);
-  const map = L.map("map", {zoomControl: false, worldCopyJump: true, minZoom: minZoom(),
-                            maxZoom: C.max_zoom, zoomSnap: 0.5,
-                            maxBounds: freeBounds, maxBoundsViscosity: C.max_bounds_viscosity})
-    .setView([C.start_view.lat, C.start_view.lon], narrow ? C.start_view.zoom_narrow : C.start_view.zoom);
+  // worldCopyJump on narrow screens only. Leaflet reads the option once, when the map is made, so its
+  // world-jump step (Leaflet 1.9.4, pinned with an integrity hash) is wrapped to do nothing while wide.
+  const wrapDrag = L.Map.Drag.prototype._onPreDragWrap;
+  L.Map.Drag.prototype._onPreDragWrap = function () { if (narrow) wrapDrag.call(this); };
+  let map = null;
+  const openZoom = narrow ? C.start_view.zoom_narrow : Math.max(C.start_view.zoom, minZoom());
+  map = L.map("map", {zoomControl: false, worldCopyJump: true, minZoom: minZoom(),
+                      maxZoom: C.max_zoom, zoomSnap: 0.5,
+                      maxBounds: narrow ? freeBounds : bandBounds, maxBoundsViscosity: C.max_bounds_viscosity})
+    .setView([C.start_view.lat, C.start_view.lon], openZoom);
 
   let viewChanged = false;             // false until the first zoom or change of window width
   function setEastWest() {
     let limit;
-    if (viewChanged) {                 // the band is wider (in pixels at this zoom) than the window
+    if (!narrow) {                     // wide: always the band (the lowest zoom keeps it wider than the window)
+      limit = true;
+    } else if (viewChanged) {          // the band is wider (in pixels at this zoom) than the window
       const z = map.getZoom();
       limit = map.project([0, B.band[1]], z).x - map.project([0, B.band[0]], z).x > map.getSize().x;
     } else {                           // start-up: only if the opening view already lies inside the band
@@ -234,6 +249,14 @@ const CONFIG = {{CONFIG}};
     const want = limit ? bandBounds : freeBounds;
     if (map.options.maxBounds !== want) map.setMaxBounds(want);
   }
+  function applyMinZoom() {            // wide: zoom in at once (no animation) if below the new lowest zoom
+    const z = minZoom();
+    if (!narrow && map.getZoom() < z) {  // the new lowest zoom first, or Leaflet snaps z to the 0.5 step
+      map.options.minZoom = z;
+      map.setZoom(z, {animate: false});
+    }
+    map.setMinZoom(z);
+  }
   setEastWest();
   map.on("zoomend", () => { viewChanged = true; setEastWest(); });
   let mapWidth = map.getSize().x;
@@ -241,6 +264,7 @@ const CONFIG = {{CONFIG}};
     if (map.getSize().x === mapWidth) return;
     mapWidth = map.getSize().x;
     viewChanged = true;
+    if (!narrow) applyMinZoom();
     setEastWest();
   });
   if (C.basemap.kind === "tiles") {
@@ -655,7 +679,8 @@ const CONFIG = {{CONFIG}};
     map.invalidateSize({pan: false});  // this event can come before Leaflet sees the new size
     document.body.classList.toggle("narrow", narrow);
     scenarioBox.setPosition(narrow ? "bottomleft" : "topright");
-    map.setMinZoom(minZoom());
+    applyMinZoom();
+    setEastWest();
     if (narrow) zoom.remove(); else zoom.addTo(map);   // zoom after the scenario switch, as at load
     if (fsEnabled) { fullscreen.remove(); fullscreen.addTo(map); }   // full screen under the zoom
     setPanel(!narrow);
