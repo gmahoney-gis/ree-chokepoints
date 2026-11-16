@@ -779,7 +779,9 @@ outputs:
     route_join_decimals: 2           # segment values rounded to the cent; segments of equal rounded value are joined
     route_value_decimals: 0          # value_usd in the web files (whole dollars)
     route_legend: "Trade route (wider = more trade)"
-    legend_button: ["Legend", "Hide legend"]   # below narrow_screen_px the legend starts closed behind this button
+    legend_button: ["Legend", "Hide legend"]   # the legend opens and closes behind this button (every screen)
+    legend_collapse_below_px: 500    # narrow_screen_px and up: the legend starts closed when the map is shorter than this
+                                     # (a phone held sideways); re-set only when the height crosses it
     # Full-screen button (map control, top right): tooltip and aria-label; hidden where the browser has no full screen.
     fullscreen_label: "Full screen"
     fullscreen_exit_label: "Exit full screen"

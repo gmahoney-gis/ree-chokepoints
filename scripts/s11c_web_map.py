@@ -26,6 +26,9 @@ and gate lines (docs/map/data/zones.geojson only; no database layer) and the tid
    the lowest zoom), so a tapped or listed chokepoint's circle and card can be moved into the free area
    (right of the panel, clear of the controls and legend), zooming in a step at a time if they do not fit.
    Page only; no data change.
+6. A Legend / Hide legend button on every screen (outputs.web.legend_button). Wide screens open the
+   legend unless the map is shorter than outputs.web.legend_collapse_below_px (a phone held sideways),
+   re-set when the height crosses that limit. Page only; no data change.
 
 Only derived counts are published; no event locations (ACLED terms). Paper and poster outputs
 are not read or changed. The log gives the rows and fields written, each file's size and the
@@ -440,6 +443,7 @@ def page_config(settings, data_files, no_route):
         "route": {k: web[k] for k in ("route_width_px", "route_opacity", "route_tap_tolerance_px",
                                       "route_legend", "route_popup", "route_popup_note")},
         "legend_button": web["legend_button"],
+        "legend_collapse_below_px": web["legend_collapse_below_px"],
         "fullscreen": {k: web[k] for k in ("fullscreen_label", "fullscreen_exit_label")},
         "zones": {k: web[k] for k in ("zone_style", "zones_label", "zones_note")},
         "closed_label": web["closed_label"],
