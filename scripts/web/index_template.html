@@ -235,11 +235,24 @@ const CONFIG = {{CONFIG}};
     .setView([C.start_view.lat, C.start_view.lon], openZoom);
 
   let viewChanged = false;             // false until the first zoom or change of window width
+  // Wide screens: extra room west of the band, as wide in pixels as the panel (open or collapsed, the
+  // panel keeps its width), so a circle under the panel can be slid out into the free area. At the
+  // lowest zoom that strip lies under the panel, so the opening view is unchanged.
+  function westPadDeg() {
+    const px = document.getElementById("panel").getBoundingClientRect().right - mapDiv.getBoundingClientRect().left + 10;
+    return px * 360 / (256 * Math.pow(2, map.getZoom()));
+  }
   function setEastWest() {
+    if (!narrow) {                     // wide: always the band plus the strip under the panel
+      const want = L.latLngBounds([[B.lat[0], B.band[0] - westPadDeg()], [B.lat[1], B.band[1]]]);
+      const now = map.options.maxBounds;
+      if (now && now.equals(want, 1e-9)) return;
+      map.panInsideBounds(want, {animate: false});   // first, so Leaflet's own correction has nothing to do
+      map.setMaxBounds(want);
+      return;
+    }
     let limit;
-    if (!narrow) {                     // wide: always the band (the lowest zoom keeps it wider than the window)
-      limit = true;
-    } else if (viewChanged) {          // the band is wider (in pixels at this zoom) than the window
+    if (viewChanged) {                 // the band is wider (in pixels at this zoom) than the window
       const z = map.getZoom();
       limit = map.project([0, B.band[1]], z).x - map.project([0, B.band[0]], z).x > map.getSize().x;
     } else {                           // start-up: only if the opening view already lies inside the band
@@ -312,7 +325,10 @@ const CONFIG = {{CONFIG}};
     toggle.setAttribute("aria-expanded", String(open));
     placeTopRight();
   }
-  toggle.addEventListener("click", () => setPanel(panel.classList.contains("collapsed")));
+  toggle.addEventListener("click", () => {
+    setPanel(panel.classList.contains("collapsed"));
+    if (!narrow && openId) showDetails(openId);   // wide: an opened panel may now cover the card
+  });
   setPanel(!narrow);
   L.DomEvent.disableClickPropagation(panel);
   L.DomEvent.disableScrollPropagation(panel);
@@ -588,7 +604,7 @@ const CONFIG = {{CONFIG}};
     map.closePopup();
   }
 
-  // The parts of the map not covered by the panel and controls (container pixels).
+  // Narrow screens: the parts of the map not covered by the title bar, controls and sheet (container pixels).
   function freeArea() {
     const box = map.getContainer().getBoundingClientRect();
     const r = el => el.getBoundingClientRect();
@@ -614,12 +630,82 @@ const CONFIG = {{CONFIG}};
       map.panBy([pt.x - a.width / 2, pt.y - (a.top + (a.height - a.bottom)) / 2]);
     } else {
       sheet.classList.remove("open");
-      const a = freeArea(), anchorY = m.options.icon.options.popupAnchor[1];   // the circle's top edge
-      L.popup({maxWidth: 320, maxHeight: Math.max(200, a.height - a.top - a.bottom - 60), offset: [0, 7 + anchorY],
-               autoPanPaddingTopLeft: [a.left, a.top], autoPanPaddingBottomRight: [a.right, a.bottom]})
+      const anchorY = m.options.icon.options.popupAnchor[1];   // the circle's top edge
+      const popup = L.popup({maxWidth: 320, maxHeight: map.getSize().y - 2 * GAP - 70 + 2 * anchorY,
+                             offset: [0, 7 + anchorY], autoPan: false})
         .setLatLng(m.getLatLng()).setContent(`<div class="pp">${details(p).join("")}</div>`).openOn(map);
+      fitCard(m, popup);
     }
     openId = id;                     // after openOn, whose closing of the old pop-up clears it
+  }
+
+  // ---------- Wide screens: bring the circle and its whole card into the free area ----------
+  // Free area = the map less the panel (or the collapsed title box) and every map control (the
+  // top-right controls and the legend), each kept GAP px clear. The card (pop-up and circle) is moved
+  // by the smallest shift the pan limits allow; if none fits, zoom in one step round the circle and try again.
+  const GAP = 10;
+  const rel = (r, c) => ({left: r.left - c.left, top: r.top - c.top, right: r.right - c.left, bottom: r.bottom - c.top});
+  function obstacles() {
+    const c = map.getContainer().getBoundingClientRect(), list = [rel(panel.getBoundingClientRect(), c)];
+    for (const corner of map.getContainer().querySelectorAll(".leaflet-control-container > div"))
+      for (const el of corner.children) {
+        const r = el.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0) list.push(rel(r, c));
+      }
+    return list;
+  }
+  function cardBox(m, popup) {
+    const c = map.getContainer().getBoundingClientRect();
+    const a = popup.getElement().getBoundingClientRect(), b = m.getElement().firstChild.getBoundingClientRect();
+    return rel({left: Math.min(a.left, b.left), top: Math.min(a.top, b.top),
+                right: Math.max(a.right, b.right), bottom: Math.max(a.bottom, b.bottom)}, c);
+  }
+  function panRoom() {                 // on-screen shifts the pan limits allow: {x: [min, max], y: [min, max]}
+    const z = map.getZoom(), v = map.getPixelBounds(), mb = map.options.maxBounds;
+    const nw = map.project(mb.getNorthWest(), z), se = map.project(mb.getSouthEast(), z);
+    return {x: [v.max.x - se.x, v.min.x - nw.x], y: [v.max.y - se.y, v.min.y - nw.y]};
+  }
+  function bestShift(box, obs, room) {
+    const W = map.getSize().x, H = map.getSize().y, w = box.right - box.left, h = box.bottom - box.top, e = 0.5;
+    // The best spot lines the box up with the map edge, an obstacle's edge or a pan limit (or leaves it).
+    const xs = [box.left, GAP, W - GAP - w, box.left + room.x[0], box.left + room.x[1]];
+    const ys = [box.top, GAP, H - GAP - h, box.top + room.y[0], box.top + room.y[1]];
+    for (const o of obs) { xs.push(o.right + GAP, o.left - GAP - w); ys.push(o.bottom + GAP, o.top - GAP - h); }
+    let best = null;
+    for (const x of xs) for (const y of ys) {
+      if (x < GAP - e || y < GAP - e || x + w > W - GAP + e || y + h > H - GAP + e) continue;
+      if (obs.some(o => x < o.right + GAP - e && o.left - GAP + e < x + w && y < o.bottom + GAP - e && o.top - GAP + e < y + h)) continue;
+      const sx = x - box.left, sy = y - box.top;
+      if (sx < room.x[0] - e || sx > room.x[1] + e || sy < room.y[0] - e || sy > room.y[1] + e) continue;
+      const d = Math.hypot(sx, sy);
+      if (!best || d < best.d) best = {d, sx: Math.min(Math.max(sx, room.x[0]), room.x[1]),
+                                          sy: Math.min(Math.max(sy, room.y[0]), room.y[1])};
+    }
+    return best;
+  }
+  function fitCard(m, popup) {
+    const H = map.getSize().y;
+    let box = cardBox(m, popup);
+    const over = box.bottom - box.top - (H - 2 * GAP);
+    if (over > 0) {                    // too tall for the window: a shorter card, its content scrolls
+      popup.options.maxHeight = Math.max(100, popup.options.maxHeight - Math.ceil(over));
+      popup.update();
+    }
+    const center = map.getCenter(), zoom = map.getZoom();
+    for (let i = 0; i < 2 * C.max_zoom + 2; i++) {
+      box = cardBox(m, popup);
+      const s = bestShift(box, obstacles(), panRoom());
+      if (s) {
+        if (Math.abs(s.sx) > 0.5 || Math.abs(s.sy) > 0.5) map.panBy([-s.sx, -s.sy], {animate: false});
+        return true;
+      }
+      const z = map.getZoom();
+      if (z >= map.getMaxZoom()) break;
+      map.setZoomAround(m.getLatLng(), z + map.options.zoomSnap, {animate: false});
+      if (map.getZoom() <= z) break;
+    }
+    map.setView(center, zoom, {animate: false});   // no spot at any zoom (a very small window): view as it was
+    return false;
   }
 
   $("sheet-close").addEventListener("click", closeDetails);
@@ -666,8 +752,15 @@ const CONFIG = {{CONFIG}};
     const b = e.target.closest("button");
     if (!b) return;
     const m = markers.get(b.dataset.id);
-    if (narrow) setPanel(false);
-    map.setView(m.getLatLng(), Math.max(map.getZoom(), C.list_zoom), {animate: false});
+    const z = Math.max(map.getZoom(), C.list_zoom);
+    if (narrow) {
+      setPanel(false);
+      map.setView(m.getLatLng(), z, {animate: false});
+    } else {                           // wide: zoom round the circle if it is on screen; showDetails moves it clear
+      const pt = map.latLngToContainerPoint(m.getLatLng()), size = map.getSize();
+      if (pt.x >= 0 && pt.y >= 0 && pt.x <= size.x && pt.y <= size.y) map.setZoomAround(m.getLatLng(), z, {animate: false});
+      else map.setView(m.getLatLng(), z, {animate: false});
+    }
     showDetails(b.dataset.id);
   });
 

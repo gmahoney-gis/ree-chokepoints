@@ -22,7 +22,10 @@ and gate lines (docs/map/data/zones.geojson only; no database layer) and the tid
    fullscreen_exit_label), left out where the browser has no full screen. Page only; no data change.
 5. Pan limits on wide screens: the east-west band always applies and the lowest zoom fits the band to
    the map window, re-set on every change of width, so the map never jumps a world (settings comment
-   at outputs.web.max_bounds). Page only; no data change.
+   at outputs.web.max_bounds), plus a strip as wide as the panel west of the band (under the panel at
+   the lowest zoom), so a tapped or listed chokepoint's circle and card can be moved into the free area
+   (right of the panel, clear of the controls and legend), zooming in a step at a time if they do not fit.
+   Page only; no data change.
 
 Only derived counts are published; no event locations (ACLED terms). Paper and poster outputs
 are not read or changed. The log gives the rows and fields written, each file's size and the

@@ -750,7 +750,10 @@ outputs:
     #   the map never wraps and never jumps a world (Leaflet's worldCopyJump does nothing while wide).
     #   Where the band is wider than the window at start_view.zoom, the opening zoom is raised to that
     #   lowest zoom and the opening view is the whole band (centre 0, not start_view.lon); otherwise
-    #   Leaflet moves the centre west from start_view.lon until the view fits inside the band;
+    #   Leaflet moves the centre west from start_view.lon until the view fits inside the band. West of the
+    #   band the map may also slide as far as the panel is wide (that strip lies under the panel), so the
+    #   details card can be moved clear of the panel and controls; if it still does not fit, the map zooms
+    #   in one step at a time round the circle;
     # - east-west, narrow screens: limited to west..east only while the map window is narrower than
     #   that band at the current zoom (re-checked on zoom and on a change of window width); otherwise
     #   free (the map wraps the world, worldCopyJump on), within lon_half_width degrees either side of
